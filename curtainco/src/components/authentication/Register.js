@@ -9,15 +9,18 @@ import Copyright from "./Copyright"
 import { UserDataForm } from "../export"
 
 import { Redirect, useHistory } from "react-router-dom"
+import LoadingSymbol from "../reusable/LoadingSymbol"
 
 export default function SignUp() {
     const history = useHistory()
     const { state, dispatch } = useCurtainContext()
     const [prevUrl, setPrevUrl] = useState("/")
+    const [isLoading, setIsLoading] = useState(false)
 
     function handleRegister(userDetails) {
         let registerError = false
         // REGISTER THE USER
+        setIsLoading(true)
         registerUser(userDetails)
             .then((regResp) => {
                 if (regResp.status === 201) {
@@ -52,6 +55,7 @@ export default function SignUp() {
                 console.log(registerError)
             })
 
+        setIsLoading(false)
         return registerError
     }
 
@@ -66,6 +70,8 @@ export default function SignUp() {
         <>
             {state.currentUser !== null ? (
                 <Redirect to={prevUrl} />
+            ) : isLoading ? (
+                <LoadingSymbol />
             ) : (
                 <>
                     <UserDataForm

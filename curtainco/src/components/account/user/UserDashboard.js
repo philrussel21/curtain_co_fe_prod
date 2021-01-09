@@ -19,7 +19,7 @@ function UserDashboard({ isLoading }) {
                     <ProfileInformation />
                 </Grid>
                 <Grid item container xs={7}>
-                    {isLoading ? <LoadingSymbol /> : <PurchaseHistory />}
+                    <PurchaseHistory isLoading={isLoading} />
                 </Grid>
             </Grid>
             <CTARequestConsultation />
