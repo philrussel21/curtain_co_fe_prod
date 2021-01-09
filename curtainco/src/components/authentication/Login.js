@@ -95,12 +95,14 @@ export default function SignIn() {
 
     // AFTER USER LOGS IN, REDIRECT THEM TO THE PREVIOUS PAGE THEY CAME FROM
     useEffect(() => {
-        setPrevUrl(history.location.state.prevUrl.split("3000")[1])
+        if (history.location.state !== undefined) {
+            setPrevUrl(history.location.state.prevUrl.split("3000")[1])
+        }
     }, [history])
 
     return (
         <>
-            {state.loggedIn ? (
+            {state.currentUser !== null ? (
                 <Redirect to={prevUrl} />
             ) : (
                 <Container maxWidth="xs">

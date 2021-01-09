@@ -64,7 +64,7 @@ export default function SignUp() {
 
     return (
         <>
-            {state.loggedIn ? (
+            {state.currentUser !== null ? (
                 <Redirect to={prevUrl} />
             ) : (
                 <>

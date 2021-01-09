@@ -13,31 +13,33 @@ function Account() {
 
     useEffect(() => {
         async function getUpdatedUserFromDb() {
-            try {
-                const resp = await getUpdatedUserWithOrderObjects(
-                    state.currentUser._id
-                )
-                console.log(resp)
-                let currentUser = resp.data
-                if (resp.status === 200 && currentUser) {
+            if (state.currentUser !== null) {
+                try {
+                    const resp = await getUpdatedUserWithOrderObjects(
+                        state.currentUser._id
+                    )
+                    console.log(resp)
+                    let currentUser = resp.data
+                    if (resp.status === 200 && currentUser) {
+                        dispatch({
+                            type: ACTIONS.SET_CURRENT_USER,
+                            payload: currentUser,
+                        })
+                    }
+                } catch (error) {
+                    console.log(
+                        `An error ocurred on getUpdatedUserWithOrderObjects at Account: ${error}.`
+                    )
+                    // IF AN ERROR OCCURS, LOOK FOR FALSE IN PURCHASE HISTORY AND SHOW ERROR
                     dispatch({
                         type: ACTIONS.SET_CURRENT_USER,
-                        payload: currentUser,
+                        payload: { currentUser: null, orders: false },
                     })
                 }
-            } catch (error) {
-                console.log(
-                    `An error ocurred on getUpdatedUserWithOrderObjects at Account: ${error}.`
-                )
-                // IF AN ERROR OCCURS, LOOK FOR FALSE IN PURCHASE HISTORY AND SHOW ERROR
-                dispatch({
-                    type: ACTIONS.SET_CURRENT_USER,
-                    payload: { ...state.currentUser, orders: false },
-                })
+                setIsLoading(false)
             }
-            setIsLoading(false)
         }
-
+        // THIS STOP THE INFINITE LOOP
         if (isLoading) {
             getUpdatedUserFromDb()
         }
@@ -47,14 +49,19 @@ function Account() {
         <>
             <Typography variant="h3">Account Page</Typography>
 
-            {state.currentUser !== null ? (
-                state.currentUser.role === "admin" ? (
-                    <AdminDashboard />
-                ) : (
-                    <UserDashboard isLoading={isLoading} />
-                )
+            {state.currentUser === null || state.currentUser === undefined ? (
+                <Redirect
+                    to={{
+                        pathname: "/login",
+                        state: {
+                            prevUrl: "3000/account",
+                        },
+                    }}
+                />
+            ) : state.currentUser.role === "admin" ? (
+                <AdminDashboard />
             ) : (
-                <Redirect to="/" />
+                <UserDashboard isLoading={isLoading} />
             )}
         </>
     )
