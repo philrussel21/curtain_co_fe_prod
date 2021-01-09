@@ -1,0 +1,16 @@
+body {
+    background-color: antiquewhite;
+    min-height: 100vh;
+}
+
+.app-container {
+    height: calc(100vh - 195px);
+    z-index: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.link {
+    text-decoration: none;
+    color: inherit;
+}
