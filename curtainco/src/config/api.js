@@ -6,11 +6,4 @@ export default axios.create({
     baseURL: "https://thecurtainco.herokuapp.com/api", // production
     withCredentials: true,
     timeout: 5000,
-    headers: {
-        post: {
-            // can be common or any other method
-            header1: "value1",
-        },
-        "Content-Type": "application/json",
-    },
 })

@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from "react"
+// COMPONENTS
 import PurchaseOrder from "./PurchaseOrder"
+import LoadingSymbol from "../../reusable/LoadingSymbol"
+// STYLES
 import { Container, Typography, Grid, Divider } from "@material-ui/core"
 import useStyles from "./UserDashboardStyles"
+// HELPERS AND SERVICES
 import { getUpdatedUserWithOrderObjects } from "../../../services/userServices"
 import { useCurtainContext } from "../../../config/CurtainCoContext"
-import LoadingSymbol from "../../reusable/LoadingSymbol"
 
-function PurchaseHistory() {
+function PurchaseHistory({ isLoading }) {
     const classes = useStyles()
     const { state } = useCurtainContext()
     const [purchaseHistory, setPurchaseHistory] = useState([])
@@ -41,9 +44,13 @@ function PurchaseHistory() {
                 direction="column"
                 className={classes.purchaseHistoryRoot}
             >
-                {allPurchasedItems.length === 0
-                    ? purchaseHistoryError
-                    : allPurchasedItems}
+                {isLoading ? (
+                    <LoadingSymbol />
+                ) : allPurchasedItems.length === 0 ? (
+                    purchaseHistoryError
+                ) : (
+                    allPurchasedItems
+                )}
             </Grid>
         </Container>
     )

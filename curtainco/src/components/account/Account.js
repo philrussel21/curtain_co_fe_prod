@@ -32,13 +32,13 @@ function Account() {
                     // IF AN ERROR OCCURS, LOOK FOR FALSE IN PURCHASE HISTORY AND SHOW ERROR
                     dispatch({
                         type: ACTIONS.SET_CURRENT_USER,
-                        payload: { currentUser: null, orders: false },
+                        payload: { ...state.currentUser, orders: false },
                     })
                 }
                 setIsLoading(false)
             }
         }
-        // THIS STOP THE INFINITE LOOP
+        // THIS STOPS THE INFINITE LOOP
         if (isLoading) {
             getUpdatedUserFromDb()
         }
