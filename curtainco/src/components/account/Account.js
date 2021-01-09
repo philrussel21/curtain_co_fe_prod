@@ -18,7 +18,6 @@ function Account() {
                     const resp = await getUpdatedUserWithOrderObjects(
                         state.currentUser._id
                     )
-                    console.log(resp)
                     let currentUser = resp.data
                     if (resp.status === 200 && currentUser) {
                         dispatch({
