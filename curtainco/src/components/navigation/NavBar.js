@@ -73,7 +73,7 @@ function NavBar() {
                     </Link>
                 </Button>
 
-                {state.loggedIn ? (
+                {state.currentUser !== null ? (
                     <Button color="inherit">
                         <Link className={classes.link} to="/account">
                             Account
@@ -83,7 +83,7 @@ function NavBar() {
                     ""
                 )}
 
-                {state.loggedIn ? (
+                {state.currentUser !== null ? (
                     <Button color="inherit" onClick={handleLogout}>
                         <Link className={classes.link} to="/">
                             Logout
