@@ -1,9 +1,9 @@
-import React from "react";
+import React from "react"
 
-import { Typography, Grid, TextField, Button, Box } from "@material-ui/core";
-import DeleteIcon from "@material-ui/icons/Delete";
-import FileInput from "./FileInput";
-import useStyles from "../account/admin/AdminStyles";
+import { Typography, Grid, TextField, Button, Box } from "@material-ui/core"
+import DeleteIcon from "@material-ui/icons/Delete"
+import FileInput from "./FileInput"
+import useStyles from "../account/admin/AdminStyles"
 
 function FabricForm({
     title,
@@ -16,34 +16,34 @@ function FabricForm({
     setResetFile,
     resetFile,
 }) {
-    const classes = useStyles();
+    const classes = useStyles()
     // this loop just changes an undefined value of the product to
     // empty string for the form to display cleaner
     for (const key in product) {
         if (Object.hasOwnProperty.call(product, key)) {
-            if (product[key] === undefined) product[key] = "";
+            if (product[key] === undefined || product[key] === null)
+                product[key] = ""
         }
     }
+
     return (
         <>
             <Box pb={1}>
                 <Grid container justify="center" alignItems="center">
                     <Grid item xs={3}>
-                        {product.imgUrl !== "" ? (
-                            <img
-                                src={
-                                    product.imgUrl !== "" ? product.imgUrl : ""
-                                }
-                                alt={
-                                    product.imgUrl === ""
-                                        ? ""
-                                        : `${product.colour} ${product.name}`
-                                }
-                                className={classes.editFormImage}
-                            />
-                        ) : (
-                            ""
-                        )}
+                        <img
+                            src={
+                                product.imgUrl !== ""
+                                    ? product.imgUrl
+                                    : "/no-image.png"
+                            }
+                            alt={
+                                product.imgUrl === ""
+                                    ? "blank-image"
+                                    : `${product.colour} ${product.name}`
+                            }
+                            className={classes.editFormImage}
+                        />
                     </Grid>
                     <Grid
                         item
@@ -203,7 +203,7 @@ function FabricForm({
                 )}
             </Grid>
         </>
-    );
+    )
 }
 
-export default FabricForm;
+export default FabricForm

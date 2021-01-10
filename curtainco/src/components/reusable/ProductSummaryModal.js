@@ -14,11 +14,7 @@ function ProductSummaryModal({ data, title, handleCartClick, handleClose }) {
             <Grid item container xs={5} justify="center" alignItems="center">
                 <div role="img">
                     <img
-                        src={
-                            data.imgUrl === ""
-                                ? "https://source.unsplash.com/random"
-                                : data.imgUrl
-                        }
+                        src={data.imgUrl === "" ? "/loading.gif" : data.imgUrl}
                         alt={data.name}
                         style={{ width: "70%" }}
                     />

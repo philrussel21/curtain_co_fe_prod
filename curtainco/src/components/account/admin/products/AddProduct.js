@@ -1,23 +1,28 @@
-import React, { useState } from "react";
-
-import { Container, Divider, Paper } from "@material-ui/core";
-import Radio from "@material-ui/core/Radio";
-import RadioGroup from "@material-ui/core/RadioGroup";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import FormControl from "@material-ui/core/FormControl";
-import FormLabel from "@material-ui/core/FormLabel";
-import AddFabric from "./AddFabric";
-import AddTrack from "./AddTrack";
-import AddAccessory from "./AddAccessory";
-import useStyles from "../AdminStyles";
+import React, { useState } from "react"
+// STYLES
+import {
+    Container,
+    Divider,
+    Paper,
+    Radio,
+    RadioGroup,
+    FormControlLabel,
+    FormControl,
+    FormLabel,
+} from "@material-ui/core"
+import useStyles from "../AdminStyles"
+// COMPONENTS
+import AddFabric from "./AddFabric"
+import AddTrack from "./AddTrack"
+import AddAccessory from "./AddAccessory"
 
 function AddProduct() {
-    const classes = useStyles();
-    const [checkedValue, setCheckedValue] = useState("track");
+    const classes = useStyles()
+    const [checkedValue, setCheckedValue] = useState("track")
 
     const handleChange = (event) => {
-        setCheckedValue(event.target.value);
-    };
+        setCheckedValue(event.target.value)
+    }
 
     return (
         <Paper className={classes.paper}>
@@ -60,7 +65,7 @@ function AddProduct() {
                 )}
             </Container>
         </Paper>
-    );
+    )
 }
 
-export default AddProduct;
+export default AddProduct

@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react"
 // SERVICES AND HELPERS
-import { useCurtainContext } from "../../config/CurtainCoContext"
-import { ACTIONS } from "../../config/stateReducer"
 import { loginUser } from "../../services/authServices"
-import { Link, Redirect, useHistory } from "react-router-dom"
 import { loginFieldAreBad } from "../../helpers/authHelpers"
 import { setErrorSnackBar } from "../../helpers/appHelpers"
+// PACKAGES
+import { Link, Redirect, useHistory } from "react-router-dom"
+// STATE
+import { useCurtainContext } from "../../config/CurtainCoContext"
+import { ACTIONS } from "../../config/stateReducer"
 // COMPONENTS
 import Copyright from "./Copyright"
 import LoadingSymbol from "../reusable/LoadingSymbol"
@@ -127,8 +129,8 @@ export default function SignIn() {
                             <>
                                 <form
                                     className={classes.form}
-                                    // noValidate
-                                    // onSubmit={handleLogin}
+                                    noValidate
+                                    onSubmit={handleLogin}
                                 >
                                     <TextField
                                         variant="outlined"
@@ -162,22 +164,20 @@ export default function SignIn() {
                                     <FormControlLabel
                                         control={
                                             <Checkbox
-                                                value="remember"
                                                 color="primary"
+                                                onChange={handleRememberMe}
+                                                checked={rememberMe}
                                             />
                                         }
                                         label="Remember me"
-                                        checked={rememberMe}
-                                        onClick={handleRememberMe}
                                     />
 
                                     <Button
-                                        // type="submit"
+                                        type="submit"
                                         fullWidth
                                         variant="contained"
                                         color="primary"
                                         className={classes.submit}
-                                        onClick={handleLogin}
                                     >
                                         Sign In
                                     </Button>

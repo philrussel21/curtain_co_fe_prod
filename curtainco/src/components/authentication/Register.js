@@ -76,11 +76,10 @@ export default function SignUp() {
                 <>
                     <UserDataForm
                         currentUser={state.currentUser}
-                        handleFunctionFromParent={handleRegister}
-                        formTitle={"Sign Up"}
-                        withAuth={true}
+                        handleSubmitFunctionFromParent={handleRegister}
+                        withAuth={{ email: true, password: true }}
                         buttonText={"Sign Up"}
-                        headerInformation={true}
+                        headerInformation={{ icon: true, title: "Sign Up" }}
                         withConsultMessage={false}
                     />
                     <Container maxWidth="sm">

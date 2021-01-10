@@ -1,4 +1,4 @@
-import React, { useEffect } from "react"
+import React, { useState, useEffect } from "react"
 
 import { Typography, Grid } from "@material-ui/core"
 
@@ -7,10 +7,13 @@ import { useCurtainContext } from "../../config/CurtainCoContext"
 import { ACTIONS } from "../../config/stateReducer"
 import { getAllCollections } from "../../services/collectionServices"
 import CollectionList from "./collection/CollectionList"
+import LoadingSymbol from "../reusable/LoadingSymbol"
 
 function Collections() {
     const classes = useStyles()
     const { state, dispatch } = useCurtainContext()
+    const [isLoading, setIsLoading] = useState(true)
+    const [collectionErrorMessage, setCollectionErrorMessage] = useState(null)
 
     useEffect(() => {
         getAllCollections()
@@ -28,7 +31,9 @@ function Collections() {
             })
             .catch((error) => {
                 console.log(error)
+                setCollectionErrorMessage(error)
             })
+        setIsLoading(false)
     }, [dispatch])
 
     return (
@@ -41,7 +46,13 @@ function Collections() {
                 justify="center"
                 spacing={10}
             >
-                <CollectionList collections={state.collections} />
+                {isLoading ? (
+                    <LoadingSymbol />
+                ) : collectionErrorMessage !== null ? (
+                    collectionErrorMessage
+                ) : (
+                    <CollectionList collections={state.collections} />
+                )}
             </Grid>
         </>
     )

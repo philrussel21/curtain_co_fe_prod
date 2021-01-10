@@ -1,23 +1,23 @@
-import React, { useState, useEffect } from "react"
-
+import React, { useState, useEffect, useRef, useCallback } from "react"
+// COMPONENTS
 import AccessoryForm from "../../../reusable/AccessoryForm"
+// HELPERS AND SERVICES
 import {
     updateProduct,
     deleteProduct,
     submitProductToDbAndUpdateState,
 } from "../../../../services/productServices"
+import { getOneProductFromState } from "../../../../helpers/productHelpers"
+// STATE
 import { useCurtainContext } from "../../../../config/CurtainCoContext"
 import { ACTIONS } from "../../../../config/stateReducer"
-import { getOneProductFromState } from "../../../../helpers/productHelpers"
-import { isPhotoPresent } from "../../../../helpers/appHelpers"
-import { uploadPhotoToS3 } from "../../../../services/uploadServices"
 
 function EditDeleteAccessory({ editProductId, setEditProductId }) {
     const { state, dispatch } = useCurtainContext()
     const [resetFile, setResetFile] = useState(false)
     const [previousProduct, setPreviousProduct] = useState(editProductId)
     const [photo, setPhoto] = useState({})
-    const [accessory, setAccessory] = useState({
+    const emptyAccessory = useRef({
         category: "Accessory",
         _id: "",
         name: "",
@@ -28,17 +28,11 @@ function EditDeleteAccessory({ editProductId, setEditProductId }) {
         type: "",
     })
 
-    function resetProductForm() {
-        setAccessory({
-            category: "Accessory",
-            name: "",
-            colour: "",
-            imgUrl: "",
-            price: "",
-            description: "",
-            type: "",
-        })
-    }
+    const [accessory, setAccessory] = useState(emptyAccessory.current)
+
+    const resetProductForm = useCallback(() => {
+        setAccessory(emptyAccessory.current)
+    }, [emptyAccessory])
 
     function handleFileChange(file) {
         console.log(file)
@@ -63,7 +57,7 @@ function EditDeleteAccessory({ editProductId, setEditProductId }) {
         } else {
             resetProductForm()
         }
-    }, [state.products, editProductId, previousProduct])
+    }, [state.products, editProductId, previousProduct, resetProductForm])
 
     const handleTextChange = (event) => {
         setAccessory({ ...accessory, [event.target.name]: event.target.value })

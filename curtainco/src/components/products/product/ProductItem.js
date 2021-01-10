@@ -54,9 +54,11 @@ function ProductItem({ productData }) {
             <CardMedia
                 className={classes.cardMedia}
                 image={
-                    productData.imgUrl === ""
-                        ? "https://source.unsplash.com/random"
-                        : productData.imgUrl
+                    productData.imgUrl
+                        ? productData.imgUrl
+                        : productData.imgUrl === undefined
+                        ? "./no-image.png"
+                        : "./loading.gif"
                 }
                 title={`${capitalize(productData.name)} Image`}
             />

@@ -33,8 +33,23 @@ function CollectionForm({
     function buildSelectOptions(products, category) {
         let productArray = products.filter((prod) => prod.category === category)
         let menuItems = []
+
         for (let i = 0; i < productArray.length; i++) {
             const prod = productArray[i]
+
+            // ADD A DISABLED DEFAULT AT THE START
+            if (i === 0) {
+                menuItems.push(
+                    <MenuItem
+                        key={`disabled-${category}-menu-item-${i}`}
+                        value=""
+                        disabled
+                    >
+                        {category}
+                    </MenuItem>
+                )
+            }
+
             // ADD A MENU ITEM FOR EACH PRODUCT ON DB
             menuItems.push(
                 <MenuItem key={prod._id} value={prod._id}>

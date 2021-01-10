@@ -1,16 +1,10 @@
-import { Grid, Typography } from '@material-ui/core';
-import React from 'react';
+import { Grid, Typography } from "@material-ui/core"
+import React from "react"
 
 function Story() {
     return (
-        <Grid
-            item
-            container
-            justify="center"
-            spacing={2}
-        >
+        <Grid item container justify="center" spacing={2}>
             <Grid item sm={6}>
-
                 <Typography variant="h3" component="h3">
                     Our Story
                 </Typography>
@@ -24,14 +18,10 @@ function Story() {
             </Grid>
 
             <Grid item sm={6}>
-                <img
-                    src="https://source.unsplash.com/random/300x300"
-                    alt="Reflecting story"
-                />
+                <img src="/loading.gif/300x300" alt="Reflecting story" />
             </Grid>
         </Grid>
-
-    );
+    )
 }
 
-export default Story;
+export default Story

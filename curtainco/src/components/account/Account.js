@@ -1,10 +1,15 @@
 import React, { useState, useEffect } from "react"
+// STATE
 import { useCurtainContext } from "../../config/CurtainCoContext"
-import Typography from "@material-ui/core/Typography"
+import { ACTIONS } from "../../config/stateReducer"
+// PACKAGES
+import { Redirect } from "react-router-dom"
+// STYLES
+import { Typography } from "@material-ui/core"
+// COMPONENTS
 import AdminDashboard from "./admin/AdminDashboard"
 import UserDashboard from "./user/UserDashboard"
-import { Redirect } from "react-router-dom"
-import { ACTIONS } from "../../config/stateReducer"
+// HELPERS AND SERVICES
 import { getUpdatedUserWithOrderObjects } from "../../services/userServices"
 
 function Account() {

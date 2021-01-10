@@ -1,18 +1,16 @@
 import React from "react"
-
+// HELPERS AND SERVICES
 import { useCurtainContext } from "../../config/CurtainCoContext"
 import { ACTIONS } from "../../config/stateReducer"
-
 import { logoutUser } from "../../services/authServices"
 import { Link, withRouter } from "react-router-dom"
-
+// STYLES
 import { AppBar, Toolbar, Typography, Button } from "@material-ui/core"
-
 import useStyles from "./NavigationStyles"
+// COMPONENTS
 
 function NavBar() {
     const classes = useStyles()
-
     const { state, dispatch } = useCurtainContext()
 
     function handleLogout(e) {
