@@ -1,15 +1,19 @@
 import React, { useEffect, useState } from "react"
+// STYLES
 import { Container, Grid } from "@material-ui/core"
+import useStyles from "./ProductStyles"
+// COMPONENTS
 import ProductList from "./product/ProductList"
 import Search from "./sidebar/Search"
 import Filter from "./sidebar/Filter"
 import Sort from "./sidebar/Sort"
-import useStyles from "./ProductStyles"
+import LoadingSymbol from "../reusable/LoadingSymbol"
+// STATE
 import { useCurtainContext } from "../../config/CurtainCoContext"
 import { ACTIONS } from "../../config/stateReducer"
+// HELPERS AND SERVICES
 import { sortACTIONS, sortProducts } from "../../helpers/productHelpers"
 import { getAllProducts } from "../../services/productServices"
-import LoadingSymbol from "../reusable/LoadingSymbol"
 
 const sortFields = Object.values(sortACTIONS)
 
@@ -54,13 +58,14 @@ function Products() {
                         type: ACTIONS.SET_ALL_PRODUCTS,
                         payload: sortedProducts,
                     })
+                    setIsLoading(false)
                 }
             })
             .catch((error) => {
                 console.log(error)
                 setProductErrorMessage(error)
+                setIsLoading(false)
             })
-        setIsLoading(false)
     }, [dispatch])
 
     return (
