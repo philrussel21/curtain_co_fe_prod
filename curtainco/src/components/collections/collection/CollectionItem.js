@@ -1,13 +1,15 @@
 import React from "react"
-
+// STYLES
 import { Button, Grid, Paper, Typography } from "@material-ui/core"
 import useStyles from "../CollectionStyles"
+// HELPERS AND SERVICES
 import { Link } from "react-router-dom"
 import { capitalize } from "../../../helpers/appHelpers"
-import AddToCartButton from "../../reusable/AddToCartButton"
 import { addItemToCart } from "../../../services/cartServices"
 import { useCurtainContext } from "../../../config/CurtainCoContext"
 import { ACTIONS } from "../../../config/stateReducer"
+// COMPONENTS
+import AddToCartButton from "../../reusable/AddToCartButton"
 
 function CollectionItem({ data }) {
     const classes = useStyles()
@@ -40,7 +42,7 @@ function CollectionItem({ data }) {
                         <img
                             src={
                                 data.imgUrl === ""
-                                    ? "https://source.unsplash.com/random"
+                                    ? "/loading.gif"
                                     : data.imgUrl
                             }
                             alt={data.name}

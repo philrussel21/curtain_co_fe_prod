@@ -1,14 +1,34 @@
-import React from "react";
-import CssBaseline from "@material-ui/core/CssBaseline";
-import { Typography, Button, Grid, Divider } from "@material-ui/core";
-import { Link } from 'react-router-dom';
-
-import useStyles from "./NavigationStyles";
-import Contact from "./Contact";
-import Legal from "./Legal";
+import React, { useState, useEffect } from "react"
+// STYLES
+import {
+    CssBaseline,
+    Typography,
+    Button,
+    Grid,
+    Divider,
+} from "@material-ui/core"
+import useStyles from "./NavigationStyles"
+// HELPERS AND SERVICES
+import { Link, useHistory } from "react-router-dom"
+// COMPONENTS
+import Contact from "./Contact"
+import Legal from "./Legal"
 
 export default function StickyFooter() {
-    const classes = useStyles();
+    const classes = useStyles()
+    const history = useHistory()
+    const [hideButton, setHideButton] = useState(false)
+
+    useEffect(() => {
+        setHideButton(false)
+        console.log("here")
+        console.log(history.location.pathname)
+        if (history.location.pathname === "/request") {
+            console.log("here 2")
+            setHideButton(true)
+        }
+    }, [history])
+    console.log(hideButton)
 
     return (
         <div className={classes.footerRoot}>
@@ -19,17 +39,30 @@ export default function StickyFooter() {
                 <Grid container>
                     <Contact />
 
-                    <Grid item sm={8} container justify="center" alignItems="center">
-                        <Button variant="contained" color="primary" >
-                            <Link to="/request" className={classes.link}>
-                                Request Consultation
+                    <Grid
+                        item
+                        sm={8}
+                        container
+                        justify="center"
+                        alignItems="center"
+                    >
+                        {/* HIDING THE REQUEST CONSULTATION BUTTON TO THIS ROUTE SO THAT PEOPLE
+                        DON'T THINK TO PRESS THIS BUTTON TO SUBMIT IT AND RELOAD THE PAGE
+                        ACCIDENTALLY */}
+                        {hideButton ? (
+                            ""
+                        ) : (
+                            <Button variant="contained" color="primary">
+                                <Link to="/request" className={classes.link}>
+                                    Request Consultation
                                 </Link>
-                        </Button>
+                            </Button>
+                        )}
                     </Grid>
 
                     <Legal />
                 </Grid>
             </footer>
         </div>
-    );
+    )
 }
