@@ -164,13 +164,12 @@ export default function SignIn() {
                                     <FormControlLabel
                                         control={
                                             <Checkbox
-                                                value="remember"
                                                 color="primary"
+                                                onChange={handleRememberMe}
+                                                checked={rememberMe}
                                             />
                                         }
                                         label="Remember me"
-                                        checked={rememberMe}
-                                        onClick={handleRememberMe}
                                     />
 
                                     <Button
@@ -179,7 +178,6 @@ export default function SignIn() {
                                         variant="contained"
                                         color="primary"
                                         className={classes.submit}
-                                        // onClick={handleLogin}
                                     >
                                         Sign In
                                     </Button>

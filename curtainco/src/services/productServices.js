@@ -1,36 +1,36 @@
-import api from "../config/api";
-import { capitalize, isPhotoPresent } from "../helpers/appHelpers";
-import { uploadPhotoToS3 } from "./uploadServices";
+import api from "../config/api"
+import { capitalize, isPhotoPresent } from "../helpers/appHelpers"
+import { uploadPhotoToS3 } from "./uploadServices"
 
 async function getAllProducts() {
-    const response = await api.get("/products");
-    return response;
+    const response = await api.get("/products")
+    return response
 }
 
 async function createProduct(newProduct) {
-    const response = await api.post("/products", newProduct);
-    return response;
+    const response = await api.post("/products", newProduct)
+    return response
 }
 
 async function updateProduct(updatedProduct) {
     const response = await api.put(
         `/products/${updatedProduct._id}`,
         updatedProduct
-    );
-    return response;
+    )
+    return response
 }
 
 async function deleteProduct(productToDelete) {
     const response = await api.delete(
         `/products/${productToDelete._id}`,
         productToDelete
-    );
-    return response;
+    )
+    return response
 }
 
 async function createAccessory(newAccessory) {
-    const response = await api.post("/accessory", newAccessory);
-    return response;
+    const response = await api.post("/accessory", newAccessory)
+    return response
 }
 
 async function submitProductToDbAndUpdateState(
@@ -45,22 +45,23 @@ async function submitProductToDbAndUpdateState(
 ) {
     // UPDATE THE PRODUCT ON THE DB
     // IF SUCCESSFUL, UPDATE PRODUCT IN GLOBAL STATE AND SHOW SUCCESS SNACKBAR
-    let editProdError = false;
-    let tempProduct = { ...product };
-    let userIsUpdatingPhoto = isPhotoPresent(photo);
+    let editProdError = false
+    let tempProduct = { ...product }
+    let userIsUpdatingPhoto = isPhotoPresent(photo)
 
     // UPLOAD THE PHOTO TO S3
     if (userIsUpdatingPhoto) {
+        console.log("User wants to update photo")
         try {
-            let s3Resp = await uploadPhotoToS3(photo);
-            console.log(s3Resp);
+            let s3Resp = await uploadPhotoToS3(photo)
+            console.log(s3Resp)
             if (s3Resp.status === 201) {
-                tempProduct.imgUrl = s3Resp.data.image.location;
-                setResetFile(true);
-                setPhoto({});
+                tempProduct.imgUrl = s3Resp.data.image.location
+                setResetFile(true)
+                setPhoto({})
             }
         } catch (error) {
-            editProdError = `Error ocurred when retrieving photo on ${updateOrAdd} ${tempProduct.category}. ${error}.`;
+            editProdError = `Error ocurred when retrieving photo on ${updateOrAdd} ${tempProduct.category}. ${error}.`
         }
     }
 
@@ -70,16 +71,16 @@ async function submitProductToDbAndUpdateState(
     if (editProdError)
         return alert(
             `Something went wrong when ${updateOrAdd} photo to storage on ${tempProduct.category}`
-        );
+        )
 
     try {
-        let resp;
+        let resp
         if (updateOrAdd === "add") {
-            resp = await createProduct(tempProduct);
+            resp = await createProduct(tempProduct)
         } else {
-            resp = await updateProduct(tempProduct);
+            resp = await updateProduct(tempProduct)
         }
-        console.log(resp);
+        console.log(resp)
         if (
             (updateOrAdd === "add" && resp.status === 201) ||
             (updateOrAdd === "update" && resp.status === 200)
@@ -90,7 +91,7 @@ async function submitProductToDbAndUpdateState(
                         ? ACTIONS.ADD_PRODUCT
                         : ACTIONS.UPDATE_PRODUCT,
                 payload: tempProduct,
-            });
+            })
             dispatch({
                 type: ACTIONS.SET_SNACKBAR,
                 payload: {
@@ -102,19 +103,19 @@ async function submitProductToDbAndUpdateState(
                         updateOrAdd === "add" ? "added" : "updated"
                     }`,
                 },
-            });
-            setResetFile(true);
-            setPhoto({});
-            if (updateOrAdd === "add") resetProductForm();
-            return resp;
+            })
+            setResetFile(true)
+            setPhoto({})
+            if (updateOrAdd === "add") resetProductForm()
+            return resp
         } else {
-            editProdError = `An status error ocurred on ${updateOrAdd} ${tempProduct.category}: Error Code: ${resp.status}. Message: ${resp.message}.`;
-            console.log(editProdError);
+            editProdError = `An status error ocurred on ${updateOrAdd} ${tempProduct.category}: Error Code: ${resp.status}. Message: ${resp.message}.`
+            console.log(editProdError)
         }
     } catch (error) {
-        editProdError = `An error ocurred on ${updateOrAdd} ${tempProduct.category}. ${error}.`;
+        editProdError = `An error ocurred on ${updateOrAdd} ${tempProduct.category}. ${error}.`
     }
-    return editProdError;
+    return editProdError
 }
 
 export {
@@ -124,4 +125,4 @@ export {
     deleteProduct,
     createAccessory,
     submitProductToDbAndUpdateState,
-};
+}
