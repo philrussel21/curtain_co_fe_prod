@@ -102,7 +102,7 @@ function checkIfAnyFieldsEmptyOnProductObject(product) {
     return false
 }
 
-module.exports = {
+export {
     sortProducts,
     filterByType,
     searchProducts,
