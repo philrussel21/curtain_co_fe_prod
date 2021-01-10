@@ -82,12 +82,14 @@ function App() {
                 severity={state.snackbar.severity}
                 message={state.snackbar.message}
             />
+
             <CustomModal
                 title={state.modal.title}
                 open={state.modal.open}
                 message={state.modal.message}
                 data={state.modal.data}
             />
+
             <Footer />
         </Router>
     )

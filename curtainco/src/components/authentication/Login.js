@@ -127,8 +127,8 @@ export default function SignIn() {
                             <>
                                 <form
                                     className={classes.form}
-                                    // noValidate
-                                    // onSubmit={handleLogin}
+                                    noValidate
+                                    onSubmit={handleLogin}
                                 >
                                     <TextField
                                         variant="outlined"
@@ -172,12 +172,12 @@ export default function SignIn() {
                                     />
 
                                     <Button
-                                        // type="submit"
+                                        type="submit"
                                         fullWidth
                                         variant="contained"
                                         color="primary"
                                         className={classes.submit}
-                                        onClick={handleLogin}
+                                        // onClick={handleLogin}
                                     >
                                         Sign In
                                     </Button>

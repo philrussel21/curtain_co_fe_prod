@@ -1,18 +1,17 @@
-import React from "react";
-import { UserDataForm } from "../../export";
+import React from "react"
+import { UserDataForm } from "../../export"
 
 function EditUserInformation({ user, handleUpdate }) {
     return (
         <UserDataForm
             currentUser={user}
-            formTitle={"Edit Information"}
             handleFunctionFromParent={handleUpdate}
-            withAuth={false}
+            withAuth={{ email: false, password: false }}
             buttonText={"Update Information"}
-            headerInformation={false}
+            headerInformation={{ icon: false, title: false }}
             withConsultMessage={false}
         />
-    );
+    )
 }
 
-export default EditUserInformation;
+export default EditUserInformation
