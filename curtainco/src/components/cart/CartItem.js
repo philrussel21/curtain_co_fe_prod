@@ -15,6 +15,8 @@ function CartItem({
 }) {
     const classes = useStyles()
     let productItem = itemInCart.item
+    let price = productItem.price * itemInCart.qty
+    price = price.toFixed(2)
 
     return (
         <Grid item xs container justify="center">
@@ -114,7 +116,7 @@ function CartItem({
 
                     <Grid item xs={1} container justify="center">
                         <Typography className={classes.cartItemPrice}>
-                            ${productItem.price * itemInCart.qty}
+                            ${price}
                         </Typography>
                     </Grid>
 

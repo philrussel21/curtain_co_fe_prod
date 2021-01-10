@@ -1,10 +1,15 @@
 import React, { useState, useEffect } from "react"
+// COMPONENTS
 import PayPal from "./Paypal"
 import CartList from "./CartList"
 import CartTotal from "./CartTotal"
+// PACKAGES
+import { Link } from "react-router-dom/cjs/react-router-dom.min"
 import { useHistory } from "react-router-dom"
-
+// STYLES
 import { Typography, Grid, Box, Button } from "@material-ui/core"
+import useStyles from "./CartStyles"
+// HELPERS AND SERVICES
 import {
     getCartItemsFromLocalStorage,
     changeQtyOfItemInLocalStorage,
@@ -13,10 +18,10 @@ import {
     generateTotalPriceOfCart,
 } from "../../services/cartServices"
 import { createOrder } from "../../services/orderServices"
-import useStyles from "./CartStyles"
+// STATE
 import { useCurtainContext } from "../../config/CurtainCoContext"
 import { ACTIONS } from "../../config/stateReducer"
-import { Link } from "react-router-dom/cjs/react-router-dom.min"
+import { setErrorSnackBar } from "../../helpers/appHelpers"
 
 function Cart() {
     const classes = useStyles()
@@ -67,9 +72,8 @@ function Cart() {
             "decrease"
         )
         if (!errorOrArray) {
-            return alert(
-                "Cannot decrease quantity below 1. Please remove the item if you don't want it anymore."
-            )
+            setErrorSnackBar(dispatch, "Error: Please remove the item instead")
+            return
         }
         updateLocalStorageWithNewArray(errorOrArray)
         updateCartInStateFromLocalStorage()
