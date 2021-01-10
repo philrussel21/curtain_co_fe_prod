@@ -10,7 +10,7 @@ export function useCurtainContext() {
 function CurtainContext({ children }) {
     // initial state for state reducer
     const initialState = {
-        loggedIn: null,
+        // loggedIn: null,
         currentUser: null,
         users: [],
         snackbar: {
