@@ -5,7 +5,7 @@ function EditUserInformation({ user, handleUpdate }) {
     return (
         <UserDataForm
             currentUser={user}
-            handleFunctionFromParent={handleUpdate}
+            handleSubmitFunctionFromParent={handleUpdate}
             withAuth={{ email: false, password: false }}
             buttonText={"Update Information"}
             headerInformation={{ icon: false, title: false }}

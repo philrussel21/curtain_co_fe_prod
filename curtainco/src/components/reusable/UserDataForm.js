@@ -14,6 +14,7 @@ import {
     InputLabel,
     MenuItem,
     Box,
+    FormHelperText,
 } from "@material-ui/core"
 import useStyles from "./UserDataFormStyles"
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined"
@@ -22,29 +23,53 @@ import { Link } from "react-router-dom"
 import {
     getFirstNameFromFullName,
     getLastNameFromFullName,
-    checkIfRequiredUserDataFormFieldsAreEmpty,
 } from "../../helpers/userHelpers"
+import { areAnyFieldsInUserDataFormAreEmpty } from "../../helpers/authHelpers"
 
 // VARIABLES
 const states = ["QLD", "VIC", "NSW", "NT", "ACT", "WA", "SA", "TAS"]
 const titles = ["Mr", "Mrs", "Miss", "Ms", "Mx", "Sir", "Dr"]
 
-// SELECT DROPDOWN MENU ITEM
-const menuItems = states.map((place) => (
-    <MenuItem value={place} key={place}>
-        {place}
-    </MenuItem>
-))
+// BUILD SELECT MENU ITEMS
+function buildStatesMenuItems(states) {
+    let menuItems2 = []
+    menuItems2.push(
+        <MenuItem value="" disabled key="state-menu-item-disabled">
+            State
+        </MenuItem>
+    )
+    for (let i = 0; i < states.length; i++) {
+        let place = states[i]
+        menuItems2.push(
+            <MenuItem value={place} key={place}>
+                {place}
+            </MenuItem>
+        )
+    }
+    return menuItems2
+}
 
-const titleItems = titles.map((title) => (
-    <MenuItem value={title} key={title}>
-        {title}
-    </MenuItem>
-))
+function buildTitlesMenuItems(titles) {
+    let menuItems2 = []
+    menuItems2.push(
+        <MenuItem value="" disabled key="title-menu-item-disabled">
+            Title
+        </MenuItem>
+    )
+    for (let i = 0; i < titles.length; i++) {
+        let title = titles[i]
+        menuItems2.push(
+            <MenuItem value={title} key={title}>
+                {title}
+            </MenuItem>
+        )
+    }
+    return menuItems2
+}
 
 export default function UserDataForm({
     currentUser,
-    handleFunctionFromParent,
+    handleSubmitFunctionFromParent,
     withAuth,
     headerInformation,
     buttonText,
@@ -53,6 +78,8 @@ export default function UserDataForm({
     const classes = useStyles()
     const [firstName, setFirstName] = useState("")
     const [lastName, setLastName] = useState("")
+    const [menuItemsStates, setMenuItemsStates] = useState([])
+    const [menuItemsTitles, setMenuItemsTitles] = useState([])
     const [userData, setUserData] = useState({
         email: "",
         password: "",
@@ -66,6 +93,23 @@ export default function UserDataForm({
         state: "",
         postcode: "",
     })
+    const [helperText, setHelperText] = useState({
+        email: "",
+        password: "",
+        firstName: "",
+        lastName: "",
+        phone: "",
+        address1: "",
+        suburb: "",
+        state: "",
+        postcode: "",
+        message: "",
+    })
+
+    useEffect(() => {
+        setMenuItemsStates(buildStatesMenuItems(states))
+        setMenuItemsTitles(buildTitlesMenuItems(titles))
+    }, [])
 
     useEffect(() => {
         if (currentUser !== null) {
@@ -125,14 +169,65 @@ export default function UserDataForm({
     async function handleSubmitForm(e) {
         e.preventDefault()
         console.log(userData)
+        let errorOrResp
 
-        if (checkIfRequiredUserDataFormFieldsAreEmpty(userData)) {
-            return alert("Please complete all required fields.")
+        let tempUserData = {
+            ...userData,
+            firstName: firstName,
+            lastName: lastName,
         }
 
-        let error = await handleFunctionFromParent(userData)
-        // if there is not error then clear the fields
-        if (!error) clearFields()
+        if (withConsultMessage) {
+            // DON'T NEED TO ADD isProcessed AS IT IS ADDED BY DEFAULT IN THE SCHEMA
+            // AND NEED TO REMOVE PASSWORD AS NOT NEEDED FOR A CONSULT REQUEST
+            delete tempUserData.password
+            let tempConsultUserData = {
+                ...tempUserData,
+                message: withConsultMessage.msg,
+            }
+
+            console.log({ tempConsultUserData })
+
+            // CHECK FIELDS ARE NOT EMPTY
+            let emptyFields = areAnyFieldsInUserDataFormAreEmpty(
+                tempConsultUserData
+            )
+            if (emptyFields) {
+                setHelperText(emptyFields)
+                return
+            }
+
+            // AFTER CHECKING IF THE FIRST NAME OR LAST NAME FIELDS ARE EMPTY
+            // REMOVE THEM FROM THE OBJECT AND JUST LEAVE
+            // THIS IS DONE TO DYNAMICALLY SHOW HELPER TEXT FOR THE FIELDS
+            delete tempUserData.firstName
+            delete tempUserData.lastName
+
+            // SUBMIT OBJECT TO PARENT WHICH WILL SUBMIT TO DATABASE
+            errorOrResp = await handleSubmitFunctionFromParent(
+                tempConsultUserData
+            )
+        } else {
+            // CHECK FIELDS ARE NOT EMPTY
+            let emptyFields = areAnyFieldsInUserDataFormAreEmpty(tempUserData)
+            if (emptyFields) {
+                setHelperText(emptyFields)
+                return
+            }
+            // AFTER CHECKING IF THE FIRST NAME OR LAST NAME FIELDS ARE EMPTY
+            // REMOVE THEM FROM THE OBJECT AND JUST LEAVE
+            // THIS IS DONE TO DYNAMICALLY SHOW HELPER TEXT FOR THE FIELDS
+            delete tempUserData.firstName
+            delete tempUserData.lastName
+
+            console.log({ tempUserData })
+
+            // SUBMIT OBJECT TO PARENT WHICH WILL SUBMIT TO DATABASE
+            errorOrResp = await handleSubmitFunctionFromParent(tempUserData)
+        }
+        // IF THERE IS NO ERROR, CLEAR FIELDS
+        console.log(errorOrResp)
+        if (errorOrResp) clearFields()
     }
 
     return (
@@ -169,6 +264,7 @@ export default function UserDataForm({
                                     >
                                         <TextField
                                             variant="outlined"
+                                            autoFocus
                                             required
                                             fullWidth
                                             id="email"
@@ -177,6 +273,8 @@ export default function UserDataForm({
                                             autoComplete="email"
                                             value={userData.email}
                                             onChange={handleTextChange}
+                                            error={helperText.email !== ""}
+                                            helperText={helperText.email}
                                         />
                                     </Grid>
                                 )}
@@ -194,6 +292,8 @@ export default function UserDataForm({
                                             autoComplete="current-password"
                                             value={userData.password}
                                             onChange={handleTextChange}
+                                            error={helperText.password !== ""}
+                                            helperText={helperText.password}
                                         />
                                     </Grid>
                                 )}
@@ -209,9 +309,9 @@ export default function UserDataForm({
                                         <Select
                                             label="Title"
                                             defaultValue={
-                                                userData.title
-                                                    ? userData.title
-                                                    : ""
+                                                userData.title === undefined
+                                                    ? ""
+                                                    : userData.title
                                             }
                                             inputProps={{
                                                 name: "title",
@@ -221,7 +321,7 @@ export default function UserDataForm({
                                             value={userData.title}
                                             autoComplete="honorific-prefix"
                                         >
-                                            {titleItems}
+                                            {menuItemsTitles}
                                         </Select>
                                     </FormControl>
                                 </Grid>
@@ -235,9 +335,10 @@ export default function UserDataForm({
                                         fullWidth
                                         id="firstName"
                                         label="First Name"
-                                        autoFocus
                                         value={firstName}
                                         onChange={handleNameChange}
+                                        error={helperText.firstName !== ""}
+                                        helperText={helperText.firstName}
                                     />
                                 </Grid>
 
@@ -252,6 +353,8 @@ export default function UserDataForm({
                                         autoComplete="family-name"
                                         value={lastName}
                                         onChange={handleNameChange}
+                                        error={helperText.lastName !== ""}
+                                        helperText={helperText.lastName}
                                     />
                                 </Grid>
 
@@ -273,6 +376,8 @@ export default function UserDataForm({
                                         autoComplete="tel"
                                         value={userData.phone}
                                         onChange={handleTextChange}
+                                        error={helperText.phone !== ""}
+                                        helperText={helperText.phone}
                                     />
                                 </Grid>
 
@@ -301,6 +406,8 @@ export default function UserDataForm({
                                         autoComplete="address-line1"
                                         value={userData.address1}
                                         onChange={handleTextChange}
+                                        error={helperText.address1 !== ""}
+                                        helperText={helperText.address1}
                                     />
                                 </Grid>
 
@@ -316,6 +423,8 @@ export default function UserDataForm({
                                         autoComplete="address-level2"
                                         value={userData.suburb}
                                         onChange={handleTextChange}
+                                        error={helperText.suburb !== ""}
+                                        helperText={helperText.suburb}
                                     />
                                 </Grid>
 
@@ -323,6 +432,8 @@ export default function UserDataForm({
                                     <FormControl
                                         variant="outlined"
                                         style={{ width: "100%" }}
+                                        error={helperText.state !== ""}
+                                        required
                                     >
                                         <InputLabel htmlFor="state">
                                             State
@@ -330,9 +441,9 @@ export default function UserDataForm({
                                         <Select
                                             label="State"
                                             defaultValue={
-                                                userData.state
-                                                    ? userData.state
-                                                    : ""
+                                                userData.state === undefined
+                                                    ? ""
+                                                    : userData.state
                                             }
                                             inputProps={{
                                                 name: "state",
@@ -342,8 +453,11 @@ export default function UserDataForm({
                                             value={userData.state}
                                             autoComplete="address-level1"
                                         >
-                                            {menuItems}
+                                            {menuItemsStates}
                                         </Select>
+                                        <FormHelperText>
+                                            {helperText.state}
+                                        </FormHelperText>
                                     </FormControl>
                                 </Grid>
 
@@ -359,6 +473,8 @@ export default function UserDataForm({
                                         autoComplete="postal-code"
                                         value={userData.postcode}
                                         onChange={handleTextChange}
+                                        error={helperText.postcode !== ""}
+                                        helperText={helperText.postcode}
                                     />
                                 </Grid>
                             </>
@@ -378,6 +494,8 @@ export default function UserDataForm({
                                     fullWidth
                                     multiline
                                     rows={6}
+                                    error={helperText.message !== ""}
+                                    helperText={helperText.message}
                                 />
                             </Grid>
                         )}

@@ -76,7 +76,7 @@ export default function SignUp() {
                 <>
                     <UserDataForm
                         currentUser={state.currentUser}
-                        handleFunctionFromParent={handleRegister}
+                        handleSubmitFunctionFromParent={handleRegister}
                         withAuth={{ email: true, password: true }}
                         buttonText={"Sign Up"}
                         headerInformation={{ icon: true, title: "Sign Up" }}

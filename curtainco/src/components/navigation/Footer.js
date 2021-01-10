@@ -21,14 +21,8 @@ export default function StickyFooter() {
 
     useEffect(() => {
         setHideButton(false)
-        console.log("here")
-        console.log(history.location.pathname)
-        if (history.location.pathname === "/request") {
-            console.log("here 2")
-            setHideButton(true)
-        }
+        if (history.location.pathname === "/request") setHideButton(true)
     }, [history])
-    console.log(hideButton)
 
     return (
         <div className={classes.footerRoot}>
