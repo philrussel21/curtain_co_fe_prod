@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react"
-
+// STYLES
 import { Typography, Grid } from "@material-ui/core"
-
 import useStyles from "./CollectionStyles"
+// STATES
 import { useCurtainContext } from "../../config/CurtainCoContext"
 import { ACTIONS } from "../../config/stateReducer"
+// SERVICES AND HELPERS
 import { getAllCollections } from "../../services/collectionServices"
+// COMPONENTS
 import CollectionList from "./collection/CollectionList"
 import LoadingSymbol from "../reusable/LoadingSymbol"
 
@@ -25,15 +27,14 @@ function Collections() {
                         type: ACTIONS.SET_ALL_COLLECTIONS,
                         payload: resp.data,
                     })
-                } else {
-                    console.log("status code wasn't correct")
+                    setIsLoading(false)
                 }
             })
             .catch((error) => {
                 console.log(error)
+                setIsLoading(false)
                 setCollectionErrorMessage(error)
             })
-        setIsLoading(false)
     }, [dispatch])
 
     return (
