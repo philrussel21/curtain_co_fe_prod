@@ -6,6 +6,7 @@ import { submitProductToDbAndUpdateState } from "../../../../services/productSer
 // STATE
 import { useCurtainContext } from "../../../../config/CurtainCoContext"
 import { ACTIONS } from "../../../../config/stateReducer"
+import { setErrorSnackBar } from "../../../../helpers/appHelpers"
 
 function AddFabric() {
     const { dispatch } = useCurtainContext()
@@ -49,7 +50,10 @@ function AddFabric() {
             photo,
             resetProductForm
         )
-        console.log(respOrError)
+        if (typeof respOrError === "string") {
+            setErrorSnackBar(dispatch, respOrError)
+            return
+        }
     }
 
     return (

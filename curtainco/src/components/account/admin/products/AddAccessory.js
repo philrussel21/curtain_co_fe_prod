@@ -15,6 +15,7 @@ import { useCurtainContext } from "../../../../config/CurtainCoContext"
 import { ACTIONS } from "../../../../config/stateReducer"
 // COMPONENTS
 import AccessoryForm from "../../../reusable/AccessoryForm"
+import { setErrorSnackBar } from "../../../../helpers/appHelpers"
 
 function AddAccessory() {
     const { dispatch } = useCurtainContext()
@@ -63,7 +64,10 @@ function AddAccessory() {
             photo,
             resetProductForm
         )
-        console.log(respOrError)
+        if (typeof respOrError === "string") {
+            setErrorSnackBar(dispatch, respOrError)
+            return
+        }
     }
 
     return (

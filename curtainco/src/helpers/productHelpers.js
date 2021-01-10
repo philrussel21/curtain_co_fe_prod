@@ -5,43 +5,43 @@ const sortACTIONS = {
     NAME_ALPHABETICAL_REVERSE: "Name: Z to A",
     FEATURED: "Featured",
     CATEGORY: "Category",
-};
+}
 
 function sortProducts(filteredProducts, filterSortBy) {
     switch (filterSortBy) {
         case sortACTIONS.PRICE_LOW_TO_HIGH:
-            filteredProducts.sort((a, b) => a.price - b.price);
-            break;
+            filteredProducts.sort((a, b) => a.price - b.price)
+            break
         case sortACTIONS.PRICE_HIGH_TO_LOW:
-            filteredProducts.sort((a, b) => b.price - a.price);
-            break;
+            filteredProducts.sort((a, b) => b.price - a.price)
+            break
         case sortACTIONS.NAME_ALPHABETICAL:
             filteredProducts.sort((a, b) =>
                 a.name.toLowerCase().localeCompare(b.name.toLowerCase())
-            );
-            break;
+            )
+            break
         case sortACTIONS.NAME_ALPHABETICAL_REVERSE:
             filteredProducts.sort((a, b) =>
                 b.name.toLowerCase().localeCompare(a.name.toLowerCase())
-            );
-            break;
+            )
+            break
         case sortACTIONS.FEATURED:
-            alert("feature not yet built");
-            break;
+            alert("feature not yet built")
+            break
         case sortACTIONS.CATEGORY:
             filteredProducts.sort((a, b) =>
                 a.category.toLowerCase().localeCompare(b.category.toLowerCase())
-            );
-            break;
+            )
+            break
         default:
             // if nothing is selected, sort the list alphabetically a -> z
             filteredProducts.sort((a, b) =>
                 a.name.toLowerCase().localeCompare(b.name.toLowerCase())
-            );
-            break;
+            )
+            break
     }
 
-    return filteredProducts;
+    return filteredProducts
 }
 
 function filterByType(filteredProducts, types) {
@@ -52,23 +52,23 @@ function filterByType(filteredProducts, types) {
     //     accessory: false,
     //     inStock: false,
     // }
-    let arr = [];
+    let arr = []
 
     // LOOP THROUGH AND ONLY GET THE KEYS THAT ARE TRUE
     for (const key in types) {
         if (types.hasOwnProperty(key)) {
-            const value = types[key];
-            if (value) arr.push(key);
+            const value = types[key]
+            if (value) arr.push(key)
         }
     }
 
     if (arr.length > 0) {
         filteredProducts = filteredProducts.filter((element) =>
             arr.includes(element.category.toLowerCase())
-        );
+        )
     }
 
-    return filteredProducts;
+    return filteredProducts
 }
 
 function searchProducts(filteredProducts, searchText) {
@@ -77,15 +77,29 @@ function searchProducts(filteredProducts, searchText) {
             (element) =>
                 element.name.toLowerCase().indexOf(searchText.toLowerCase()) !==
                 -1
-        );
+        )
     }
 
-    return filteredProducts;
+    return filteredProducts
 }
 
 function getOneProductFromState(allProducts, id) {
-    const product = allProducts.filter((prod) => prod._id === id)[0];
-    return product;
+    const product = allProducts.filter((prod) => prod._id === id)[0]
+    return product
+}
+
+function checkIfAnyFieldsEmptyOnProductObject(product) {
+    let tempProduct = { ...product }
+    delete tempProduct.imgUrl
+    for (const key in product) {
+        if (Object.hasOwnProperty.call(tempProduct, key)) {
+            // CHECK IF ANY OF THE FIELDS ARE EMPTY OR UNDEFINED
+            if (tempProduct[key] === "" || tempProduct[key] === undefined) {
+                return true
+            }
+        }
+    }
+    return false
 }
 
 module.exports = {
@@ -94,4 +108,5 @@ module.exports = {
     searchProducts,
     getOneProductFromState,
     sortACTIONS,
-};
+    checkIfAnyFieldsEmptyOnProductObject,
+}

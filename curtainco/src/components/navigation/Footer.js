@@ -13,6 +13,7 @@ import { Link, useHistory } from "react-router-dom"
 // COMPONENTS
 import Contact from "./Contact"
 import Legal from "./Legal"
+import stateReducer from "../../config/stateReducer"
 
 export default function StickyFooter() {
     const classes = useStyles()

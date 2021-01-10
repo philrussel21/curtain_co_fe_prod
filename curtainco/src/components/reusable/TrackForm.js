@@ -1,12 +1,19 @@
-import React, { useState } from "react";
-
-import { Typography, Grid, TextField, Button, Box } from "@material-ui/core";
-import Radio from "@material-ui/core/Radio";
-import RadioGroup from "@material-ui/core/RadioGroup";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import DeleteIcon from "@material-ui/icons/Delete";
-import FileInput from "./FileInput";
-import useStyles from "../account/admin/AdminStyles";
+import React from "react"
+// STYLES
+import {
+    Typography,
+    Grid,
+    TextField,
+    Button,
+    Box,
+    Radio,
+    RadioGroup,
+    FormControlLabel,
+} from "@material-ui/core"
+import DeleteIcon from "@material-ui/icons/Delete"
+import useStyles from "../account/admin/AdminStyles"
+// COMPONENTS
+import FileInput from "./FileInput"
 
 function TrackForm({
     title,
@@ -20,13 +27,14 @@ function TrackForm({
     setResetFile,
     resetFile,
 }) {
-    const classes = useStyles();
+    const classes = useStyles()
 
     // this loop just changes an undefined value of the product to
     // empty string for the form to display cleaner
     for (const key in product) {
         if (Object.hasOwnProperty.call(product, key)) {
-            if (product[key] === undefined) product[key] = "";
+            if (product[key] === undefined || product[key] === null)
+                product[key] = ""
         }
     }
 
@@ -35,21 +43,19 @@ function TrackForm({
             <Box pb={1}>
                 <Grid container justify="center" alignItems="center">
                     <Grid item xs={3}>
-                        {product.imgUrl !== "" ? (
-                            <img
-                                src={
-                                    product.imgUrl !== "" ? product.imgUrl : ""
-                                }
-                                alt={
-                                    product.imgUrl === ""
-                                        ? ""
-                                        : `${product.colour} ${product.name}`
-                                }
-                                className={classes.editFormImage}
-                            />
-                        ) : (
-                            ""
-                        )}
+                        <img
+                            src={
+                                product.imgUrl !== ""
+                                    ? product.imgUrl
+                                    : "/no-image.png"
+                            }
+                            alt={
+                                product.imgUrl === ""
+                                    ? "blank-image"
+                                    : `${product.colour} ${product.name}`
+                            }
+                            className={classes.editFormImage}
+                        />
                     </Grid>
                     <Grid
                         item
@@ -179,7 +185,7 @@ function TrackForm({
                         value={product.finialColour}
                     />
                 </Grid>
-                <Grid item xs={8}>
+                <Grid item xs={6}>
                     <TextField
                         id="track-fix-location-input"
                         label="Fix Location"
@@ -190,7 +196,7 @@ function TrackForm({
                         value={product.location}
                     />
                 </Grid>
-                <Grid item xs={4}>
+                <Grid item xs={6}>
                     <TextField
                         id="track-price-input"
                         label="Price"
@@ -241,7 +247,7 @@ function TrackForm({
                 )}
             </Grid>
         </>
-    );
+    )
 }
 
-export default TrackForm;
+export default TrackForm

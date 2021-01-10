@@ -1,5 +1,6 @@
 import api from "../config/api"
 import { capitalize, isPhotoPresent } from "../helpers/appHelpers"
+import { checkIfAnyFieldsEmptyOnProductObject } from "../helpers/productHelpers"
 import { uploadPhotoToS3 } from "./uploadServices"
 
 async function getAllProducts() {
@@ -8,6 +9,7 @@ async function getAllProducts() {
 }
 
 async function createProduct(newProduct) {
+    console.log(newProduct)
     const response = await api.post("/products", newProduct)
     return response
 }
@@ -61,17 +63,35 @@ async function submitProductToDbAndUpdateState(
                 setPhoto({})
             }
         } catch (error) {
-            editProdError = `Error ocurred when retrieving photo on ${updateOrAdd} ${tempProduct.category}. ${error}.`
+            // BLOCK THE UPDATE TO DATABASE IF THE IMAGE UPLOAD FAILED
+            // editProdError WILL STILL BE FALSE IF THEY HAVEN'T UPLOADED A PHOTO
+            // OR THERE WAS NO ERROR WHEN UPLOADING IT
+            return `Something went wrong with ${capitalize(updateOrAdd)} ${
+                tempProduct.category
+            } photo. ${error}`
+        }
+    } else {
+        // IF THE ADMIN HASN'T SUBMITTED A PHOTO, CHECK IF THEY WANT TO PROCEED STILL
+        if (
+            !window.confirm(
+                "You haven't submitted a photo. Would you still like to proceed?"
+            )
+        ) {
+            return
         }
     }
 
-    // BLOCK THE UPDATE TO DATABASE IF THE IMAGE UPLOAD FAILED
-    // editProdError WILL STILL BE FALSE IF THEY HAVEN'T UPLOADED A PHOTO
-    // OR THERE WAS NO ERROR WHEN UPLOADING IT
-    if (editProdError)
-        return alert(
-            `Something went wrong when ${updateOrAdd} photo to storage on ${tempProduct.category}`
-        )
+    // CHECK IF ANY FIELDS ARE EMPTY IN THE FORM
+    let emptyFields = checkIfAnyFieldsEmptyOnProductObject(tempProduct)
+    if (emptyFields) {
+        if (
+            !window.confirm(
+                "There are empty fields on the submission. Are you sure you wish to proceed?"
+            )
+        ) {
+            return
+        }
+    }
 
     try {
         let resp
@@ -108,12 +128,11 @@ async function submitProductToDbAndUpdateState(
             setPhoto({})
             if (updateOrAdd === "add") resetProductForm()
             return resp
-        } else {
-            editProdError = `An status error ocurred on ${updateOrAdd} ${tempProduct.category}: Error Code: ${resp.status}. Message: ${resp.message}.`
-            console.log(editProdError)
         }
     } catch (error) {
-        editProdError = `An error ocurred on ${updateOrAdd} ${tempProduct.category}. ${error}.`
+        editProdError = `Something went wrong with ${capitalize(updateOrAdd)} ${
+            tempProduct.category
+        }. ${error}`
     }
     return editProdError
 }

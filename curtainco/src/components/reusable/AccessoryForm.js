@@ -1,10 +1,10 @@
-import React from "react";
+import React from "react"
 
-import { Typography, Grid, TextField, Button, Box } from "@material-ui/core";
-import DeleteIcon from "@material-ui/icons/Delete";
+import { Typography, Grid, TextField, Button, Box } from "@material-ui/core"
+import DeleteIcon from "@material-ui/icons/Delete"
 
-import useStyles from "../../components/account/admin/AdminStyles";
-import FileInput from "./FileInput";
+import useStyles from "../../components/account/admin/AdminStyles"
+import FileInput from "./FileInput"
 
 function AccessoryForm({
     title,
@@ -16,39 +16,34 @@ function AccessoryForm({
     setResetFile,
     resetFile,
 }) {
-    const classes = useStyles();
+    const classes = useStyles()
+
+    for (const key in product) {
+        if (Object.hasOwnProperty.call(product, key)) {
+            if (product[key] === undefined || product[key] === null)
+                product[key] = ""
+        }
+    }
 
     return (
         <>
-            <Typography
-                variant="h6"
-                component="h6"
-                style={{ textAlign: "center" }}
-            >
-                {title}
-            </Typography>
-
             <div className={classes.accessoryCont}>
                 <Box pb={1}>
                     <Grid container justify="center" alignItems="center">
                         <Grid item xs={3}>
-                            {product.imgUrl !== "" ? (
-                                <img
-                                    src={
-                                        product.imgUrl !== ""
-                                            ? product.imgUrl
-                                            : ""
-                                    }
-                                    alt={
-                                        product.imgUrl === ""
-                                            ? ""
-                                            : `${product.colour} ${product.name}`
-                                    }
-                                    className={classes.editFormImage}
-                                />
-                            ) : (
-                                ""
-                            )}
+                            <img
+                                src={
+                                    product.imgUrl !== ""
+                                        ? product.imgUrl
+                                        : "/no-image.png"
+                                }
+                                alt={
+                                    product.imgUrl === ""
+                                        ? ""
+                                        : `${product.colour} ${product.name}`
+                                }
+                                className={classes.editFormImage}
+                            />
                         </Grid>
                         <Grid
                             item
@@ -63,7 +58,9 @@ function AccessoryForm({
                                     variant="h6"
                                     style={{ textAlign: "center" }}
                                 >
-                                    {product.type}
+                                    {title.includes("Add")
+                                        ? `Add ${product.type}`
+                                        : `Update ${product.type}`}
                                 </Typography>
                             </Grid>
                             <Grid item xs={12}>
@@ -157,7 +154,7 @@ function AccessoryForm({
                 </Grid>
             </div>
         </>
-    );
+    )
 }
 
-export default AccessoryForm;
+export default AccessoryForm

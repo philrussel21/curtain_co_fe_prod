@@ -6,6 +6,7 @@ import { useCurtainContext } from "../../../../config/CurtainCoContext"
 import { ACTIONS } from "../../../../config/stateReducer"
 // COMPONENTS
 import TrackForm from "../../../reusable/TrackForm"
+import { setErrorSnackBar } from "../../../../helpers/appHelpers"
 
 function AddTrack() {
     const { dispatch } = useCurtainContext()
@@ -18,7 +19,7 @@ function AddTrack() {
         imgUrl: "",
         price: "",
         type: "",
-        single: "",
+        single: false,
         finialStyle: "",
         finialColour: "",
         location: "",
@@ -58,7 +59,10 @@ function AddTrack() {
             photo,
             resetProductForm
         )
-        console.log(respOrError)
+        if (typeof respOrError === "string") {
+            setErrorSnackBar(dispatch, respOrError)
+            return
+        }
     }
 
     // PASS IN TITLE AND TEXT FOR THE BUTTON TO THE TRACK FORM
