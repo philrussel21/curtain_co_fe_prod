@@ -1,7 +1,7 @@
-import React from "react";
-
-import { FormControl, Grid, InputLabel, Select } from "@material-ui/core";
-import useStyles from "../../components/account/admin/AdminStyles";
+import React from "react"
+// STYLES
+import { FormControl, Grid, InputLabel, Select } from "@material-ui/core"
+import useStyles from "../../components/account/admin/AdminStyles"
 
 function CollectionSelect({
     menuItems,
@@ -11,7 +11,7 @@ function CollectionSelect({
     category,
     index,
 }) {
-    const classes = useStyles();
+    const classes = useStyles()
     return (
         <Grid item xs={12}>
             <FormControl variant="outlined" className={classes.formControl}>
@@ -37,7 +37,7 @@ function CollectionSelect({
                 </Select>
             </FormControl>
         </Grid>
-    );
+    )
 }
 
-export default CollectionSelect;
+export default CollectionSelect

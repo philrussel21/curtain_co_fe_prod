@@ -1,15 +1,16 @@
 import React, { useState } from "react"
 // HELPERS AND SERVICES
+import { submitConsultationRequest } from "../../services/consultationServices"
+import { setErrorSnackBar } from "../../helpers/appHelpers"
+// STATE
 import { useCurtainContext } from "../../config/CurtainCoContext"
 import { ACTIONS } from "../../config/stateReducer"
-import { submitConsultationRequest } from "../../services/consultationServices"
 // STYLES
 import { CssBaseline, Box, Typography } from "@material-ui/core"
 import useStyles from "./ConsultationStyles"
 // COMPONENTS
 import Copyright from "../authentication/Copyright"
 import UserDataForm from "../reusable/UserDataForm"
-import { setErrorSnackBar } from "../../helpers/appHelpers"
 
 export default function SignUp() {
     const classes = useStyles()

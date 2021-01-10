@@ -1,20 +1,22 @@
-import React, { useState, useEffect } from "react"
-
-import Paper from "@material-ui/core/Paper"
-
+import React, { useState, useEffect, useRef, useCallback } from "react"
+// STYLES
+import { Paper } from "@material-ui/core"
+import useStyles from "../AdminStyles"
+// COMPONENTS
 import CollectionForm from "../../../reusable/CollectionForm"
+// HELPERS AND SERVICES
 import {
     deleteCollection,
     submitCollectionToDbAndUpdateState,
 } from "../../../../services/collectionServices"
-import { useCurtainContext } from "../../../../config/CurtainCoContext"
-import { ACTIONS } from "../../../../config/stateReducer"
 import {
     filterProductsInCollection,
     getOneCollectionFromState,
     checkIfUserIsRemovingAProduct,
 } from "../../../../helpers/collectionHelpers"
-import useStyles from "../AdminStyles"
+// STATE
+import { useCurtainContext } from "../../../../config/CurtainCoContext"
+import { ACTIONS } from "../../../../config/stateReducer"
 
 function EditDeleteCollection({ editCollectionId, setEditCollectionId }) {
     const classes = useStyles()
@@ -27,7 +29,7 @@ function EditDeleteCollection({ editCollectionId, setEditCollectionId }) {
     const [previousCollection, setPreviousCollection] = useState(
         editCollectionId
     )
-    const [collection, setCollection] = useState({
+    const emptyCollection = useRef({
         _id: "",
         name: "",
         description: "",
@@ -40,22 +42,11 @@ function EditDeleteCollection({ editCollectionId, setEditCollectionId }) {
         accessoryTip: "",
         fabricTip: "",
     })
+    const [collection, setCollection] = useState(emptyCollection.current)
 
-    function resetCollectionForm() {
-        setCollection({
-            _id: "",
-            name: "",
-            description: "",
-            imgUrl: "",
-            price: "",
-            track: [],
-            fabric: [],
-            accessory: [],
-            trackTip: "",
-            accessoryTip: "",
-            fabricTip: "",
-        })
-    }
+    const resetCollectionForm = useCallback(() => {
+        setCollection(emptyCollection.current)
+    }, [emptyCollection])
 
     function handleFileChange(file) {
         console.log(file)
@@ -97,7 +88,12 @@ function EditDeleteCollection({ editCollectionId, setEditCollectionId }) {
         } else {
             resetCollectionForm()
         }
-    }, [state.collections, editCollectionId, previousCollection])
+    }, [
+        state.collections,
+        editCollectionId,
+        previousCollection,
+        resetCollectionForm,
+    ])
 
     function handleSelectChange(event) {
         let selectName = event.target.name.split("-")[0]
@@ -137,11 +133,7 @@ function EditDeleteCollection({ editCollectionId, setEditCollectionId }) {
         // WARN USER THEY CANNOT REMOVE A PRODUCT FROM A COLLECTION
         // WITH THE 'No Product' MENU ITEM
         let noProductResult = checkIfUserIsRemovingAProduct(collection)
-        if (noProductResult) {
-            // return window.alert(
-            //     "Currently cannot remove a product with the 'No Product' dropdown menu item. Please delete the collection and start again if you wish to remove products from a collection."
-            // )
-        }
+
         let result = filterProductsInCollection(collection)
         let tempCollection = result.collection
         let error = result.error

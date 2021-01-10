@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react"
 // SERVICES AND HELPERS
-import { useCurtainContext } from "../../config/CurtainCoContext"
-import { ACTIONS } from "../../config/stateReducer"
 import { loginUser } from "../../services/authServices"
-import { Link, Redirect, useHistory } from "react-router-dom"
 import { loginFieldAreBad } from "../../helpers/authHelpers"
 import { setErrorSnackBar } from "../../helpers/appHelpers"
+// PACKAGES
+import { Link, Redirect, useHistory } from "react-router-dom"
+// STATE
+import { useCurtainContext } from "../../config/CurtainCoContext"
+import { ACTIONS } from "../../config/stateReducer"
 // COMPONENTS
 import Copyright from "./Copyright"
 import LoadingSymbol from "../reusable/LoadingSymbol"

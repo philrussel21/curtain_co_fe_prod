@@ -1,15 +1,18 @@
-import React, { useState } from "react"
+import React, { useState, useRef } from "react"
+// COMPONENTS
 import CollectionForm from "../../../reusable/CollectionForm"
+// STYLES
 import { Container, Paper } from "@material-ui/core"
-
-import { submitCollectionToDbAndUpdateState } from "../../../../services/collectionServices"
-import { useCurtainContext } from "../../../../config/CurtainCoContext"
-import { ACTIONS } from "../../../../config/stateReducer"
 import useStyles from "../AdminStyles"
+// HELPERS AND SERVICES
+import { submitCollectionToDbAndUpdateState } from "../../../../services/collectionServices"
 import {
     filterProductsInCollection,
     checkIfProductsExistInCollection,
 } from "../../../../helpers/collectionHelpers"
+// STATE
+import { useCurtainContext } from "../../../../config/CurtainCoContext"
+import { ACTIONS } from "../../../../config/stateReducer"
 
 function AddCollection() {
     const classes = useStyles()
@@ -19,7 +22,7 @@ function AddCollection() {
     const [tracksArray, setTracksArray] = useState([])
     const [fabricsArray, setFabricsArray] = useState([])
     const [accessoryArray, setAccessoryArray] = useState([])
-    const [collection, setCollection] = useState({
+    const emptyCollection = useRef({
         name: "",
         description: "",
         imgUrl: "",
@@ -31,6 +34,7 @@ function AddCollection() {
         accessoryTip: "",
         fabricTip: "",
     })
+    const [collection, setCollection] = useState(emptyCollection.current)
 
     function handleFileChange(file) {
         console.log(file)
@@ -38,18 +42,7 @@ function AddCollection() {
     }
 
     function resetCollectionForm() {
-        setCollection({
-            name: "",
-            description: "",
-            imgUrl: "",
-            price: "",
-            track: [],
-            fabric: [],
-            accessory: [],
-            trackTip: "",
-            accessoryTip: "",
-            fabricTip: "",
-        })
+        setCollection(emptyCollection.current)
     }
 
     function handleSelectChange(event) {

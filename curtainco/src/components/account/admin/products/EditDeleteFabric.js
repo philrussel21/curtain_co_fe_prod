@@ -1,22 +1,21 @@
-import React, { useState, useEffect } from "react";
-
-import FabricForm from "../../../reusable/FabricForm";
+import React, { useState, useEffect, useCallback, useRef } from "react"
+// COMPONENTS
+import FabricForm from "../../../reusable/FabricForm"
+// HELPERS AND SERVICES
 import {
     submitProductToDbAndUpdateState,
     deleteProduct,
-} from "../../../../services/productServices";
-import { useCurtainContext } from "../../../../config/CurtainCoContext";
-import { ACTIONS } from "../../../../config/stateReducer";
-import { getOneProductFromState } from "../../../../helpers/productHelpers";
-import { isPhotoPresent } from "../../../../helpers/appHelpers";
-import { uploadPhotoToS3 } from "../../../../services/uploadServices";
+} from "../../../../services/productServices"
+import { useCurtainContext } from "../../../../config/CurtainCoContext"
+import { ACTIONS } from "../../../../config/stateReducer"
+import { getOneProductFromState } from "../../../../helpers/productHelpers"
 
 function EditDeleteFabric({ editProductId, setEditProductId }) {
-    const { state, dispatch } = useCurtainContext();
-    const [resetFile, setResetFile] = useState(false);
-    const [previousProduct, setPreviousProduct] = useState(editProductId);
-    const [photo, setPhoto] = useState({});
-    const [fabric, setFabric] = useState({
+    const { state, dispatch } = useCurtainContext()
+    const [resetFile, setResetFile] = useState(false)
+    const [previousProduct, setPreviousProduct] = useState(editProductId)
+    const [photo, setPhoto] = useState({})
+    const emptyFabric = useRef({
         category: "Fabric",
         _id: "",
         name: "",
@@ -28,35 +27,24 @@ function EditDeleteFabric({ editProductId, setEditProductId }) {
         size: "",
         length: "",
         description: "",
-    });
+    })
+    const [fabric, setFabric] = useState(emptyFabric.current)
 
-    function resetProductForm() {
-        setFabric({
-            category: "Fabric",
-            _id: "",
-            name: "",
-            colour: "",
-            imgUrl: "",
-            price: "",
-            density: "",
-            style: "",
-            size: "",
-            length: "",
-            description: "",
-        });
-    }
+    const resetProductForm = useCallback(() => {
+        setFabric(emptyFabric.current)
+    }, [emptyFabric])
 
     function handleFileChange(file) {
-        console.log(file);
-        setPhoto(file);
+        console.log(file)
+        setPhoto(file)
     }
 
     useEffect(() => {
         // this resets the file in the FileInput component on
         // a product change / update to form
         if (editProductId !== previousProduct) {
-            setPreviousProduct(editProductId);
-            setResetFile(true);
+            setPreviousProduct(editProductId)
+            setResetFile(true)
         }
         // IF PRODUCT ID COMES THROUGH AS A PROP, SET THE FORM
         // OTHERWISE CLEAR THE FORM
@@ -64,27 +52,15 @@ function EditDeleteFabric({ editProductId, setEditProductId }) {
             const fabricBeingUpdated = getOneProductFromState(
                 state.products,
                 editProductId
-            );
-            setFabric({
-                category: fabricBeingUpdated.category,
-                _id: fabricBeingUpdated._id,
-                name: fabricBeingUpdated.name,
-                colour: fabricBeingUpdated.colour,
-                imgUrl: fabricBeingUpdated.imgUrl,
-                price: fabricBeingUpdated.price,
-                density: fabricBeingUpdated.density,
-                style: fabricBeingUpdated.style,
-                size: fabricBeingUpdated.size,
-                length: fabricBeingUpdated.length,
-                description: fabricBeingUpdated.description,
-            });
+            )
+            setFabric({ ...fabricBeingUpdated })
         } else {
-            resetProductForm();
+            resetProductForm()
         }
-    }, [state.products, editProductId, previousProduct]);
+    }, [state.products, editProductId, previousProduct, resetProductForm])
 
     function handleTextChange(event) {
-        setFabric({ ...fabric, [event.target.name]: event.target.value });
+        setFabric({ ...fabric, [event.target.name]: event.target.value })
     }
 
     async function handleUpdateProduct() {
@@ -98,8 +74,8 @@ function EditDeleteFabric({ editProductId, setEditProductId }) {
             setPhoto,
             photo,
             false
-        );
-        console.log(respOrError);
+        )
+        console.log(respOrError)
     }
 
     function handleRemoveProduct() {
@@ -108,12 +84,12 @@ function EditDeleteFabric({ editProductId, setEditProductId }) {
         // THEN SET THE EDIT PRODUCT ID THAT THIS COMPONENT TAKES AS A PROP TO = "" TO RESET THE FORM
         deleteProduct(fabric)
             .then((resp) => {
-                console.log(resp);
+                console.log(resp)
                 if (resp.status === 202) {
                     dispatch({
                         type: ACTIONS.DELETE_PRODUCT,
                         payload: fabric._id,
-                    });
+                    })
                     dispatch({
                         type: ACTIONS.SET_SNACKBAR,
                         payload: {
@@ -121,17 +97,17 @@ function EditDeleteFabric({ editProductId, setEditProductId }) {
                             success: "success",
                             message: "Fabric successfully deleted",
                         },
-                    });
+                    })
                 }
             })
             .catch((error) => {
-                console.log(error);
-            });
-        setEditProductId("");
-        setPreviousProduct("");
-        setResetFile(true);
-        setPhoto({});
-        resetProductForm();
+                console.log(error)
+            })
+        setEditProductId("")
+        setPreviousProduct("")
+        setResetFile(true)
+        setPhoto({})
+        resetProductForm()
     }
 
     // PASS IN TITLE AND TEXT FOR THE BUTTON TO THE Fabric FORM
@@ -140,7 +116,7 @@ function EditDeleteFabric({ editProductId, setEditProductId }) {
     return (
         <FabricForm
             title={"Edit Fabric"}
-            buttonText={"Update"}
+            buttonText={"Update Fabric"}
             handleTextChange={handleTextChange}
             handleSubmit={handleUpdateProduct}
             handleRemove={handleRemoveProduct}
@@ -149,7 +125,7 @@ function EditDeleteFabric({ editProductId, setEditProductId }) {
             setResetFile={setResetFile}
             resetFile={resetFile}
         />
-    );
+    )
 }
 
-export default EditDeleteFabric;
+export default EditDeleteFabric

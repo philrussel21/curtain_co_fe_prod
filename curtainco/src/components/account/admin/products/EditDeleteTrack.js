@@ -1,22 +1,22 @@
-import React, { useState, useEffect } from "react";
-
-import TrackForm from "../../../reusable/TrackForm";
+import React, { useState, useEffect, useRef, useCallback } from "react"
+// COMPONENTS
+import TrackForm from "../../../reusable/TrackForm"
+// HELPERS AND SERVICES
 import {
     submitProductToDbAndUpdateState,
     deleteProduct,
-} from "../../../../services/productServices";
-import { useCurtainContext } from "../../../../config/CurtainCoContext";
-import { ACTIONS } from "../../../../config/stateReducer";
-import { getOneProductFromState } from "../../../../helpers/productHelpers";
-import { uploadPhotoToS3 } from "../../../../services/uploadServices";
-import { isPhotoPresent } from "../../../../helpers/appHelpers";
+} from "../../../../services/productServices"
+import { getOneProductFromState } from "../../../../helpers/productHelpers"
+// STATE
+import { useCurtainContext } from "../../../../config/CurtainCoContext"
+import { ACTIONS } from "../../../../config/stateReducer"
 
 function EditDeleteTrack({ editProductId, setEditProductId }) {
-    const { state, dispatch } = useCurtainContext();
-    const [resetFile, setResetFile] = useState(false);
-    const [previousProduct, setPreviousProduct] = useState(editProductId);
-    const [photo, setPhoto] = useState({});
-    const [track, setTrack] = useState({
+    const { state, dispatch } = useCurtainContext()
+    const [resetFile, setResetFile] = useState(false)
+    const [previousProduct, setPreviousProduct] = useState(editProductId)
+    const [photo, setPhoto] = useState({})
+    const emptyTrack = useRef({
         category: "Track",
         _id: "",
         name: "",
@@ -29,36 +29,25 @@ function EditDeleteTrack({ editProductId, setEditProductId }) {
         finialColour: "",
         location: "",
         description: "",
-    });
+    })
+
+    const [track, setTrack] = useState(emptyTrack.current)
 
     function handleFileChange(file) {
-        console.log(file);
-        setPhoto(file);
+        console.log(file)
+        setPhoto(file)
     }
 
-    function resetProductForm() {
-        setTrack({
-            category: "Track",
-            _id: "",
-            name: "",
-            colour: "",
-            imgUrl: "",
-            price: "",
-            type: "",
-            single: "",
-            finialStyle: "",
-            finialColour: "",
-            location: "",
-            description: "",
-        });
-    }
+    const resetProductForm = useCallback(() => {
+        setTrack(emptyTrack.current)
+    }, [emptyTrack])
 
     useEffect(() => {
         // this resets the file in the FileInput component on
         // a product change / update to form
         if (editProductId !== previousProduct) {
-            setPreviousProduct(editProductId);
-            setResetFile(true);
+            setPreviousProduct(editProductId)
+            setResetFile(true)
         }
         // IF PRODUCT ID COMES THROUGH AS A PROP, SET THE FORM
         // OTHERWISE CLEAR THE FORM
@@ -66,37 +55,24 @@ function EditDeleteTrack({ editProductId, setEditProductId }) {
             const trackBeingUpdated = getOneProductFromState(
                 state.products,
                 editProductId
-            );
-            setTrack({
-                category: trackBeingUpdated.category,
-                name: trackBeingUpdated.name,
-                _id: trackBeingUpdated._id,
-                colour: trackBeingUpdated.colour,
-                imgUrl: trackBeingUpdated.imgUrl,
-                price: trackBeingUpdated.price,
-                type: trackBeingUpdated.type,
-                single: trackBeingUpdated.single,
-                finialStyle: trackBeingUpdated.finialStyle,
-                finialColour: trackBeingUpdated.finialColour,
-                location: trackBeingUpdated.location,
-                description: trackBeingUpdated.description,
-            });
+            )
+            setTrack({ ...trackBeingUpdated })
         } else {
-            resetProductForm();
+            resetProductForm()
         }
-    }, [state.products, editProductId, previousProduct]);
+    }, [state.products, editProductId, previousProduct, resetProductForm])
 
     const handleRadioChange = (event) => {
-        const singleTrack = event.target.value === "single" ? true : false;
+        const singleTrack = event.target.value === "single" ? true : false
         setTrack({
             ...track,
             [event.target.name]: singleTrack,
-        });
-    };
+        })
+    }
 
     const handleTextChange = (event) => {
-        setTrack({ ...track, [event.target.name]: event.target.value });
-    };
+        setTrack({ ...track, [event.target.name]: event.target.value })
+    }
 
     async function handleUpdateProduct() {
         // UPDATE DB AND STATE
@@ -109,8 +85,8 @@ function EditDeleteTrack({ editProductId, setEditProductId }) {
             setPhoto,
             photo,
             false
-        );
-        console.log(respOrError);
+        )
+        console.log(respOrError)
     }
 
     function handleRemoveProduct() {
@@ -119,12 +95,12 @@ function EditDeleteTrack({ editProductId, setEditProductId }) {
         // THEN SET THE EDIT PRODUCT ID THAT THIS COMPONENT TAKES AS A PROP TO = "" TO RESET THE FORM
         deleteProduct(track)
             .then((resp) => {
-                console.log(resp);
+                console.log(resp)
                 if (resp.status === 202) {
                     dispatch({
                         type: ACTIONS.DELETE_PRODUCT,
                         payload: track._id,
-                    });
+                    })
                     dispatch({
                         type: ACTIONS.SET_SNACKBAR,
                         payload: {
@@ -132,17 +108,17 @@ function EditDeleteTrack({ editProductId, setEditProductId }) {
                             success: "success",
                             message: "Track successfully deleted",
                         },
-                    });
+                    })
                 }
             })
             .catch((error) => {
-                console.log(error);
-            });
-        setEditProductId("");
-        setPreviousProduct("");
-        setResetFile(true);
-        setPhoto({});
-        resetProductForm();
+                console.log(error)
+            })
+        setEditProductId("")
+        setPreviousProduct("")
+        setResetFile(true)
+        setPhoto({})
+        resetProductForm()
     }
 
     // PASS IN TITLE AND TEXT FOR THE BUTTON TO THE TRACK FORM
@@ -151,7 +127,7 @@ function EditDeleteTrack({ editProductId, setEditProductId }) {
     return (
         <TrackForm
             title={"Edit Track"}
-            buttonText={"Update"}
+            buttonText={"Update Track"}
             handleTextChange={handleTextChange}
             handleRadioChange={handleRadioChange}
             handleSubmit={handleUpdateProduct}
@@ -161,7 +137,7 @@ function EditDeleteTrack({ editProductId, setEditProductId }) {
             setResetFile={setResetFile}
             resetFile={resetFile}
         />
-    );
+    )
 }
 
-export default EditDeleteTrack;
+export default EditDeleteTrack

@@ -1,18 +1,17 @@
-import React, { useState } from "react";
-
-import {
-    createProduct,
-    submitProductToDbAndUpdateState,
-} from "../../../../services/productServices";
-import { useCurtainContext } from "../../../../config/CurtainCoContext";
-import { ACTIONS } from "../../../../config/stateReducer";
-import TrackForm from "../../../reusable/TrackForm";
+import React, { useState, useRef } from "react"
+// HELPERS AND SERVICES
+import { submitProductToDbAndUpdateState } from "../../../../services/productServices"
+// STATE
+import { useCurtainContext } from "../../../../config/CurtainCoContext"
+import { ACTIONS } from "../../../../config/stateReducer"
+// COMPONENTS
+import TrackForm from "../../../reusable/TrackForm"
 
 function AddTrack() {
-    const { dispatch } = useCurtainContext();
-    const [resetFile, setResetFile] = useState(false);
-    const [photo, setPhoto] = useState({});
-    const [track, setTrack] = useState({
+    const { dispatch } = useCurtainContext()
+    const [resetFile, setResetFile] = useState(false)
+    const [photo, setPhoto] = useState({})
+    const emptyTrack = useRef({
         category: "Track",
         name: "",
         colour: "",
@@ -24,39 +23,28 @@ function AddTrack() {
         finialColour: "",
         location: "",
         description: "",
-    });
+    })
+    const [track, setTrack] = useState(emptyTrack.current)
 
     function resetProductForm() {
-        setTrack({
-            category: "Track",
-            name: "",
-            colour: "",
-            imgUrl: "",
-            price: "",
-            type: "",
-            single: "",
-            finialStyle: "",
-            finialColour: "",
-            location: "",
-            description: "",
-        });
+        setTrack(emptyTrack.current)
     }
 
     function handleFileChange(file) {
-        console.log(file);
-        setPhoto(file);
+        console.log(file)
+        setPhoto(file)
     }
 
     function handleRadioChange(event) {
-        const singleTrack = event.target.value === "single" ? true : false;
+        const singleTrack = event.target.value === "single" ? true : false
         setTrack({
             ...track,
             [event.target.name]: singleTrack,
-        });
+        })
     }
 
     function handleTextChange(event) {
-        setTrack({ ...track, [event.target.name]: event.target.value });
+        setTrack({ ...track, [event.target.name]: event.target.value })
     }
 
     async function handleSubmit() {
@@ -69,8 +57,8 @@ function AddTrack() {
             setPhoto,
             photo,
             resetProductForm
-        );
-        console.log(respOrError);
+        )
+        console.log(respOrError)
     }
 
     // PASS IN TITLE AND TEXT FOR THE BUTTON TO THE TRACK FORM
@@ -89,7 +77,7 @@ function AddTrack() {
             setResetFile={setResetFile}
             resetFile={resetFile}
         />
-    );
+    )
 }
 
-export default AddTrack;
+export default AddTrack

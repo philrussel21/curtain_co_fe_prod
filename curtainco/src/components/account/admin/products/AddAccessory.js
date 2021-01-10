@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-
+import React, { useState, useRef } from "react"
+// STYLES
 import {
     FormControl,
     FormLabel,
@@ -7,21 +7,22 @@ import {
     RadioGroup,
     Radio,
     Divider,
-} from "@material-ui/core";
-import {
-    createProduct,
-    submitProductToDbAndUpdateState,
-} from "../../../../services/productServices";
-import { useCurtainContext } from "../../../../config/CurtainCoContext";
-import { ACTIONS } from "../../../../config/stateReducer";
-import AccessoryForm from "../../../reusable/AccessoryForm";
+} from "@material-ui/core"
+// HELPERS AND SERVICES
+import { submitProductToDbAndUpdateState } from "../../../../services/productServices"
+// STATE
+import { useCurtainContext } from "../../../../config/CurtainCoContext"
+import { ACTIONS } from "../../../../config/stateReducer"
+// COMPONENTS
+import AccessoryForm from "../../../reusable/AccessoryForm"
 
 function AddAccessory() {
-    const { dispatch } = useCurtainContext();
-    const [checkedValue, setCheckedValue] = useState("Flick Stick");
-    const [resetFile, setResetFile] = useState(false);
-    const [photo, setPhoto] = useState({});
-    const [accessory, setAccessory] = useState({
+    const { dispatch } = useCurtainContext()
+    const [checkedValue, setCheckedValue] = useState("Flick Stick")
+    const [resetFile, setResetFile] = useState(false)
+    const [photo, setPhoto] = useState({})
+    // WE PASS IN FLICK STICK AS THE TYPE SO THAT IT DEFAULTS TO THAT FORM ON FIRST RENDER
+    const emptyAccessory = useRef({
         category: "Accessory",
         name: "",
         colour: "",
@@ -29,33 +30,26 @@ function AddAccessory() {
         price: "",
         description: "",
         type: "Flick Stick",
-    });
+    })
+    const [accessory, setAccessory] = useState(emptyAccessory.current)
 
     function resetProductForm() {
-        setAccessory({
-            category: "Accessory",
-            name: "",
-            colour: "",
-            imgUrl: "",
-            price: "",
-            description: "",
-            type: "",
-        });
+        setAccessory(emptyAccessory.current)
     }
 
     function handleFileChange(file) {
-        console.log(file);
-        setPhoto(file);
+        console.log(file)
+        setPhoto(file)
     }
 
     function handleTypeChange(event) {
-        event.preventDefault();
-        setCheckedValue(event.target.value);
-        setAccessory({ ...accessory, type: event.target.value });
+        event.preventDefault()
+        setCheckedValue(event.target.value)
+        setAccessory({ ...accessory, type: event.target.value })
     }
 
     function handleTextChange(event) {
-        setAccessory({ ...accessory, [event.target.name]: event.target.value });
+        setAccessory({ ...accessory, [event.target.name]: event.target.value })
     }
 
     async function handleSubmit() {
@@ -68,8 +62,8 @@ function AddAccessory() {
             setPhoto,
             photo,
             resetProductForm
-        );
-        console.log(respOrError);
+        )
+        console.log(respOrError)
     }
 
     return (
@@ -119,7 +113,7 @@ function AddAccessory() {
                 resetFile={resetFile}
             />
         </>
-    );
+    )
 }
 
-export default AddAccessory;
+export default AddAccessory
