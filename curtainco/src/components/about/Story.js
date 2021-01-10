@@ -18,7 +18,10 @@ function Story() {
             </Grid>
 
             <Grid item sm={6}>
-                <img src="/loading.gif/300x300" alt="Reflecting story" />
+                <img
+                    src="https://source.unsplash.com/random/300x300"
+                    alt="Reflecting story"
+                />
             </Grid>
         </Grid>
     )

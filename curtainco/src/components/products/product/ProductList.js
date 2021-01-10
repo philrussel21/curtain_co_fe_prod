@@ -50,9 +50,7 @@ function ProductList({
         return array
     }
 
-    useEffect(() => {
-        listOfProducts.current = buildProductList(filteredProducts)
-    }, [products, filteredProducts])
+    listOfProducts.current = buildProductList(filteredProducts)
 
     return listOfProducts.current
 }

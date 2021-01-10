@@ -5,7 +5,10 @@ function Success() {
     return (
         <Grid container item justify="center" spacing={2}>
             <Grid item sm={6}>
-                <img src="/loading.gif/300x300" alt="Reflecting success" />
+                <img
+                    src="https://source.unsplash.com/random/300x300"
+                    alt="Reflecting success"
+                />
             </Grid>
             <Grid item sm={6}>
                 <Typography variant="h3" component="h3">

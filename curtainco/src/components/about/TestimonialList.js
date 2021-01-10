@@ -1,11 +1,11 @@
-import React from 'react';
-import TestimonialItem from './TestimonialItem';
+import React from "react"
+import TestimonialItem from "./TestimonialItem"
 
 function TestimonialList({ testimonials }) {
     const testimonialList = testimonials.map((t) => (
         <TestimonialItem msg={t.msg} key={t.id} />
-    ));
-    return testimonialList;
+    ))
+    return testimonialList
 }
 
-export default TestimonialList;
+export default TestimonialList
