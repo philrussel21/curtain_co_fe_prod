@@ -17,7 +17,7 @@ function CollectionItem({ data }) {
         event.preventDefault()
         if (
             !window.confirm(
-                "Do you want to add the full collection to your cart?"
+                "Do you want to add the full collection to your cart without customising first?"
             )
         ) {
             return
