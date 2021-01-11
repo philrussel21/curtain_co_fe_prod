@@ -9,20 +9,24 @@ import {
 } from "@material-ui/core"
 import useStyles from "./NavigationStyles"
 // HELPERS AND SERVICES
-import { Link, useHistory } from "react-router-dom"
+import { Link, useLocation } from "react-router-dom"
 // COMPONENTS
 import Contact from "./Contact"
 import Legal from "./Legal"
 
 export default function StickyFooter() {
     const classes = useStyles()
-    const history = useHistory()
     const [hideButton, setHideButton] = useState(false)
+    const location = useLocation()
 
     useEffect(() => {
-        setHideButton(false)
-        if (history.location.pathname === "/request") setHideButton(true)
-    }, [history.location.pathname])
+        // setHideButton(false)
+        console.log("here in footer useEffect")
+        console.log(location)
+        if (location !== undefined && location.pathname === "/request") {
+            setHideButton(true)
+        }
+    }, [location])
 
     return (
         <div className={classes.footerRoot}>

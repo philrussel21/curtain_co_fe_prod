@@ -94,18 +94,6 @@ export default function UserDataForm({
         postcode: "",
     })
     const [userData, setUserData] = useState(emptyUserData.current)
-    // const [helperText, setHelperText] = useState({
-    //     email: "",
-    //     password: "",
-    //     firstName: "",
-    //     lastName: "",
-    //     phone: "",
-    //     address1: "",
-    //     suburb: "",
-    //     state: "",
-    //     postcode: "",
-    //     message: "",
-    // })
     const [helperText, setHelperText] = useState({})
 
     useEffect(() => {

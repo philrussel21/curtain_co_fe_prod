@@ -61,7 +61,10 @@ export default function SignUp() {
     useEffect(() => {
         // THIS prevUrl HAS ALREADY BEEN SPLIT ON THE LOGIN PAGE
         // SO WE JUST NEED TO KNOW WHAT THE VALUE IS
-        setPrevUrl(history.location.state.prevUrl)
+        if (history.location.state !== undefined) {
+            console.log(history.location.state)
+            setPrevUrl(history.location.state.prevUrl)
+        }
     }, [history])
 
     return (
