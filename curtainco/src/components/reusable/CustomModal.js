@@ -12,6 +12,7 @@ import ProductSummaryModal from "./ProductSummaryModal"
 // HELPERS AND SERVICES
 import { addItemToCart } from "../../services/cartServices"
 import { isEmpty } from "../../helpers/appHelpers"
+import ConsultModal from "./ConsultModal"
 
 export default function CustomModal() {
     const classes = useStyles()
@@ -28,6 +29,7 @@ export default function CustomModal() {
                 data: {},
                 paymentSummary: false,
                 orderSummary: false,
+                consultSummary: false,
             },
         })
     }
@@ -64,6 +66,11 @@ export default function CustomModal() {
                                 <PaymentSummaryModal data={state.modal.data} />
                             ) : state.modal.orderSummary ? (
                                 <OrderSummaryModal
+                                    data={state.modal.data}
+                                    handleClose={handleClose}
+                                />
+                            ) : state.modal.consultSummary ? (
+                                <ConsultModal
                                     data={state.modal.data}
                                     handleClose={handleClose}
                                 />

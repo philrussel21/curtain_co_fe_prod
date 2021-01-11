@@ -1,4 +1,4 @@
-import React, { useEffect } from "react"
+import React, { useEffect } from "react";
 // STYLES
 import {
     Checkbox,
@@ -9,92 +9,106 @@ import {
     TableHead,
     Paper,
     Button,
-} from "@material-ui/core"
-import useStyles from "../AdminStyles"
+} from "@material-ui/core";
+import useStyles from "../AdminStyles";
 // COMPONENTS
-import Title from "../../../reusable/Title"
+import Title from "../../../reusable/Title";
 // HELPERS AND SERVICES
 import {
     getFirstNameFromFullName,
     getLastNameFromFullName,
-} from "../../../../helpers/userHelpers"
+} from "../../../../helpers/userHelpers";
 // import { sortConsultations } from "../../../../helpers/consultationHelpers"
+<<<<<<< HEAD
 import {
     displayShortDate,
     setSuccessSnackBar,
 } from "../../../../helpers/appHelpers"
+=======
+import { displayShortDate } from "../../../../helpers/appHelpers";
+>>>>>>> main
 import {
     getAllConsultations,
     markConsultationCompleted,
-} from "../../../../services/consultationServices"
+} from "../../../../services/consultationServices";
 // STATE
-import { useCurtainContext } from "../../../../config/CurtainCoContext"
-import { ACTIONS } from "../../../../config/stateReducer"
+import { useCurtainContext } from "../../../../config/CurtainCoContext";
+import { ACTIONS } from "../../../../config/stateReducer";
 
 export default function AllConsults() {
-    const classes = useStyles()
-    const { state, dispatch } = useCurtainContext()
+    const classes = useStyles();
+    const { state, dispatch } = useCurtainContext();
 
     useEffect(() => {
         getAllConsultations()
             .then((resp) => {
                 if (resp.status === 200) {
-                    console.log("---CONSULTATIONS---")
-                    console.log(resp.data)
+                    console.log("---CONSULTATIONS---");
+                    console.log(resp.data);
                     dispatch({
                         type: ACTIONS.SET_ALL_CONSULTATIONS,
                         payload: resp.data,
-                    })
+                    });
                 } else {
                     console.log(
                         "status code wasn't correct when getting all consultations"
-                    )
+                    );
                 }
             })
             .catch((error) => {
-                console.log(error)
-            })
-    }, [dispatch])
+                console.log(error);
+            });
+    }, [dispatch]);
 
     function handleConsultationCheckbox(event) {
-        const checked = event.target.checked
-        const consultId = event.currentTarget.parentNode.parentNode.id
+        const checked = event.target.checked;
+        const consultId = event.currentTarget.parentNode.parentNode.id;
         markConsultationCompleted(consultId, { isProcessed: checked })
             .then((resp) => {
-                console.log("---UPDATED CONSULTATION---")
-                console.log(resp.data)
+                console.log("---UPDATED CONSULTATION---");
+                console.log(resp.data);
                 if (resp.status === 200) {
                     dispatch({
                         type: ACTIONS.UPDATE_CONSULTATION,
                         payload: resp.data,
+<<<<<<< HEAD
                     })
 
                     setSuccessSnackBar(dispatch, "Consult successfully updated")
+=======
+                    });
+                    dispatch({
+                        type: ACTIONS.SET_SNACKBAR,
+                        payload: {
+                            open: true,
+                            success: "success",
+                            message: "Consult successfully updated",
+                        },
+                    });
+                } else {
+                    console.log("update consult status was not 200");
+>>>>>>> main
                 }
             })
             .catch((error) => {
                 console.log(
                     `Something went wrong when updating the consultation: ${error}`
-                )
-            })
+                );
+            });
     }
 
     function handleMessageButton(event) {
         // event.currentTarget.value = "fullName,message"
-        const fullName = event.currentTarget.value.split("/")[0]
-        const message = event.currentTarget.value.split("/")[1]
-        // prettier-ignore
-        const title = `Message from ${getFirstNameFromFullName(fullName)} 
-                    ${getLastNameFromFullName(fullName)}.`;
+        const consultId = event.currentTarget.parentNode.parentNode.id;
+        const consult = state.consults.find(cons => cons._id === consultId);
         dispatch({
             type: ACTIONS.SET_MODAL,
             payload: {
                 open: true,
-                title: title,
-                message: message,
-                data: {},
+                data: consult,
+                consultSummary: true
             },
-        })
+        });
     }
 
     // REMOVE ADMIN ROLE FROM LIST
@@ -146,7 +160,7 @@ export default function AllConsults() {
                 </Button>
             </TableCell>
         </TableRow>
-    ))
+    ));
 
     return (
         <Paper className={classes.paper}>
@@ -166,5 +180,5 @@ export default function AllConsults() {
                 <TableBody>{userRow}</TableBody>
             </Table>
         </Paper>
-    )
+    );
 }
