@@ -9,13 +9,17 @@ import {
 import { useCurtainContext } from "../../../../config/CurtainCoContext"
 import { ACTIONS } from "../../../../config/stateReducer"
 import { getOneProductFromState } from "../../../../helpers/productHelpers"
-import { setSuccessSnackBar } from "../../../../helpers/appHelpers"
+import {
+    setErrorSnackBar,
+    setSuccessSnackBar,
+} from "../../../../helpers/appHelpers"
 
 function EditDeleteFabric({ editProductId, setEditProductId }) {
     const { state, dispatch } = useCurtainContext()
     const [resetFile, setResetFile] = useState(false)
     const [previousProduct, setPreviousProduct] = useState(editProductId)
     const [photo, setPhoto] = useState({})
+    const [isLoading, setIsLoading] = useState(false)
     const emptyFabric = useRef({
         category: "Fabric",
         _id: "",
@@ -66,6 +70,8 @@ function EditDeleteFabric({ editProductId, setEditProductId }) {
 
     async function handleUpdateProduct() {
         // UPDATE DB AND STATE
+        setIsLoading(true)
+
         let respOrError = await submitProductToDbAndUpdateState(
             "update",
             fabric,
@@ -76,6 +82,7 @@ function EditDeleteFabric({ editProductId, setEditProductId }) {
             photo,
             false
         )
+        setIsLoading(false)
         console.log(respOrError)
     }
 
@@ -83,6 +90,7 @@ function EditDeleteFabric({ editProductId, setEditProductId }) {
         // DELETE THE PRODUCT ON THE DB
         // IF SUCCESSFUL, DELETE PRODUCT IN GLOBAL STATE AND SHOW SUCCESS SNACKBAR
         // THEN SET THE EDIT PRODUCT ID THAT THIS COMPONENT TAKES AS A PROP TO = "" TO RESET THE FORM
+        setIsLoading(true)
         deleteProduct(fabric)
             .then((resp) => {
                 console.log(resp)
@@ -96,7 +104,12 @@ function EditDeleteFabric({ editProductId, setEditProductId }) {
             })
             .catch((error) => {
                 console.log(error)
+                setErrorSnackBar(
+                    dispatch,
+                    `Error: Fabric was not deleted. ${error}`
+                )
             })
+        setIsLoading(false)
         setEditProductId("")
         setPreviousProduct("")
         setResetFile(true)
@@ -118,6 +131,7 @@ function EditDeleteFabric({ editProductId, setEditProductId }) {
             handleFileChange={handleFileChange}
             setResetFile={setResetFile}
             resetFile={resetFile}
+            isLoading={isLoading}
         />
     )
 }
