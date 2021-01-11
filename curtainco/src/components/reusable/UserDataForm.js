@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useRef } from "react"
 // STYLES
 import {
     Avatar,
@@ -80,7 +80,7 @@ export default function UserDataForm({
     const [lastName, setLastName] = useState("")
     const [menuItemsStates, setMenuItemsStates] = useState([])
     const [menuItemsTitles, setMenuItemsTitles] = useState([])
-    const [userData, setUserData] = useState({
+    const emptyUserData = useRef({
         email: "",
         password: "",
         title: "",
@@ -93,6 +93,7 @@ export default function UserDataForm({
         state: "",
         postcode: "",
     })
+    const [userData, setUserData] = useState(emptyUserData.current)
     const [helperText, setHelperText] = useState({
         email: "",
         password: "",
@@ -151,19 +152,9 @@ export default function UserDataForm({
     }
 
     function clearFields() {
-        setUserData({
-            email: "",
-            password: "",
-            title: "",
-            // leave the comma in here as it will break the split function I have on this variable
-            fullName: ",",
-            phone: "",
-            companyName: "",
-            address1: "",
-            suburb: "",
-            state: "",
-            postcode: "",
-        })
+        setFirstName("")
+        setLastName("")
+        setUserData(emptyUserData.current)
     }
 
     async function handleSubmitForm(e) {
@@ -493,7 +484,7 @@ export default function UserDataForm({
                                     onChange={withConsultMessage.handleFunction}
                                     fullWidth
                                     multiline
-                                    rows={6}
+                                    rows={5}
                                     error={helperText.message !== ""}
                                     helperText={helperText.message}
                                 />

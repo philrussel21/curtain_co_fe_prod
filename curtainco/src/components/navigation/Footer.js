@@ -13,7 +13,6 @@ import { Link, useHistory } from "react-router-dom"
 // COMPONENTS
 import Contact from "./Contact"
 import Legal from "./Legal"
-import stateReducer from "../../config/stateReducer"
 
 export default function StickyFooter() {
     const classes = useStyles()
@@ -23,7 +22,7 @@ export default function StickyFooter() {
     useEffect(() => {
         setHideButton(false)
         if (history.location.pathname === "/request") setHideButton(true)
-    }, [history])
+    }, [history.location.pathname])
 
     return (
         <div className={classes.footerRoot}>

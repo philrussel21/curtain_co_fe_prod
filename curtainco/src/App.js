@@ -1,11 +1,15 @@
 import React, { useEffect } from "react"
+// STATE
 import { useCurtainContext } from "./config/CurtainCoContext"
 import { ACTIONS } from "./config/stateReducer"
+// STYLES
 import { Container } from "@material-ui/core"
 import "./styles/Main.css"
+// PACKAGES
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom"
+// HELPERS ANS SERVICES
 import { getLoggedInUserFromHomeRoute } from "./services/authServices"
-
+// COMPONENTS
 import {
     NavBar,
     Home,
