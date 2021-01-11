@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from "react"
-
+// STYLES
 import Container from "@material-ui/core/Container"
-
+// STATE
 import { useCurtainContext } from "../../config/CurtainCoContext"
 import { ACTIONS } from "../../config/stateReducer"
+// HELPERS AND SERVICES
 import { registerUser, loginUser } from "../../services/authServices"
+// COMPONENTS
 import Copyright from "./Copyright"
 import { UserDataForm } from "../export"
-
-import { Redirect, useHistory } from "react-router-dom"
 import LoadingSymbol from "../reusable/LoadingSymbol"
+// PACKAGES
+import { Redirect, useHistory } from "react-router-dom"
 
 export default function SignUp() {
     const history = useHistory()
@@ -23,9 +25,8 @@ export default function SignUp() {
         setIsLoading(true)
         registerUser(userDetails)
             .then((regResp) => {
-                if (regResp.status === 201) {
+                if (regResp.status === 201)
                     console.log("User successfully signed up")
-                }
             })
             .then(() => {
                 let { email, password } = userDetails
@@ -39,19 +40,16 @@ export default function SignUp() {
                                 type: ACTIONS.LOGIN,
                                 payload: currentUser,
                             })
-                        } else {
-                            registerError = `didn't get the user returned when signing up`
-                            console.log(registerError)
                         }
                     })
                     .catch((error) => {
-                        registerError = `An error ocurred on login: ${error}.`
+                        registerError = `An error ocurred on logging in after registering: ${error}.`
                         console.log(registerError)
                     })
             })
 
             .catch((error) => {
-                registerError = `An error ocurred on register: Error Code: ${error.status}. Message: ${error.message}.`
+                registerError = `An error ocurred on register. ${error}`
                 console.log(registerError)
             })
 
@@ -63,7 +61,10 @@ export default function SignUp() {
     useEffect(() => {
         // THIS prevUrl HAS ALREADY BEEN SPLIT ON THE LOGIN PAGE
         // SO WE JUST NEED TO KNOW WHAT THE VALUE IS
-        setPrevUrl(history.location.state.prevUrl)
+        if (history.location.state !== undefined) {
+            console.log(history.location.state)
+            setPrevUrl(history.location.state.prevUrl)
+        }
     }, [history])
 
     return (

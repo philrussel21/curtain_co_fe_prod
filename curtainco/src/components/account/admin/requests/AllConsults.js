@@ -1,68 +1,70 @@
-import React, { useEffect } from "react";
-
-import Checkbox from "@material-ui/core/Checkbox";
-import Table from "@material-ui/core/Table";
-import TableBody from "@material-ui/core/TableBody";
-import TableCell from "@material-ui/core/TableCell";
-import TableHead from "@material-ui/core/TableHead";
-import TableRow from "@material-ui/core/TableRow";
-import Paper from "@material-ui/core/Paper";
-import Title from "../../../reusable/Title";
-
-import useStyles from "../AdminStyles";
-
+import React, { useEffect } from "react"
+// STYLES
+import {
+    Checkbox,
+    Table,
+    TableBody,
+    TableRow,
+    TableCell,
+    TableHead,
+    Paper,
+    Button,
+} from "@material-ui/core"
+import useStyles from "../AdminStyles"
+// COMPONENTS
+import Title from "../../../reusable/Title"
+// HELPERS AND SERVICES
 import {
     getFirstNameFromFullName,
     getLastNameFromFullName,
-} from "../../../../helpers/userHelpers";
-import { sortConsultations } from "../../../../helpers/consultationHelpers";
-import { displayShortDate } from "../../../../helpers/appHelpers";
+} from "../../../../helpers/userHelpers"
+// import { sortConsultations } from "../../../../helpers/consultationHelpers"
+import { displayShortDate } from "../../../../helpers/appHelpers"
 import {
     getAllConsultations,
     markConsultationCompleted,
-} from "../../../../services/consultationServices";
-import { useCurtainContext } from "../../../../config/CurtainCoContext";
-import { ACTIONS } from "../../../../config/stateReducer";
-import { Button } from "@material-ui/core";
+} from "../../../../services/consultationServices"
+// STATE
+import { useCurtainContext } from "../../../../config/CurtainCoContext"
+import { ACTIONS } from "../../../../config/stateReducer"
 
 export default function AllConsults() {
-    const classes = useStyles();
-    const { state, dispatch } = useCurtainContext();
-    let allConsults = state.consults;
+    const classes = useStyles()
+    const { state, dispatch } = useCurtainContext()
 
     useEffect(() => {
         getAllConsultations()
             .then((resp) => {
                 if (resp.status === 200) {
-                    console.log("---CONSULTATIONS---");
-                    console.log(resp.data);
+                    console.log("---CONSULTATIONS---")
+                    console.log(resp.data)
                     dispatch({
                         type: ACTIONS.SET_ALL_CONSULTATIONS,
                         payload: resp.data,
-                    });
+                    })
                 } else {
                     console.log(
                         "status code wasn't correct when getting all consultations"
-                    );
+                    )
                 }
             })
             .catch((error) => {
-                console.log(error);
-            });
-    }, [dispatch]);
+                console.log(error)
+            })
+    }, [dispatch])
 
     function handleConsultationCheckbox(event) {
-        const checked = event.target.checked;
-        const consultId = event.currentTarget.parentNode.parentNode.id;
+        const checked = event.target.checked
+        const consultId = event.currentTarget.parentNode.parentNode.id
         markConsultationCompleted(consultId, { isProcessed: checked })
             .then((resp) => {
-                console.log("---UPDATED CONSULTATION---");
-                console.log(resp.data);
+                console.log("---UPDATED CONSULTATION---")
+                console.log(resp.data)
                 if (resp.status === 200) {
                     dispatch({
                         type: ACTIONS.UPDATE_CONSULTATION,
                         payload: resp.data,
-                    });
+                    })
                     dispatch({
                         type: ACTIONS.SET_SNACKBAR,
                         payload: {
@@ -70,22 +72,22 @@ export default function AllConsults() {
                             success: "success",
                             message: "Consult successfully updated",
                         },
-                    });
+                    })
                 } else {
-                    console.log("update consult status was not 200");
+                    console.log("update consult status was not 200")
                 }
             })
             .catch((error) => {
                 console.log(
                     `Something went wrong when updating the consultation: ${error}`
-                );
-            });
+                )
+            })
     }
 
     function handleMessageButton(event) {
         // event.currentTarget.value = "fullName,message"
-        const fullName = event.currentTarget.value.split("/")[0];
-        const message = event.currentTarget.value.split("/")[1];
+        const fullName = event.currentTarget.value.split("/")[0]
+        const message = event.currentTarget.value.split("/")[1]
         // prettier-ignore
         const title = `Message from ${getFirstNameFromFullName(fullName)} 
                     ${getLastNameFromFullName(fullName)}.`;
@@ -97,12 +99,12 @@ export default function AllConsults() {
                 message: message,
                 data: {},
             },
-        });
+        })
     }
 
     // REMOVE ADMIN ROLE FROM LIST
 
-    const userRow = allConsults.map((cons) => (
+    const userRow = state.consults.map((cons) => (
         <TableRow key={cons._id} id={cons._id} hover>
             <TableCell>
                 <Checkbox
@@ -149,7 +151,7 @@ export default function AllConsults() {
                 </Button>
             </TableCell>
         </TableRow>
-    ));
+    ))
 
     return (
         <Paper className={classes.paper}>
@@ -169,5 +171,5 @@ export default function AllConsults() {
                 <TableBody>{userRow}</TableBody>
             </Table>
         </Paper>
-    );
+    )
 }

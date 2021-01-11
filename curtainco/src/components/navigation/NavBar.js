@@ -1,30 +1,44 @@
-import React from "react"
+import React, { useEffect } from "react"
 // HELPERS AND SERVICES
-import { useCurtainContext } from "../../config/CurtainCoContext"
-import { ACTIONS } from "../../config/stateReducer"
 import { logoutUser } from "../../services/authServices"
-import { Link, withRouter } from "react-router-dom"
+import { setErrorSnackBar } from "../../helpers/appHelpers"
+// STATE
+import { ACTIONS } from "../../config/stateReducer"
+import { useCurtainContext } from "../../config/CurtainCoContext"
 // STYLES
 import { AppBar, Toolbar, Typography, Button } from "@material-ui/core"
 import useStyles from "./NavigationStyles"
 // COMPONENTS
-
+// PACKAGES
+import { Link, withRouter } from "react-router-dom"
+import { createBrowserHistory } from "history"
 function NavBar() {
     const classes = useStyles()
     const { state, dispatch } = useCurtainContext()
+
+    // useEffect(() => {
+    //     console.log("here in navar useEffect")
+    //     let browserHistory = createBrowserHistory()
+    //     console.log(browserHistory)
+    // }, [])
 
     function handleLogout(e) {
         e.preventDefault()
 
         logoutUser()
             .then((resp) => {
-                console.log("Got back response on logout", resp.status)
+                console.log("Got back response on logout", resp)
                 // logout the user locally
                 if (resp.status === 204) {
                     dispatch({ type: ACTIONS.LOGOUT })
+                    console.log("logging out")
                 }
             })
             .catch((error) => {
+                setErrorSnackBar(
+                    dispatch,
+                    `Something went wrong and you were not logged out`
+                )
                 console.log(
                     "The server may be down - caught an exception on logout:",
                     error

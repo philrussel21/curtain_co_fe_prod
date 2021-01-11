@@ -58,7 +58,6 @@ export default function SignIn() {
         if (passwordCheck) {
             setHelperText({ ...helperText, password: passwordCheck })
             setIsLoading(false)
-
             return
         }
 
@@ -82,7 +81,7 @@ export default function SignIn() {
             console.log(loginError)
             setErrorSnackBar(
                 dispatch,
-                "Something went wrong. Please check email address and password."
+                "Something went wrong. Please check email address and password"
             )
         }
         setIsLoading(false)
@@ -105,6 +104,7 @@ export default function SignIn() {
     // AFTER USER LOGS IN, REDIRECT THEM TO THE PREVIOUS PAGE THEY CAME FROM
     useEffect(() => {
         if (history.location.state !== undefined) {
+            console.log(history.location.state)
             setPrevUrl(history.location.state.prevUrl.split("3000")[1])
         }
     }, [history])

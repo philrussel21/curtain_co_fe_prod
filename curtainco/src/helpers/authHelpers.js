@@ -4,17 +4,27 @@ function loginFieldAreBad(field, type) {
     if (field === "") {
         return "Field must not be empty"
     }
-    if (
-        (type === "email" && !field.includes("@")) ||
-        (type === "email" && !field.includes("."))
-    ) {
-        return "Email is badly formatted"
+    if (type === "email") {
+        let check = emailHasBadFormatting(field)
+        if (check) return check
     }
 
-    if (
-        (type === "password" && field.length < 6) ||
-        (type === "password" && field.length > 32)
-    ) {
+    if (type === "password") {
+        let check = passwordHasBadFormatting(field)
+        if (check) return check
+    }
+    return false
+}
+
+function emailHasBadFormatting(field) {
+    if (!field.includes("@") || !field.includes(".")) {
+        return "Email is badly formatted"
+    }
+    return false
+}
+
+function passwordHasBadFormatting(field) {
+    if (field.length < 6 || field.length > 32) {
         return "Password must be between 6 and 32 characters"
     }
     return false
@@ -54,27 +64,29 @@ function areAnyFieldsInUserDataFormAreEmpty(userDetails) {
                 errorObject[key] = `${wordForErrorMessage} must not be empty`
             }
 
-            // // CATCH INCORRECT POSTCODES
-            // if (key === "postcode" && value.length !== 4) {
-            //     errorObject[key] = `${wordForErrorMessage} must be 4 numbers`
-            // }
+            // CATCH INCORRECT POSTCODES
+            if (key === "postcode" && value.length !== 4) {
+                errorObject[key] = `${wordForErrorMessage} must be 4 numbers`
+            }
 
-            // // CATCH PASSWORDS NOT BETWEEN 6 AND 32
-            // if (key === "phone" && value.length !== 10) {
-            //     errorObject[
-            //         key
-            //     ] = `Mobil ${wordForErrorMessage} must be 10 numbers`
-            // }
+            // CATCH PASSWORDS NOT BETWEEN 6 AND 32
+            if (key === "phone" && value.length !== 10) {
+                errorObject[
+                    key
+                ] = `Mobile ${wordForErrorMessage} must be 10 numbers`
+            }
 
-            // // CATCH PASSWORDS NOT BETWEEN 6 AND 32
-            // if (
-            //     (key === "password" && value.length < 6) ||
-            //     (key === "password" && value.length > 32)
-            // ) {
-            //     errorObject[
-            //         key
-            //     ] = `${wordForErrorMessage} must be between 6 and 32 characters`
-            // }
+            // CATCH PASSWORDS NOT BETWEEN 6 AND 32
+            if (key === "password") {
+                let check = passwordHasBadFormatting(value)
+                if (check) errorObject[key] = check
+            }
+
+            // CATCH PASSWORDS NOT BETWEEN 6 AND 32
+            if (key === "email") {
+                let check = emailHasBadFormatting(value)
+                if (check) errorObject[key] = check
+            }
         }
     }
 

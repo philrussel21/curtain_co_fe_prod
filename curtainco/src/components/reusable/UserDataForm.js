@@ -94,18 +94,7 @@ export default function UserDataForm({
         postcode: "",
     })
     const [userData, setUserData] = useState(emptyUserData.current)
-    const [helperText, setHelperText] = useState({
-        email: "",
-        password: "",
-        firstName: "",
-        lastName: "",
-        phone: "",
-        address1: "",
-        suburb: "",
-        state: "",
-        postcode: "",
-        message: "",
-    })
+    const [helperText, setHelperText] = useState({})
 
     useEffect(() => {
         setMenuItemsStates(buildStatesMenuItems(states))
@@ -179,7 +168,7 @@ export default function UserDataForm({
 
             console.log({ tempConsultUserData })
 
-            // CHECK FIELDS ARE NOT EMPTY
+            // ERROR HANDLING FOR SUBMITTING A CONSULTATION
             let emptyFields = areAnyFieldsInUserDataFormAreEmpty(
                 tempConsultUserData
             )
@@ -199,7 +188,7 @@ export default function UserDataForm({
                 tempConsultUserData
             )
         } else {
-            // CHECK FIELDS ARE NOT EMPTY
+            // ERROR HANDLING FOR REGISTERING
             let emptyFields = areAnyFieldsInUserDataFormAreEmpty(tempUserData)
             if (emptyFields) {
                 setHelperText(emptyFields)
@@ -220,6 +209,9 @@ export default function UserDataForm({
         console.log(errorOrResp)
         if (errorOrResp) clearFields()
     }
+
+    // console.log(helperText)
+    // console.log(helperText.postcode)
 
     return (
         <Container component="main" maxWidth="md">
@@ -264,7 +256,9 @@ export default function UserDataForm({
                                             autoComplete="email"
                                             value={userData.email}
                                             onChange={handleTextChange}
-                                            error={helperText.email !== ""}
+                                            error={
+                                                helperText.email !== undefined
+                                            }
                                             helperText={helperText.email}
                                         />
                                     </Grid>
@@ -283,7 +277,10 @@ export default function UserDataForm({
                                             autoComplete="current-password"
                                             value={userData.password}
                                             onChange={handleTextChange}
-                                            error={helperText.password !== ""}
+                                            error={
+                                                helperText.password !==
+                                                undefined
+                                            }
                                             helperText={helperText.password}
                                         />
                                     </Grid>
@@ -328,7 +325,9 @@ export default function UserDataForm({
                                         label="First Name"
                                         value={firstName}
                                         onChange={handleNameChange}
-                                        error={helperText.firstName !== ""}
+                                        error={
+                                            helperText.firstName !== undefined
+                                        }
                                         helperText={helperText.firstName}
                                     />
                                 </Grid>
@@ -344,7 +343,9 @@ export default function UserDataForm({
                                         autoComplete="family-name"
                                         value={lastName}
                                         onChange={handleNameChange}
-                                        error={helperText.lastName !== ""}
+                                        error={
+                                            helperText.lastName !== undefined
+                                        }
                                         helperText={helperText.lastName}
                                     />
                                 </Grid>
@@ -367,7 +368,7 @@ export default function UserDataForm({
                                         autoComplete="tel"
                                         value={userData.phone}
                                         onChange={handleTextChange}
-                                        error={helperText.phone !== ""}
+                                        error={helperText.phone !== undefined}
                                         helperText={helperText.phone}
                                     />
                                 </Grid>
@@ -397,7 +398,9 @@ export default function UserDataForm({
                                         autoComplete="address-line1"
                                         value={userData.address1}
                                         onChange={handleTextChange}
-                                        error={helperText.address1 !== ""}
+                                        error={
+                                            helperText.address1 !== undefined
+                                        }
                                         helperText={helperText.address1}
                                     />
                                 </Grid>
@@ -414,7 +417,7 @@ export default function UserDataForm({
                                         autoComplete="address-level2"
                                         value={userData.suburb}
                                         onChange={handleTextChange}
-                                        error={helperText.suburb !== ""}
+                                        error={helperText.suburb !== undefined}
                                         helperText={helperText.suburb}
                                     />
                                 </Grid>
@@ -423,7 +426,7 @@ export default function UserDataForm({
                                     <FormControl
                                         variant="outlined"
                                         style={{ width: "100%" }}
-                                        error={helperText.state !== ""}
+                                        error={helperText.state !== undefined}
                                         required
                                     >
                                         <InputLabel htmlFor="state">
@@ -464,7 +467,9 @@ export default function UserDataForm({
                                         autoComplete="postal-code"
                                         value={userData.postcode}
                                         onChange={handleTextChange}
-                                        error={helperText.postcode !== ""}
+                                        error={
+                                            helperText.postcode !== undefined
+                                        }
                                         helperText={helperText.postcode}
                                     />
                                 </Grid>
@@ -485,7 +490,7 @@ export default function UserDataForm({
                                     fullWidth
                                     multiline
                                     rows={5}
-                                    error={helperText.message !== ""}
+                                    error={helperText.message !== undefined}
                                     helperText={helperText.message}
                                 />
                             </Grid>
