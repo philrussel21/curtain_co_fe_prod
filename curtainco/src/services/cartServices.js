@@ -1,23 +1,8 @@
 const { ACTIONS } = require("../config/stateReducer")
 
-function addItemToCart(item, dispatch) {
+function addItemToCart(item) {
     // ADD TO LOCAL STORAGE
     addItemToLocalStorage(item)
-
-    // // SHOW SNACKBAR
-    // dispatch({
-    //     type: ACTIONS.SET_SNACKBAR,
-    //     payload: {
-    //         open: true,
-    //         success: "success",
-    //         message: "Added item to cart",
-    //     },
-    // })
-    // // ADD TO STATE
-    // dispatch({
-    //     type: ACTIONS.ADD_TO_CART,
-    //     payload: item,
-    // })
 }
 
 function updateLocalStorageWithNewArray(cartArray) {

@@ -3,10 +3,24 @@ import { Grid, Button, Typography } from "@material-ui/core"
 import { Link } from "react-router-dom"
 import { useCurtainContext } from "../../config/CurtainCoContext"
 
-function CartTotal({ total, children, loginText }) {
+function CartTotal({ total, children, loginText, isCancel, isError }) {
     const { state } = useCurtainContext()
     return (
         <Grid container direction="column" spacing={2}>
+            {/* IF PAYMENT WAS CANCELLED OR THERE WAS AN ERROR
+            SHOW THIS DIV */}
+            {(isError || isCancel) && (
+                <Grid item>
+                    <Typography>
+                        {isCancel
+                            ? "user cancelled the transaction"
+                            : isError
+                            ? "there was an error on the with the transaction"
+                            : ""}
+                    </Typography>
+                </Grid>
+            )}
+
             <Grid item container justify="center" alignItems="center">
                 <Grid item xs container justify="center">
                     <Typography variant="h5" component="h5">
@@ -36,14 +50,6 @@ function CartTotal({ total, children, loginText }) {
 
                 <Grid item xs container justify="center" alignItems="center">
                     {children}
-                    {/* <Button
-                        variant="contained"
-                        color="primary"
-                        onClick={handleCheckout}
-                        size="large"
-                    >
-                        Checkout
-                    </Button> */}
                 </Grid>
             </Grid>
         </Grid>

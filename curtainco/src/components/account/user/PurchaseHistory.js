@@ -6,7 +6,7 @@ import LoadingSymbol from "../../reusable/LoadingSymbol"
 import { Container, Typography, Grid, Divider } from "@material-ui/core"
 import useStyles from "./UserDashboardStyles"
 // HELPERS AND SERVICES
-import { getUpdatedUserWithOrderObjects } from "../../../services/userServices"
+// import { getUpdatedUserWithOrderObjects } from "../../../services/userServices"
 import { useCurtainContext } from "../../../config/CurtainCoContext"
 
 function PurchaseHistory({ isLoading }) {
