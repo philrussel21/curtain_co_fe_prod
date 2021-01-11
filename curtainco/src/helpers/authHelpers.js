@@ -30,12 +30,12 @@ function areAnyFieldsInUserDataFormAreEmpty(userDetails) {
 
     for (const key in userDetails) {
         if (Object.hasOwnProperty.call(userDetails, key)) {
+            let wordForErrorMessage = capitalize(key)
             const value = userDetails[key]
             // CHECK IF ANY OF THE FIELDS ARE EMPTY OR UNDEFINED
             if (value === "" || value === undefined) {
                 // IF THEY ARE, CAPITALIZE THE NAME FOR THE ERROR MESSAGE
                 // AND ALTER CERTAIN WORDS TO DISPLAY BETTER
-                let wordForErrorMessage = capitalize(key)
                 switch (wordForErrorMessage) {
                     case "Address1":
                         wordForErrorMessage = "Address"
@@ -52,6 +52,28 @@ function areAnyFieldsInUserDataFormAreEmpty(userDetails) {
                 // FILL THE OBJECT WITH THE NAME OF THE FIELD AND THE ERROR TO DISPLAY FOR IT
                 errorObject[key] = `${wordForErrorMessage} must not be empty`
             }
+
+            // // CATCH INCORRECT POSTCODES
+            // if (key === "postcode" && value.length !== 4) {
+            //     errorObject[key] = `${wordForErrorMessage} must be 4 numbers`
+            // }
+
+            // // CATCH PASSWORDS NOT BETWEEN 6 AND 32
+            // if (key === "phone" && value.length !== 10) {
+            //     errorObject[
+            //         key
+            //     ] = `Mobil ${wordForErrorMessage} must be 10 numbers`
+            // }
+
+            // // CATCH PASSWORDS NOT BETWEEN 6 AND 32
+            // if (
+            //     (key === "password" && value.length < 6) ||
+            //     (key === "password" && value.length > 32)
+            // ) {
+            //     errorObject[
+            //         key
+            //     ] = `${wordForErrorMessage} must be between 6 and 32 characters`
+            // }
         }
     }
 
