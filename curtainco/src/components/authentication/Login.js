@@ -58,7 +58,6 @@ export default function SignIn() {
         if (passwordCheck) {
             setHelperText({ ...helperText, password: passwordCheck })
             setIsLoading(false)
-
             return
         }
 
@@ -82,7 +81,7 @@ export default function SignIn() {
             console.log(loginError)
             setErrorSnackBar(
                 dispatch,
-                "Something went wrong. Please check email address and password."
+                "Something went wrong. Please check email address and password"
             )
         }
         setIsLoading(false)
