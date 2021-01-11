@@ -19,6 +19,7 @@ function loginFieldAreBad(field, type) {
     }
     return false
 }
+
 function areAnyFieldsInUserDataFormAreEmpty(userDetails) {
     delete userDetails.title
     delete userDetails.companyName
