@@ -10,13 +10,17 @@ import { getOneProductFromState } from "../../../../helpers/productHelpers"
 // STATE
 import { useCurtainContext } from "../../../../config/CurtainCoContext"
 import { ACTIONS } from "../../../../config/stateReducer"
-import { setSuccessSnackBar } from "../../../../helpers/appHelpers"
+import {
+    setErrorSnackBar,
+    setSuccessSnackBar,
+} from "../../../../helpers/appHelpers"
 
 function EditDeleteTrack({ editProductId, setEditProductId }) {
     const { state, dispatch } = useCurtainContext()
     const [resetFile, setResetFile] = useState(false)
     const [previousProduct, setPreviousProduct] = useState(editProductId)
     const [photo, setPhoto] = useState({})
+    const [isLoading, setIsLoading] = useState(false)
     const emptyTrack = useRef({
         category: "Track",
         _id: "",
@@ -77,6 +81,7 @@ function EditDeleteTrack({ editProductId, setEditProductId }) {
 
     async function handleUpdateProduct() {
         // UPDATE DB AND STATE
+        setIsLoading(true)
         let respOrError = await submitProductToDbAndUpdateState(
             "update",
             track,
@@ -87,6 +92,7 @@ function EditDeleteTrack({ editProductId, setEditProductId }) {
             photo,
             false
         )
+        setIsLoading(false)
         console.log(respOrError)
     }
 
@@ -94,6 +100,8 @@ function EditDeleteTrack({ editProductId, setEditProductId }) {
         // DELETE THE PRODUCT ON THE DB
         // IF SUCCESSFUL, DELETE PRODUCT IN GLOBAL STATE AND SHOW SUCCESS SNACKBAR
         // THEN SET THE EDIT PRODUCT ID THAT THIS COMPONENT TAKES AS A PROP TO = "" TO RESET THE FORM
+        setIsLoading(true)
+
         deleteProduct(track)
             .then((resp) => {
                 console.log(resp)
@@ -108,7 +116,12 @@ function EditDeleteTrack({ editProductId, setEditProductId }) {
             })
             .catch((error) => {
                 console.log(error)
+                setErrorSnackBar(
+                    dispatch,
+                    `Error: track was not deleted. ${error}`
+                )
             })
+        setIsLoading(false)
         setEditProductId("")
         setPreviousProduct("")
         setResetFile(true)
@@ -131,6 +144,7 @@ function EditDeleteTrack({ editProductId, setEditProductId }) {
             handleFileChange={handleFileChange}
             setResetFile={setResetFile}
             resetFile={resetFile}
+            isLoading={isLoading}
         />
     )
 }
