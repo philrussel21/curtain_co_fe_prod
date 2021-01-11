@@ -132,23 +132,19 @@ function CollectionForm({
             <Box pb={1}>
                 <Grid container justify="center" alignItems="center">
                     <Grid item xs={3}>
-                        {collection.imgUrl !== "" ? (
-                            <img
-                                src={
-                                    collection.imgUrl !== ""
-                                        ? collection.imgUrl
-                                        : ""
-                                }
-                                alt={
-                                    collection.imgUrl === ""
-                                        ? ""
-                                        : `${collection.name}`
-                                }
-                                className={classes.editFormImage}
-                            />
-                        ) : (
-                            ""
-                        )}
+                        <img
+                            src={
+                                collection.imgUrl !== ""
+                                    ? collection.imgUrl
+                                    : "/no-image.png"
+                            }
+                            alt={
+                                collection.imgUrl === ""
+                                    ? "blank-image"
+                                    : `${collection.colour} ${collection.name}`
+                            }
+                            className={classes.editFormImage}
+                        />
                     </Grid>
                     <Grid
                         item
