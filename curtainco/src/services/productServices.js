@@ -131,6 +131,12 @@ async function submitProductToDbAndUpdateState(
         editProdError = `Something went wrong with ${capitalize(updateOrAdd)} ${
             tempProduct.category
         }. ${error}`
+        setSuccessSnackBar(
+            dispatch,
+            `Something went wrong with ${capitalize(updateOrAdd)} ${
+                tempProduct.category
+            }. ${error}`
+        )
     }
     return editProdError
 }

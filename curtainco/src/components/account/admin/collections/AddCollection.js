@@ -22,6 +22,8 @@ function AddCollection() {
     const [tracksArray, setTracksArray] = useState([])
     const [fabricsArray, setFabricsArray] = useState([])
     const [accessoryArray, setAccessoryArray] = useState([])
+    const [isLoading, setIsLoading] = useState(false)
+
     const emptyCollection = useRef({
         name: "",
         description: "",
@@ -70,7 +72,9 @@ function AddCollection() {
             default:
                 break
         }
-        console.log(fabricsArray)
+        console.log({ tracksArray })
+        console.log({ fabricsArray })
+        console.log({ accessoryArray })
     }
 
     function handleTextChange(event) {
@@ -112,6 +116,7 @@ function AddCollection() {
             return
         }
 
+        setIsLoading(true)
         let respOrError = await submitCollectionToDbAndUpdateState(
             "add",
             tempCollection,
@@ -122,6 +127,7 @@ function AddCollection() {
             photo,
             resetCollectionForm
         )
+        setIsLoading(false)
         console.log(respOrError)
     }
 
@@ -139,6 +145,7 @@ function AddCollection() {
                     handleFileChange={handleFileChange}
                     setResetFile={setResetFile}
                     resetFile={resetFile}
+                    isLoading={isLoading}
                 />
             </Container>
         </Paper>

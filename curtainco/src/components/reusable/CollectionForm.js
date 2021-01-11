@@ -1,5 +1,5 @@
 import React from "react"
-
+// STYLES
 import {
     Typography,
     Grid,
@@ -8,11 +8,16 @@ import {
     Box,
     MenuItem,
 } from "@material-ui/core"
-import DeleteIcon from "@material-ui/icons/Delete"
 import useStyles from "../../components/account/admin/AdminStyles"
+// ICONS
+import DeleteIcon from "@material-ui/icons/Delete"
+// STATE
 import { useCurtainContext } from "../../config/CurtainCoContext"
+// COMPONENTS
 import FileInput from "./FileInput"
+import LoadingSymbol from "../reusable/LoadingSymbol"
 import CollectionSelect from "./CollectionSelect"
+// HELPERS AND SERVICES
 import { capitalize } from "../../helpers/appHelpers"
 
 function CollectionForm({
@@ -26,6 +31,7 @@ function CollectionForm({
     handleFileChange,
     setResetFile,
     resetFile,
+    isLoading,
 }) {
     const classes = useStyles()
     const { state } = useCurtainContext()
@@ -272,7 +278,7 @@ function CollectionForm({
                     {accessorySelects}
                 </Grid>
 
-                {collection ? (
+                {collection && (
                     <Grid
                         item
                         container
@@ -283,7 +289,7 @@ function CollectionForm({
                     >
                         {/* IF THE REMOVE HANDLER WAS PASSED IN, SHOW THE DELETE BUTTON */}
                         <Grid item>
-                            {handleRemove ? (
+                            {handleRemove && (
                                 <Button
                                     variant="contained"
                                     color="secondary"
@@ -292,10 +298,13 @@ function CollectionForm({
                                 >
                                     Delete
                                 </Button>
-                            ) : (
-                                ""
                             )}
                         </Grid>
+                        {isLoading && (
+                            <Grid item>
+                                <LoadingSymbol />
+                            </Grid>
+                        )}
                         <Grid item>
                             <Button
                                 variant="contained"
@@ -306,8 +315,6 @@ function CollectionForm({
                             </Button>
                         </Grid>
                     </Grid>
-                ) : (
-                    ""
                 )}
             </Grid>
         </>
