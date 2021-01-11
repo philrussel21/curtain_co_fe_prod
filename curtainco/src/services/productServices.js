@@ -2,6 +2,7 @@ import api from "../config/api"
 import {
     capitalize,
     isPhotoPresent,
+    setErrorSnackBar,
     setSuccessSnackBar,
 } from "../helpers/appHelpers"
 import { checkIfAnyFieldsEmptyOnProductObject } from "../helpers/productHelpers"
@@ -131,7 +132,8 @@ async function submitProductToDbAndUpdateState(
         editProdError = `Something went wrong with ${capitalize(updateOrAdd)} ${
             tempProduct.category
         }. ${error}`
-        setSuccessSnackBar(
+
+        setErrorSnackBar(
             dispatch,
             `Something went wrong with ${capitalize(updateOrAdd)} ${
                 tempProduct.category

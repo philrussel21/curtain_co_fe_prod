@@ -300,11 +300,13 @@ function CollectionForm({
                                 </Button>
                             )}
                         </Grid>
+
                         {isLoading && (
                             <Grid item>
                                 <LoadingSymbol />
                             </Grid>
                         )}
+
                         <Grid item>
                             <Button
                                 variant="contained"
