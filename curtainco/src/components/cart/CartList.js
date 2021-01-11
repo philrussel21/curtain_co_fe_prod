@@ -1,5 +1,7 @@
 import React from "react"
+// STYLES
 import { Grid, Typography } from "@material-ui/core"
+// COMPONENTS
 import CartItem from "./CartItem"
 
 function CartList({

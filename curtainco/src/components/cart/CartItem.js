@@ -1,11 +1,13 @@
 import React from "react"
-
+// STYLES
 import { Grid, Typography, IconButton, Paper } from "@material-ui/core"
-import CloseIcon from "@material-ui/icons/Close"
 import useStyles from "./CartStyles"
-import { capitalize } from "../../helpers/appHelpers"
+// ICONS
+import CloseIcon from "@material-ui/icons/Close"
 import AddIcon from "@material-ui/icons/Add"
 import RemoveIcon from "@material-ui/icons/Remove"
+// SERVICES AND HELPERS
+import { capitalize } from "../../helpers/appHelpers"
 
 function CartItem({
     itemInCart,
