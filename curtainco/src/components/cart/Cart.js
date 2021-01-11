@@ -5,7 +5,6 @@ import CartList from "./CartList"
 import CartTotal from "./CartTotal"
 // PACKAGES
 import { Link } from "react-router-dom/cjs/react-router-dom.min"
-import { useHistory } from "react-router-dom"
 // STYLES
 import { Typography, Grid, Box, Button } from "@material-ui/core"
 import useStyles from "./CartStyles"
@@ -18,6 +17,7 @@ import {
     generateTotalPriceOfCart,
 } from "../../services/cartServices"
 import { createOrder } from "../../services/orderServices"
+import { setSuccessSnackBar } from "../../helpers/appHelpers"
 // STATE
 import { useCurtainContext } from "../../config/CurtainCoContext"
 import { ACTIONS } from "../../config/stateReducer"
@@ -31,7 +31,6 @@ function Cart() {
     const [paymentSuccess, setPaymentSuccess] = useState(false)
     const [paymentFailed, setPaymentFailed] = useState(false)
     const [paymentCancelled, setPaymentCancelled] = useState(false)
-    // const history = useHistory()
 
     // GET THE ITEMS FROM LOCAL STORAGE
     function updateCartInStateFromLocalStorage() {
@@ -43,6 +42,8 @@ function Cart() {
     // GET THE ITEMS FROM LOCAL STORAGE ON FIRST LOAD
     useEffect(() => {
         updateCartInStateFromLocalStorage()
+        setPaymentFailed(false)
+        setPaymentCancelled(false)
     }, [])
 
     // WHEN CART IN LOCAL STATE IS LOADED, CALCULATE THE TOTAL PRICE
@@ -83,14 +84,7 @@ function Cart() {
         event.preventDefault()
         removeFromCart(event.currentTarget.value)
         updateCartInStateFromLocalStorage()
-        dispatch({
-            type: ACTIONS.SET_SNACKBAR,
-            payload: {
-                open: true,
-                success: "success",
-                message: "Removed item from cart",
-            },
-        })
+        setSuccessSnackBar(dispatch, "Item was removed from cart")
     }
 
     async function handleSuccess(data) {
@@ -115,6 +109,7 @@ function Cart() {
                 window.localStorage.clear()
                 updateCartInStateFromLocalStorage()
                 // history.push("/account")
+                setSuccessSnackBar(dispatch, "Payment was successful")
             }
 
             return response
@@ -128,21 +123,17 @@ function Cart() {
         console.log(data)
         // data contains the response from paypal which is to be stored in server
         setPaymentFailed(true) // modal ??
-        dispatch({
-            type: ACTIONS.SET_SNACKBAR,
-            payload: {
-                open: true,
-                success: "error",
-                message: "Something went wrong. Payment not successful.",
-            },
-        })
+        setErrorSnackBar(
+            dispatch,
+            "Something went wrong. Payment was not taken"
+        )
     }
 
     function handleCancel(data) {
         console.log("----CANCEL PAYPAL PURCHASE----")
         console.log(data)
         // data contains the response from paypal which is to be stored in server
-        setPaymentCancelled(true) // modal ??
+        setPaymentCancelled(true)
     }
 
     function isUserLoggedIn() {
@@ -169,6 +160,8 @@ function Cart() {
                             <CartTotal
                                 total={totalPrice}
                                 loginText="To purchase with PayPal, please log in first."
+                                isCancel={paymentCancelled}
+                                isError={paymentFailed}
                             >
                                 {isUserLoggedIn() ? (
                                     <PayPal

@@ -4,7 +4,7 @@ import { Button, Grid, Paper, Typography } from "@material-ui/core"
 import useStyles from "../CollectionStyles"
 // HELPERS AND SERVICES
 import { Link } from "react-router-dom"
-import { capitalize } from "../../../helpers/appHelpers"
+import { capitalize, setSuccessSnackBar } from "../../../helpers/appHelpers"
 import { addItemToCart } from "../../../services/cartServices"
 import { useCurtainContext } from "../../../config/CurtainCoContext"
 import { ACTIONS } from "../../../config/stateReducer"
@@ -25,14 +25,7 @@ function CollectionItem({ data }) {
             return
         }
         addItemToCart(data)
-        dispatch({
-            type: ACTIONS.SET_SNACKBAR,
-            payload: {
-                open: true,
-                success: "success",
-                message: "Added full collection to cart",
-            },
-        })
+        setSuccessSnackBar(dispatch, "Added full collection to cart")
     }
     return (
         <Paper className={classes.paper}>

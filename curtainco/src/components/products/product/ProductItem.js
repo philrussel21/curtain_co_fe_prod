@@ -13,7 +13,7 @@ import useStyles from "../ProductStyles"
 
 import { useCurtainContext } from "../../../config/CurtainCoContext"
 import { ACTIONS } from "../../../config/stateReducer"
-import { capitalize } from "../../../helpers/appHelpers"
+import { capitalize, setSuccessSnackBar } from "../../../helpers/appHelpers"
 import { addItemToCart } from "../../../services/cartServices"
 import AddToCartButton from "../../reusable/AddToCartButton"
 
@@ -39,14 +39,7 @@ function ProductItem({ productData }) {
         event.preventDefault()
         addItemToCart(productData, dispatch)
         // SHOW SNACKBAR
-        dispatch({
-            type: ACTIONS.SET_SNACKBAR,
-            payload: {
-                open: true,
-                success: "success",
-                message: "Added item to cart",
-            },
-        })
+        setSuccessSnackBar(dispatch, "Item was added to the cart")
     }
 
     return (
