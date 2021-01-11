@@ -12,15 +12,14 @@ import { ACTIONS } from "../../../config/stateReducer"
 function PurchaseOrder({ order }) {
     const classes = useStyles()
     const { dispatch } = useCurtainContext()
-    // const firstItemInOrder = order.items[0].item
-    const firstItemInOrder = useRef({ imgUrl: "", name: "" })
+    // USING THIS FOR THE IMAGE IN THE ORDER LIST
+    const firstItemInOrder = useRef({ current: { imgUrl: "", name: "" } })
     const [contentStrings, setContentStrings] = useState({
         collection: "",
         fabric: "",
         track: "",
         accessory: "",
     })
-    // USING THIS FOR THE IMAGE IN THE ORDER LIST
 
     function handleItemClick(event) {
         event.preventDefault()
@@ -41,6 +40,7 @@ function PurchaseOrder({ order }) {
         let accessoriesArray = []
 
         if (order.items !== undefined) {
+            firstItemInOrder.current = order.items[0].item
             for (let i = 0; i < order.items.length; i++) {
                 const element = order.items[i]
                 switch (element.item.category) {
@@ -64,7 +64,6 @@ function PurchaseOrder({ order }) {
         let fabricStr = buildContentString(fabricsArray, "Fabric")
         let trackStr = buildContentString(tracksArray, "Track")
         let accessoryStr = buildContentString(accessoriesArray, "Accessory")
-        // let str = `${collectionStr}${fabricStr}${trackStr}${accessoryStr}`
 
         let obj = {
             collection: collectionStr,
@@ -93,8 +92,16 @@ function PurchaseOrder({ order }) {
                         xs={3}
                     >
                         <img
-                            src={firstItemInOrder.current.imgUrl}
-                            alt={firstItemInOrder.current.name}
+                            src={
+                                firstItemInOrder.current.imgUrl === undefined
+                                    ? "/no-image.png"
+                                    : firstItemInOrder.current.imgUrl
+                            }
+                            alt={
+                                firstItemInOrder.current.name === undefined
+                                    ? "product has no image"
+                                    : firstItemInOrder.current.name
+                            }
                             className={classes.orderImg}
                         />
                     </Grid>

@@ -21,7 +21,7 @@ function Account() {
             if (state.currentUser !== null) {
                 try {
                     const resp = await getUpdatedUserWithOrderObjects(
-                        state.currentUser._i
+                        state.currentUser._id
                     )
                     let currentUser = resp.data
                     if (resp.status === 200 && currentUser) {
@@ -35,11 +35,6 @@ function Account() {
                         `An error ocurred on getUpdatedUserWithOrderObjects at Account: ${error}.`
                     )
                     console.log(error.response)
-                    // // IF AN ERROR OCCURS, LOOK FOR FALSE IN PURCHASE HISTORY AND SHOW ERROR
-                    // dispatch({
-                    //     type: ACTIONS.SET_CURRENT_USER,
-                    //     payload: { ...state.currentUser, orders: false },
-                    // })
                 }
                 setIsLoading(false)
             }
