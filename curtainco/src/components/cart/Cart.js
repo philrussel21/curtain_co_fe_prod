@@ -124,6 +124,7 @@ function Cart() {
 
     function handleError(data) {
         console.log("----ERROR PAYPAL PURCHASE----")
+        console.log(data)
         // data contains the response from paypal which is to be stored in server
         setPaymentFailed(true) // modal ??
         dispatch({
@@ -134,16 +135,13 @@ function Cart() {
                 message: "Something went wrong. Payment not successful.",
             },
         })
-        console.log(data)
-        console.log("There was an error when using Paypal")
     }
 
     function handleCancel(data) {
         console.log("----CANCEL PAYPAL PURCHASE----")
+        console.log(data)
         // data contains the response from paypal which is to be stored in server
         setPaymentCancelled(true) // modal ??
-        console.log(data)
-        console.log("Transaction cancelled")
     }
 
     function isUserLoggedIn() {

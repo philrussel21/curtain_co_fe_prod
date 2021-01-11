@@ -52,10 +52,13 @@ export default function SignIn() {
 
         if (emailCheck) {
             setHelperText({ ...helperText, email: emailCheck })
+            setIsLoading(false)
             return
         }
         if (passwordCheck) {
             setHelperText({ ...helperText, password: passwordCheck })
+            setIsLoading(false)
+
             return
         }
 
