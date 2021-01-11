@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useRef } from "react"
 // STYLES
 import { Typography, Grid, Button } from "@material-ui/core"
 import useStyles from "./UserDashboardStyles"
@@ -12,6 +12,8 @@ import { ACTIONS } from "../../../config/stateReducer"
 function PurchaseOrder({ order }) {
     const classes = useStyles()
     const { dispatch } = useCurtainContext()
+    // const firstItemInOrder = order.items[0].item
+    const firstItemInOrder = useRef({ imgUrl: "", name: "" })
     const [contentStrings, setContentStrings] = useState({
         collection: "",
         fabric: "",
@@ -19,7 +21,6 @@ function PurchaseOrder({ order }) {
         accessory: "",
     })
     // USING THIS FOR THE IMAGE IN THE ORDER LIST
-    const firstItemInOrder = order.items[0].item
 
     function handleItemClick(event) {
         event.preventDefault()
@@ -39,21 +40,23 @@ function PurchaseOrder({ order }) {
         let tracksArray = []
         let accessoriesArray = []
 
-        for (let i = 0; i < order.items.length; i++) {
-            const element = order.items[i]
-            switch (element.item.category) {
-                case "Fabric":
-                    fabricsArray.push(element)
-                    break
-                case "Tracks":
-                    tracksArray.push(element)
-                    break
-                case "Accessory":
-                    accessoriesArray.push(element)
-                    break
-                default:
-                    collectionsArray.push(element)
-                    break
+        if (order.items !== undefined) {
+            for (let i = 0; i < order.items.length; i++) {
+                const element = order.items[i]
+                switch (element.item.category) {
+                    case "Fabric":
+                        fabricsArray.push(element)
+                        break
+                    case "Tracks":
+                        tracksArray.push(element)
+                        break
+                    case "Accessory":
+                        accessoriesArray.push(element)
+                        break
+                    default:
+                        collectionsArray.push(element)
+                        break
+                }
             }
         }
 
@@ -90,8 +93,8 @@ function PurchaseOrder({ order }) {
                         xs={3}
                     >
                         <img
-                            src={firstItemInOrder.imgUrl}
-                            alt={firstItemInOrder.name}
+                            src={firstItemInOrder.current.imgUrl}
+                            alt={firstItemInOrder.current.name}
                             className={classes.orderImg}
                         />
                     </Grid>
