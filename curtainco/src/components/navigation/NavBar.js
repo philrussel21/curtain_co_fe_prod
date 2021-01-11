@@ -49,66 +49,50 @@ function NavBar() {
                     </Link>
                 </Typography>
 
-                <Button color="inherit">
-                    <Link className={classes.link} to="/">
-                        Home
-                    </Link>
-                </Button>
+                <Link className={classes.link} to="/">
+                    <Button color="inherit">Home</Button>
+                </Link>
 
-                <Button color="inherit">
-                    <Link className={classes.link} to="/collections">
-                        Collections
-                    </Link>
-                </Button>
+                <Link className={classes.link} to="/collections">
+                    <Button color="inherit">Collections</Button>
+                </Link>
 
-                <Button color="inherit">
-                    <Link className={classes.link} to="/products">
-                        Products
-                    </Link>
-                </Button>
+                <Link className={classes.link} to="/products">
+                    <Button color="inherit">Products</Button>
+                </Link>
 
-                <Button color="inherit">
-                    <Link className={classes.link} to="/about">
-                        About
-                    </Link>
-                </Button>
+                <Link className={classes.link} to="/about">
+                    <Button color="inherit">About</Button>
+                </Link>
 
-                <Button color="inherit">
-                    <Link className={classes.link} to="/cart">
-                        Cart
-                    </Link>
-                </Button>
+                <Link className={classes.link} to="/cart">
+                    <Button color="inherit">Cart</Button>
+                </Link>
 
-                {state.currentUser !== null ? (
-                    <Button color="inherit">
-                        <Link className={classes.link} to="/account">
-                            Account
-                        </Link>
-                    </Button>
-                ) : (
-                    ""
+                {state.currentUser !== null && (
+                    <Link className={classes.link} to="/account">
+                        <Button color="inherit">Account</Button>
+                    </Link>
                 )}
 
                 {state.currentUser !== null ? (
-                    <Button color="inherit" onClick={handleLogout}>
-                        <Link className={classes.link} to="/">
+                    <Link className={classes.link} to="/">
+                        <Button color="inherit" onClick={handleLogout}>
                             Logout
-                        </Link>
-                    </Button>
+                        </Button>
+                    </Link>
                 ) : (
-                    <Button color="inherit">
-                        <Link
-                            className={classes.link}
-                            to={{
-                                pathname: "/login",
-                                state: {
-                                    prevUrl: window.location.href,
-                                },
-                            }}
-                        >
-                            Login
-                        </Link>
-                    </Button>
+                    <Link
+                        className={classes.link}
+                        to={{
+                            pathname: "/login",
+                            state: {
+                                prevUrl: window.location.href,
+                            },
+                        }}
+                    >
+                        <Button color="inherit">Login</Button>
+                    </Link>
                 )}
             </Toolbar>
         </AppBar>

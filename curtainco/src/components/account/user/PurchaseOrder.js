@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from "react"
+// STYLES
 import { Typography, Grid, Button } from "@material-ui/core"
-import { displayShortDate } from "../../../helpers/appHelpers"
 import useStyles from "./UserDashboardStyles"
+// HELPERS AND SERVICES
+import { displayShortDate } from "../../../helpers/appHelpers"
 import { useCurtainContext } from "../../../config/CurtainCoContext"
 import { buildContentString } from "../../../helpers/collectionHelpers"
+// STATE
 import { ACTIONS } from "../../../config/stateReducer"
 
 function PurchaseOrder({ order }) {

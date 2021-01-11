@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from "react"
-import Modal from "@material-ui/core/Modal"
-import Backdrop from "@material-ui/core/Backdrop"
-import Fade from "@material-ui/core/Fade"
-
+// STYLES
+import { Modal, Backdrop, Fade } from "@material-ui/core"
+import useStyles from "./ModalStyles"
+// STATE
 import { useCurtainContext } from "../../config/CurtainCoContext"
 import { ACTIONS } from "../../config/stateReducer"
+// COMPONENTS
 import PaymentSummaryModal from "./PaymentSummaryModal"
 import OrderSummaryModal from "./OrderSummaryModal"
 import ProductSummaryModal from "./ProductSummaryModal"
+// HELPERS AND SERVICES
 import { addItemToCart } from "../../services/cartServices"
-import useStyles from "./ModalStyles"
 import { isEmpty } from "../../helpers/appHelpers"
 
 export default function CustomModal() {

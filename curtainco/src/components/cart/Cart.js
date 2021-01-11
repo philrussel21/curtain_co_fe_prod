@@ -113,6 +113,7 @@ function Cart() {
                 // TODO CLEAR THE CART AND REDIRECT TO THEIR ACCOUNT PAGE TO VIEW THE PURCHASE
                 setPaymentSuccess(true) // modal confirmation?
                 window.localStorage.clear()
+                updateCartInStateFromLocalStorage()
                 // history.push("/account")
             }
 
