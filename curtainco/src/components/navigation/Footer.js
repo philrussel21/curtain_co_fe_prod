@@ -1,12 +1,6 @@
 import React, { useState, useEffect } from "react"
 // STYLES
-import {
-    CssBaseline,
-    Typography,
-    Button,
-    Grid,
-    Divider,
-} from "@material-ui/core"
+import { CssBaseline, Button, Grid, Divider } from "@material-ui/core"
 import useStyles from "./NavigationStyles"
 // HELPERS AND SERVICES
 import { Link, useLocation } from "react-router-dom"
@@ -20,11 +14,12 @@ export default function StickyFooter() {
     const location = useLocation()
 
     useEffect(() => {
-        // setHideButton(false)
-        console.log("here in footer useEffect")
-        console.log(location)
+        // THIS HIDES THE BUTTON ON THE REQUEST CONSULTATION PAGE
+        // SO PEOPLE DON'T CONFUSE THE BUTTONS TO SUBMIT THE FORM
         if (location !== undefined && location.pathname === "/request") {
             setHideButton(true)
+        } else {
+            setHideButton(false)
         }
     }, [location])
 
@@ -47,9 +42,7 @@ export default function StickyFooter() {
                         {/* HIDING THE REQUEST CONSULTATION BUTTON TO THIS ROUTE SO THAT PEOPLE
                         DON'T THINK TO PRESS THIS BUTTON TO SUBMIT IT AND RELOAD THE PAGE
                         ACCIDENTALLY */}
-                        {hideButton ? (
-                            ""
-                        ) : (
+                        {!hideButton && (
                             <Button variant="contained" color="primary">
                                 <Link to="/request" className={classes.link}>
                                     Request Consultation

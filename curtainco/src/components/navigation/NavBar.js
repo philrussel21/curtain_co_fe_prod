@@ -1,4 +1,4 @@
-import React, { useEffect } from "react"
+import React from "react"
 // HELPERS AND SERVICES
 import { logoutUser } from "../../services/authServices"
 import { setErrorSnackBar } from "../../helpers/appHelpers"
@@ -11,16 +11,10 @@ import useStyles from "./NavigationStyles"
 // COMPONENTS
 // PACKAGES
 import { Link, withRouter } from "react-router-dom"
-import { createBrowserHistory } from "history"
+
 function NavBar() {
     const classes = useStyles()
     const { state, dispatch } = useCurtainContext()
-
-    // useEffect(() => {
-    //     console.log("here in navar useEffect")
-    //     let browserHistory = createBrowserHistory()
-    //     console.log(browserHistory)
-    // }, [])
 
     function handleLogout(e) {
         e.preventDefault()
