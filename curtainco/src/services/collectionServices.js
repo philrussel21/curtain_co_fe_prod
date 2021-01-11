@@ -1,5 +1,5 @@
 import api from "../config/api"
-import { isPhotoPresent } from "../helpers/appHelpers"
+import { isPhotoPresent, setSuccessSnackBar } from "../helpers/appHelpers"
 import { uploadPhotoToS3 } from "./uploadServices"
 
 async function getAllCollections() {
@@ -93,16 +93,12 @@ async function submitCollectionToDbAndUpdateState(
                         : ACTIONS.UPDATE_COLLECTION,
                 payload: tempCollection,
             })
-            dispatch({
-                type: ACTIONS.SET_SNACKBAR,
-                payload: {
-                    open: true,
-                    success: "success",
-                    message: `Collection successfully ${
-                        updateOrAdd === "add" ? "added" : "updated"
-                    }`,
-                },
-            })
+            setSuccessSnackBar(
+                dispatch,
+                `Collection successfully ${
+                    updateOrAdd === "add" ? "added" : "updated"
+                }`
+            )
             setResetFile(true)
             setPhoto({})
             if (updateOrAdd === "add") resetCollectionForm()

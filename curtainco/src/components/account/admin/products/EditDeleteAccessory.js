@@ -11,6 +11,7 @@ import { getOneProductFromState } from "../../../../helpers/productHelpers"
 // STATE
 import { useCurtainContext } from "../../../../config/CurtainCoContext"
 import { ACTIONS } from "../../../../config/stateReducer"
+import { setSuccessSnackBar } from "../../../../helpers/appHelpers"
 
 function EditDeleteAccessory({ editProductId, setEditProductId }) {
     const { state, dispatch } = useCurtainContext()
@@ -90,14 +91,10 @@ function EditDeleteAccessory({ editProductId, setEditProductId }) {
                         type: ACTIONS.DELETE_PRODUCT,
                         payload: accessory._id,
                     })
-                    dispatch({
-                        type: ACTIONS.SET_SNACKBAR,
-                        payload: {
-                            open: true,
-                            success: "success",
-                            message: "Accessory successfully deleted",
-                        },
-                    })
+                    setSuccessSnackBar(
+                        dispatch,
+                        "Accessory successfully deleted"
+                    )
                 }
             })
             .catch((error) => {

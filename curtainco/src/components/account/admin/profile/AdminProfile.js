@@ -1,32 +1,33 @@
-import React, { useState } from "react";
+import React, { useState } from "react"
 
-import Container from "@material-ui/core/Container";
-import Typography from "@material-ui/core/Typography";
-import Button from "@material-ui/core/Button";
-import useStyles from "../../user/UserDashboardStyles";
+import Container from "@material-ui/core/Container"
+import Typography from "@material-ui/core/Typography"
+import Button from "@material-ui/core/Button"
+import useStyles from "../../user/UserDashboardStyles"
 
-import { useCurtainContext } from "../../../../config/CurtainCoContext";
-import { ACTIONS } from "../../../../config/stateReducer";
+import { useCurtainContext } from "../../../../config/CurtainCoContext"
+import { ACTIONS } from "../../../../config/stateReducer"
 import {
     getFirstNameFromFullName,
     getLastNameFromFullName,
-} from "../../../../helpers/userHelpers";
-import { updateUserInformation } from "../../../../services/userServices";
-import ShowUserInformation from "../../user/ShowUserInformation";
-import EditUserInformation from "../../user/EditUserInformation";
+} from "../../../../helpers/userHelpers"
+import { updateUserInformation } from "../../../../services/userServices"
+import ShowUserInformation from "../../user/ShowUserInformation"
+import EditUserInformation from "../../user/EditUserInformation"
+import { setSuccessSnackBar } from "../../../../helpers/appHelpers"
 
 function AdminProfile() {
-    const classes = useStyles();
-    const { state, dispatch } = useCurtainContext();
-    const [editUser, setEditUser] = useState(false);
+    const classes = useStyles()
+    const { state, dispatch } = useCurtainContext()
+    const [editUser, setEditUser] = useState(false)
 
     function toggleEditUserForm() {
-        setEditUser(!editUser);
+        setEditUser(!editUser)
     }
 
     function handleUpdate(userDetails) {
-        let updateError = false;
-        let userId = state.currentUser._id;
+        let updateError = false
+        let userId = state.currentUser._id
 
         updateUserInformation(userDetails, userId)
             .then((resp) => {
@@ -34,25 +35,19 @@ function AdminProfile() {
                     dispatch({
                         type: ACTIONS.SET_CURRENT_USER,
                         payload: resp.data,
-                    });
-                    dispatch({
-                        type: ACTIONS.SET_SNACKBAR,
-                        payload: {
-                            open: true,
-                            success: "success",
-                            message: "User successfully updated",
-                        },
-                    });
+                    })
+
+                    setSuccessSnackBar(dispatch, "User successfully updated")
                 }
             })
             .catch((error) => {
-                updateError = `An error ocurred on register: Error Code: ${error.status}. Message: ${error.message}.`;
-                console.log(updateError);
-            });
+                updateError = `An error ocurred on register: Error Code: ${error.status}. Message: ${error.message}.`
+                console.log(updateError)
+            })
 
-        toggleEditUserForm();
-        console.log("User successfully updated");
-        return updateError;
+        toggleEditUserForm()
+        console.log("User successfully updated")
+        return updateError
     }
 
     return (
@@ -80,7 +75,7 @@ function AdminProfile() {
                 Edit Information
             </Button>
         </Container>
-    );
+    )
 }
 
-export default AdminProfile;
+export default AdminProfile

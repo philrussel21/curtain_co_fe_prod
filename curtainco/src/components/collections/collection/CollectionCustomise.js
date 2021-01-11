@@ -6,7 +6,7 @@ import {
     getOneCollectionFromState,
 } from "../../../helpers/collectionHelpers"
 import { getOneCollection } from "../../../services/collectionServices"
-import { capitalize } from "../../../helpers/appHelpers"
+import { capitalize, setSuccessSnackBar } from "../../../helpers/appHelpers"
 import { addItemToCart } from "../../../services/cartServices"
 import { ACTIONS } from "../../../config/stateReducer"
 // STYLES
@@ -71,14 +71,7 @@ function CollectionCustomise() {
         }
         console.log(tempCollection)
         addItemToCart(tempCollection)
-        dispatch({
-            type: ACTIONS.SET_SNACKBAR,
-            payload: {
-                open: true,
-                success: "success",
-                message: "Added customised collection to cart",
-            },
-        })
+        setSuccessSnackBar(dispatch, "Added customised collection to cart")
     }
 
     // HANDLES THE TOTAL PRICE AND DISCOUNT OF THE CUSTOMISED COLLECTION

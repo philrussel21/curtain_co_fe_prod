@@ -58,6 +58,17 @@ function setErrorSnackBar(dispatch, error) {
     })
 }
 
+function setSuccessSnackBar(dispatch, message) {
+    dispatch({
+        type: ACTIONS.SET_SNACKBAR,
+        payload: {
+            open: true,
+            severity: "success",
+            message: message,
+        },
+    })
+}
+
 export {
     capitalize,
     isEmpty,
@@ -65,4 +76,5 @@ export {
     displayShortDate,
     ascSort,
     setErrorSnackBar,
+    setSuccessSnackBar,
 }

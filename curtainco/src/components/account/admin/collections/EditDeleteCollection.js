@@ -17,6 +17,7 @@ import {
 // STATE
 import { useCurtainContext } from "../../../../config/CurtainCoContext"
 import { ACTIONS } from "../../../../config/stateReducer"
+import { setSuccessSnackBar } from "../../../../helpers/appHelpers"
 
 function EditDeleteCollection({ editCollectionId, setEditCollectionId }) {
     const classes = useStyles()
@@ -168,14 +169,11 @@ function EditDeleteCollection({ editCollectionId, setEditCollectionId }) {
                         type: ACTIONS.DELETE_COLLECTION,
                         payload: collection._id,
                     })
-                    dispatch({
-                        type: ACTIONS.SET_SNACKBAR,
-                        payload: {
-                            open: true,
-                            success: "success",
-                            message: "Collection successfully deleted",
-                        },
-                    })
+
+                    setSuccessSnackBar(
+                        dispatch,
+                        "Collection successfully deleted"
+                    )
                 }
             })
             .catch((error) => {

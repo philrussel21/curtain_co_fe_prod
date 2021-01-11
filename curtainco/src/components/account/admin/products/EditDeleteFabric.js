@@ -9,6 +9,7 @@ import {
 import { useCurtainContext } from "../../../../config/CurtainCoContext"
 import { ACTIONS } from "../../../../config/stateReducer"
 import { getOneProductFromState } from "../../../../helpers/productHelpers"
+import { setSuccessSnackBar } from "../../../../helpers/appHelpers"
 
 function EditDeleteFabric({ editProductId, setEditProductId }) {
     const { state, dispatch } = useCurtainContext()
@@ -90,14 +91,7 @@ function EditDeleteFabric({ editProductId, setEditProductId }) {
                         type: ACTIONS.DELETE_PRODUCT,
                         payload: fabric._id,
                     })
-                    dispatch({
-                        type: ACTIONS.SET_SNACKBAR,
-                        payload: {
-                            open: true,
-                            success: "success",
-                            message: "Fabric successfully deleted",
-                        },
-                    })
+                    setSuccessSnackBar(dispatch, "Fabric successfully deleted")
                 }
             })
             .catch((error) => {

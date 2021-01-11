@@ -1,5 +1,9 @@
 import api from "../config/api"
-import { capitalize, isPhotoPresent } from "../helpers/appHelpers"
+import {
+    capitalize,
+    isPhotoPresent,
+    setSuccessSnackBar,
+} from "../helpers/appHelpers"
 import { checkIfAnyFieldsEmptyOnProductObject } from "../helpers/productHelpers"
 import { uploadPhotoToS3 } from "./uploadServices"
 
@@ -112,18 +116,12 @@ async function submitProductToDbAndUpdateState(
                         : ACTIONS.UPDATE_PRODUCT,
                 payload: tempProduct,
             })
-            dispatch({
-                type: ACTIONS.SET_SNACKBAR,
-                payload: {
-                    open: true,
-                    success: "success",
-                    message: `${capitalize(
-                        tempProduct.category
-                    )} successfully ${
-                        updateOrAdd === "add" ? "added" : "updated"
-                    }`,
-                },
-            })
+            setSuccessSnackBar(
+                dispatch,
+                `${capitalize(tempProduct.category)} successfully ${
+                    updateOrAdd === "add" ? "added" : "updated"
+                }`
+            )
             setResetFile(true)
             setPhoto({})
             if (updateOrAdd === "add") resetProductForm()

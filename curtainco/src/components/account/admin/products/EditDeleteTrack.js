@@ -10,6 +10,7 @@ import { getOneProductFromState } from "../../../../helpers/productHelpers"
 // STATE
 import { useCurtainContext } from "../../../../config/CurtainCoContext"
 import { ACTIONS } from "../../../../config/stateReducer"
+import { setSuccessSnackBar } from "../../../../helpers/appHelpers"
 
 function EditDeleteTrack({ editProductId, setEditProductId }) {
     const { state, dispatch } = useCurtainContext()
@@ -101,14 +102,8 @@ function EditDeleteTrack({ editProductId, setEditProductId }) {
                         type: ACTIONS.DELETE_PRODUCT,
                         payload: track._id,
                     })
-                    dispatch({
-                        type: ACTIONS.SET_SNACKBAR,
-                        payload: {
-                            open: true,
-                            success: "success",
-                            message: "Track successfully deleted",
-                        },
-                    })
+
+                    setSuccessSnackBar(dispatch, "Track successfully deleted")
                 }
             })
             .catch((error) => {
