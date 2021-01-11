@@ -72,7 +72,7 @@ function ProfileInformation() {
                 color="primary"
                 onClick={toggleEditUserForm}
             >
-                Edit Information
+                {editUser ? "Back" : "Edit Information"}
             </Button>
         </Container>
     )
