@@ -22,6 +22,7 @@ function AddAccessory() {
     const [checkedValue, setCheckedValue] = useState("Flick Stick")
     const [resetFile, setResetFile] = useState(false)
     const [photo, setPhoto] = useState({})
+    const [isLoading, setIsLoading] = useState(false)
     // WE PASS IN FLICK STICK AS THE TYPE SO THAT IT DEFAULTS TO THAT FORM ON FIRST RENDER
     const emptyAccessory = useRef({
         category: "Accessory",
@@ -54,6 +55,7 @@ function AddAccessory() {
     }
 
     async function handleSubmit() {
+        setIsLoading(true)
         let respOrError = await submitProductToDbAndUpdateState(
             "add",
             accessory,
@@ -64,10 +66,8 @@ function AddAccessory() {
             photo,
             resetProductForm
         )
-        if (typeof respOrError === "string") {
-            setErrorSnackBar(dispatch, respOrError)
-            return
-        }
+        setIsLoading(false)
+        console.log(respOrError)
     }
 
     return (

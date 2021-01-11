@@ -12,6 +12,7 @@ function AddFabric() {
     const { dispatch } = useCurtainContext()
     const [resetFile, setResetFile] = useState(false)
     const [photo, setPhoto] = useState({})
+    const [isLoading, setIsLoading] = useState(false)
     const emptyFabric = useRef({
         category: "Fabric",
         name: "",
@@ -40,6 +41,7 @@ function AddFabric() {
     }
 
     async function handleSubmit() {
+        setIsLoading(true)
         let respOrError = await submitProductToDbAndUpdateState(
             "add",
             fabric,
@@ -50,10 +52,8 @@ function AddFabric() {
             photo,
             resetProductForm
         )
-        if (typeof respOrError === "string") {
-            setErrorSnackBar(dispatch, respOrError)
-            return
-        }
+        setIsLoading(false)
+        console.log(respOrError)
     }
 
     return (
