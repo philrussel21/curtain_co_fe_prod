@@ -19,14 +19,10 @@ import {
     getLastNameFromFullName,
 } from "../../../../helpers/userHelpers";
 // import { sortConsultations } from "../../../../helpers/consultationHelpers"
-<<<<<<< HEAD
 import {
     displayShortDate,
     setSuccessSnackBar,
-} from "../../../../helpers/appHelpers"
-=======
-import { displayShortDate } from "../../../../helpers/appHelpers";
->>>>>>> main
+} from "../../../../helpers/appHelpers";
 import {
     getAllConsultations,
     markConsultationCompleted,
@@ -71,23 +67,9 @@ export default function AllConsults() {
                     dispatch({
                         type: ACTIONS.UPDATE_CONSULTATION,
                         payload: resp.data,
-<<<<<<< HEAD
-                    })
+                    });
 
-                    setSuccessSnackBar(dispatch, "Consult successfully updated")
-=======
-                    });
-                    dispatch({
-                        type: ACTIONS.SET_SNACKBAR,
-                        payload: {
-                            open: true,
-                            success: "success",
-                            message: "Consult successfully updated",
-                        },
-                    });
-                } else {
-                    console.log("update consult status was not 200");
->>>>>>> main
+                    setSuccessSnackBar(dispatch, "Consult successfully updated");
                 }
             })
             .catch((error) => {
