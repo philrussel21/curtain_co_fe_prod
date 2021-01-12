@@ -23,7 +23,9 @@ function Home() {
                     height: "100%",
                     width: "100%",
                     zIndex: 50,
-                    border: "20px solid whitesmoke",
+                    borderBottom: "20px solid whitesmoke",
+                    borderRight: "10px solid whitesmoke",
+                    borderLeft: "10px solid whitesmoke",
                 }}
             >
                 <HeroBanner getBorderRadius={getBorderRadius} />
@@ -40,8 +42,9 @@ function Home() {
                     zIndex: 49,
                     marginTop: "-20%",
                     borderBottomRightRadius: `${imgBorderRadius}px`,
-                    border: "20px solid whitesmoke",
-                    paddingTop: "20%",
+                    borderRight: "10px solid whitesmoke",
+                    borderLeft: "10px solid whitesmoke",
+                    paddingTop: "25%",
                     paddingBottom: "7%",
                     paddingLeft: "5%",
                     paddingRight: "5%",

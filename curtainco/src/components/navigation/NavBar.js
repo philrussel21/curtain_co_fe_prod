@@ -193,9 +193,11 @@ function NavBar() {
             {/* MOBILE STYLES */}
 
             <Mobile>
-                <Typography variant="h4" className={classes.mobileHeader}>
-                    THE CURTAIN CO
-                </Typography>
+                <Link to={"/"} className={classes.link}>
+                    <Typography variant="h4" className={classes.mobileHeader}>
+                        THE CURTAIN CO
+                    </Typography>
+                </Link>
                 <AppBar position="fixed" className={classes.appBar}>
                     <div className={classes.sectionMobile}>
                         <Fab
