@@ -115,7 +115,14 @@ function Cart({ history }) {
 
             return response;
         } catch (error) {
+            console.log(
+                "Error occurred when creating the order after successful paypal payment. SHIT HAS HIT THE FAN HERE, WE HAVE COMPLETELY LOST THAT ORDER HAHAH AND THE CUSTOMER WILL BE PISSSSSSSSSSSSSSSSED HAHA."
+            );
             console.log(error);
+            setErrorSnackBar(
+                dispatch,
+                "Error: Order was not processed and no payment was taken (this should be our new error message)"
+            );
         }
     }
 

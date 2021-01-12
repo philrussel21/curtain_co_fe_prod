@@ -6,7 +6,6 @@ import LoadingSymbol from "../../reusable/LoadingSymbol"
 import { Container, Typography, Grid, Divider } from "@material-ui/core"
 import useStyles from "./UserDashboardStyles"
 // HELPERS AND SERVICES
-// import { getUpdatedUserWithOrderObjects } from "../../../services/userServices"
 import { useCurtainContext } from "../../../config/CurtainCoContext"
 
 function PurchaseHistory({ isLoading }) {
@@ -18,12 +17,18 @@ function PurchaseHistory({ isLoading }) {
     )
 
     useEffect(() => {
-        if (!state.currentUser.orders) {
+        // IF THE USER WASN'T FETCHED CORRECTLY IN ACCOUNT.JS AND ERROR OCCURRED
+        // THEN ORDERS WILL BE AN ARRAY OF STRINGS OR EMPTY
+        if (
+            state.currentUser.orders.length === 0 ||
+            typeof state.currentUser.orders[0] === "string"
+        ) {
             setPurchaseHistoryError(
                 "There was an error fetching your purchase history"
             )
+        } else {
+            setPurchaseHistory(state.currentUser.orders)
         }
-        setPurchaseHistory(state.currentUser.orders)
     }, [state.currentUser])
 
     const allPurchasedItems = purchaseHistory.map((order) => (

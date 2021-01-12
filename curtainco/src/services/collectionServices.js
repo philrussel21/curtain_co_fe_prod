@@ -1,5 +1,10 @@
 import api from "../config/api"
-import { isPhotoPresent, setSuccessSnackBar } from "../helpers/appHelpers"
+import {
+    capitalize,
+    isPhotoPresent,
+    setErrorSnackBar,
+    setSuccessSnackBar,
+} from "../helpers/appHelpers"
 import { uploadPhotoToS3 } from "./uploadServices"
 
 async function getAllCollections() {
@@ -81,6 +86,7 @@ async function submitCollectionToDbAndUpdateState(
         } else {
             resp = await updateCollection(tempCollection)
         }
+        console.log("----response from updating/creating a collection----")
         console.log(resp)
         if (
             (updateOrAdd === "add" && resp.status === 201) ||
@@ -103,12 +109,17 @@ async function submitCollectionToDbAndUpdateState(
             setPhoto({})
             if (updateOrAdd === "add") resetCollectionForm()
             return resp
-        } else {
-            editCollectionError = `An status error ocurred on ${updateOrAdd} collection: Error Code: ${resp.status}. Message: ${resp.message}.`
-            console.log(editCollectionError)
         }
     } catch (error) {
-        editCollectionError = `An error ocurred on ${updateOrAdd} collection. ${error}.`
+        editCollectionError = `An error ocurred on ${capitalize(
+            updateOrAdd
+        )} collection. ${error}.`
+        setErrorSnackBar(
+            dispatch,
+            `Something went wrong on ${capitalize(
+                updateOrAdd
+            )} collection. ${error}`
+        )
     }
     return editCollectionError
 }

@@ -1,10 +1,12 @@
 import React from "react"
-
+// STYLES
 import { Typography, Grid, TextField, Button, Box } from "@material-ui/core"
-import DeleteIcon from "@material-ui/icons/Delete"
-
 import useStyles from "../../components/account/admin/AdminStyles"
+// ICONS
+import DeleteIcon from "@material-ui/icons/Delete"
+// COMPONENTS
 import FileInput from "./FileInput"
+import LoadingSymbol from "../reusable/LoadingSymbol"
 
 function AccessoryForm({
     title,
@@ -15,6 +17,7 @@ function AccessoryForm({
     handleFileChange,
     setResetFile,
     resetFile,
+    isLoading,
 }) {
     const classes = useStyles()
 
@@ -126,7 +129,7 @@ function AccessoryForm({
                     >
                         {/* IF THE REMOVE HANDLER WAS PASSED IN, SHOW THE DELETE BUTTON */}
                         <Grid item>
-                            {handleRemove ? (
+                            {handleRemove && (
                                 <Button
                                     variant="contained"
                                     color="secondary"
@@ -135,10 +138,15 @@ function AccessoryForm({
                                 >
                                     Delete
                                 </Button>
-                            ) : (
-                                ""
                             )}
                         </Grid>
+
+                        {isLoading && (
+                            <Grid item>
+                                <LoadingSymbol />
+                            </Grid>
+                        )}
+
                         <Grid item>
                             <Button
                                 variant="contained"

@@ -17,7 +17,10 @@ import {
 // STATE
 import { useCurtainContext } from "../../../../config/CurtainCoContext"
 import { ACTIONS } from "../../../../config/stateReducer"
-import { setSuccessSnackBar } from "../../../../helpers/appHelpers"
+import {
+    setErrorSnackBar,
+    setSuccessSnackBar,
+} from "../../../../helpers/appHelpers"
 
 function EditDeleteCollection({ editCollectionId, setEditCollectionId }) {
     const classes = useStyles()
@@ -27,6 +30,7 @@ function EditDeleteCollection({ editCollectionId, setEditCollectionId }) {
     const [tracksArray, setTracksArray] = useState(["", "", "", ""])
     const [fabricsArray, setFabricsArray] = useState(["", "", "", ""])
     const [accessoryArray, setAccessoryArray] = useState(["", "", "", ""])
+    const [isLoading, setIsLoading] = useState(false)
     const [previousCollection, setPreviousCollection] = useState(
         editCollectionId
     )
@@ -143,6 +147,8 @@ function EditDeleteCollection({ editCollectionId, setEditCollectionId }) {
         if (error && !window.confirm(error)) {
             return
         }
+
+        setIsLoading(true)
         let respOrError = await submitCollectionToDbAndUpdateState(
             "update",
             tempCollection,
@@ -153,6 +159,7 @@ function EditDeleteCollection({ editCollectionId, setEditCollectionId }) {
             photo,
             resetCollectionForm
         )
+        setIsLoading(false)
 
         console.log(respOrError)
     }
@@ -161,6 +168,7 @@ function EditDeleteCollection({ editCollectionId, setEditCollectionId }) {
         // DELETE THE PRODUCT ON THE DB
         // IF SUCCESSFUL, DELETE PRODUCT IN GLOBAL STATE AND SHOW SUCCESS SNACKBAR
         // THEN SET THE EDIT PRODUCT ID THAT THIS COMPONENT TAKES AS A PROP TO = "" TO RESET THE FORM
+        setIsLoading(true)
         deleteCollection(collection)
             .then((resp) => {
                 console.log(resp)
@@ -178,7 +186,12 @@ function EditDeleteCollection({ editCollectionId, setEditCollectionId }) {
             })
             .catch((error) => {
                 console.log(error)
+                setErrorSnackBar(
+                    dispatch,
+                    `Error: Collection was not delete. ${error}`
+                )
             })
+        setIsLoading(false)
         setEditCollectionId("")
     }
 
@@ -198,6 +211,7 @@ function EditDeleteCollection({ editCollectionId, setEditCollectionId }) {
                 handleFileChange={handleFileChange}
                 setResetFile={setResetFile}
                 resetFile={resetFile}
+                isLoading={isLoading}
             />
         </Paper>
     )
