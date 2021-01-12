@@ -5,11 +5,12 @@ import {
     Button,
     Grid,
     Divider,
-    ThemeProvider,
     Typography,
     Container,
+    // useMediaQuery,
 } from "@material-ui/core"
-import useStyles, { theme } from "./NavigationStyles"
+import useStyles from "./NavigationStyles"
+
 // HELPERS AND SERVICES
 import { Link, useLocation } from "react-router-dom"
 // COMPONENTS
@@ -21,6 +22,8 @@ export default function StickyFooter() {
     const classes = useStyles()
     const [hideButton, setHideButton] = useState(false)
     const location = useLocation()
+    // const isPortrait = useMediaQuery("(orientation: portrait)")
+    // console.log({ isPortrait })
 
     useEffect(() => {
         // THIS HIDES THE BUTTON ON THE REQUEST CONSULTATION PAGE
@@ -72,55 +75,48 @@ export default function StickyFooter() {
             </Default>
             <Mobile>
                 <footer className={classes.footerMobile}>
-                    <ThemeProvider theme={theme}>
-                        <Container>
-                            <Divider />
+                    <Container>
+                        <Divider />
 
-                            <Grid
-                                container
-                                direction="column"
-                                spacing={2}
-                                className={classes.footerDetailsCont}
-                            >
+                        <Grid
+                            container
+                            direction="column"
+                            spacing={2}
+                            className={classes.footerDetailsCont}
+                        >
+                            <Grid item container justify="space-around" xs={12}>
+                                <Grid item container xs={6}>
+                                    <img
+                                        src="/logo192.png"
+                                        alt="curtain co logo"
+                                        style={{ width: "50px" }}
+                                    />
+                                </Grid>
                                 <Grid
                                     item
                                     container
-                                    justify="space-around"
-                                    xs={12}
+                                    direction="column"
+                                    alignItems="flex-end"
+                                    xs={6}
                                 >
-                                    <Grid item container xs={6}>
-                                        <img
-                                            src="/logo192.png"
-                                            alt="curtain co logo"
-                                            style={{ width: "50px" }}
-                                        />
-                                    </Grid>
-                                    <Grid
-                                        item
-                                        container
-                                        direction="column"
-                                        alignItems="flex-end"
-                                        xs={6}
-                                    >
-                                        <Grid item>social links</Grid>
-                                        <Grid item>phone</Grid>
-                                        <Grid item>email</Grid>
-                                    </Grid>
-                                </Grid>
-                                <Grid item container justify="center">
-                                    <Button>Request Consultation</Button>
-                                </Grid>
-                                <Grid item container justify="space-around">
-                                    <Grid item>privacy</Grid>
-                                    <Grid item>copy right and year</Grid>
-                                </Grid>
-                                <Grid item container justify="center">
-                                    {" "}
-                                    site by simon and phil
+                                    <Grid item>social links</Grid>
+                                    <Grid item>phone</Grid>
+                                    <Grid item>email</Grid>
                                 </Grid>
                             </Grid>
-                        </Container>
-                    </ThemeProvider>
+                            <Grid item container justify="center">
+                                <Button>Request Consultation</Button>
+                            </Grid>
+                            <Grid item container justify="space-around">
+                                <Grid item>privacy</Grid>
+                                <Grid item>copy right and year</Grid>
+                            </Grid>
+                            <Grid item container justify="center">
+                                {" "}
+                                site by simon and phil
+                            </Grid>
+                        </Grid>
+                    </Container>
                 </footer>
             </Mobile>
         </>

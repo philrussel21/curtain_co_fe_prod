@@ -1,10 +1,4 @@
-import {
-    makeStyles,
-    createMuiTheme,
-    responsiveFontSizes,
-} from "@material-ui/core/styles"
-
-let theme = createMuiTheme()
+import { makeStyles } from "@material-ui/core/styles"
 
 const useStyles = makeStyles((theme) => ({
     title: {
@@ -52,7 +46,4 @@ const useStyles = makeStyles((theme) => ({
     },
 }))
 
-theme = responsiveFontSizes(theme)
-
 export default useStyles
-export { theme }

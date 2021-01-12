@@ -1,20 +1,32 @@
 // PACKAGES
-import { useMediaQuery } from "react-responsive"
+// import { useMediaQuery } from "react-responsive"
+import { useMediaQuery, useTheme } from "@material-ui/core"
 
 const Desktop = ({ children }) => {
-    const isDesktop = useMediaQuery({ minWidth: 992 })
+    const theme = useTheme()
+    const isDesktop = useMediaQuery(theme.breakpoints.up("md"))
+    console.log({ isDesktop })
     return isDesktop ? children : null
 }
 const Tablet = ({ children }) => {
-    const isTablet = useMediaQuery({ minWidth: 768, maxWidth: 991 })
-    return isTablet ? children : null
+    const theme = useTheme()
+    const tabletMinWidth = useMediaQuery(theme.breakpoints.up("sm"))
+    const tabletMaxWidth = useMediaQuery(theme.breakpoints.down("md"))
+    console.log({ tabletMinWidth })
+    console.log({ tabletMaxWidth })
+    return tabletMinWidth && tabletMaxWidth ? children : null
 }
 const Mobile = ({ children }) => {
-    const isMobile = useMediaQuery({ maxWidth: 767 })
+    const theme = useTheme()
+    // const isMobile = useMediaQuery(theme.breakpoints.down("sm"))
+    const isMobile = useMediaQuery(theme.breakpoints.only("xs"))
+    console.log({ isMobile })
     return isMobile ? children : null
 }
+
 const Default = ({ children }) => {
-    const isNotMobile = useMediaQuery({ minWidth: 768 })
+    const theme = useTheme()
+    const isNotMobile = useMediaQuery(theme.breakpoints.up("sm"))
     return isNotMobile ? children : null
 }
 

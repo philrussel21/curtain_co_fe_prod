@@ -6,16 +6,10 @@ import { setErrorSnackBar } from "../../helpers/appHelpers"
 import { ACTIONS } from "../../config/stateReducer"
 import { useCurtainContext } from "../../config/CurtainCoContext"
 // STYLES
-import {
-    AppBar,
-    Toolbar,
-    Typography,
-    Button,
-    ThemeProvider,
-} from "@material-ui/core"
-import useStyles, { theme } from "./NavigationStyles"
+import { AppBar, Toolbar, Typography, Button } from "@material-ui/core"
+import useStyles from "./NavigationStyles"
 // COMPONENTS
-import { Mobile, Default } from "../reusable/Responsive"
+import { Mobile, Desktop, Tablet } from "../reusable/Responsive"
 // PACKAGES
 import { Link, withRouter } from "react-router-dom"
 
@@ -49,7 +43,7 @@ function NavBar() {
 
     return (
         <>
-            <Default>
+            <Desktop>
                 <AppBar position="static">
                     <Toolbar>
                         <Typography variant="h6" className={classes.title}>
@@ -105,14 +99,23 @@ function NavBar() {
                         )}
                     </Toolbar>
                 </AppBar>
-            </Default>
+            </Desktop>
+
+            {/* MOBILE STYLES */}
+
             <Mobile>
-                <ThemeProvider theme={theme}>
-                    <Typography variant="h4" className={classes.mobileHeader}>
-                        THE CURTAIN CO
-                    </Typography>
-                </ThemeProvider>
+                <Typography variant="h4" className={classes.mobileHeader}>
+                    THE CURTAIN CO
+                </Typography>
             </Mobile>
+
+            {/* TABLET STYLES */}
+
+            <Tablet>
+                <Typography variant="h4" className={classes.mobileHeader}>
+                    Tablet
+                </Typography>
+            </Tablet>
         </>
     )
 }
