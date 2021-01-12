@@ -93,7 +93,7 @@ function Cart({ history }) {
         console.log(data);
 
         const payload = {
-            _id: data.orderID,
+            _id: data.id,
             // already being set in BE before saving the order
             // customer: state.currentUser,
             totalPrice: totalPrice,

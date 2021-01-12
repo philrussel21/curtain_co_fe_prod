@@ -10,7 +10,7 @@ function Paypal(props) {
 
     const payPalButtonStyles = {
         size: "medium",
-        color: "gold",
+        color: "blue",
         shape: "pill"
     };
     const createOrder = (data, actions) => {
@@ -26,7 +26,9 @@ function Paypal(props) {
     };
 
     const onApprove = (data, actions) => {
-        return actions.order.capture().then(() => handleSuccess(data));
+        return actions.order.capture().then((res) => {
+            handleSuccess(res);
+        });
     };
 
     const onError = (err) => {
