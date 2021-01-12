@@ -1,4 +1,4 @@
-import React, { useEffect } from "react"
+import React, { useState, useEffect } from "react"
 // STATE
 import { useCurtainContext } from "./config/CurtainCoContext"
 import { ACTIONS } from "./config/stateReducer"
@@ -27,12 +27,16 @@ import {
     CustomModal,
     PageNotFound,
 } from "./components/export.js"
+import { setErrorSnackBar } from "./helpers/appHelpers"
+import LoadingSymbol from "./components/reusable/LoadingSymbol"
 
 function App() {
     const { state, dispatch } = useCurtainContext()
+    const [isLoading, setIsLoading] = useState(false)
 
     useEffect(() => {
         if (state.currentUser === null) {
+            setIsLoading(true)
             getLoggedInUserFromHomeRoute()
                 .then((resp) => {
                     let currentUser = resp.data.user
@@ -41,15 +45,18 @@ function App() {
                             type: ACTIONS.SET_CURRENT_USER,
                             payload: currentUser,
                         })
-                    } else {
-                        console.log("No user logged in on page reload")
                     }
                 })
                 .catch((error) => {
                     console.log(
                         `An error ocurred on getLoggedInUserFromHomeRoute: ${error}.`
                     )
+                    setErrorSnackBar(
+                        dispatch,
+                        "Something went wrong and we couldn't log you in"
+                    )
                 })
+            setIsLoading(false)
         }
     }, [dispatch, state.currentUser])
 
@@ -57,29 +64,37 @@ function App() {
         <Router>
             <NavBar />
 
-            <Container className="app-container" component="main">
-                <Switch>
-                    <Route exact path="/" component={Home} />
-                    <Route exact path="/login" component={Login} />
-                    <Route exact path="/register" component={Register} />
-                    <Route exact path="/about" component={About} />
-                    <Route exact path="/collections" component={Collections} />
-                    <Route
-                        exact
-                        path="/collections/customise/:id"
-                        component={CollectionCustomise}
-                    />
-                    <Route exact path="/products" component={Products} />
-                    <Route exact path="/cart" component={Cart} />
-                    <Route
-                        exact
-                        path="/request"
-                        component={RequestConsultation}
-                    />
-                    <Route exact path="/account" component={Account} />
-                    <Route component={PageNotFound} />
-                </Switch>
-            </Container>
+            {isLoading ? (
+                <LoadingSymbol />
+            ) : (
+                <Container className="app-container" component="main">
+                    <Switch>
+                        <Route exact path="/" component={Home} />
+                        <Route exact path="/login" component={Login} />
+                        <Route exact path="/register" component={Register} />
+                        <Route exact path="/about" component={About} />
+                        <Route
+                            exact
+                            path="/collections"
+                            component={Collections}
+                        />
+                        <Route
+                            exact
+                            path="/collections/customise/:id"
+                            component={CollectionCustomise}
+                        />
+                        <Route exact path="/products" component={Products} />
+                        <Route exact path="/cart" component={Cart} />
+                        <Route
+                            exact
+                            path="/request"
+                            component={RequestConsultation}
+                        />
+                        <Route exact path="/account" component={Account} />
+                        <Route component={PageNotFound} />
+                    </Switch>
+                </Container>
+            )}
 
             <CustomSnackbar
                 open={state.snackbar.open}

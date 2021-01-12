@@ -70,10 +70,16 @@ function areAnyFieldsInUserDataFormAreEmpty(userDetails) {
             }
 
             // CATCH PASSWORDS NOT BETWEEN 6 AND 32
-            if (key === "phone" && value.length !== 10) {
-                errorObject[
-                    key
-                ] = `Mobile ${wordForErrorMessage} must be 10 numbers`
+            if (key === "phone") {
+                if (value.length !== 10) {
+                    errorObject[
+                        key
+                    ] = `Mobile ${wordForErrorMessage} must be 10 numbers`
+                } else if (value[0] !== "0" && value[1] !== "4") {
+                    errorObject[
+                        key
+                    ] = `Mobile ${wordForErrorMessage} format 04xxxxxxxx`
+                }
             }
 
             // CATCH PASSWORDS NOT BETWEEN 6 AND 32

@@ -6,12 +6,12 @@ import { useCurtainContext } from "../../../../config/CurtainCoContext"
 import { ACTIONS } from "../../../../config/stateReducer"
 // COMPONENTS
 import TrackForm from "../../../reusable/TrackForm"
-import { setErrorSnackBar } from "../../../../helpers/appHelpers"
 
 function AddTrack() {
     const { dispatch } = useCurtainContext()
     const [resetFile, setResetFile] = useState(false)
     const [photo, setPhoto] = useState({})
+    const [isLoading, setIsLoading] = useState(false)
     const emptyTrack = useRef({
         category: "Track",
         name: "",
@@ -49,6 +49,7 @@ function AddTrack() {
     }
 
     async function handleSubmit() {
+        setIsLoading(true)
         let respOrError = await submitProductToDbAndUpdateState(
             "add",
             track,
@@ -59,10 +60,8 @@ function AddTrack() {
             photo,
             resetProductForm
         )
-        if (typeof respOrError === "string") {
-            setErrorSnackBar(dispatch, respOrError)
-            return
-        }
+        setIsLoading(false)
+        console.log(respOrError)
     }
 
     // PASS IN TITLE AND TEXT FOR THE BUTTON TO THE TRACK FORM
@@ -80,6 +79,7 @@ function AddTrack() {
             handleFileChange={handleFileChange}
             setResetFile={setResetFile}
             resetFile={resetFile}
+            isLoading={isLoading}
         />
     )
 }

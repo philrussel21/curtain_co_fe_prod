@@ -1,9 +1,12 @@
 import React from "react"
-
+// STYLES
 import { Typography, Grid, TextField, Button, Box } from "@material-ui/core"
-import DeleteIcon from "@material-ui/icons/Delete"
-import FileInput from "./FileInput"
 import useStyles from "../account/admin/AdminStyles"
+// ICONS
+import DeleteIcon from "@material-ui/icons/Delete"
+// COMPONENTS
+import FileInput from "./FileInput"
+import LoadingSymbol from "../reusable/LoadingSymbol"
 
 function FabricForm({
     title,
@@ -15,6 +18,7 @@ function FabricForm({
     handleFileChange,
     setResetFile,
     resetFile,
+    isLoading,
 }) {
     const classes = useStyles()
     // this loop just changes an undefined value of the product to
@@ -164,7 +168,7 @@ function FabricForm({
                     />
                 </Grid>
 
-                {product ? (
+                {product && (
                     <Grid
                         item
                         container
@@ -175,7 +179,7 @@ function FabricForm({
                     >
                         {/* IF THE REMOVE HANDLER WAS PASSED IN, SHOW THE DELETE BUTTON */}
                         <Grid item>
-                            {handleRemove ? (
+                            {handleRemove && (
                                 <Button
                                     variant="contained"
                                     color="secondary"
@@ -184,10 +188,15 @@ function FabricForm({
                                 >
                                     Delete
                                 </Button>
-                            ) : (
-                                ""
                             )}
                         </Grid>
+
+                        {isLoading && (
+                            <Grid item>
+                                <LoadingSymbol />
+                            </Grid>
+                        )}
+
                         <Grid item>
                             <Button
                                 variant="contained"
@@ -198,8 +207,6 @@ function FabricForm({
                             </Button>
                         </Grid>
                     </Grid>
-                ) : (
-                    ""
                 )}
             </Grid>
         </>

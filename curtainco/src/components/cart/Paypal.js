@@ -3,7 +3,7 @@ import PaypalExpressBtn from "react-paypal-express-checkout"
 
 const payPalButtonStyles = {
     size: "medium",
-    color: "gold",
+    color: "blue",
     shape: "pill",
     label: "checkout",
 }

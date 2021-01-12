@@ -77,7 +77,7 @@ export default function SignIn() {
                 setPassword("")
             }
         } catch (error) {
-            loginError = `An error ocurred on login. ${error}.`
+            loginError = `An error ocurred on login. ${error}. ${error.response.data}`
             console.log(loginError)
             setErrorSnackBar(
                 dispatch,

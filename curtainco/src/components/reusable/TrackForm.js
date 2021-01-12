@@ -14,6 +14,7 @@ import DeleteIcon from "@material-ui/icons/Delete"
 import useStyles from "../account/admin/AdminStyles"
 // COMPONENTS
 import FileInput from "./FileInput"
+import LoadingSymbol from "./LoadingSymbol"
 
 function TrackForm({
     title,
@@ -26,6 +27,7 @@ function TrackForm({
     handleFileChange,
     setResetFile,
     resetFile,
+    isLoading,
 }) {
     const classes = useStyles()
 
@@ -208,7 +210,7 @@ function TrackForm({
                         value={product.price}
                     />
                 </Grid>
-                {product ? (
+                {product && (
                     <Grid
                         item
                         container
@@ -219,7 +221,7 @@ function TrackForm({
                     >
                         {/* IF THE REMOVE HANDLER WAS PASSED IN, SHOW THE DELETE BUTTON */}
                         <Grid item>
-                            {handleRemove ? (
+                            {handleRemove && (
                                 <Button
                                     variant="contained"
                                     color="secondary"
@@ -228,10 +230,15 @@ function TrackForm({
                                 >
                                     Delete
                                 </Button>
-                            ) : (
-                                ""
                             )}
                         </Grid>
+
+                        {isLoading && (
+                            <Grid item>
+                                <LoadingSymbol />
+                            </Grid>
+                        )}
+
                         <Grid item>
                             <Button
                                 variant="contained"
@@ -242,8 +249,6 @@ function TrackForm({
                             </Button>
                         </Grid>
                     </Grid>
-                ) : (
-                    ""
                 )}
             </Grid>
         </>
