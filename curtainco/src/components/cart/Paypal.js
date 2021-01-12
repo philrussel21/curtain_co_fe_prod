@@ -13,17 +13,22 @@ function Paypal(props) {
         color: "blue",
         shape: "pill"
     };
-    const createOrder = (data, actions) => {
-        handleCreateOrder();
-        return actions.order.create({
-            purchase_units: [
-                {
-                    amount: {
-                        value: totalPrice,
+    async function createOrder(data, actions) {
+        try {
+            await handleCreateOrder();
+            return actions.order.create({
+                purchase_units: [
+                    {
+                        amount: {
+                            value: totalPrice,
+                        },
                     },
-                },
-            ],
-        });
+                ],
+            });
+        } catch (error) {
+            console.log("There was an error processing the order");
+            console.log(error);
+        }
     };
 
     const onApprove = (data, actions) => {
