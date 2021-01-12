@@ -7,6 +7,7 @@ import { Container } from "@material-ui/core"
 import "./styles/Main.css"
 // PACKAGES
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom"
+import { useMediaQuery } from "react-responsive"
 // HELPERS ANS SERVICES
 import { getLoggedInUserFromHomeRoute } from "./services/authServices"
 // COMPONENTS
@@ -33,7 +34,7 @@ import LoadingSymbol from "./components/reusable/LoadingSymbol"
 function App() {
     const { state, dispatch } = useCurtainContext()
     const [isLoading, setIsLoading] = useState(false)
-
+    const isMobile = useMediaQuery({ maxWidth: 767 })
     useEffect(() => {
         if (state.currentUser === null) {
             setIsLoading(true)
@@ -67,7 +68,12 @@ function App() {
             {isLoading ? (
                 <LoadingSymbol />
             ) : (
-                <Container className="app-container" component="main">
+                <Container
+                    className={
+                        isMobile ? "app-container-mobile" : "app-container"
+                    }
+                    component="main"
+                >
                     <Switch>
                         <Route exact path="/" component={Home} />
                         <Route exact path="/login" component={Login} />
