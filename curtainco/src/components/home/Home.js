@@ -92,7 +92,10 @@ function Home() {
                             borderLeft: "10px solid whitesmoke",
                         }}
                     >
-                        <HeroBanner getBorderRadius={getBorderRadius} />
+                        <HeroBanner
+                            getBorderRadius={getBorderRadius}
+                            getImgHeight={getImgHeight}
+                        />
                     </Grid>
                     <Grid
                         item
