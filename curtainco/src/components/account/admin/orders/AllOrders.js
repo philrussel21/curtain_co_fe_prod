@@ -23,7 +23,7 @@ import { useCurtainContext } from "../../../../config/CurtainCoContext";
 import { ACTIONS } from "../../../../config/stateReducer";
 import {
     getAllOrders,
-    markOrderProcessed,
+    updateOrder,
 } from "../../../../services/orderServices";
 
 function AllOrders() {
@@ -49,7 +49,7 @@ function AllOrders() {
     function handleOrderCheckbox(event) {
         const checked = event.target.checked;
         const orderId = event.currentTarget.parentNode.parentNode.id;
-        markOrderProcessed(orderId, { isProcessed: checked })
+        updateOrder(orderId, { isProcessed: checked })
             .then((resp) => {
                 console.log("---UPDATED ORDER---");
                 console.log(resp.data);
@@ -114,7 +114,7 @@ function AllOrders() {
             <TableCell
                 className={ord.isProcessed ? classes.checkboxSelected : ""}
             >
-                {ord._id}
+                {ord.paymentData.id}
             </TableCell>
             <TableCell>
                 <Button
