@@ -21,9 +21,16 @@ async function updateOrder(id, updatedOrder) {
   return response;
 }
 
+// DELETE single order
+async function deleteOrder(id) {
+  const response = await api.delete(`/orders/${id}`);
+  return response;
+}
+
 export {
   getAllOrders,
   createOrder,
-  updateOrder
+  updateOrder,
+  deleteOrder
 };
 
