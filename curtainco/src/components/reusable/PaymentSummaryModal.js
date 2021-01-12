@@ -23,7 +23,7 @@ function PaymentSummary({ data }) {
             >
                 <Grid item>
                     <Typography variant="h3" component="h3">
-                        {data._id}
+                        {data.paymentData.id}
                     </Typography>
                 </Grid>
                 <Grid item>
