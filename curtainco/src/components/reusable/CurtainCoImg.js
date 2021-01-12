@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react"
-import { Grid, Typography } from "@material-ui/core"
+import { Grid, Typography, useTheme, useMediaQuery } from "@material-ui/core"
 
 function CurtainCoImg({
     imageSrc,
@@ -7,21 +7,31 @@ function CurtainCoImg({
     border = false,
     text,
     getBorderRadius,
+    getImgHeight,
 }) {
     const [imgHeight, setImgHeight] = useState(100)
     const [borderRadius, setBorderRadius] = useState(80)
-    console.log(window.innerHeight / 3)
-
+    const theme = useTheme()
+    const isDesktop = useMediaQuery(theme.breakpoints.up("lg"))
+    const isMobile = useMediaQuery(theme.breakpoints.only("xs"))
     useEffect(() => {
         let { innerHeight } = window
-        let divideBy = innerHeight > 750 ? 3.5 : 3
+        let divideBy = 2.5
+        if (isMobile) {
+            divideBy = innerHeight > 750 ? 3.5 : 3
+        }
+
         setImgHeight(innerHeight / divideBy)
         setBorderRadius(innerHeight / 10)
-        console.log(innerHeight)
-    }, [])
+    }, [isMobile])
+
     useEffect(() => {
         getBorderRadius(borderRadius)
     }, [getBorderRadius, borderRadius])
+
+    useEffect(() => {
+        getImgHeight(imgHeight)
+    }, [getImgHeight, imgHeight])
 
     return (
         <>
@@ -44,7 +54,7 @@ function CurtainCoImg({
                         alignItems="center"
                         style={{
                             width: "87%",
-                            height: "87%",
+                            height: "85%",
                             border: border ? "2px solid white" : "none",
                             borderRadius: `${borderRadius}px 0 ${borderRadius}px 0`,
                         }}

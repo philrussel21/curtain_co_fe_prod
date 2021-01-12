@@ -104,7 +104,12 @@ export default function StickyFooter() {
                                     <Grid item>email</Grid>
                                 </Grid>
                             </Grid>
-                            <Grid item container justify="center">
+                            <Grid
+                                item
+                                container
+                                justify="center"
+                                alignItems="center"
+                            >
                                 <Link to="/request" className={classes.link}>
                                     <Button variant="outlined">
                                         Request Consultation
