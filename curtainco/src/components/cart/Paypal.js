@@ -6,11 +6,11 @@ function Paypal(props) {
 
     const { handleSuccess, handleError, handleCancel, totalPrice } = props;
 
-    const PayPalButton = paypal.Buttons.driver("react", { React, ReactDOM });
+    const PayPalButton = window.paypal.Buttons.driver("react", { React, ReactDOM });
 
     const payPalButtonStyles = {
         size: "medium",
-        color: "blue",
+        color: "gold",
         shape: "pill"
     };
     const createOrder = (data, actions) => {
