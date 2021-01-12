@@ -4,7 +4,7 @@ import ReactDOM from "react-dom";
 
 function Paypal(props) {
 
-    const { handleSuccess, handleError, handleCancel, totalPrice } = props;
+    const { handleSuccess, handleError, handleCancel, handleCreateOrder, totalPrice } = props;
 
     const PayPalButton = window.paypal.Buttons.driver("react", { React, ReactDOM });
 
@@ -14,6 +14,7 @@ function Paypal(props) {
         shape: "pill"
     };
     const createOrder = (data, actions) => {
+        handleCreateOrder();
         return actions.order.create({
             purchase_units: [
                 {

@@ -16,14 +16,14 @@ async function createOrder(newOrder) {
 // GET single order
 
 // PUT updated order
-async function markOrderProcessed(id, updatedOrder) {
-  const response = await api.patch(`/orders/${id}`, updatedOrder);
+async function updateOrder(id, updatedOrder) {
+  const response = await api.put(`/orders/${id}`, updatedOrder);
   return response;
 }
 
 export {
   getAllOrders,
   createOrder,
-  markOrderProcessed
+  updateOrder
 };
 
