@@ -31,7 +31,13 @@ export default function SignUp() {
                 return resp
             }
         } catch (error) {
-            setErrorSnackBar(dispatch, error)
+            console.log(
+                `Error occurred when submitting the consultation request. ${error}. ${error.response.data}`
+            )
+            setErrorSnackBar(
+                dispatch,
+                "Error: Something went wrong and your request was not made"
+            )
             return false
         }
     }

@@ -11,6 +11,7 @@ import AdminDashboard from "./admin/AdminDashboard"
 import UserDashboard from "./user/UserDashboard"
 // HELPERS AND SERVICES
 import { getUpdatedUserWithOrderObjects } from "../../services/userServices"
+import { setErrorSnackBar } from "../../helpers/appHelpers"
 
 function Account() {
     const { state, dispatch } = useCurtainContext()
@@ -32,9 +33,12 @@ function Account() {
                     }
                 } catch (error) {
                     console.log(
-                        `An error ocurred on getUpdatedUserWithOrderObjects at Account: ${error}.`
+                        `An error ocurred on getUpdatedUserWithOrderObjects at Account: ${error}. ${error.response.data.message}`
                     )
-                    console.log(error.response)
+                    setErrorSnackBar(
+                        dispatch,
+                        "Something went wrong when fetching your purchase history"
+                    )
                 }
                 setIsLoading(false)
             }
