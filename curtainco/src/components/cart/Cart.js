@@ -16,7 +16,7 @@ import {
     removeFromCart,
     generateTotalPriceOfCart,
 } from "../../services/cartServices";
-import { createOrder } from "../../services/orderServices";
+import { createOrder, updateOrder, deleteOrder } from "../../services/orderServices";
 import { setSuccessSnackBar } from "../../helpers/appHelpers";
 // STATE
 import { useCurtainContext } from "../../config/CurtainCoContext";
@@ -31,7 +31,7 @@ function Cart({ history }) {
     const [paymentSuccess, setPaymentSuccess] = useState(false);
     const [paymentFailed, setPaymentFailed] = useState(false);
     const [paymentCancelled, setPaymentCancelled] = useState(false);
-
+    let orderId = null;
     // GET THE ITEMS FROM LOCAL STORAGE
     function updateCartInStateFromLocalStorage() {
         const cartItems = getCartItemsFromLocalStorage();
@@ -93,55 +93,85 @@ function Cart({ history }) {
         console.log(data);
 
         const payload = {
-            _id: data.orderID,
-            // already being set in BE before saving the order
-            // customer: state.currentUser,
-            totalPrice: totalPrice,
-            items: cart,
-            paymentData: data,
+            paymentData: data
         };
-
+        // updates the db document with Paypal data
         try {
-            let response = await createOrder(payload);
+            let response = await updateOrder(orderId, payload);
             console.log(response);
-            if (response.status === 201) {
-                // TODO CLEAR THE CART AND REDIRECT TO THEIR ACCOUNT PAGE TO VIEW THE PURCHASE
-                setPaymentSuccess(true); // modal confirmation?
-                window.localStorage.clear();
-                updateCartInStateFromLocalStorage();
-                history.push("/account");
-                setSuccessSnackBar(dispatch, "Payment was successful");
-            }
-
-            return response;
+            // TODO CLEAR THE CART AND REDIRECT TO THEIR ACCOUNT PAGE TO VIEW THE PURCHASE
+            setPaymentSuccess(true); // modal confirmation?
+            window.localStorage.clear();
+            updateCartInStateFromLocalStorage();
+            history.push("/account");
+            setSuccessSnackBar(dispatch, "Payment was successful");
         } catch (error) {
             console.log(
-                "Error occurred when creating the order after successful paypal payment. SHIT HAS HIT THE FAN HERE, WE HAVE COMPLETELY LOST THAT ORDER HAHAH AND THE CUSTOMER WILL BE PISSSSSSSSSSSSSSSSED HAHA."
+                "Error occurred when updating the order after successful paypal payment."
             );
             console.log(error);
             setErrorSnackBar(
                 dispatch,
-                "Error: Order was not processed and no payment was taken (this should be our new error message)"
+                "Error: OrderId and payment data was not updated but payment was taken."
             );
         }
     }
 
-    function handleError(data) {
-        console.log("----ERROR PAYPAL PURCHASE----");
-        console.log(data);
-        // data contains the response from paypal which is to be stored in server
-        setPaymentFailed(true); // modal ??
-        setErrorSnackBar(
-            dispatch,
-            "Something went wrong. Payment was not taken"
-        );
+    async function handleCreateOrder() {
+        const payload = {
+            totalPrice: totalPrice,
+            items: cart,
+            // placeholder
+            paymentData: {},
+        };
+        try {
+            let response = await createOrder(payload);
+            orderId = response.data._id;
+            console.log(response);
+            return response;
+        } catch (error) {
+            console.log(
+                "Error occurred when creating the order after successful paypal payment."
+            );
+            console.log(error);
+            setErrorSnackBar(
+                dispatch,
+                "Error: Order was not processed and no payment was taken"
+            );
+        }
     }
 
-    function handleCancel(data) {
+    async function handleError(data) {
+        console.log("----ERROR PAYPAL PURCHASE----");
+        // data contains the response from paypal which is to be stored in server
+        console.log(data);
+        // delete created order upon clicking PayPal Checkout
+        try {
+            await deleteOrder(orderId);
+            console.log("Order Object DELETED");
+            setPaymentFailed(true); // modal ??
+            setErrorSnackBar(
+                dispatch,
+                "Something went wrong. Payment was not taken"
+            );
+        } catch (error) {
+            console.log("There was a problem removing the created order when paypal errored on checkout.");
+            console.log(error);
+        }
+    }
+
+    async function handleCancel(data) {
         console.log("----CANCEL PAYPAL PURCHASE----");
         console.log(data);
         // data contains the response from paypal which is to be stored in server
-        setPaymentCancelled(true);
+        try {
+            await deleteOrder(orderId);
+            console.log("Order Object DELETED");
+            setPaymentCancelled(true);
+        } catch (error) {
+            console.log("There was a problem removing the created order after cancelling checkout.");
+            console.log(error);
+        }
     }
 
     function isUserLoggedIn() {
@@ -176,6 +206,7 @@ function Cart({ history }) {
                                         handleSuccess={handleSuccess}
                                         handleError={handleError}
                                         handleCancel={handleCancel}
+                                        handleCreateOrder={handleCreateOrder}
                                         totalPrice={totalPrice}
                                     />
                                 ) : (
