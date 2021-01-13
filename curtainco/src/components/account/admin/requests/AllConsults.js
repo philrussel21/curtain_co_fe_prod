@@ -1,4 +1,4 @@
-import React, { useEffect } from "react"
+import React, { useEffect, useState } from "react";
 // STYLES
 import {
     Checkbox,
@@ -9,78 +9,84 @@ import {
     TableHead,
     Paper,
     Button,
-} from "@material-ui/core"
-import useStyles from "../AdminStyles"
+} from "@material-ui/core";
+import useStyles from "../AdminStyles";
 // COMPONENTS
-import Title from "../../../reusable/Title"
+import Title from "../../../reusable/Title";
 // HELPERS AND SERVICES
 import {
     getFirstNameFromFullName,
     getLastNameFromFullName,
-} from "../../../../helpers/userHelpers"
+} from "../../../../helpers/userHelpers";
 import {
     displayShortDate,
     setSuccessSnackBar,
-} from "../../../../helpers/appHelpers"
+    setErrorSnackBar,
+    setWarningSnackBar
+} from "../../../../helpers/appHelpers";
 import {
     getAllConsultations,
     markConsultationCompleted,
-} from "../../../../services/consultationServices"
+    removeConsultation
+} from "../../../../services/consultationServices";
 // STATE
-import { useCurtainContext } from "../../../../config/CurtainCoContext"
-import { ACTIONS } from "../../../../config/stateReducer"
+import { useCurtainContext } from "../../../../config/CurtainCoContext";
+import { ACTIONS } from "../../../../config/stateReducer";
+import DeleteIcon from "@material-ui/icons/Delete";
+
 
 export default function AllConsults() {
-    const classes = useStyles()
-    const { state, dispatch } = useCurtainContext()
+    const classes = useStyles();
+    const { state, dispatch } = useCurtainContext();
+    const [isConsultUpdated, setIsConsultUpdated] = useState(false);
 
     useEffect(() => {
         getAllConsultations()
             .then((resp) => {
                 if (resp.status === 200) {
-                    console.log("---CONSULTATIONS---")
-                    console.log(resp.data)
+                    console.log("---CONSULTATIONS---");
+                    console.log(resp.data);
                     dispatch({
                         type: ACTIONS.SET_ALL_CONSULTATIONS,
                         payload: resp.data,
-                    })
+                    });
+                    setIsConsultUpdated(false);
                 } else {
                     console.log(
                         "status code wasn't correct when getting all consultations"
-                    )
+                    );
                 }
             })
             .catch((error) => {
-                console.log(error)
-            })
-    }, [dispatch])
+                console.log(error);
+            });
+    }, [dispatch, isConsultUpdated]);
 
     function handleConsultationCheckbox(event) {
-        const checked = event.target.checked
-        const consultId = event.currentTarget.parentNode.parentNode.id
+        const checked = event.target.checked;
+        const consultId = event.currentTarget.parentNode.parentNode.id;
         markConsultationCompleted(consultId, { isProcessed: checked })
             .then((resp) => {
-                console.log("---UPDATED CONSULTATION---")
-                console.log(resp.data)
+                console.log("---UPDATED CONSULTATION---");
+                console.log(resp.data);
                 if (resp.status === 200) {
                     dispatch({
                         type: ACTIONS.UPDATE_CONSULTATION,
                         payload: resp.data,
-                    })
-                    setSuccessSnackBar(dispatch, "Consult successfully updated")
+                    });
+                    setSuccessSnackBar(dispatch, "Consult successfully updated");
                 }
             })
             .catch((error) => {
                 console.log(
                     `Something went wrong when updating the consultation: ${error}`
-                )
-            })
+                );
+            });
     }
 
     function handleMessageButton(event) {
-        // event.currentTarget.value = "fullName,message"
-        const consultId = event.currentTarget.parentNode.parentNode.id
-        const consult = state.consults.find((cons) => cons._id === consultId)
+        const consultId = event.currentTarget.parentNode.parentNode.id;
+        const consult = state.consults.find((cons) => cons._id === consultId);
         dispatch({
             type: ACTIONS.SET_MODAL,
             payload: {
@@ -88,7 +94,24 @@ export default function AllConsults() {
                 data: consult,
                 consultSummary: true,
             },
-        })
+        });
+    }
+
+    function handleRemove(event) {
+        const consultId = event.currentTarget.parentNode.parentNode.id;
+        removeConsultation(consultId)
+            .then(resp => {
+                dispatch({
+                    type: ACTIONS.DELETE_CONSULTATION,
+                    payload: resp.data,
+                });
+                setWarningSnackBar(dispatch, "Consult Removed.");
+                setIsConsultUpdated(true);
+            })
+            .catch(error => {
+                setErrorSnackBar(dispatch, "There was a problem deleting the consultation.");
+                console.log("Problem Removing the consultation.", error);
+            });
     }
 
     // REMOVE ADMIN ROLE FROM LIST
@@ -139,8 +162,18 @@ export default function AllConsults() {
                     View
                 </Button>
             </TableCell>
+            {cons.isProcessed &&
+                <TableCell>
+                    <Button
+                        variant="contained"
+                        color="secondary"
+                        startIcon={<DeleteIcon />}
+                        onClick={handleRemove}
+                    >
+                    </Button>
+                </TableCell>}
         </TableRow>
-    ))
+    ));
 
     return (
         <Paper className={classes.paper}>
@@ -160,5 +193,5 @@ export default function AllConsults() {
                 <TableBody>{userRow}</TableBody>
             </Table>
         </Paper>
-    )
+    );
 }

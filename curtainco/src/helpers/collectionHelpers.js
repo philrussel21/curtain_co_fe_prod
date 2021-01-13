@@ -1,5 +1,5 @@
 function getOneCollectionFromState(allCollections, id) {
-    const collection = allCollections.filter((coll) => coll._id === id)[0]
+    const collection = allCollections.find((coll) => coll._id === id);
     return collection
 }
 

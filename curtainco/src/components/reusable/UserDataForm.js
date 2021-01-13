@@ -166,7 +166,7 @@ export default function UserDataForm({
                 message: withConsultMessage.msg,
             }
 
-            console.log({ tempConsultUserData })
+            // console.log({ tempConsultUserData })
 
             // ERROR HANDLING FOR SUBMITTING A CONSULTATION
             let emptyFields = areAnyFieldsInUserDataFormAreEmpty(
@@ -180,10 +180,16 @@ export default function UserDataForm({
             // AFTER CHECKING IF THE FIRST NAME OR LAST NAME FIELDS ARE EMPTY
             // REMOVE THEM FROM THE OBJECT AND JUST LEAVE
             // THIS IS DONE TO DYNAMICALLY SHOW HELPER TEXT FOR THE FIELDS
-            delete tempUserData.firstName
-            delete tempUserData.lastName
+            delete tempConsultUserData.firstName
+            delete tempConsultUserData.lastName
+            delete tempConsultUserData._id
+            delete tempConsultUserData._v
+            delete tempConsultUserData.createdAt
+            delete tempConsultUserData.updatedAt
 
             // SUBMIT OBJECT TO PARENT WHICH WILL SUBMIT TO DATABASE
+            console.log('this')
+            console.log({tempConsultUserData})
             errorOrResp = await handleSubmitFunctionFromParent(
                 tempConsultUserData
             )
