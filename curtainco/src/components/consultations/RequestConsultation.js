@@ -22,19 +22,22 @@ export default function RequestConsultation({ history }) {
         try {
             let resp = await submitConsultationRequest(request);
             console.log(resp);
-            if (resp.status === 201) {
-                dispatch({
-                    type: ACTIONS.ADD_CONSULTATION,
-                    payload: request,
-                });
-                setMessage({ message: "" });
-                setSuccessSnackBar(
-                    dispatch,
-                    "Consultation Request has been submitted"
-                );
+            dispatch({
+                type: ACTIONS.ADD_CONSULTATION,
+                payload: request,
+            });
+            setMessage({ message: "" });
+            setSuccessSnackBar(
+                dispatch,
+                "Consultation Request has been submitted"
+            );
+            if (state.currentUser) {
+                history.push('/account');
+            } else {
                 history.push('/');
-                return resp;
             }
+
+            return resp;
         } catch (error) {
             console.log(
                 `Error occurred when submitting the consultation request. ${error}`
