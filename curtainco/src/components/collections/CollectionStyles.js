@@ -7,6 +7,9 @@ const useStyles = makeStyles((theme) => ({
         [theme.breakpoints.down("sm")]: {
             width: "100%",
         },
+        borderBottomRightRadius: "80px",
+        borderTopLeftRadius: "80px",
+        border: `1px solid ${theme.palette.primary.main}`,
     },
     link: {
         textDecoration: "none",
@@ -51,6 +54,17 @@ const useStyles = makeStyles((theme) => ({
         height: "100px",
         width: "100px",
         objectFit: "cover",
+    },
+    collectionItemImg: {
+        width: "90%",
+        objectFit: "cover",
+        maxWidth: "200px",
+        maxHeight: "150px",
+        borderBottomRightRadius: "50px",
+        borderTopLeftRadius: "50px",
+    },
+    collectionItemDescription: {
+        fontStyle: "italic",
     },
 }))
 
