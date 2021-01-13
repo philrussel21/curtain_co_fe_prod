@@ -29,21 +29,18 @@ function Cart({ history }) {
     const [totalPrice, setTotalPrice] = useState(0);
     const { state, dispatch } = useCurtainContext();
     const [paymentSuccess, setPaymentSuccess] = useState(false);
-    const [paymentFailed, setPaymentFailed] = useState(false);
-    const [paymentCancelled, setPaymentCancelled] = useState(false);
+    const [paymentFailedOrCancelled, setPaymentFailedOrCancelled] = useState(false);
     let orderId = null;
     // GET THE ITEMS FROM LOCAL STORAGE
     function updateCartInStateFromLocalStorage() {
         const cartItems = getCartItemsFromLocalStorage();
-        // console.log(cartItems)
         setCart(cartItems);
     }
 
     // GET THE ITEMS FROM LOCAL STORAGE ON FIRST LOAD
     useEffect(() => {
         updateCartInStateFromLocalStorage();
-        setPaymentFailed(false);
-        setPaymentCancelled(false);
+        setPaymentFailedOrCancelled(false);
     }, []);
 
     // WHEN CART IN LOCAL STATE IS LOADED, CALCULATE THE TOTAL PRICE
@@ -150,7 +147,7 @@ function Cart({ history }) {
             await deleteOrder(orderId);
             console.log("Order Object DELETED");
             const errMsg = "Something went wrong. Payment was not taken";
-            setPaymentFailed(true); // modal ??
+            setPaymentFailedOrCancelled(true);
             setErrorSnackBar(
                 dispatch,
                 errMsg
@@ -176,7 +173,7 @@ function Cart({ history }) {
             setWarningSnackBar(
                 dispatch,
                 warningMsg);
-            setPaymentCancelled(true);
+            setPaymentFailedOrCancelled(true);
             setWarningAlert(
                 dispatch,
                 warningMsg);
@@ -210,8 +207,8 @@ function Cart({ history }) {
                             <CartTotal
                                 total={totalPrice}
                                 loginText="To purchase with PayPal, please log in first."
-                                isCancel={paymentCancelled}
-                                isError={paymentFailed}
+                                isCancelOrError={paymentFailedOrCancelled}
+                                setPaymentFailedOrCancelled={setPaymentFailedOrCancelled}
                             >
                                 {isUserLoggedIn() ? (
                                     <PayPal

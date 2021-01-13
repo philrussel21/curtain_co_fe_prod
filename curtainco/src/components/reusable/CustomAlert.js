@@ -3,22 +3,16 @@ import Alert from '@material-ui/lab/Alert';
 import { useCurtainContext } from '../../config/CurtainCoContext';
 import { ACTIONS } from '../../config/stateReducer';
 
-function CustomAlert() {
-  const { state, dispatch } = useCurtainContext();
+function CustomAlert({ setPaymentFailedOrCancelled }) {
+  const { state } = useCurtainContext();
   const { severity, message } = state.alert;
 
   const handleClose = () => {
-    dispatch({
-      type: ACTIONS.SET_ALERT,
-      payload: {
-        severity: "success",
-        message: ""
-      }
-    });
+    setPaymentFailedOrCancelled(false);
   };
   return (
     <div>
-      <Alert variant="outlined" severity={severity}>
+      <Alert variant="outlined" severity={severity} onClose={handleClose}>
         {message}
       </Alert>
     </div>

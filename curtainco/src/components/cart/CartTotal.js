@@ -4,21 +4,17 @@ import { Link } from "react-router-dom";
 import { useCurtainContext } from "../../config/CurtainCoContext";
 import CustomAlert from "../reusable/CustomAlert";
 
-function CartTotal({ total, children, loginText, isCancel, isError }) {
+function CartTotal({ total, children, loginText, isCancel, isError, isCancelOrError, setPaymentFailedOrCancelled }) {
     const { state } = useCurtainContext();
     return (
         <Grid container direction="column" spacing={2}>
             {/* IF PAYMENT WAS CANCELLED OR THERE WAS AN ERROR
             SHOW THIS DIV */}
-            {(isError || isCancel) && (
+            {(isCancelOrError) && (
+
                 <Grid item>
                     <Typography>
-                        {/* {isCancel
-                            ? "user cancelled the transaction"
-                            : isError
-                            ? "there was an error on the with the transaction"
-                            : ""} */}
-                        < CustomAlert />
+                        < CustomAlert setPaymentFailedOrCancelled={setPaymentFailedOrCancelled} />
                     </Typography>
                 </Grid>
             )}
