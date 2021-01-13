@@ -6,6 +6,7 @@ const useStyles = makeStyles((theme) => ({
         alignItems: "center",
         justifyContent: "center",
         border: "none !important",
+        zIndex: theme.zIndex.modal,
     },
     paper: {
         backgroundColor: theme.palette.background.paper,
