@@ -8,7 +8,6 @@ import Testimonial from "./Testimonial"
 function About() {
     return (
         <Grid container direction="column" alignItems="center" spacing={5}>
-            <Typography variant="h3">About Page</Typography>
             <Story />
             <Success />
             <Testimonial />

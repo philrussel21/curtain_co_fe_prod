@@ -76,6 +76,14 @@ function generateTotalPriceOfCart(cart) {
     return tempTotal
 }
 
+function getNumberOfItemsInCart() {
+    let existingCartStr = localStorage.getItem("cartItems")
+        ? localStorage.getItem("cartItems")
+        : "[]"
+    const cartItems = JSON.parse(existingCartStr)
+    return cartItems.length
+}
+
 module.exports = {
     addItemToCart,
     removeFromCart,
@@ -83,4 +91,5 @@ module.exports = {
     changeQtyOfItemInLocalStorage,
     updateLocalStorageWithNewArray,
     generateTotalPriceOfCart,
+    getNumberOfItemsInCart,
 }

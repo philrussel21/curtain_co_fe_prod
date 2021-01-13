@@ -168,89 +168,137 @@ function NavBar() {
                     className={classes.appBar}
                 >
                     <Toolbar>
-                        <Grid
-                            container
-                            justify="space-around"
-                            alignItems="center"
-                        >
-                            <Grid item container justify="center" xs={1}>
-                                <Grid item>
-                                    <Link
-                                        className={classes.link}
-                                        to="/collections"
-                                    >
-                                        <Button color="inherit">
-                                            Collections
-                                        </Button>
-                                    </Link>
+                        <Grid container>
+                            <Grid
+                                item
+                                xs={11}
+                                container
+                                justify="space-around"
+                                alignItems="center"
+                            >
+                                <Grid item container justify="center" xs={2}>
+                                    <Grid item>
+                                        <Link
+                                            className={classes.link}
+                                            to="/collections"
+                                        >
+                                            <Button color="inherit">
+                                                Collections
+                                            </Button>
+                                        </Link>
+                                    </Grid>
                                 </Grid>
-                            </Grid>
-                            <Grid item container justify="center" xs={1}>
-                                <Grid item>
-                                    <Link
-                                        className={classes.link}
-                                        to="/products"
-                                    >
-                                        <Button color="inherit">Samples</Button>
-                                    </Link>
+                                <Grid item container justify="center" xs={2}>
+                                    <Grid item>
+                                        <Link
+                                            className={classes.link}
+                                            to="/products"
+                                        >
+                                            <Button color="inherit">
+                                                Samples
+                                            </Button>
+                                        </Link>
+                                    </Grid>
                                 </Grid>
-                            </Grid>
 
-                            <Grid item container justify="center" xs={1}>
-                                <Grid item>
-                                    <Link className={classes.link} to="/about">
-                                        <Button color="inherit">About</Button>
-                                    </Link>
+                                <Grid item container justify="center" xs={2}>
+                                    <Grid item>
+                                        <Link
+                                            className={classes.navbarLogoCont}
+                                            to="/"
+                                        >
+                                            <img
+                                                src="/CurtainCoLogo192.png"
+                                                alt="the curtain co logo"
+                                            />
+                                        </Link>
+                                    </Grid>
                                 </Grid>
-                            </Grid>
 
-                            <Grid item container justify="center" xs={1}>
-                                <Grid item>
-                                    <Link
-                                        className={classes.navbarLogoCont}
-                                        to="/"
-                                    >
-                                        <img
-                                            src="/CurtainCoLogo192.png"
-                                            alt="the curtain co logo"
-                                        />
-                                    </Link>
+                                <Grid item container justify="center" xs={2}>
+                                    <Grid item>
+                                        <Link
+                                            className={classes.link}
+                                            to="/about"
+                                        >
+                                            <Button color="inherit">
+                                                About
+                                            </Button>
+                                        </Link>
+                                    </Grid>
                                 </Grid>
-                            </Grid>
-
-                            <Grid item container justify="center" xs={1}>
-                                <Grid item>
-                                    <Link
-                                        className={classes.link}
-                                        to={
-                                            state.currentUser !== null
-                                                ? "/account"
-                                                : "/login"
-                                        }
-                                    >
-                                        <Button color="inherit">
-                                            My Account
-                                        </Button>
-                                    </Link>
-                                </Grid>
-                            </Grid>
-
-                            <Grid item container justify="center" xs={1}>
-                                <Grid item>
-                                    {state.currentUser !== null ? (
-                                        <Grid item container justify="center">
-                                            <Link
-                                                className={classes.link}
-                                                to="/"
-                                                onClick={handleLogout}
-                                            >
-                                                <Button color="inherit">
-                                                    Logout
+                                {/* <Grid item container justify="center" xs={2}>
+                                    <Grid item>
+                                        <Link
+                                            className={classes.link}
+                                            to="/cart"
+                                        >
+                                            <Button color="inherit">
+                                                Cart
+                                            </Button>
+                                        </Link>
+                                    </Grid>
+                                </Grid> */}
+                                <Grid item container justify="center" xs={2}>
+                                    <Grid item>
+                                        {state.currentUser !== null ? (
+                                            <>
+                                                <Button
+                                                    color="inherit"
+                                                    className={
+                                                        classes.myAccountButton
+                                                    }
+                                                    onClick={handleMenu}
+                                                >
+                                                    My Account
+                                                    <ExpandMoreIcon />
                                                 </Button>
-                                            </Link>
-                                        </Grid>
-                                    ) : (
-                                        <Grid item container justify="center">
+
+                                                <Menu
+                                                    id="appbar-account-menu"
+                                                    anchorEl={anchorEl}
+                                                    anchorOrigin={{
+                                                        vertical: "top",
+                                                        horizontal: "right",
+                                                    }}
+                                                    keepMounted
+                                                    transformOrigin={{
+                                                        vertical: "top",
+                                                        horizontal: "right",
+                                                    }}
+                                                    open={open}
+                                                    onClose={handleClose}
+                                                >
+                                                    <MenuItem
+                                                        onClick={handleClose}
+                                                    >
+                                                        <Link
+                                                            className={
+                                                                classes.link
+                                                            }
+                                                            to="/account"
+                                                        >
+                                                            My Profile
+                                                        </Link>
+                                                    </MenuItem>
+                                                    <MenuItem
+                                                        onClick={handleClose}
+                                                    >
+                                                        <Link
+                                                            className={
+                                                                classes.link
+                                                            }
+                                                            to="/"
+                                                            onClick={
+                                                                handleLogout
+                                                            }
+                                                        >
+                                                            Logout
+                                                        </Link>
+                                                    </MenuItem>
+                                                </Menu>
+                                            </>
+                                        ) : (
                                             <Link
                                                 className={classes.link}
                                                 to={{
@@ -266,11 +314,10 @@ function NavBar() {
                                                     Login
                                                 </Button>
                                             </Link>
-                                        </Grid>
-                                    )}
+                                        )}
+                                    </Grid>
                                 </Grid>
                             </Grid>
-
                             <Grid
                                 item
                                 container
@@ -278,16 +325,18 @@ function NavBar() {
                                 alignItems="center"
                                 xs={1}
                             >
-                                <Link className={classes.link} to="/cart">
-                                    <IconButton aria-label="cart">
-                                        <StyledBadge
-                                            badgeContent={cartLength}
-                                            color="secondary"
-                                        >
-                                            <ShoppingCartIcon />
-                                        </StyledBadge>
-                                    </IconButton>
-                                </Link>
+                                <Grid item>
+                                    <Link className={classes.link} to="/cart">
+                                        <IconButton aria-label="cart">
+                                            <StyledBadge
+                                                badgeContent={cartLength}
+                                                color="secondary"
+                                            >
+                                                <ShoppingCartIcon />
+                                            </StyledBadge>
+                                        </IconButton>
+                                    </Link>
+                                </Grid>
                             </Grid>
                         </Grid>
                     </Toolbar>
