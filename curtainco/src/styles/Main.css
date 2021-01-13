@@ -1,6 +1,8 @@
-body {
-  background-color: whitesmoke;
-  min-height: 100vh;
+body,
+html {
+  background-color: whitesmoke !important;
+  height: 100vh !important;
+  width: 100vw !important;
   margin: 0;
 }
 
@@ -8,6 +10,7 @@ body {
   height: calc(100vh - 195px);
   z-index: 1;
   overflow-y: auto;
+  background-color: whitesmoke;
   overflow-x: hidden;
 }
 
@@ -15,6 +18,7 @@ body {
   height: 100%;
   z-index: 1;
   position: relative;
+  background-color: whitesmoke;
   overflow-y: none;
   padding-top: 20px;
 }
