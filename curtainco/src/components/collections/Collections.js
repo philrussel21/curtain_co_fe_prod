@@ -44,7 +44,8 @@ function Collections() {
                 direction="column"
                 alignItems="center"
                 justify="center"
-                spacing={10}
+                spacing={8}
+                className={classes.collectionListCont}
             >
                 {isLoading ? (
                     <LoadingSymbol />

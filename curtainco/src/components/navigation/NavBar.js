@@ -42,7 +42,6 @@ const StyledBadge = withStyles((theme) => ({
 function NavBar() {
     const classes = useStyles()
     const { state, dispatch } = useCurtainContext()
-    // const [cartLength, setCartLength] = useState(0)
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null)
     const isMobileMenuOpen = Boolean(mobileMoreAnchorEl)
     const mobileMenuId = "app-bar-mobile"
@@ -54,81 +53,6 @@ function NavBar() {
     const handleMobileMenuClose = (e) => {
         setMobileMoreAnchorEl(null)
     }
-
-    // const handleMenu = (event) => {
-    //     setAnchorEl(event.currentTarget)
-    // }
-
-    // const handleClose = () => {
-    //     setAnchorEl(null)
-    // }
-    // useEffect(() => {
-    //     const number = getNumberOfItemsInCart()
-    //     setCartLength(number)
-    // }, [])
-
-    // function buildMenuItems(links) {
-    //     let menuItems = []
-
-    //     for (let i = 0; i < links.length; i++) {
-    //         let place = links[i]
-    //         if (place === "account" && state.currentUser !== null) {
-    //             menuItems.push(
-    //                 <MenuItem>
-    //                     <Link
-    //                         onClick={handleMobileMenuClose}
-    //                         className={classes.link}
-    //                         to={`/${place}`}
-    //                     >
-    //                         <Typography
-    //                             variant="button"
-    //                             className={classes.mobileMenuItemText}
-    //                         >
-    //                             {place}
-    //                         </Typography>
-    //                     </Link>
-    //                 </MenuItem>
-    //             )
-    //         } else if (place === "login") {
-    //         } else {
-    //             menuItems.push(
-    //                 <MenuItem>
-    //                     <Link
-    //                         onClick={handleMobileMenuClose}
-    //                         className={classes.link}
-    //                         to={place === "home" ? "/" : `/${place}`}
-    //                     >
-    //                         <Typography
-    //                             variant="button"
-    //                             className={classes.mobileMenuItemText}
-    //                         >
-    //                             {place}
-    //                         </Typography>
-    //                     </Link>
-    //                 </MenuItem>
-    //             )
-    //         }
-    //     }
-
-    //     return menuItems
-    // }
-
-    // useEffect(() => {
-    //     const mobileLinks = [
-    //         "home",
-    //         "collections",
-    //         "products",
-    //         "about",
-    //         "cart",
-    //         "account",
-    //         "login",
-    //         "logout",
-    //     ]
-    //     mobileMenuItems.current = buildMenuItems(
-    //         mobileLinks,
-    //         handleMobileMenuClose
-    //     )
-    // }, [buildMenuItems])
 
     function handleLogout(e) {
         e.preventDefault()
@@ -347,17 +271,6 @@ function NavBar() {
                         </Fab>
                     </div>
 
-                    {/* {isMobileMenuOpen && (
-                    <MobileMenu
-                        handleLogout={handleLogout}
-                        isMobileMenuOpen={isMobileMenuOpen}
-                        mobileMenuId={mobileMenuId}
-                        mobileMoreAnchorEl={mobileMoreAnchorEl}
-                        handleMobileMenuClose={handleMobileMenuClose}
-                    />
-                )} */}
-
-                    {/* {mobileMenuItems} */}
                     <Menu
                         anchorEl={mobileMoreAnchorEl}
                         anchorOrigin={{ vertical: "top", horizontal: "left" }}

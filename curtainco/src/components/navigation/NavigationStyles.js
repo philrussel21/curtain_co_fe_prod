@@ -47,6 +47,8 @@ const useStyles = makeStyles((theme) => ({
         height: "fit-content",
         backgroundColor: "lightblue",
         marginTop: "10%",
+        paddingBottom: "5%",
+        paddingTop: "5%",
     },
     footerDetailsCont: {
         width: "80%",

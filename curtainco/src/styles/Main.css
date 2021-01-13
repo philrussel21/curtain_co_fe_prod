@@ -4,14 +4,13 @@ html {
   height: 100vh !important;
   width: 100vw !important;
   overflow-x: hidden;
-  overflow-y: hidden;
+  overflow-y: auto;
   margin: 0;
 }
 
 .app-container {
   height: calc(100vh - 195px);
   z-index: 1;
-  background-color: whitesmoke;
   overflow-x: hidden;
   max-width: 100vw !important;
   padding-top: 20px;
@@ -20,10 +19,8 @@ html {
 .app-container-mobile {
   height: 100%;
   z-index: 1;
-  position: relative;
-  background-color: whitesmoke;
-  max-width: 100vw !important;
-  padding-top: 20px;
+  overflow-y: hidden;
+  overflow-x: hidden;
 }
 
 .link {
