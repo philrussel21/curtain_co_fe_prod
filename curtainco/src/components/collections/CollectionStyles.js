@@ -1,12 +1,20 @@
 import { makeStyles } from "@material-ui/core/styles"
+
 const useStyles = makeStyles((theme) => ({
     paper: {
         padding: theme.spacing(3),
         width: "60%",
+        [theme.breakpoints.down("sm")]: {
+            width: "100%",
+        },
     },
     link: {
         textDecoration: "none",
         color: "inherit",
+    },
+    collectionListCont: {
+        height: "100%",
+        paddingBottom: "10%",
     },
     collectionHeaderImage: {
         width: "60%",

@@ -121,7 +121,6 @@ export default function StickyFooter() {
                                 <Grid item>copy right and year</Grid>
                             </Grid>
                             <Grid item container justify="center">
-                                {" "}
                                 site by simon and phil
                             </Grid>
                         </Grid>

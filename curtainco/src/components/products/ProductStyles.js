@@ -1,4 +1,4 @@
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles"
 const useStyles = makeStyles((theme) => ({
     icon: {
         marginRight: theme.spacing(2),
@@ -11,8 +11,9 @@ const useStyles = makeStyles((theme) => ({
         marginTop: theme.spacing(4),
     },
     cardGrid: {
-        paddingTop: theme.spacing(8),
-        paddingBottom: theme.spacing(8),
+        paddingBottom: "15%",
+        marginLeft: "20%",
+        overflowY: "auto",
     },
     card: {
         height: "100%",
@@ -29,6 +30,6 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor: theme.palette.background.paper,
         padding: theme.spacing(6),
     },
-}));
+}))
 
-export default useStyles;
+export default useStyles
