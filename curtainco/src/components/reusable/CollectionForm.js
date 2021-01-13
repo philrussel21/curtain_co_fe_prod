@@ -69,7 +69,7 @@ function CollectionForm({
                         key={`${category}-noProduct-${productArray.length}`}
                         value="noProduct"
                     >
-                        No Product
+                        Remove Product
                     </MenuItem>
                 )
             }

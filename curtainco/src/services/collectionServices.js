@@ -97,7 +97,7 @@ async function submitCollectionToDbAndUpdateState(
                     updateOrAdd === "add"
                         ? ACTIONS.ADD_COLLECTION
                         : ACTIONS.UPDATE_COLLECTION,
-                payload: tempCollection,
+                payload: resp.data,
             })
             setSuccessSnackBar(
                 dispatch,
