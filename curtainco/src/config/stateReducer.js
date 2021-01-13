@@ -248,6 +248,16 @@ export default function stateReducer(state, action) {
             };
         }
 
+        case ACTIONS.DELETE_CONSULTATION: {
+            const deletedConsult = action.payload;
+            const updatedConsults = state.consults.filter(con => con._id !== deletedConsult._id);
+            const sortedConsults = sortConsultations(updatedConsults);
+            return {
+                ...state,
+                consults: sortedConsults
+            };
+        }
+
         //  -------- ORDERS --------
         case ACTIONS.SET_ALL_ORDERS: {
             const sortedOrders = ascSort(action.payload);
@@ -275,33 +285,33 @@ export default function stateReducer(state, action) {
             return {
                 ...state,
                 cartLength: action.payload,
-            }
+            };
         }
 
         case ACTIONS.ADD_TO_CART: {
             return {
                 ...state,
                 cartLength: state.cartLength + 1,
-            }
+            };
         }
 
         case ACTIONS.UPDATE_CART: {
-            let direction = action.payload
+            let direction = action.payload;
             return {
                 ...state,
                 cartLength:
                     direction === "increase"
                         ? state.cartLength + 1
                         : state.cartLength - 1,
-            }
+            };
         }
 
         case ACTIONS.REMOVE_FROM_CART: {
-            let reducedLength = state.cartLength - 1
+            let reducedLength = state.cartLength - 1;
             return {
                 ...state,
                 cartLength: reducedLength < 0 ? 0 : reducedLength,
-            }
+            };
         }
 
         default:

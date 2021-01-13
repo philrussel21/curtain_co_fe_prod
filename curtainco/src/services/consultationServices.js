@@ -20,11 +20,17 @@ async function markConsultationCompleted(id, valueToUpdate) {
     return response;
 }
 
-async function checkIfUserHasMadeAConsultationRequest(id) {}
+async function removeConsultation(id) {
+    const response = await api.delete(`/consults/${id}`);
+    return response;
+}
+
+async function checkIfUserHasMadeAConsultationRequest(id) { }
 
 export {
     submitConsultationRequest,
     getAllConsultations,
     markConsultationCompleted,
     checkIfUserHasMadeAConsultationRequest,
+    removeConsultation
 };
