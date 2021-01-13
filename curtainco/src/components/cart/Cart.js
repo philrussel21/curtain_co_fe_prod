@@ -21,7 +21,7 @@ import { setSuccessSnackBar } from "../../helpers/appHelpers";
 // STATE
 import { useCurtainContext } from "../../config/CurtainCoContext";
 import { ACTIONS } from "../../config/stateReducer";
-import { setErrorSnackBar } from "../../helpers/appHelpers";
+import { setErrorSnackBar, setWarningSnackBar } from "../../helpers/appHelpers";
 
 function Cart({ history }) {
     const classes = useStyles();
@@ -163,6 +163,9 @@ function Cart({ history }) {
     async function handleCancel(data) {
         console.log("----CANCEL PAYPAL PURCHASE----");
         console.log(data);
+        setWarningSnackBar(
+            dispatch,
+            "Transaction Cancelled. No payment was taken.");
         // data contains the response from paypal which is to be stored in server
         try {
             await deleteOrder(orderId);
