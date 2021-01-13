@@ -10,6 +10,8 @@ const useStyles = makeStyles((theme) => ({
         maxHeight: "400px",
         maxWidth: "600px",
         objectFit: "cover",
+        borderBottomRightRadius: "100px",
+        borderTopLeftRadius: "100px",
     },
     aboutMeMsg: {
         paddingLeft: theme.spacing(5),
