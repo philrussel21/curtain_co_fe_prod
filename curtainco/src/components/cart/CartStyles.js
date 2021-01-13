@@ -27,6 +27,9 @@ const useStyles = makeStyles((theme) => ({
     cartTotalCont: {
         width: "90%",
     },
+    cartItemDetailsCont: {
+        paddingLeft: "3%",
+    },
 }))
 
 export default useStyles
