@@ -1,30 +1,39 @@
 import React from "react"
-
-import Container from "@material-ui/core/Container"
-import Typography from "@material-ui/core/Typography"
+// STYLES
+import { Container, Typography, Grid, Button } from "@material-ui/core"
 import useStyles from "./UserDashboardStyles"
-import { Button } from "@material-ui/core"
+// PACKAGES
 import { Link } from "react-router-dom/cjs/react-router-dom.min"
+// STATE
+import { useCurtainContext } from "../../../config/CurtainCoContext"
 
 function CTARequestConsultation() {
     const classes = useStyles()
-
+    const { state } = useCurtainContext()
     return (
         <Container maxWidth="md" className={classes.textCenter}>
-            <Typography variant="h4" className={classes.heading}>
-                Ready To Get Started?
-            </Typography>
-            <Typography variant="body1">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Laboriosam odit illo nemo eum, temporibus culpa dolorem adipisci
-                ratione provident enim possimus vero consequuntur sapiente
-                libero ea. Quo vitae vel perspiciatis.
-            </Typography>
-            {/* <Button variant="outlined" color="primary" >
+            <Grid container spacing={2}>
+                <Grid item container justify="center">
+                    <Typography
+                        variant="h4"
+                        className={classes.userDashboardSubheading}
+                    >
+                        Ready To Get Started?
+                    </Typography>
+                </Grid>
+                <Grid item>
+                    <Typography variant="body1">
+                        {state.currentUser.orders > 0
+                            ? "Now that you have your box of collections, request a consultation for one of our experienced designer installers to help size up and order your curtain packages."
+                            : "Head over and view our customised collections of samples by an interior designer, or pick out some individual samples to be able to make your own collection."}
+                    </Typography>
+                </Grid>
+                {/* <Button variant="outlined" color="primary" >
                 <Link to="/request" className={classes.link}>
                     Request Consultation
                 </Link>
             </Button> */}
+            </Grid>
         </Container>
     )
 }
