@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from "react"
+import React, { useState } from "react"
 // HELPERS AND SERVICES
 import { logoutUser } from "../../services/authServices"
 import { setErrorSnackBar } from "../../helpers/appHelpers"
-import { getNumberOfItemsInCart } from "../../services/cartServices"
 // STATE
 import { ACTIONS } from "../../config/stateReducer"
 import { useCurtainContext } from "../../config/CurtainCoContext"
@@ -11,7 +10,6 @@ import {
     AppBar,
     Toolbar,
     Typography,
-    Button,
     Fab,
     Menu,
     MenuItem,
@@ -25,7 +23,6 @@ import useStyles from "./NavigationStyles"
 // ICONS
 import MenuIcon from "@material-ui/icons/Menu"
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart"
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore"
 // COMPONENTS
 import { Mobile, Desktop, Tablet } from "../reusable/Responsive"
 // import MobileMenu from "./MobileMenu"
@@ -49,9 +46,6 @@ function NavBar() {
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null)
     const isMobileMenuOpen = Boolean(mobileMoreAnchorEl)
     const mobileMenuId = "app-bar-mobile"
-    // const [anchorEl, setAnchorEl] = useState(null)
-    // const open = Boolean(anchorEl)
-    // const mobileMenuItems = useRef()
 
     const handleMobileMenuOpen = (event) => {
         setMobileMoreAnchorEl(event.currentTarget)
@@ -339,7 +333,7 @@ function NavBar() {
                         THE CURTAIN CO
                     </Typography>
                 </Link>
-                <AppBar position="fixed" className={classes.appBar}>
+                <AppBar position="fixed" className={classes.appBarMobile}>
                     <div className={classes.sectionMobile}>
                         <Fab
                             color="primary"

@@ -69,11 +69,23 @@ const useStyles = makeStyles((theme) => ({
         justifyContent: "center",
         alignItems: "stretch",
     },
+    appBarMobile: {
+        top: "auto",
+        background: "transparent",
+        boxShadow: "none",
+        marginTop: "3%",
+        [theme.breakpoints.down("sm")]: {
+            marginTop: "0",
+            bottom: "3%",
+            width: "25%",
+        },
+        zIndex: 1000,
+    },
     toolBar: {
         maxWidth: "1600px",
         width: "100%",
-        maxHeight: "200px",
-        minHeight: "200px",
+        maxHeight: "170px",
+        minHeight: "170px",
         margin: "0 auto",
     },
     myAccountButton: {
@@ -87,9 +99,12 @@ const useStyles = makeStyles((theme) => ({
     navBarLogoCont: {
         width: "100px",
         height: "100px",
+        position: "relative",
     },
     navBarLogoImg: {
         width: "100%",
+        position: "relative",
+        zIndex: 1000,
     },
     navBarToolBar: {
         padding: "none",
