@@ -26,6 +26,10 @@ function CurtainContext({ children }) {
             orderSummary: false,
             consultSummary: false,
         },
+        alert: {
+            severity: "success",
+            message: ""
+        },
         products: [],
         collections: [],
         customizedCollection: { track: [], fabric: [], accessory: [] },

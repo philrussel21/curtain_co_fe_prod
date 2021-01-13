@@ -25,7 +25,12 @@ import { setSuccessSnackBar } from "../../helpers/appHelpers"
 // STATE
 import { useCurtainContext } from "../../config/CurtainCoContext"
 import { ACTIONS } from "../../config/stateReducer"
-import { setErrorSnackBar } from "../../helpers/appHelpers"
+import {
+    setErrorSnackBar,
+    setWarningSnackBar,
+    setErrorAlert,
+    setWarningAlert,
+} from "../../helpers/appHelpers"
 
 function Cart({ history }) {
     const classes = useStyles()
@@ -33,8 +38,9 @@ function Cart({ history }) {
     const [totalPrice, setTotalPrice] = useState(0)
     const { state, dispatch } = useCurtainContext()
     const [paymentSuccess, setPaymentSuccess] = useState(false)
-    const [paymentFailed, setPaymentFailed] = useState(false)
-    const [paymentCancelled, setPaymentCancelled] = useState(false)
+    const [paymentFailedOrCancelled, setPaymentFailedOrCancelled] = useState(
+        false
+    )
     let orderId = null
     // GET THE ITEMS FROM LOCAL STORAGE
     function updateCartInStateFromLocalStorage() {
@@ -46,8 +52,7 @@ function Cart({ history }) {
     // GET THE ITEMS FROM LOCAL STORAGE ON FIRST LOAD
     useEffect(() => {
         const cartItems = updateCartInStateFromLocalStorage()
-        setPaymentFailed(false)
-        setPaymentCancelled(false)
+        setPaymentFailedOrCancelled(false)
         let cartLength = 0
         for (let i = 0; i < cartItems.length; i++) {
             cartLength += cartItems[i].qty
@@ -163,11 +168,10 @@ function Cart({ history }) {
         try {
             await deleteOrder(orderId)
             console.log("Order Object DELETED")
-            setPaymentFailed(true) // modal ??
-            setErrorSnackBar(
-                dispatch,
-                "Something went wrong. Payment was not taken"
-            )
+            const errMsg = "Something went wrong. Payment was not taken"
+            setPaymentFailedOrCancelled(true)
+            setErrorSnackBar(dispatch, errMsg)
+            setErrorAlert(dispatch, errMsg)
         } catch (error) {
             console.log(
                 "There was a problem removing the created order when paypal errored on checkout."
@@ -183,7 +187,10 @@ function Cart({ history }) {
         try {
             await deleteOrder(orderId)
             console.log("Order Object DELETED")
-            setPaymentCancelled(true)
+            const warningMsg = "Transaction Cancelled. No payment was taken."
+            setWarningSnackBar(dispatch, warningMsg)
+            setPaymentFailedOrCancelled(true)
+            setWarningAlert(dispatch, warningMsg)
         } catch (error) {
             console.log(
                 "There was a problem removing the created order after cancelling checkout."
@@ -215,8 +222,10 @@ function Cart({ history }) {
                             <CartTotal
                                 total={totalPrice}
                                 loginText="To purchase with PayPal, please log in first."
-                                isCancel={paymentCancelled}
-                                isError={paymentFailed}
+                                isCancelOrError={paymentFailedOrCancelled}
+                                setPaymentFailedOrCancelled={
+                                    setPaymentFailedOrCancelled
+                                }
                             >
                                 {isUserLoggedIn() ? (
                                     <PayPal
