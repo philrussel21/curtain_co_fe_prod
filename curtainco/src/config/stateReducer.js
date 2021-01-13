@@ -35,6 +35,7 @@ export const ACTIONS = {
     SET_ALL_ORDERS: "get-all-orders",
     ADD_ORDER: "add-order",
     UPDATE_ORDER: "update-order",
+    SET_CART: "set-cart",
     ADD_TO_CART: "add-to-cart",
     UPDATE_CART: "update-cart",
     REMOVE_FROM_CART: "remove-from-cart",
@@ -262,15 +263,38 @@ export default function stateReducer(state, action) {
 
         //  ---------- CART -----------
 
-        // case ACTIONS.ADD_TO_CART: {
-        //     let newCart = [...state.cart, action.payload]
-        //     // newConsultList = sortCart(newConsultList)
+        case ACTIONS.SET_CART: {
+            return {
+                ...state,
+                cartLength: action.payload,
+            }
+        }
 
-        //     return {
-        //         ...state,
-        //         cart: newCart,
-        //     }
-        // }
+        case ACTIONS.ADD_TO_CART: {
+            return {
+                ...state,
+                cartLength: state.cartLength + 1,
+            }
+        }
+
+        case ACTIONS.UPDATE_CART: {
+            let direction = action.payload
+            return {
+                ...state,
+                cartLength:
+                    direction === "increase"
+                        ? state.cartLength + 1
+                        : state.cartLength - 1,
+            }
+        }
+
+        case ACTIONS.REMOVE_FROM_CART: {
+            let reducedLength = state.cartLength - 1
+            return {
+                ...state,
+                cartLength: reducedLength < 0 ? 0 : reducedLength,
+            }
+        }
 
         default:
             return state

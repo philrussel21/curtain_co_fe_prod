@@ -70,7 +70,7 @@ function CollectionCustomise() {
             price: customizedPrice,
         }
         console.log(tempCollection)
-        addItemToCart(tempCollection)
+        addItemToCart(tempCollection, dispatch)
         setSuccessSnackBar(dispatch, "Added customised collection to cart")
     }
 

@@ -44,12 +44,12 @@ const StyledBadge = withStyles((theme) => ({
 function NavBar() {
     const classes = useStyles()
     const { state, dispatch } = useCurtainContext()
-    const [cartLength, setCartLength] = useState(0)
+    // const [cartLength, setCartLength] = useState(0)
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null)
     const isMobileMenuOpen = Boolean(mobileMoreAnchorEl)
     const mobileMenuId = "app-bar-mobile"
-    const [anchorEl, setAnchorEl] = useState(null)
-    const open = Boolean(anchorEl)
+    // const [anchorEl, setAnchorEl] = useState(null)
+    // const open = Boolean(anchorEl)
     // const mobileMenuItems = useRef()
 
     const handleMobileMenuOpen = (event) => {
@@ -60,17 +60,17 @@ function NavBar() {
         setMobileMoreAnchorEl(null)
     }
 
-    const handleMenu = (event) => {
-        setAnchorEl(event.currentTarget)
-    }
+    // const handleMenu = (event) => {
+    //     setAnchorEl(event.currentTarget)
+    // }
 
-    const handleClose = () => {
-        setAnchorEl(null)
-    }
-    useEffect(() => {
-        const number = getNumberOfItemsInCart()
-        setCartLength(number)
-    }, [])
+    // const handleClose = () => {
+    //     setAnchorEl(null)
+    // }
+    // useEffect(() => {
+    //     const number = getNumberOfItemsInCart()
+    //     setCartLength(number)
+    // }, [])
 
     // function buildMenuItems(links) {
     //     let menuItems = []
@@ -281,7 +281,7 @@ function NavBar() {
                                 <Link className={classes.link} to="/cart">
                                     <IconButton aria-label="cart">
                                         <StyledBadge
-                                            badgeContent={cartLength}
+                                            badgeContent={state.cartLength}
                                             color="secondary"
                                         >
                                             <ShoppingCartIcon />

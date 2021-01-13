@@ -1,15 +1,21 @@
 const { ACTIONS } = require("../config/stateReducer")
 
-function addItemToCart(item) {
+function addItemToCart(item, dispatch) {
     // ADD TO LOCAL STORAGE
-    addItemToLocalStorage(item)
+    addItemToLocalStorage(item, dispatch)
+    dispatch({ type: ACTIONS.ADD_TO_CART })
 }
 
 function updateLocalStorageWithNewArray(cartArray) {
     localStorage.setItem("cartItems", JSON.stringify(cartArray))
 }
 
-function changeQtyOfItemInLocalStorage(cartArray, productId, direction) {
+function changeQtyOfItemInLocalStorage(
+    cartArray,
+    productId,
+    direction,
+    dispatch
+) {
     const itemInCartArray = (element) => element.id === productId
     const index = cartArray.findIndex(itemInCartArray)
     if (direction === "increase") {
@@ -22,14 +28,17 @@ function changeQtyOfItemInLocalStorage(cartArray, productId, direction) {
         cartArray[index].qty -= 1
     }
 
+    dispatch({ type: ACTIONS.UPDATE_CART, payload: direction })
+
     return cartArray
 }
 
-function removeFromCart(itemId) {
+function removeFromCart(itemId, dispatch) {
     removeItemFromLocalStorage(itemId)
+    dispatch({ type: ACTIONS.REMOVE_FROM_CART })
 }
 
-function addItemToLocalStorage(item) {
+function addItemToLocalStorage(item, dispatch) {
     let existingCart = localStorage.getItem("cartItems")
         ? localStorage.getItem("cartItems")
         : "[]"
@@ -41,7 +50,8 @@ function addItemToLocalStorage(item) {
         cartArray = changeQtyOfItemInLocalStorage(
             cartArray,
             item._id,
-            "increase"
+            "increase",
+            dispatch
         )
     } else {
         // OTHERWISE JUST ADD THE NEW PRODUCT TO THE CART ARRAY

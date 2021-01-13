@@ -6,7 +6,7 @@ import CartTotal from "./CartTotal"
 // PACKAGES
 import { Link } from "react-router-dom/cjs/react-router-dom.min"
 // STYLES
-import { Typography, Grid, Box, Button } from "@material-ui/core"
+import { Grid, Box, Button } from "@material-ui/core"
 import useStyles from "./CartStyles"
 // HELPERS AND SERVICES
 import {
@@ -39,16 +39,24 @@ function Cart({ history }) {
     // GET THE ITEMS FROM LOCAL STORAGE
     function updateCartInStateFromLocalStorage() {
         const cartItems = getCartItemsFromLocalStorage()
-        // console.log(cartItems)
         setCart(cartItems)
+        return cartItems
     }
 
     // GET THE ITEMS FROM LOCAL STORAGE ON FIRST LOAD
     useEffect(() => {
-        updateCartInStateFromLocalStorage()
+        const cartItems = updateCartInStateFromLocalStorage()
         setPaymentFailed(false)
         setPaymentCancelled(false)
-    }, [])
+        let cartLength = 0
+        for (let i = 0; i < cartItems.length; i++) {
+            cartLength += cartItems[i].qty
+        }
+        dispatch({
+            type: ACTIONS.SET_CART,
+            payload: cartLength,
+        })
+    }, [dispatch])
 
     // WHEN CART IN LOCAL STATE IS LOADED, CALCULATE THE TOTAL PRICE
     useEffect(() => {
@@ -62,7 +70,8 @@ function Cart({ history }) {
         let cartArrayWithUpdatedQty = changeQtyOfItemInLocalStorage(
             cart,
             productId,
-            "increase"
+            "increase",
+            dispatch
         )
         updateLocalStorageWithNewArray(cartArrayWithUpdatedQty)
         updateCartInStateFromLocalStorage()
@@ -74,7 +83,8 @@ function Cart({ history }) {
         let errorOrArray = changeQtyOfItemInLocalStorage(
             cart,
             productId,
-            "decrease"
+            "decrease",
+            dispatch
         )
         if (!errorOrArray) {
             setErrorSnackBar(dispatch, "Error: Please remove the item instead")
@@ -86,7 +96,7 @@ function Cart({ history }) {
 
     function handleRemove(event) {
         event.preventDefault()
-        removeFromCart(event.currentTarget.value)
+        removeFromCart(event.currentTarget.value, dispatch)
         updateCartInStateFromLocalStorage()
         setSuccessSnackBar(dispatch, "Item was removed from cart")
     }

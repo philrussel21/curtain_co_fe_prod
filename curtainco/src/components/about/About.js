@@ -1,6 +1,6 @@
 import React from "react"
 
-import { Grid, Typography } from "@material-ui/core"
+import { Grid } from "@material-ui/core"
 import Story from "./Story"
 import Success from "./Success"
 import Testimonial from "./Testimonial"
