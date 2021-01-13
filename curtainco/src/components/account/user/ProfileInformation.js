@@ -1,20 +1,20 @@
 import React, { useState } from "react"
-
-import Container from "@material-ui/core/Container"
-import Typography from "@material-ui/core/Typography"
-import Button from "@material-ui/core/Button"
+// STYLES
+import { Container, Grid, Typography, Button } from "@material-ui/core"
 import useStyles from "./UserDashboardStyles"
-
+// STATE
 import { useCurtainContext } from "../../../config/CurtainCoContext"
 import { ACTIONS } from "../../../config/stateReducer"
+// HELPERS AND SERVICES
 import {
     getFirstNameFromFullName,
     getLastNameFromFullName,
 } from "../../../helpers/userHelpers"
 import { updateUserInformation } from "../../../services/userServices"
+import { setSuccessSnackBar } from "../../../helpers/appHelpers"
+// COMPONENTS
 import ShowUserInformation from "./ShowUserInformation"
 import EditUserInformation from "./EditUserInformation"
-import { setSuccessSnackBar } from "../../../helpers/appHelpers"
 
 function ProfileInformation() {
     const classes = useStyles()
@@ -49,31 +49,47 @@ function ProfileInformation() {
         console.log("User successfully updated")
         return updateError
     }
-
     return (
         <Container>
-            <Typography variant="h5" className={classes.heading}>
-                {`${getFirstNameFromFullName(
-                    state.currentUser.fullName
-                )} ${getLastNameFromFullName(state.currentUser.fullName)}`}
-            </Typography>
+            <Grid container direction="column" spacing={2}>
+                <Grid item>
+                    <Typography
+                        variant="h4"
+                        className={classes.userDashboardSubheading}
+                    >
+                        {`${
+                            state.currentUser.title !== undefined
+                                ? state.currentUser.title
+                                : ""
+                        } ${getFirstNameFromFullName(
+                            state.currentUser.fullName
+                        )} ${getLastNameFromFullName(
+                            state.currentUser.fullName
+                        )}`}
+                    </Typography>
+                </Grid>
 
-            {editUser ? (
-                <EditUserInformation
-                    user={state.currentUser}
-                    handleUpdate={handleUpdate}
-                />
-            ) : (
-                <ShowUserInformation user={state.currentUser} />
-            )}
+                <Grid item>
+                    {editUser ? (
+                        <EditUserInformation
+                            user={state.currentUser}
+                            handleUpdate={handleUpdate}
+                        />
+                    ) : (
+                        <ShowUserInformation user={state.currentUser} />
+                    )}
+                </Grid>
 
-            <Button
-                variant="outlined"
-                color="primary"
-                onClick={toggleEditUserForm}
-            >
-                {editUser ? "Back" : "Edit Information"}
-            </Button>
+                <Grid item container justify="center">
+                    <Button
+                        variant="outlined"
+                        color={editUser ? "default" : "secondary"}
+                        onClick={toggleEditUserForm}
+                    >
+                        {editUser ? "Cancel" : "Edit Information"}
+                    </Button>
+                </Grid>
+            </Grid>
         </Container>
     )
 }

@@ -10,7 +10,8 @@ import {
     // useMediaQuery,
 } from "@material-ui/core"
 import useStyles from "./NavigationStyles"
-
+// STATE
+import { useCurtainContext } from "../../config/CurtainCoContext"
 // HELPERS AND SERVICES
 import { Link, useLocation } from "react-router-dom"
 // COMPONENTS

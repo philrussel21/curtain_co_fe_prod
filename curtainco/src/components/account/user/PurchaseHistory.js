@@ -39,23 +39,32 @@ function PurchaseHistory({ isLoading }) {
     ))
 
     return (
-        <Container>
-            <Typography variant="h5" className={classes.heading}>
-                Purchase History
-            </Typography>
-
-            <Grid
-                container
-                direction="column"
-                className={classes.purchaseHistoryRoot}
-            >
-                {isLoading ? (
-                    <LoadingSymbol />
-                ) : allPurchasedItems.length === 0 ? (
-                    purchaseHistoryError
-                ) : (
-                    allPurchasedItems
-                )}
+        <Container style={{ height: "100%" }}>
+            <Grid container spacing={2}>
+                <Grid item container justify="center">
+                    <Typography
+                        variant="h4"
+                        className={classes.userDashboardSubheading}
+                    >
+                        Purchase History
+                    </Typography>
+                </Grid>
+                <Grid
+                    item
+                    container
+                    direction="column"
+                    className={classes.purchaseHistoryRoot}
+                >
+                    {isLoading ? (
+                        <LoadingSymbol />
+                    ) : allPurchasedItems.length === 0 ? (
+                        <Grid item container justify="center">
+                            <Typography>{purchaseHistoryError}</Typography>
+                        </Grid>
+                    ) : (
+                        allPurchasedItems
+                    )}
+                </Grid>
             </Grid>
         </Container>
     )

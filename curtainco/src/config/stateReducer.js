@@ -153,9 +153,9 @@ export default function stateReducer(state, action) {
 
         case ACTIONS.SET_ALL_COLLECTIONS: {
             let allCollections = action.payload
-            let filteredCollections = filterOutEmptyCollections(allCollections)
+            // let filteredCollections = filterOutEmptyCollections(allCollections)
             let sortedCollections = sortProductsAndCollectionsForState(
-                filteredCollections,
+                allCollections,
                 "collections"
             )
             return {

@@ -1,6 +1,7 @@
 body,
 html {
-  background-color: whitesmoke !important;
+  background: #ededed !important;
+  background: linear-gradient(118deg, #ededed 61%, white 100%) !important;
   height: 100vh !important;
   width: 100vw !important;
   overflow-x: hidden;
