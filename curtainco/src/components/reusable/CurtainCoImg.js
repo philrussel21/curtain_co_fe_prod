@@ -12,15 +12,12 @@ function CurtainCoImg({
     const [imgHeight, setImgHeight] = useState(100)
     const [borderRadius, setBorderRadius] = useState(80)
     const theme = useTheme()
-    const isDesktop = useMediaQuery(theme.breakpoints.up("lg"))
+    // const isDesktop = useMediaQuery(theme.breakpoints.up("lg"))
     const isMobile = useMediaQuery(theme.breakpoints.only("xs"))
     useEffect(() => {
         let { innerHeight } = window
-        let divideBy = 2.5
-        if (isMobile) {
-            divideBy = innerHeight > 750 ? 3.5 : 3
-        }
-
+        let divideBy = 3
+        if (isMobile) divideBy = innerHeight > 750 ? 3.5 : 3
         setImgHeight(innerHeight / divideBy)
         setBorderRadius(innerHeight / 10)
     }, [isMobile])
