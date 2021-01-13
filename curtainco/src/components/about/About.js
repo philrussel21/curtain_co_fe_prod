@@ -1,17 +1,49 @@
 import React from "react"
-
-import { Grid } from "@material-ui/core"
+// STYLES
+import { Container, Grid } from "@material-ui/core"
+import useStyles from "./AboutStyles"
+// COMPONENTS
 import Story from "./Story"
 import Success from "./Success"
-import Testimonial from "./Testimonial"
+import { Desktop, Mobile } from "../reusable/Responsive"
+// import Testimonial from "./Testimonial"
 
 function About() {
+    const classes = useStyles()
     return (
-        <Grid container direction="column" alignItems="center" spacing={5}>
-            <Story />
-            <Success />
-            <Testimonial />
-        </Grid>
+        <>
+            <Desktop>
+                <Container>
+                    <Grid
+                        container
+                        direction="column"
+                        justify="center"
+                        alignItems="center"
+                        spacing={5}
+                        className={classes.aboutMeCont}
+                    >
+                        <Story />
+                        <Success />
+                        {/* <Testimonial /> */}
+                    </Grid>
+                </Container>
+            </Desktop>
+
+            <Mobile>
+                <Grid
+                    container
+                    direction="column"
+                    justify="center"
+                    alignItems="center"
+                    spacing={5}
+                    className={classes.aboutMeCont}
+                >
+                    <Story />
+                    <Success />
+                    {/* <Testimonial /> */}
+                </Grid>
+            </Mobile>
+        </>
     )
 }
 

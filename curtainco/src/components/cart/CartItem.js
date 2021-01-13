@@ -45,6 +45,7 @@ function CartItem({
                         justify="center"
                         alignItems="flex-start"
                         xs={5}
+                        className={classes.cartItemDetailsCont}
                     >
                         <Grid item>
                             <Typography variant="h5" component="h5">
@@ -86,12 +87,12 @@ function CartItem({
 
                     <Grid
                         item
-                        xs={2}
+                        xs={3}
                         container
                         justify="center"
                         alignItems="center"
                     >
-                        <Grid item xs={4} container justify="center">
+                        <Grid item xs={3} container justify="center">
                             <IconButton
                                 size="small"
                                 className={classes.secondaryIconButton}
@@ -101,10 +102,10 @@ function CartItem({
                                 <RemoveIcon color="secondary" />
                             </IconButton>
                         </Grid>
-                        <Grid item xs={4} container justify="center">
+                        <Grid item xs={3} container justify="center">
                             <Typography>QTY: {itemInCart.qty}</Typography>
                         </Grid>
-                        <Grid item xs={4} container justify="center">
+                        <Grid item xs={3} container justify="center">
                             <IconButton
                                 size="small"
                                 className={classes.primaryIconButton}

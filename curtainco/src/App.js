@@ -31,6 +31,7 @@ import {
     PageNotFound,
 } from "./components/export.js"
 import LoadingSymbol from "./components/reusable/LoadingSymbol"
+import { getCartItemsFromLocalStorage } from "./services/cartServices"
 
 function App() {
     const { state, dispatch } = useCurtainContext()
@@ -41,6 +42,8 @@ function App() {
     console.log({ theme })
 
     useEffect(() => {
+        // FIND IF A PERSON STILL HAS A SESSION,
+        // IF SO, LOG THEM IN
         if (state.currentUser === null) {
             setIsLoading(true)
             getLoggedInUserFromHomeRoute()
@@ -64,6 +67,17 @@ function App() {
                 })
             setIsLoading(false)
         }
+
+        // GET THE CURRENT AMOUNT OF ITEMS IN THE CART AND SET IT
+        const cartItems = getCartItemsFromLocalStorage()
+        let cartLength = 0
+        for (let i = 0; i < cartItems.length; i++) {
+            cartLength += cartItems[i].qty
+        }
+        dispatch({
+            type: ACTIONS.SET_CART,
+            payload: cartLength,
+        })
     }, [dispatch, state.currentUser])
 
     return (

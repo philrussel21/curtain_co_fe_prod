@@ -9,12 +9,19 @@ const useStyles = makeStyles((theme) => ({
         textDecoration: "none",
         width: "100%",
         height: "100%",
+        padding: "12px 20px",
+        "&:hover": {
+            textDecoration: "underline",
+        },
     },
-
+    iconButtonLink: {
+        textDecoration: "none",
+        padding: 0,
+        width: "70%",
+        textAlign: "center",
+    },
     footerRoot: {
         position: "absolute",
-        // bottom: -150,
-        // height: "92px",
         bottom: 0,
         height: "fit-content",
         width: "100%",
@@ -32,7 +39,6 @@ const useStyles = makeStyles((theme) => ({
                 ? theme.palette.grey[200]
                 : theme.palette.grey[800],
     },
-
     mobileHeader: {
         textAlign: "center",
         padding: "3%",
@@ -41,6 +47,8 @@ const useStyles = makeStyles((theme) => ({
         height: "fit-content",
         backgroundColor: "lightblue",
         marginTop: "10%",
+        paddingBottom: "5%",
+        paddingTop: "5%",
     },
     footerDetailsCont: {
         width: "80%",
@@ -48,7 +56,7 @@ const useStyles = makeStyles((theme) => ({
     },
     mobileMenuItemText: {
         color: "#F2511B",
-        fontFamily: "Roboto Slab",
+        // fontFamily: "Roboto Slab",
     },
     sectionMobile: {
         display: "flex",
@@ -56,11 +64,31 @@ const useStyles = makeStyles((theme) => ({
             display: "none",
         },
     },
-
     appBar: {
-        top: "auto",
         boxShadow: theme.shadows[0],
-        zIndex: theme.zIndex.appBar,
+        width: "100%",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "stretch",
+    },
+    appBarMobile: {
+        top: "auto",
+        background: "transparent",
+        boxShadow: "none",
+        marginTop: "3%",
+        [theme.breakpoints.down("sm")]: {
+            marginTop: "0",
+            bottom: "3%",
+            width: "25%",
+        },
+        zIndex: 1000,
+    },
+    toolBar: {
+        maxWidth: "1600px",
+        width: "100%",
+        maxHeight: "170px",
+        minHeight: "170px",
+        margin: "0 auto",
     },
     myAccountButton: {
         display: "flex",
@@ -73,6 +101,26 @@ const useStyles = makeStyles((theme) => ({
     navBarLogoCont: {
         width: "100px",
         height: "100px",
+        position: "relative",
+    },
+    navBarLogoImg: {
+        width: "100%",
+        position: "relative",
+        zIndex: 1000,
+    },
+    navBarToolBar: {
+        padding: "none",
+    },
+    topNavBarDivider: {
+        marginTop: "3%",
+        backgroundColor: "black",
+    },
+    bottomNavBarDivider: {
+        marginTop: "-3%",
+        backgroundColor: "black",
+    },
+    dividerCont: {
+        position: "relative",
     },
 }))
 
