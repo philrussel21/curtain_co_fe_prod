@@ -145,7 +145,7 @@ function NavBar() {
                                             to="/"
                                         >
                                             <img
-                                                src="/CurtainCoLogo192.png"
+                                                src="/logo512.png"
                                                 alt="the curtain co logo"
                                                 className={
                                                     classes.navBarLogoImg

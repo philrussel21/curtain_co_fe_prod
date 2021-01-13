@@ -70,6 +70,7 @@ const useStyles = makeStyles((theme) => ({
         display: "flex",
         justifyContent: "center",
         alignItems: "stretch",
+        marginTop: "10px",
     },
     appBarMobile: {
         top: "auto",
@@ -99,12 +100,12 @@ const useStyles = makeStyles((theme) => ({
         height: "100%",
     },
     navBarLogoCont: {
-        width: "100px",
-        height: "100px",
+        width: "150px",
+        height: "150px",
         position: "relative",
     },
     navBarLogoImg: {
-        width: "100%",
+        width: "130%",
         position: "relative",
         zIndex: 1000,
     },
@@ -112,11 +113,11 @@ const useStyles = makeStyles((theme) => ({
         padding: "none",
     },
     topNavBarDivider: {
-        marginTop: "3%",
+        marginTop: "4%",
         backgroundColor: "black",
     },
     bottomNavBarDivider: {
-        marginTop: "-3%",
+        marginTop: "-4%",
         backgroundColor: "black",
     },
     dividerCont: {
