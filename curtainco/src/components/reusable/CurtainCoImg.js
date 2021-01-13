@@ -23,11 +23,15 @@ function CurtainCoImg({
     }, [isMobile])
 
     useEffect(() => {
-        getBorderRadius(borderRadius)
+        if (typeof getBorderRadius === "function") {
+            getBorderRadius(borderRadius)
+        }
     }, [getBorderRadius, borderRadius])
 
     useEffect(() => {
-        getImgHeight(imgHeight)
+        if (typeof getImgHeight === "function") {
+            getImgHeight(imgHeight)
+        }
     }, [getImgHeight, imgHeight])
 
     return (
