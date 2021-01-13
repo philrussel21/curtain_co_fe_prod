@@ -2,7 +2,7 @@ import { IconButton } from "@material-ui/core"
 import React from "react"
 import { useTheme } from "@material-ui/core"
 
-function SocialLinkButton({ text }) {
+function SocialLinkButton({ text, link }) {
     const theme = useTheme()
     return (
         <IconButton
@@ -13,7 +13,14 @@ function SocialLinkButton({ text }) {
                 width: "75%",
             }}
         >
-            {text}
+            <a
+                href={link}
+                target="_blank"
+                rel="noreferrer"
+                style={{ textDecoration: "none" }}
+            >
+                {text}
+            </a>
         </IconButton>
     )
 }

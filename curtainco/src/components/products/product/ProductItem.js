@@ -60,31 +60,37 @@ function ProductItem({ productData }) {
                 <Typography gutterBottom variant="h6" component="h2">
                     {capitalize(productData.name)}
                 </Typography>
-
-                <Typography variant="body2">{`Amount: $${productData.price}`}</Typography>
-
-                <Typography variant="body2">{`Type: ${productData.category}`}</Typography>
+                <Grid container spacing={1}>
+                    <Grid item container justify="space-between">
+                        <Typography variant="body2">{`Type: ${productData.category}`}</Typography>
+                        <Typography variant="body2">{`$${productData.price}`}</Typography>
+                    </Grid>
+                </Grid>
             </CardContent>
 
             <CardActions>
-                <Grid container justify="space-between" alignItems="center">
-                    <Grid item>
-                        <Button
-                            size="small"
-                            color="primary"
-                            variant="outlined"
-                            onClick={handleViewClick}
-                        >
-                            See More
-                        </Button>
-                    </Grid>
-                    <Grid item>
+                <Grid
+                    container
+                    direction="row"
+                    alignItems="center"
+                    justify="space-between"
+                >
+                    <Grid item xs container justify="center">
                         <AddToCartButton
                             icon={true}
                             text="Cart"
                             size="small"
                             handleClick={handleCartClick}
                         />
+                    </Grid>
+                    <Grid item xs container justify="center">
+                        <Button
+                            size="small"
+                            color="primary"
+                            onClick={handleViewClick}
+                        >
+                            See More
+                        </Button>
                     </Grid>
                 </Grid>
             </CardActions>

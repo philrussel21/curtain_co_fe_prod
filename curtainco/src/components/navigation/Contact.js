@@ -12,10 +12,16 @@ function Contact() {
         <Grid item container direction="column" spacing={1}>
             <Grid item container justify="flex-start">
                 <Grid item xs={1}>
-                    <SocialLinkButton text="fb" link="facebook.com" />
+                    <SocialLinkButton
+                        text="fb"
+                        link="https://www.facebook.com/marie.gjorg/"
+                    />
                 </Grid>
                 <Grid item xs={1}>
-                    <SocialLinkButton text="in" link="instagram.com" />
+                    <SocialLinkButton
+                        text="in"
+                        link="https://www.instagram.com/marie_g_builder/"
+                    />
                 </Grid>
             </Grid>
             <Grid item container justify="flex-start">
