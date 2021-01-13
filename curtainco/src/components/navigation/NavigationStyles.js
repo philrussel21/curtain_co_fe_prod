@@ -59,15 +59,20 @@ const useStyles = makeStyles((theme) => ({
 
     appBar: {
         top: "auto",
-        background: "transparent",
-        boxShadow: "none",
-        marginTop: "3%",
-        [theme.breakpoints.down("sm")]: {
-            marginTop: "0",
-            bottom: "3%",
-            width: "25%",
-        },
-        zIndex: 1000,
+        boxShadow: theme.shadows[0],
+        zIndex: theme.zIndex.appBar,
+    },
+    myAccountButton: {
+        display: "flex",
+        justifyContent: "space-around",
+        color: "black",
+        textDecoration: "none",
+        width: "100%",
+        height: "100%",
+    },
+    navBarLogoCont: {
+        width: "100px",
+        height: "100px",
     },
 }))
 

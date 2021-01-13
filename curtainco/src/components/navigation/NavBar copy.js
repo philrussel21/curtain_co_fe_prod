@@ -14,14 +14,10 @@ import {
     Fab,
     Menu,
     MenuItem,
-    Grid,
 } from "@material-ui/core"
 import useStyles from "./NavigationStyles"
 // ICONS
 import MenuIcon from "@material-ui/icons/Menu"
-import ShoppingCartIcon from "@material-ui/icons/ShoppingCart"
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore"
-import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown"
 // COMPONENTS
 import { Mobile, Desktop, Tablet } from "../reusable/Responsive"
 // import MobileMenu from "./MobileMenu"
@@ -34,8 +30,6 @@ function NavBar() {
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null)
     const isMobileMenuOpen = Boolean(mobileMoreAnchorEl)
     const mobileMenuId = "app-bar-mobile"
-    const [anchorEl, setAnchorEl] = useState(null)
-    const open = Boolean(anchorEl)
     // const mobileMenuItems = useRef()
 
     const handleMobileMenuOpen = (event) => {
@@ -44,14 +38,6 @@ function NavBar() {
 
     const handleMobileMenuClose = (e) => {
         setMobileMoreAnchorEl(null)
-    }
-
-    const handleMenu = (event) => {
-        setAnchorEl(event.currentTarget)
-    }
-
-    const handleClose = () => {
-        setAnchorEl(null)
     }
 
     // function buildMenuItems(links) {
@@ -144,29 +130,25 @@ function NavBar() {
     return (
         <>
             <Desktop>
-                <AppBar
-                    position="static"
-                    color="transparent"
-                    className={classes.appBar}
-                >
+                <AppBar position="static">
                     <Toolbar>
+                        <Typography variant="h6" className={classes.title}>
+                            <Link className={classes.link} to="/">
+                                The Curtain Co
+                            </Link>
+                        </Typography>
+
+                        <Link className={classes.link} to="/">
+                            <Button color="inherit">Home</Button>
+                        </Link>
+
                         <Link className={classes.link} to="/collections">
                             <Button color="inherit">Collections</Button>
                         </Link>
 
                         <Link className={classes.link} to="/products">
-                            <Button color="inherit">Samples</Button>
+                            <Button color="inherit">Products</Button>
                         </Link>
-
-                        <Grid item container justify="center">
-                            <Link className={classes.navbarLogoCont} to="/">
-                                <img
-                                    src="/CurtainCoLogo192.png"
-                                    alt="the curtain co logo"
-                                />
-                                {/* <Button color="inherit">Home</Button> */}
-                            </Link>
-                        </Grid>
 
                         <Link className={classes.link} to="/about">
                             <Button color="inherit">About</Button>
@@ -176,62 +158,18 @@ function NavBar() {
                             <Button color="inherit">Cart</Button>
                         </Link>
 
-                        {state.currentUser !== null ? (
-                            <>
-                                <Button
-                                    color="inherit"
-                                    className={classes.myAccountButton}
-                                    onClick={handleMenu}
-                                >
-                                    My Account
-                                    <ExpandMoreIcon />
-                                </Button>
+                        {state.currentUser !== null && (
+                            <Link className={classes.link} to="/account">
+                                <Button color="inherit">Account</Button>
+                            </Link>
+                        )}
 
-                                <Menu
-                                    id="appbar-account-menu"
-                                    anchorEl={anchorEl}
-                                    anchorOrigin={{
-                                        vertical: "top",
-                                        horizontal: "right",
-                                    }}
-                                    keepMounted
-                                    transformOrigin={{
-                                        vertical: "top",
-                                        horizontal: "right",
-                                    }}
-                                    open={open}
-                                    onClose={handleClose}
-                                >
-                                    <MenuItem onClick={handleClose}>
-                                        <Link
-                                            className={classes.link}
-                                            to="/account"
-                                            onClick={handleLogout}
-                                        >
-                                            {/* <Button
-                                                color="inherit"
-                                                onClick={handleLogout}
-                                            > */}
-                                            My Profile
-                                            {/* </Button> */}
-                                        </Link>
-                                    </MenuItem>
-                                    <MenuItem onClick={handleClose}>
-                                        <Link
-                                            className={classes.link}
-                                            to="/"
-                                            onClick={handleLogout}
-                                        >
-                                            {/* <Button
-                                                color="inherit"
-                                                onClick={handleLogout}
-                                            > */}
-                                            Logout
-                                            {/* </Button> */}
-                                        </Link>
-                                    </MenuItem>
-                                </Menu>
-                            </>
+                        {state.currentUser !== null ? (
+                            <Link className={classes.link} to="/">
+                                <Button color="inherit" onClick={handleLogout}>
+                                    Logout
+                                </Button>
+                            </Link>
                         ) : (
                             <Link
                                 className={classes.link}
