@@ -38,24 +38,21 @@ function Collections() {
     }, [dispatch])
 
     return (
-        <>
-            <Typography variant="h3">Collections Page</Typography>
-            <Grid
-                container
-                direction="column"
-                alignItems="center"
-                justify="center"
-                spacing={10}
-            >
-                {isLoading ? (
-                    <LoadingSymbol />
-                ) : collectionErrorMessage !== null ? (
-                    collectionErrorMessage
-                ) : (
-                    <CollectionList collections={state.collections} />
-                )}
-            </Grid>
-        </>
+        <Grid
+            container
+            direction="column"
+            alignItems="center"
+            justify="center"
+            spacing={10}
+        >
+            {isLoading ? (
+                <LoadingSymbol />
+            ) : collectionErrorMessage !== null ? (
+                collectionErrorMessage
+            ) : (
+                <CollectionList collections={state.collections} />
+            )}
+        </Grid>
     )
 }
 

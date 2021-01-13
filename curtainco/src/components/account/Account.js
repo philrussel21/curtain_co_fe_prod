@@ -51,7 +51,7 @@ function Account() {
 
     return (
         <>
-            <Typography variant="h3">Account Page</Typography>
+            {/* <Typography variant="h3">Account Page</Typography> */}
 
             {state.currentUser === null || state.currentUser === undefined ? (
                 <Redirect

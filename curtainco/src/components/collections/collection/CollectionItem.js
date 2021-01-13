@@ -24,7 +24,7 @@ function CollectionItem({ data }) {
         ) {
             return
         }
-        addItemToCart(data)
+        addItemToCart(data, dispatch)
         setSuccessSnackBar(dispatch, "Added full collection to cart")
     }
     return (

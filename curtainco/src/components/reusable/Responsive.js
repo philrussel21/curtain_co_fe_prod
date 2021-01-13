@@ -7,6 +7,7 @@ const Desktop = ({ children }) => {
     console.log({ isDesktop })
     return isDesktop ? children : null
 }
+
 const Tablet = ({ children }) => {
     const theme = useTheme()
     const tabletMinWidth = useMediaQuery(theme.breakpoints.up("sm"))
@@ -15,6 +16,7 @@ const Tablet = ({ children }) => {
     console.log({ tabletMaxWidth })
     return tabletMinWidth && tabletMaxWidth ? children : null
 }
+
 const Mobile = ({ children }) => {
     const theme = useTheme()
     // const isMobile = useMediaQuery(theme.breakpoints.down("sm"))

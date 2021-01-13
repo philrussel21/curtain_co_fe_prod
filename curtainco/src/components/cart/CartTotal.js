@@ -1,20 +1,29 @@
-import React from "react";
-import { Grid, Button, Typography } from "@material-ui/core";
-import { Link } from "react-router-dom";
-import { useCurtainContext } from "../../config/CurtainCoContext";
-import CustomAlert from "../reusable/CustomAlert";
+import React from "react"
+import { Grid, Button, Typography } from "@material-ui/core"
+import { Link } from "react-router-dom"
+import { useCurtainContext } from "../../config/CurtainCoContext"
+import CustomAlert from "../reusable/CustomAlert"
 
-function CartTotal({ total, children, loginText, isCancel, isError, isCancelOrError, setPaymentFailedOrCancelled }) {
-    const { state } = useCurtainContext();
+function CartTotal({
+    total,
+    children,
+    loginText,
+    isCancelOrError,
+    setPaymentFailedOrCancelled,
+}) {
+    const { state } = useCurtainContext()
     return (
         <Grid container direction="column" spacing={2}>
             {/* IF PAYMENT WAS CANCELLED OR THERE WAS AN ERROR
             SHOW THIS DIV */}
-            {(isCancelOrError) && (
-
+            {isCancelOrError && (
                 <Grid item>
                     <Typography>
-                        < CustomAlert setPaymentFailedOrCancelled={setPaymentFailedOrCancelled} />
+                        <CustomAlert
+                            setPaymentFailedOrCancelled={
+                                setPaymentFailedOrCancelled
+                            }
+                        />
                     </Typography>
                 </Grid>
             )}
@@ -51,7 +60,7 @@ function CartTotal({ total, children, loginText, isCancel, isError, isCancelOrEr
                 </Grid>
             </Grid>
         </Grid>
-    );
+    )
 }
 
-export default CartTotal;
+export default CartTotal

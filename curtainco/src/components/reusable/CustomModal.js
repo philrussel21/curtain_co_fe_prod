@@ -42,7 +42,7 @@ export default function CustomModal() {
 
     function handleCartClick(event) {
         event.preventDefault()
-        addItemToCart(state.modal.data)
+        addItemToCart(state.modal.data, dispatch)
     }
 
     return (
