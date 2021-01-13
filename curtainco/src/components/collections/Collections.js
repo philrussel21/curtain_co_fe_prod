@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react"
 // STYLES
-import { Typography, Grid } from "@material-ui/core"
+import { Container, Grid } from "@material-ui/core"
 import useStyles from "./CollectionStyles"
 // STATES
 import { useCurtainContext } from "../../config/CurtainCoContext"
@@ -38,21 +38,23 @@ function Collections() {
     }, [dispatch])
 
     return (
-        <Grid
-            container
-            direction="column"
-            alignItems="center"
-            justify="center"
-            spacing={10}
-        >
-            {isLoading ? (
-                <LoadingSymbol />
-            ) : collectionErrorMessage !== null ? (
-                collectionErrorMessage
-            ) : (
-                <CollectionList collections={state.collections} />
-            )}
-        </Grid>
+        <Container>
+            <Grid
+                container
+                direction="column"
+                alignItems="center"
+                justify="center"
+                spacing={10}
+            >
+                {isLoading ? (
+                    <LoadingSymbol />
+                ) : collectionErrorMessage !== null ? (
+                    collectionErrorMessage
+                ) : (
+                    <CollectionList collections={state.collections} />
+                )}
+            </Grid>
+        </Container>
     )
 }
 

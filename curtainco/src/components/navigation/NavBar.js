@@ -19,6 +19,7 @@ import {
     IconButton,
     withStyles,
     Badge,
+    Divider,
 } from "@material-ui/core"
 import useStyles from "./NavigationStyles"
 // ICONS
@@ -167,127 +168,163 @@ function NavBar() {
                     color="transparent"
                     className={classes.appBar}
                 >
-                    <Toolbar>
-                        <Grid
-                            container
-                            justify="space-around"
-                            alignItems="center"
-                        >
-                            <Grid item container justify="center" xs={1}>
-                                <Grid item>
-                                    <Link
-                                        className={classes.link}
-                                        to="/collections"
-                                    >
-                                        <Button color="inherit">
-                                            Collections
-                                        </Button>
-                                    </Link>
-                                </Grid>
+                    <Toolbar disableGutters className={classes.toolBar}>
+                        <Grid container direction="column">
+                            <Grid item className={classes.dividerCont}>
+                                <Divider
+                                    variant="middle"
+                                    className={classes.topNavBarDivider}
+                                />
                             </Grid>
-                            <Grid item container justify="center" xs={1}>
-                                <Grid item>
-                                    <Link
-                                        className={classes.link}
-                                        to="/products"
-                                    >
-                                        <Button color="inherit">Samples</Button>
-                                    </Link>
-                                </Grid>
-                            </Grid>
-
-                            <Grid item container justify="center" xs={1}>
-                                <Grid item>
-                                    <Link className={classes.link} to="/about">
-                                        <Button color="inherit">About</Button>
-                                    </Link>
-                                </Grid>
-                            </Grid>
-
-                            <Grid item container justify="center" xs={1}>
-                                <Grid item>
-                                    <Link
-                                        className={classes.navbarLogoCont}
-                                        to="/"
-                                    >
-                                        <img
-                                            src="/CurtainCoLogo192.png"
-                                            alt="the curtain co logo"
-                                        />
-                                    </Link>
-                                </Grid>
-                            </Grid>
-
-                            <Grid item container justify="center" xs={1}>
-                                <Grid item>
-                                    <Link
-                                        className={classes.link}
-                                        to={
-                                            state.currentUser !== null
-                                                ? "/account"
-                                                : "/login"
-                                        }
-                                    >
-                                        <Button color="inherit">
-                                            My Account
-                                        </Button>
-                                    </Link>
-                                </Grid>
-                            </Grid>
-
-                            <Grid item container justify="center" xs={1}>
-                                <Grid item>
-                                    {state.currentUser !== null ? (
-                                        <Grid item container justify="center">
-                                            <Link
-                                                className={classes.link}
-                                                to="/"
-                                                onClick={handleLogout}
-                                            >
-                                                <Button color="inherit">
-                                                    Logout
-                                                </Button>
-                                            </Link>
-                                        </Grid>
-                                    ) : (
-                                        <Grid item container justify="center">
-                                            <Link
-                                                className={classes.link}
-                                                to={{
-                                                    pathname: "/login",
-                                                    state: {
-                                                        prevUrl:
-                                                            window.location
-                                                                .href,
-                                                    },
-                                                }}
-                                            >
-                                                <Button color="inherit">
-                                                    Login
-                                                </Button>
-                                            </Link>
-                                        </Grid>
-                                    )}
-                                </Grid>
-                            </Grid>
-
                             <Grid
                                 item
                                 container
-                                justify="center"
+                                justify="space-around"
                                 alignItems="center"
-                                xs={1}
                             >
-                                <Link className={classes.link} to="/cart">
-                                    <IconButton aria-label="cart">
-                                        <StyledBadge
-                                            badgeContent={state.cartLength}
-                                            color="secondary"
+                                <Grid item container justify="center" xs={1}>
+                                    <Grid item>
+                                        <Link
+                                            className={classes.link}
+                                            to="/collections"
                                         >
-                                            <ShoppingCartIcon />
-                                        </StyledBadge>
-                                    </IconButton>
-                                </Link>
+                                            <Typography variant="button">
+                                                Collections
+                                            </Typography>
+                                        </Link>
+                                    </Grid>
+                                </Grid>
+                                <Grid item container justify="center" xs={1}>
+                                    <Grid item>
+                                        <Link
+                                            className={classes.link}
+                                            to="/products"
+                                        >
+                                            <Typography variant="button">
+                                                Samples
+                                            </Typography>
+                                        </Link>
+                                    </Grid>
+                                </Grid>
+
+                                <Grid item container justify="center" xs={1}>
+                                    <Grid item>
+                                        <Link
+                                            className={classes.link}
+                                            to="/about"
+                                        >
+                                            <Typography variant="button">
+                                                About
+                                            </Typography>
+                                        </Link>
+                                    </Grid>
+                                </Grid>
+
+                                <Grid item container justify="center" xs={1}>
+                                    <Grid item>
+                                        <Link
+                                            className={classes.navbarLogoCont}
+                                            to="/"
+                                        >
+                                            <img
+                                                src="/CurtainCoLogo192.png"
+                                                alt="the curtain co logo"
+                                                className={
+                                                    classes.navBarLogoImg
+                                                }
+                                            />
+                                        </Link>
+                                    </Grid>
+                                </Grid>
+
+                                <Grid item container justify="center" xs={1}>
+                                    <Grid item>
+                                        <Link
+                                            className={classes.link}
+                                            to={
+                                                state.currentUser !== null
+                                                    ? "/account"
+                                                    : "/login"
+                                            }
+                                        >
+                                            <Typography variant="button">
+                                                Account
+                                            </Typography>
+                                        </Link>
+                                    </Grid>
+                                </Grid>
+
+                                <Grid item container justify="center" xs={1}>
+                                    <Grid item>
+                                        {state.currentUser !== null ? (
+                                            <Grid
+                                                item
+                                                container
+                                                justify="center"
+                                            >
+                                                <Link
+                                                    className={classes.link}
+                                                    to="/"
+                                                    onClick={handleLogout}
+                                                >
+                                                    <Typography variant="button">
+                                                        Logout
+                                                    </Typography>
+                                                </Link>
+                                            </Grid>
+                                        ) : (
+                                            <Grid
+                                                item
+                                                container
+                                                justify="center"
+                                            >
+                                                <Link
+                                                    className={classes.link}
+                                                    to={{
+                                                        pathname: "/login",
+                                                        state: {
+                                                            prevUrl:
+                                                                window.location
+                                                                    .href,
+                                                        },
+                                                    }}
+                                                >
+                                                    <Typography variant="button">
+                                                        Login
+                                                    </Typography>
+                                                </Link>
+                                            </Grid>
+                                        )}
+                                    </Grid>
+                                </Grid>
+
+                                <Grid
+                                    item
+                                    container
+                                    justify="center"
+                                    alignItems="center"
+                                    xs={1}
+                                >
+                                    <Link
+                                        className={classes.iconButtonLink}
+                                        to="/cart"
+                                    >
+                                        <IconButton aria-label="cart">
+                                            <StyledBadge
+                                                badgeContent={state.cartLength}
+                                                color="secondary"
+                                            >
+                                                <ShoppingCartIcon />
+                                            </StyledBadge>
+                                        </IconButton>
+                                    </Link>
+                                </Grid>
+                            </Grid>
+                            <Grid item className={classes.dividerCont}>
+                                <Divider
+                                    variant="middle"
+                                    className={classes.bottomNavBarDivider}
+                                />
                             </Grid>
                         </Grid>
                     </Toolbar>

@@ -46,22 +46,13 @@ function Cart({ history }) {
     function updateCartInStateFromLocalStorage() {
         const cartItems = getCartItemsFromLocalStorage()
         setCart(cartItems)
-        return cartItems
     }
 
     // GET THE ITEMS FROM LOCAL STORAGE ON FIRST LOAD
     useEffect(() => {
-        const cartItems = updateCartInStateFromLocalStorage()
+        updateCartInStateFromLocalStorage()
         setPaymentFailedOrCancelled(false)
-        let cartLength = 0
-        for (let i = 0; i < cartItems.length; i++) {
-            cartLength += cartItems[i].qty
-        }
-        dispatch({
-            type: ACTIONS.SET_CART,
-            payload: cartLength,
-        })
-    }, [dispatch])
+    }, [])
 
     // WHEN CART IN LOCAL STATE IS LOADED, CALCULATE THE TOTAL PRICE
     useEffect(() => {

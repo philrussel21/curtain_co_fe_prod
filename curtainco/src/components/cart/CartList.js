@@ -1,6 +1,7 @@
 import React from "react"
 // STYLES
 import { Grid, Typography } from "@material-ui/core"
+import useStyles from "./CartStyles"
 // COMPONENTS
 import CartItem from "./CartItem"
 
@@ -10,10 +11,11 @@ function CartList({
     handleIncreaseQty,
     handleDecreaseQty,
 }) {
+    const classes = useStyles()
     return (
         <Grid container direction="column" spacing={3}>
             {cart.length !== 0 ? (
-                cart.map((item, index) => (
+                cart.map((item) => (
                     <CartItem
                         itemInCart={item}
                         handleRemove={handleRemove}

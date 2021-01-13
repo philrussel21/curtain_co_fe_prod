@@ -70,63 +70,67 @@ function Products() {
 
     return (
         <>
-            <Grid container className={classes.cardGrid}>
-                <Grid
-                    item
-                    container
-                    direction="column"
-                    justify="flex-start"
-                    alignItems="center"
-                    xs={2}
-                    spacing={1}
-                >
-                    <Grid item>
-                        <Search
-                            searchInput={searchInput}
-                            handleChange={handleSearchInputChange}
-                        />
-                    </Grid>
-                    <Grid item>
-                        <Sort
-                            sortFields={sortFields}
-                            sortBy={sortBy}
-                            handleChange={handleSortByChange}
-                        />
-                    </Grid>
-                    <Grid item>
-                        <Filter
-                            state={filter}
-                            handleChange={handleFilterChange}
-                        />
-                    </Grid>
-                </Grid>
-
-                <Container maxWidth="md">
+            <Container>
+                <Grid container>
                     <Grid
                         item
                         container
-                        spacing={4}
-                        xs={10}
-                        justify="center"
+                        direction="column"
+                        justify="flex-start"
                         alignItems="center"
+                        xs={2}
+                        spacing={1}
+                        style={{ position: "fixed" }}
                     >
-                        {isLoading ? (
-                            <LoadingSymbol />
-                        ) : productsErrorMessage !== null ? (
-                            productsErrorMessage
-                        ) : (
-                            <ProductList
-                                products={state.products}
-                                filterText={searchInput}
-                                filterTypes={filter}
-                                filterSortBy={sortBy}
-                                sortFields={sortFields}
-                                inStockOnly={true}
+                        <Grid item>
+                            <Search
+                                searchInput={searchInput}
+                                handleChange={handleSearchInputChange}
                             />
-                        )}
+                        </Grid>
+                        <Grid item>
+                            <Sort
+                                sortFields={sortFields}
+                                sortBy={sortBy}
+                                handleChange={handleSortByChange}
+                            />
+                        </Grid>
+                        <Grid item>
+                            <Filter
+                                state={filter}
+                                handleChange={handleFilterChange}
+                            />
+                        </Grid>
                     </Grid>
-                </Container>
-            </Grid>
+
+                    <Container maxWidth="md">
+                        <Grid
+                            item
+                            container
+                            spacing={4}
+                            xs={10}
+                            justify="center"
+                            alignItems="center"
+                            className={classes.cardGrid}
+                        >
+                            {isLoading ? (
+                                <LoadingSymbol />
+                            ) : productsErrorMessage !== null ? (
+                                productsErrorMessage
+                            ) : (
+                                <ProductList
+                                    products={state.products}
+                                    filterText={searchInput}
+                                    filterTypes={filter}
+                                    filterSortBy={sortBy}
+                                    sortFields={sortFields}
+                                    inStockOnly={true}
+                                />
+                            )}
+                        </Grid>
+                    </Container>
+                </Grid>
+            </Container>
         </>
     )
 }

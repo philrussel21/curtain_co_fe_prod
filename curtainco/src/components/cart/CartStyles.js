@@ -30,6 +30,9 @@ const useStyles = makeStyles((theme) => ({
     cartItemDetailsCont: {
         paddingLeft: "3%",
     },
+    cartListCont: {
+        paddingTop: "3%",
+    },
 }))
 
 export default useStyles
