@@ -35,7 +35,7 @@ function CollectionItem({ data }) {
                         <img
                             src={
                                 data.imgUrl === ""
-                                    ? "/loading.gif"
+                                    ? "/no-image.png"
                                     : data.imgUrl
                             }
                             alt={data.name}
