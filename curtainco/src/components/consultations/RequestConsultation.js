@@ -37,7 +37,7 @@ export default function RequestConsultation({ history }) {
             }
         } catch (error) {
             console.log(
-                `Error occurred when submitting the consultation request. ${error.response.data.message}`
+                `Error occurred when submitting the consultation request. ${error}`
             );
             setErrorSnackBar(
                 dispatch,
