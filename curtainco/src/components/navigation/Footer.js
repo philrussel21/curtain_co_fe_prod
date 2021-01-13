@@ -15,9 +15,10 @@ import { useCurtainContext } from "../../config/CurtainCoContext"
 // HELPERS AND SERVICES
 import { Link, useLocation } from "react-router-dom"
 // COMPONENTS
+import { Mobile, Desktop } from "../reusable/Responsive"
 import Contact from "./Contact"
 import Legal from "./Legal"
-import { Mobile, Default } from "../reusable/Responsive"
+import CurtainCoDivider from "../reusable/CurtainCoDivider"
 
 export default function StickyFooter() {
     const classes = useStyles()
@@ -38,42 +39,66 @@ export default function StickyFooter() {
 
     return (
         <>
-            <Default>
+            <Desktop>
                 <div className={classes.footerRoot}>
-                    <CssBaseline />
+                    {/* <CssBaseline /> */}
 
                     <footer className={classes.footer}>
-                        <Divider />
-                        <Grid container>
-                            <Contact />
-
+                        <Grid container direction="column" spacing={2}>
+                            <Grid item container style={{ width: "108%" }}>
+                                <CurtainCoDivider />
+                            </Grid>
                             <Grid
                                 item
-                                sm={8}
                                 container
-                                justify="center"
+                                direction="row"
+                                justify="space-around"
                                 alignItems="center"
                             >
-                                {/* HIDING THE REQUEST CONSULTATION BUTTON TO THIS ROUTE SO THAT PEOPLE
+                                <Grid item xs={4}>
+                                    <Contact />
+                                </Grid>
+
+                                <Grid
+                                    item
+                                    // sm={8}
+                                    container
+                                    justify="center"
+                                    alignItems="center"
+                                    xs={4}
+                                >
+                                    {/* HIDING THE REQUEST CONSULTATION BUTTON TO THIS ROUTE SO THAT PEOPLE
                         DON'T THINK TO PRESS THIS BUTTON TO SUBMIT IT AND RELOAD THE PAGE
                         ACCIDENTALLY */}
-                                {!hideButton && (
-                                    <Button variant="contained" color="primary">
+                                    {!hideButton && (
                                         <Link
                                             to="/request"
-                                            className={classes.link}
+                                            style={{ textDecoration: "none" }}
                                         >
-                                            Request Consultation
+                                            <Grid
+                                                item
+                                                container
+                                                justify="center"
+                                            >
+                                                <Button
+                                                    variant="outlined"
+                                                    color="primary"
+                                                    size="large"
+                                                >
+                                                    Request Consultation
+                                                </Button>
+                                            </Grid>
                                         </Link>
-                                    </Button>
-                                )}
+                                    )}
+                                </Grid>
+                                <Grid item container xs={4}>
+                                    <Legal />
+                                </Grid>
                             </Grid>
-
-                            <Legal />
                         </Grid>
                     </footer>
                 </div>
-            </Default>
+            </Desktop>
             <Mobile>
                 <footer className={classes.footerMobile}>
                     <Container>
