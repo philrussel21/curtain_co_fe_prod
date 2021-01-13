@@ -92,7 +92,7 @@ function CartItem({
                         justify="center"
                         alignItems="center"
                     >
-                        <Grid item xs={4} container justify="center">
+                        <Grid item xs={3} container justify="center">
                             <IconButton
                                 size="small"
                                 className={classes.secondaryIconButton}
@@ -102,10 +102,10 @@ function CartItem({
                                 <RemoveIcon color="secondary" />
                             </IconButton>
                         </Grid>
-                        <Grid item xs={4} container justify="center">
+                        <Grid item xs={3} container justify="center">
                             <Typography>QTY: {itemInCart.qty}</Typography>
                         </Grid>
-                        <Grid item xs={4} container justify="center">
+                        <Grid item xs={3} container justify="center">
                             <IconButton
                                 size="small"
                                 className={classes.primaryIconButton}
