@@ -113,7 +113,7 @@ export default function StickyFooter() {
                             <Grid item container justify="space-around" xs={12}>
                                 <Grid item container xs={6}>
                                     <img
-                                        src="/CurtainCoLogo192.png"
+                                        src="/logo192.png"
                                         alt="curtain co logo"
                                         style={{ width: "70px" }}
                                     />

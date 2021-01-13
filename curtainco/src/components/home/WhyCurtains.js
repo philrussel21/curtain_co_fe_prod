@@ -34,7 +34,7 @@ function WhyCurtains() {
 
             <Grid item>
                 <Link to={`/collections`} className="link">
-                    <Button variant="contained" color="secondary">
+                    <Button variant="contained" color="primary" size="large">
                         Collections
                     </Button>
                 </Link>
