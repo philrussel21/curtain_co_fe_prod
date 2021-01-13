@@ -80,6 +80,36 @@ function setWarningSnackBar(dispatch, message) {
     });
 }
 
+function setSuccessAlert(dispatch, message) {
+    dispatch({
+        type: ACTIONS.SET_ALERT,
+        payload: {
+            severity: "success",
+            message
+        }
+    });
+}
+
+function setWarningAlert(dispatch, message) {
+    dispatch({
+        type: ACTIONS.SET_ALERT,
+        payload: {
+            severity: "warning",
+            message
+        }
+    });
+}
+
+function setErrorAlert(dispatch, message) {
+    dispatch({
+        type: ACTIONS.SET_ALERT,
+        payload: {
+            severity: "error",
+            message
+        }
+    });
+}
+
 export {
     capitalize,
     isEmpty,
@@ -88,5 +118,8 @@ export {
     ascSort,
     setErrorSnackBar,
     setSuccessSnackBar,
-    setWarningSnackBar
+    setWarningSnackBar,
+    setSuccessAlert,
+    setWarningAlert,
+    setErrorAlert
 };

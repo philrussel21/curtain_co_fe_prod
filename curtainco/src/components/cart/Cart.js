@@ -21,7 +21,7 @@ import { setSuccessSnackBar } from "../../helpers/appHelpers";
 // STATE
 import { useCurtainContext } from "../../config/CurtainCoContext";
 import { ACTIONS } from "../../config/stateReducer";
-import { setErrorSnackBar, setWarningSnackBar } from "../../helpers/appHelpers";
+import { setErrorSnackBar, setWarningSnackBar, setWarningAlert, setErrorAlert } from "../../helpers/appHelpers";
 
 function Cart({ history }) {
     const classes = useStyles();
@@ -149,10 +149,15 @@ function Cart({ history }) {
         try {
             await deleteOrder(orderId);
             console.log("Order Object DELETED");
+            const errMsg = "Something went wrong. Payment was not taken";
             setPaymentFailed(true); // modal ??
             setErrorSnackBar(
                 dispatch,
-                "Something went wrong. Payment was not taken"
+                errMsg
+            );
+            setErrorAlert(
+                dispatch,
+                errMsg
             );
         } catch (error) {
             console.log("There was a problem removing the created order when paypal errored on checkout.");
@@ -163,14 +168,18 @@ function Cart({ history }) {
     async function handleCancel(data) {
         console.log("----CANCEL PAYPAL PURCHASE----");
         console.log(data);
-        setWarningSnackBar(
-            dispatch,
-            "Transaction Cancelled. No payment was taken.");
         // data contains the response from paypal which is to be stored in server
         try {
             await deleteOrder(orderId);
             console.log("Order Object DELETED");
+            const warningMsg = "Transaction Cancelled. No payment was taken.";
+            setWarningSnackBar(
+                dispatch,
+                warningMsg);
             setPaymentCancelled(true);
+            setWarningAlert(
+                dispatch,
+                warningMsg);
         } catch (error) {
             console.log("There was a problem removing the created order after cancelling checkout.");
             console.log(error);
