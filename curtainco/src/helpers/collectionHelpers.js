@@ -1,5 +1,5 @@
 function getOneCollectionFromState(allCollections, id) {
-    const collection = allCollections.find((coll) => coll._id === id);
+    const collection = allCollections.find((coll) => coll._id === id)
     return collection
 }
 
@@ -202,6 +202,16 @@ function calculateTotalPriceOfCategoryOfProducts(
     }
 }
 
+function filterOutEmptyCollections(collections) {
+    let tempCollections = collections.filter(
+        (coll) =>
+            coll.track.length > 0 &&
+            coll.fabric.length > 0 &&
+            coll.accessory.length > 0
+    )
+    return tempCollections
+}
+
 export {
     getOneCollectionFromState,
     filterProductsInCollection,
@@ -209,4 +219,5 @@ export {
     checkIfProductsExistInCollection,
     buildContentString,
     calculateCustomizedCollectionPrice,
+    filterOutEmptyCollections,
 }

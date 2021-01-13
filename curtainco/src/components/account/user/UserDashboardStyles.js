@@ -1,7 +1,12 @@
 import { makeStyles } from "@material-ui/core/styles"
 
 const useStyles = makeStyles((theme) => ({
-    heading: {
+    userDashboardCont: {
+        height: "100%",
+        overflowY: "auto",
+        paddingBottom: "10%",
+    },
+    userDashboardSubheading: {
         textAlign: "center",
     },
     purchaseHistoryRoot: {
@@ -19,6 +24,9 @@ const useStyles = makeStyles((theme) => ({
         height: "100px",
         width: "100px",
         objectFit: "contain",
+    },
+    profileInfoDetails: {
+        fontStyle: "italic",
     },
 }))
 

@@ -40,17 +40,11 @@ function CollectionItem({ data }) {
         <Paper className={classes.paper}>
             <Grid item container spacing={2}>
                 <Grid item xs={4}>
-                    <div role="img">
-                        <img
-                            src={
-                                data.imgUrl === ""
-                                    ? "/no-image.png"
-                                    : data.imgUrl
-                            }
-                            alt={data.name}
-                            style={{ width: "70%" }}
-                        />
-                    </div>
+                    <img
+                        src={data.imgUrl === "" ? "/no-image.png" : data.imgUrl}
+                        alt={data.name}
+                        className={classes.collectionItemImg}
+                    />
                 </Grid>
                 <Grid item container direction="column" xs={8} spacing={2}>
                     <Grid item>
@@ -59,7 +53,11 @@ function CollectionItem({ data }) {
                         </Typography>
                     </Grid>
                     <Grid item>
-                        <Typography>{capitalize(data.description)}</Typography>
+                        <Typography
+                            className={classes.collectionItemDescription}
+                        >
+                            {capitalize(data.description)}
+                        </Typography>
                     </Grid>
                     {/* <Grid item>
                         <AddToCartButton

@@ -1,12 +1,22 @@
-import React from "react";
-import { Grid } from "@material-ui/core";
-import CollectionItem from "../collection/CollectionItem";
-import useStyles from "../CollectionStyles";
+import React, { useState, useEffect } from "react"
+import { Grid } from "@material-ui/core"
+import CollectionItem from "../collection/CollectionItem"
+import useStyles from "../CollectionStyles"
+import { filterOutEmptyCollections } from "../../../helpers/collectionHelpers"
 
 function CollectionList({ collections }) {
-    const classes = useStyles();
+    const classes = useStyles()
+    const [filteredCollections, setFilteredCollections] = useState([])
 
-    const collectionList = collections.map((item, index) => (
+    // FILTER OUT ANY COLLECTIONS THAT DON'T HAVE ANY PRODUCTS IN THEM
+    // SO USERS CAN'T BUY THEM
+
+    useEffect(() => {
+        let filtered = filterOutEmptyCollections(collections)
+        setFilteredCollections(filtered)
+    }, [collections])
+
+    const collectionList = filteredCollections.map((item, index) => (
         <Grid
             item
             container
@@ -18,9 +28,9 @@ function CollectionList({ collections }) {
         >
             <CollectionItem data={item} />
         </Grid>
-    ));
+    ))
 
-    return collectionList;
+    return collectionList
 }
 
-export default CollectionList;
+export default CollectionList
