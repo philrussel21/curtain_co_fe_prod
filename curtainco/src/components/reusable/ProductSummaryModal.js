@@ -1,6 +1,12 @@
 import React from "react"
 // STYLES
-import { Grid, Typography, IconButton } from "@material-ui/core"
+import {
+    Grid,
+    Typography,
+    IconButton,
+    useTheme,
+    useMediaQuery,
+} from "@material-ui/core"
 import useStyles from "./ModalStyles"
 // ICONS
 import CloseIcon from "@material-ui/icons/Close"
@@ -14,10 +20,19 @@ import { capitalize } from "../../helpers/appHelpers"
 
 function ProductSummaryModal({ data, title, handleCartClick, handleClose }) {
     const classes = useStyles()
-    console.log(data)
+    const theme = useTheme()
+    const isMobile = useMediaQuery(theme.breakpoints.only("xs"))
+
     return (
-        <Grid container spacing={3}>
-            <Grid item container xs={5} justify="center" alignItems="center">
+        <Grid container spacing={isMobile ? 1 : 3}>
+            <Grid
+                item
+                container
+                xs={12}
+                sm={5}
+                justify="center"
+                alignItems="center"
+            >
                 <div role="img">
                     <img
                         src={
@@ -26,7 +41,11 @@ function ProductSummaryModal({ data, title, handleCartClick, handleClose }) {
                                 : data.imgUrl
                         }
                         alt={data.name}
-                        className={classes.modalImage}
+                        className={
+                            isMobile
+                                ? classes.modalImageMobile
+                                : classes.modalImage
+                        }
                     />
                 </div>
             </Grid>
@@ -36,7 +55,8 @@ function ProductSummaryModal({ data, title, handleCartClick, handleClose }) {
                 direction="column"
                 justify="flex-start"
                 alignItems="flex-start"
-                xs={7}
+                xs={12}
+                sm={7}
             >
                 <Grid
                     item
@@ -44,11 +64,12 @@ function ProductSummaryModal({ data, title, handleCartClick, handleClose }) {
                     justify="space-between"
                     className={classes.closeButtonCont}
                 >
-                    <Grid item container justify="center" xs={9}>
+                    <Grid item container justify="center" xs={10} sm={9}>
                         <Typography
                             variant="h3"
                             component="h3"
                             className={classes.modalTitle}
+                            style={{ fontSize: isMobile ? 30 : 45 }}
                         >
                             {capitalize(title)}
                         </Typography>

@@ -8,7 +8,7 @@ const useStyles = makeStyles((theme) => ({
         border: "none",
         zIndex: theme.zIndex.modal,
     },
-    paper: {
+    paperDesktopModal: {
         backgroundColor: theme.palette.background.paper,
         border: "none",
         boxShadow: theme.shadows[5],
@@ -16,6 +16,18 @@ const useStyles = makeStyles((theme) => ({
         width: "50%",
         maxWidth: "700px",
         minWidth: "500px",
+        // borderBottomRightRadius: theme.spacing(5),
+        // borderTopLeftRadius: theme.spacing(5),
+        outline: "none",
+    },
+    paperModalMobile: {
+        backgroundColor: theme.palette.background.paper,
+        border: "none",
+        boxShadow: theme.shadows[5],
+        padding: theme.spacing(2, 4, 3),
+        width: "90%",
+        maxWidth: "300px",
+        minWidth: "200px",
         // borderBottomRightRadius: theme.spacing(5),
         // borderTopLeftRadius: theme.spacing(5),
         outline: "none",
@@ -33,6 +45,7 @@ const useStyles = makeStyles((theme) => ({
         fontFamily: theme.typography.fontFamily.split(",")[2],
         color: theme.palette.primary.light,
         fontSize: 40,
+        textAlign: "center",
     },
     modalImage: {
         borderBottomRightRadius: theme.spacing(5),
@@ -41,6 +54,14 @@ const useStyles = makeStyles((theme) => ({
         height: "100%",
         maxWidth: "350px",
         maxHeight: "300px",
+        objectFit: "cover",
+    },
+    modalImageMobile: {
+        borderBottomRightRadius: theme.spacing(5),
+        borderTopLeftRadius: theme.spacing(5),
+        width: "100%",
+        height: "100%",
+        maxHeight: "200px",
         objectFit: "cover",
     },
     modalData: {
