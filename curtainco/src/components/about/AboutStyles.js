@@ -2,7 +2,7 @@ import { makeStyles } from "@material-ui/core/styles"
 
 const useStyles = makeStyles((theme) => ({
     aboutMeCont: {
-        paddingBottom: "10%",
+        paddingBottom: "5%",
     },
     aboutMeImg: {
         width: "100%",

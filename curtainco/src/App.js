@@ -58,12 +58,12 @@ function App() {
                 })
                 .catch((error) => {
                     console.log(
-                        `An error ocurred on getLoggedInUserFromHomeRoute: ${error}.`
+                        `Couldn't get current session or no previous user logged in. ${error}.`
                     )
-                    setErrorSnackBar(
-                        dispatch,
-                        "Something went wrong and we couldn't log you in"
-                    )
+                    // setErrorSnackBar(
+                    //     dispatch,
+                    //     "Something went wrong and we couldn't log you in"
+                    // )
                 })
             setIsLoading(false)
         }

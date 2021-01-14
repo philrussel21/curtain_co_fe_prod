@@ -1,8 +1,12 @@
 import React from "react"
-import { Link } from "react-router-dom"
+// STYLES
 import { Grid, Button, Typography } from "@material-ui/core"
+import useStyles from "./HomeStyles"
+// PACKAGES
+import { Link } from "react-router-dom"
 
 function WhyCurtains() {
+    const classes = useStyles()
     return (
         <Grid
             item
@@ -11,13 +15,10 @@ function WhyCurtains() {
             justify="center"
             alignItems="center"
             spacing={2}
+            className={classes.WhyCurtainsCont}
         >
-            <Grid item>
-                <Typography
-                    variant="h2"
-                    component="h2"
-                    style={{ textAlign: "center" }}
-                >
+            <Grid item container justify="center">
+                <Typography variant="h3" component="h3">
                     Why Curtains?
                 </Typography>
             </Grid>

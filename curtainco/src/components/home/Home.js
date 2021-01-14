@@ -1,12 +1,14 @@
 import React, { useState } from "react"
 // STYLES
 import { Grid, useTheme, useMediaQuery, Container } from "@material-ui/core"
+import useStyles from "./HomeStyles"
 // COMPONENTS
 import HeroBanner from "./HeroBanner"
 import WhyCurtains from "./WhyCurtains"
 import { Desktop, Mobile } from "../reusable/Responsive"
 
 function Home() {
+    const classes = useStyles()
     const [imgBorderRadius, setImgBorderRadius] = useState()
     const [imgHeight, setImgHeight] = useState(0)
     const [imgWidth, setImgWidth] = useState(0)
@@ -20,7 +22,10 @@ function Home() {
     }
     function getImgHeight(height) {
         let calc = height / 3
-        let width = calc * 4
+        let width = calc * 5.5
+        console.log({ calc })
+        console.log({ width })
+
         setImgHeight(height)
         setImgWidth(width)
     }
@@ -33,12 +38,8 @@ function Home() {
                     <Grid
                         container
                         alignItems="center"
-                        style={{
-                            height: "100%",
-                            paddingTop: "100px",
-                            maxWidth: "1100px",
-                            margin: "0 auto",
-                        }}
+                        justify="center"
+                        className={classes.homeCont}
                     >
                         <Grid container justify="center" alignItems="center">
                             <Grid
@@ -52,7 +53,7 @@ function Home() {
                                     borderBottomRightRadius: `${imgBorderRadius}px`,
                                     borderTopLeftRadius: `${imgBorderRadius}px`,
                                     height: "100%",
-                                    width: `${imgWidth}px`,
+                                    maxWidth: `${imgWidth}px`,
                                     zIndex: 50,
                                     borderRight: "30px solid whitesmoke",
                                     borderBottom: "10px solid whitesmoke",
@@ -74,7 +75,7 @@ function Home() {
                                     backgroundColor: "lightblue",
                                     position: "relative",
                                     height: `${imgHeight}px`,
-                                    width: "150%",
+                                    maxWidth: `${imgWidth * 1.3}px`,
                                     zIndex: 49,
                                     borderBottomRightRadius: `${imgBorderRadius}px`,
                                     paddingLeft: "12%",

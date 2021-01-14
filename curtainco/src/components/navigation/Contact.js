@@ -10,14 +10,14 @@ import SocialLinkButton from "../reusable/SocialLinkButton"
 function Contact() {
     return (
         <Grid item container direction="column" spacing={1}>
-            <Grid item container justify="flex-start">
-                <Grid item xs={1}>
+            <Grid item container justify="flex-start" spacing={1}>
+                <Grid item>
                     <SocialLinkButton
                         text="fb"
                         link="https://www.facebook.com/marie.gjorg/"
                     />
                 </Grid>
-                <Grid item xs={1}>
+                <Grid item>
                     <SocialLinkButton
                         text="in"
                         link="https://www.instagram.com/marie_g_builder/"
@@ -36,7 +36,7 @@ function Contact() {
                 </Grid>
                 <Grid item>
                     <Typography variant="body2" color="textSecondary">
-                        marie@email.com
+                        <a href="mailto:marie@email.com?">marie@email.com</a>
                     </Typography>
                 </Grid>
             </Grid>

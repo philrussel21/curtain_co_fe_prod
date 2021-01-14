@@ -1,12 +1,12 @@
 body,
 html {
-    // background-color: white !important;
-    background: rgb(237, 237, 237) !important;
-    background: linear-gradient(
-        118deg,
-        rgba(237, 237, 237, 1) 61%,
-        rgba(255, 255, 255, 1) 100%
-    ) !important;
+    background-color: whitesmoke !important;
+    // background: rgb(237, 237, 237) !important;
+    // background: linear-gradient(
+    //     118deg,
+    //     rgba(237, 237, 237, 1) 61%,
+    //     rgba(255, 255, 255, 1) 100%
+    // ) !important;
 
     height: 100vh !important;
     width: 100vw !important;
@@ -16,7 +16,7 @@ html {
 }
 
 .app-container {
-    height: calc(100vh - 195px);
+    height: calc(100vh - 320px);
     z-index: 1;
     // overflow-y: auto;
     overflow-x: hidden;

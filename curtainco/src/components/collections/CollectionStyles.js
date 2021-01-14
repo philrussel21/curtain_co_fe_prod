@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
     },
     collectionListCont: {
         height: "100%",
-        paddingBottom: "10%",
+        paddingBottom: "5%",
     },
     collectionHeaderImage: {
         width: "60%",
