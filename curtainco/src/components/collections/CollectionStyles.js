@@ -62,6 +62,7 @@ const useStyles = makeStyles((theme) => ({
     collectionItemHeader: {
         fontFamily: theme.typography.fontFamily.split(",")[2],
         fontSize: "2.5rem",
+        color: theme.palette.primary.light,
     },
     collectionItemImg: {
         width: "90%",
@@ -74,6 +75,7 @@ const useStyles = makeStyles((theme) => ({
     collectionItemDescription: {
         fontStyle: "italic",
         fontFamily: theme.typography.fontFamily.split(",")[1],
+        color: theme.palette.grey[700],
     },
     collectionItemImgMobile: {
         width: "100%",

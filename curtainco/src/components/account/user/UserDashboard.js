@@ -1,6 +1,6 @@
 import React from "react"
 // STYLES
-import { Container, Grid } from "@material-ui/core"
+import { Container, Grid, useMediaQuery, useTheme } from "@material-ui/core"
 import useStyles from "./UserDashboardStyles"
 // COMPONENTS
 import ProfileInformation from "./ProfileInformation"
@@ -9,6 +9,9 @@ import CTARequestConsultation from "./CTARequestConsultation"
 
 function UserDashboard({ isLoading }) {
     const classes = useStyles()
+    const theme = useTheme()
+    const isMobile = useMediaQuery(theme.breakpoints.only("xs"))
+
     return (
         <Container>
             <Grid
@@ -17,17 +20,18 @@ function UserDashboard({ isLoading }) {
                 justify="space-between"
                 alignItems
                 className={classes.userDashboardCont}
-                spacing={6}
+                spacing={isMobile ? 4 : 6}
             >
-                <Grid item container direction="row">
-                    <Grid item xs={5}>
-                        <ProfileInformation />
+                <Grid item container direction="row" spacing={isMobile ? 4 : 0}>
+                    <Grid item xs={12} sm={5}>
+                        <ProfileInformation isMobile={isMobile} />
                     </Grid>
                     <Grid
                         item
                         container
                         alignItems="flex-start"
-                        xs={7}
+                        xs={12}
+                        sm={7}
                         style={{ height: "100%" }}
                     >
                         <PurchaseHistory isLoading={isLoading} />

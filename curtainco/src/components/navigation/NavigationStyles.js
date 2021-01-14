@@ -122,6 +122,10 @@ const useStyles = makeStyles((theme) => ({
         marginTop: "-5%",
         backgroundColor: theme.palette.primary.light,
     },
+    bottomNavBarDividerMobile: {
+        marginTop: "-10%",
+        backgroundColor: theme.palette.primary.light,
+    },
     dividerCont: {
         position: "relative",
     },

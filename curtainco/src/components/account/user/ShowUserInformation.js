@@ -10,7 +10,7 @@ import BusinessIcon from "@material-ui/icons/Business"
 // SERVICES AND HELPERS
 import { displayPhoneNumber } from "../../../helpers/appHelpers"
 
-function ShowUserInformation({ user }) {
+function ShowUserInformation({ user, isMobile }) {
     const classes = useStyles()
     return (
         <Grid
@@ -20,43 +20,61 @@ function ShowUserInformation({ user }) {
             alignItems="center"
             spacing={1}
         >
-            <Grid item container justify="center" alignItems="center">
-                <Grid item xs={1}>
+            <Grid item container justify="space-around" alignItems="center">
+                <Grid item xs={2} sm={1}>
                     <EmailIcon color="primary" />
                 </Grid>
-                <Grid item xs={11}>
-                    <Typography className={classes.profileInfoDetails}>
+                <Grid item xs={10} sm={11}>
+                    <Typography
+                        className={classes.profileInfoDetails}
+                        style={{ fontSize: isMobile ? 14 : 20 }}
+                    >
                         {user.email}
                     </Typography>
                 </Grid>
             </Grid>
-            <Grid item container justify="center" alignItems="center">
-                <Grid item xs={1}>
+            <Grid
+                item
+                container
+                justify="space-around"
+                alignItems="center"
+                spacing={1}
+            >
+                <Grid item xs={2} sm={1}>
                     <HomeIcon color="primary" />
                 </Grid>
-                <Grid item xs={11}>
-                    <Typography className={classes.profileInfoDetails}>
+                <Grid item xs={10} sm={11}>
+                    <Typography
+                        className={classes.profileInfoDetails}
+                        style={{ fontSize: isMobile ? 14 : 20 }}
+                    >
                         {`${user.address1}, ${user.suburb}, ${user.state}, ${user.postcode}`}
                     </Typography>
                 </Grid>
             </Grid>
             <Grid item container justify="center" alignItems="center">
-                <Grid item xs={1}>
+                <Grid item xs={2} sm={1}>
                     <PhoneIcon color="primary" />
                 </Grid>
-                <Grid item xs={11}>
-                    <Typography className={classes.profileInfoDetails}>
+                <Grid item xs={10} sm={11}>
+                    <Typography
+                        className={classes.profileInfoDetails}
+                        style={{ fontSize: isMobile ? 14 : 20 }}
+                    >
                         {displayPhoneNumber(user.phone)}
                     </Typography>
                 </Grid>
             </Grid>
             {user.companyName && (
                 <Grid item container justify="center" alignItems="center">
-                    <Grid item xs={1}>
+                    <Grid item xs={2} sm={1}>
                         <BusinessIcon />
                     </Grid>
-                    <Grid item xs={11}>
-                        <Typography className={classes.profileInfoDetails}>
+                    <Grid item xs={10} sm={11}>
+                        <Typography
+                            className={classes.profileInfoDetails}
+                            style={{ fontSize: isMobile ? 14 : 20 }}
+                        >
                             {user.companyName}
                         </Typography>
                     </Grid>

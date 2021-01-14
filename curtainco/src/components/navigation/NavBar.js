@@ -274,11 +274,30 @@ function NavBar() {
             {/* MOBILE STYLES */}
 
             <Mobile>
-                <Link to={"/"} className={classes.navLinks}>
-                    <Typography variant="h4" className={classes.mobileHeader}>
-                        THE CURTAIN CO
-                    </Typography>
-                </Link>
+                <Grid container direction="column">
+                    <Grid item className={classes.dividerCont}>
+                        <Divider
+                            variant="middle"
+                            className={classes.topNavBarDivider}
+                        />
+                    </Grid>
+                    <Grid item>
+                        <Link to={"/"} className={classes.navLinks}>
+                            <Typography
+                                variant="h4"
+                                className={classes.mobileHeader}
+                            >
+                                THE CURTAIN CO
+                            </Typography>
+                        </Link>
+                    </Grid>
+                    <Grid item className={classes.dividerCont}>
+                        <Divider
+                            variant="middle"
+                            className={classes.bottomNavBarDividerMobile}
+                        />
+                    </Grid>
+                </Grid>
                 <AppBar position="fixed" className={classes.appBarMobile}>
                     <div className={classes.sectionMobile}>
                         <Fab

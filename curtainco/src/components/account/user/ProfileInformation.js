@@ -1,6 +1,12 @@
 import React, { useState } from "react"
 // STYLES
-import { Container, Grid, Typography, Button } from "@material-ui/core"
+import {
+    Container,
+    Grid,
+    Typography,
+    Button,
+    useMediaQuery,
+} from "@material-ui/core"
 import useStyles from "./UserDashboardStyles"
 // STATE
 import { useCurtainContext } from "../../../config/CurtainCoContext"
@@ -16,7 +22,7 @@ import { setSuccessSnackBar } from "../../../helpers/appHelpers"
 import ShowUserInformation from "./ShowUserInformation"
 import EditUserInformation from "./EditUserInformation"
 
-function ProfileInformation() {
+function ProfileInformation({ isMobile }) {
     const classes = useStyles()
     const { state, dispatch } = useCurtainContext()
     const [editUser, setEditUser] = useState(false)
@@ -50,47 +56,47 @@ function ProfileInformation() {
         return updateError
     }
     return (
-        <Container>
-            <Grid container direction="column" spacing={2}>
-                <Grid item>
-                    <Typography
-                        variant="h4"
-                        className={classes.userDashboardSubheading}
-                    >
-                        {`${
-                            state.currentUser.title !== undefined
-                                ? state.currentUser.title
-                                : ""
-                        } ${getFirstNameFromFullName(
-                            state.currentUser.fullName
-                        )} ${getLastNameFromFullName(
-                            state.currentUser.fullName
-                        )}`}
-                    </Typography>
-                </Grid>
-
-                <Grid item>
-                    {editUser ? (
-                        <EditUserInformation
-                            user={state.currentUser}
-                            handleUpdate={handleUpdate}
-                        />
-                    ) : (
-                        <ShowUserInformation user={state.currentUser} />
-                    )}
-                </Grid>
-
-                <Grid item container justify="center">
-                    <Button
-                        variant="outlined"
-                        color={editUser ? "default" : "secondary"}
-                        onClick={toggleEditUserForm}
-                    >
-                        {editUser ? "Cancel" : "Edit Information"}
-                    </Button>
-                </Grid>
+        <Grid container direction="column" spacing={2}>
+            <Grid item>
+                <Typography
+                    variant="h4"
+                    className={classes.userDashboardSubheading}
+                    style={{ fontSize: isMobile ? 35 : 45 }}
+                >
+                    {`${
+                        state.currentUser.title !== undefined
+                            ? state.currentUser.title
+                            : ""
+                    } ${getFirstNameFromFullName(
+                        state.currentUser.fullName
+                    )} ${getLastNameFromFullName(state.currentUser.fullName)}`}
+                </Typography>
             </Grid>
-        </Container>
+
+            <Grid item>
+                {editUser ? (
+                    <EditUserInformation
+                        user={state.currentUser}
+                        handleUpdate={handleUpdate}
+                    />
+                ) : (
+                    <ShowUserInformation
+                        user={state.currentUser}
+                        isMobile={isMobile}
+                    />
+                )}
+            </Grid>
+
+            <Grid item container justify="center">
+                <Button
+                    variant="outlined"
+                    color={editUser ? "default" : "secondary"}
+                    onClick={toggleEditUserForm}
+                >
+                    {editUser ? "Cancel" : "Edit Information"}
+                </Button>
+            </Grid>
+        </Grid>
     )
 }
 
