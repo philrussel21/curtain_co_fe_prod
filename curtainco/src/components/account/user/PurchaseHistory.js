@@ -8,7 +8,7 @@ import useStyles from "./UserDashboardStyles"
 // HELPERS AND SERVICES
 import { useCurtainContext } from "../../../config/CurtainCoContext"
 
-function PurchaseHistory({ isLoading }) {
+function PurchaseHistory({ isLoading, isMobile }) {
     const classes = useStyles()
     const { state } = useCurtainContext()
     const [purchaseHistory, setPurchaseHistory] = useState([])
@@ -45,6 +45,7 @@ function PurchaseHistory({ isLoading }) {
                     <Typography
                         variant="h4"
                         className={classes.userDashboardSubheading}
+                        style={{ fontSize: isMobile ? 32 : 45 }}
                     >
                         Purchase History
                     </Typography>

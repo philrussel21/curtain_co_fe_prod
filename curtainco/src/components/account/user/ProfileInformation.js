@@ -61,7 +61,7 @@ function ProfileInformation({ isMobile }) {
                 <Typography
                     variant="h4"
                     className={classes.userDashboardSubheading}
-                    style={{ fontSize: isMobile ? 35 : 45 }}
+                    style={{ fontSize: isMobile ? 32 : 45 }}
                 >
                     {`${
                         state.currentUser.title !== undefined

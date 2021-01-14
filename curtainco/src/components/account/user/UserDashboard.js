@@ -34,12 +34,15 @@ function UserDashboard({ isLoading }) {
                         sm={7}
                         style={{ height: "100%" }}
                     >
-                        <PurchaseHistory isLoading={isLoading} />
+                        <PurchaseHistory
+                            isLoading={isLoading}
+                            isMobile={isMobile}
+                        />
                     </Grid>
                 </Grid>
 
                 <Grid item>
-                    <CTARequestConsultation />
+                    <CTARequestConsultation isMobile={isMobile} />
                 </Grid>
             </Grid>
         </Container>

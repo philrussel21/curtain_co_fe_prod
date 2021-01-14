@@ -31,6 +31,9 @@ const useStyles = makeStyles((theme) => ({
         fontStyle: "italic",
         color: theme.palette.grey[700],
     },
+    userDashBoardCTAText: {
+        color: theme.palette.grey[700],
+    },
 }))
 
 export default useStyles
