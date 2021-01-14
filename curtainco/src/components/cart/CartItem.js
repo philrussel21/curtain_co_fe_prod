@@ -1,6 +1,12 @@
 import React from "react"
 // STYLES
-import { Grid, Typography, IconButton, Paper } from "@material-ui/core"
+import {
+    Grid,
+    Typography,
+    IconButton,
+    Paper,
+    Container,
+} from "@material-ui/core"
 import useStyles from "./CartStyles"
 // ICONS
 import CloseIcon from "@material-ui/icons/Close"
@@ -31,7 +37,13 @@ function CartItem({
                     alignItems="center"
                     key={`cart-item-${itemInCart.id}`}
                 >
-                    <Grid item xs={2} container justify="center">
+                    <Grid
+                        item
+                        xs={2}
+                        container
+                        justify="center"
+                        alignItems="center"
+                    >
                         <img
                             src={productItem.imgUrl}
                             alt={productItem.name}
@@ -42,9 +54,9 @@ function CartItem({
                         item
                         container
                         direction="column"
-                        justify="center"
+                        justify="space-around"
                         alignItems="flex-start"
-                        xs={5}
+                        xs={4}
                         className={classes.cartItemDetailsCont}
                     >
                         <Grid item>
@@ -117,7 +129,7 @@ function CartItem({
                         </Grid>
                     </Grid>
 
-                    <Grid item xs={1} container justify="center">
+                    <Grid item xs={2} container justify="center">
                         <Typography className={classes.cartItemPrice}>
                             ${price}
                         </Typography>

@@ -1,30 +1,31 @@
-import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import FormLabel from "@material-ui/core/FormLabel";
-import FormControl from "@material-ui/core/FormControl";
-import FormGroup from "@material-ui/core/FormGroup";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import FormHelperText from "@material-ui/core/FormHelperText";
-import Checkbox from "@material-ui/core/Checkbox";
+import React from "react"
+// STYLES
+import {
+    FormLabel,
+    FormControl,
+    FormGroup,
+    FormControlLabel,
+    Checkbox,
+} from "@material-ui/core"
+import useStyles from "../ProductStyles"
 
-const useStyles = makeStyles((theme) => ({
-    root: {
-        display: "flex",
-    },
-    formControl: {
-        margin: theme.spacing(3),
-    },
-}));
-
-export default function Filter({ state, handleChange }) {
-    const classes = useStyles();
-    const { fabric, track, accessory } = state;
+export default function Filter({ filterBy, handleChange }) {
+    const classes = useStyles()
+    const { fabric, track, accessory } = filterBy
 
     return (
-        <div className={classes.root}>
-            <FormControl component="fieldset" className={classes.formControl}>
-                <FormLabel component="legend">Filter Products</FormLabel>
-                <FormGroup>
+        <div className={classes.filterRoot} style={{ width: "100%" }}>
+            <FormControl
+                component="fieldset"
+                className={classes.filterFormControl}
+            >
+                <FormLabel
+                    component="legend"
+                    // className={classes.productFilterHeadings}
+                >
+                    Filter Products
+                </FormLabel>
+                <FormGroup row>
                     <FormControlLabel
                         control={
                             <Checkbox
@@ -69,5 +70,5 @@ export default function Filter({ state, handleChange }) {
                 {/* <FormHelperText>Some text here?</FormHelperText> */}
             </FormControl>
         </div>
-    );
+    )
 }

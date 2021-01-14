@@ -1,13 +1,34 @@
 import React from "react"
-import { Grid } from "@material-ui/core"
+// STYLES
+import { Grid, Typography } from "@material-ui/core"
+// HELPERS AND SERVICES
+import { capitalize } from "../../helpers/appHelpers"
+import useStyles from "./ModalStyles"
 
 function FabricModalSummary({ product }) {
+    const classes = useStyles()
     return (
-        <Grid container direction="column">
-            <Grid item>Density: {product.density}</Grid>
-            <Grid item>Style: {product.style}</Grid>
-            <Grid item>Size: {product.size}</Grid>
-            <Grid item>Length: {product.length}</Grid>
+        <Grid item container>
+            <Grid item direction="column" xs={6}>
+                <Typography>Density:</Typography>
+                <Typography>Style:</Typography>
+                <Typography>Size:</Typography>
+                <Typography>Length:</Typography>
+            </Grid>
+            <Grid item direction="column" xs={6}>
+                <Typography className={classes.modalData}>
+                    {capitalize(product.density)}
+                </Typography>
+                <Typography className={classes.modalData}>
+                    {capitalize(product.style)}
+                </Typography>
+                <Typography className={classes.modalData}>
+                    {capitalize(product.size)}
+                </Typography>
+                <Typography className={classes.modalData}>
+                    {capitalize(product.length)}
+                </Typography>
+            </Grid>
         </Grid>
     )
 }

@@ -1,22 +1,51 @@
 import React from "react"
+// STYLES
+import {
+    Grid,
+    Typography,
+    IconButton,
+    useTheme,
+    useMediaQuery,
+} from "@material-ui/core"
 import useStyles from "./ModalStyles"
-import { Grid, Typography, IconButton } from "@material-ui/core"
-import AddToCartButton from "./AddToCartButton"
+// ICONS
 import CloseIcon from "@material-ui/icons/Close"
-import FabricModalSummary from "./FabricModalSummary"
+// COMPONENTS
+import AddToCartButton from "./AddToCartButton"
 import TrackModalSummary from "./TrackModalSummary"
+import FabricModalSummary from "./FabricModalSummary"
 import AccessoryModalSummary from "./AccessoryModalSummary"
+// HELPERS AND SERVICES
+import { capitalize } from "../../helpers/appHelpers"
 
 function ProductSummaryModal({ data, title, handleCartClick, handleClose }) {
     const classes = useStyles()
+    const theme = useTheme()
+    const isMobile = useMediaQuery(theme.breakpoints.only("xs"))
+
     return (
-        <Grid container>
-            <Grid item container xs={5} justify="center" alignItems="center">
+        <Grid container spacing={isMobile ? 1 : 3}>
+            <Grid
+                item
+                container
+                xs={12}
+                sm={5}
+                justify="center"
+                alignItems="center"
+            >
                 <div role="img">
                     <img
-                        src={data.imgUrl === "" ? "/loading.gif" : data.imgUrl}
+                        src={
+                            data.imgUrl === undefined
+                                ? "/no-image.png"
+                                : data.imgUrl
+                        }
                         alt={data.name}
-                        style={{ width: "70%" }}
+                        className={
+                            isMobile
+                                ? classes.modalImageMobile
+                                : classes.modalImage
+                        }
                     />
                 </div>
             </Grid>
@@ -26,8 +55,8 @@ function ProductSummaryModal({ data, title, handleCartClick, handleClose }) {
                 direction="column"
                 justify="flex-start"
                 alignItems="flex-start"
-                xs={7}
-                spacing={1}
+                xs={12}
+                sm={7}
             >
                 <Grid
                     item
@@ -35,9 +64,14 @@ function ProductSummaryModal({ data, title, handleCartClick, handleClose }) {
                     justify="space-between"
                     className={classes.closeButtonCont}
                 >
-                    <Grid item xs={9}>
-                        <Typography variant="h3" component="h3">
-                            {title}
+                    <Grid item container justify="center" xs={10} sm={9}>
+                        <Typography
+                            variant="h3"
+                            component="h3"
+                            className={classes.modalTitle}
+                            style={{ fontSize: isMobile ? 30 : 45 }}
+                        >
+                            {capitalize(title)}
                         </Typography>
                     </Grid>
                     <Grid item xs={3}>
@@ -52,16 +86,28 @@ function ProductSummaryModal({ data, title, handleCartClick, handleClose }) {
                 {/* <Grid item>
                     <Typography>{message}</Typography>
                 </Grid> */}
-                <Grid item>
-                    <Typography>Price: ${data.price}</Typography>
+
+                <Grid item style={{ paddingBottom: "2%" }}>
+                    <Typography className={classes.modalData}>
+                        {data.description !== undefined &&
+                            capitalize(data.description)}
+                    </Typography>
                 </Grid>
-                <Grid item>
-                    <Typography>Category: {data.category}</Typography>
+
+                <Grid item container>
+                    <Grid item container direction="column" xs={6}>
+                        <Typography>Price:</Typography>
+                    </Grid>
+                    <Grid item container direction="column" xs={6}>
+                        <Grid item>
+                            <Typography className={classes.modalData}>
+                                ${data.price}
+                            </Typography>
+                        </Grid>
+                    </Grid>
                 </Grid>
-                <Grid item>
-                    <Typography>{data.description}</Typography>
-                </Grid>
-                <Grid item>
+
+                <Grid item container>
                     {data.category === "Fabric" ? (
                         <FabricModalSummary product={data} />
                     ) : data.category === "Track" ? (
@@ -70,7 +116,13 @@ function ProductSummaryModal({ data, title, handleCartClick, handleClose }) {
                         <AccessoryModalSummary product={data} />
                     )}
                 </Grid>
-                <Grid item container justify="flex-end" alignItems="center">
+                <Grid
+                    item
+                    container
+                    justify="flex-end"
+                    alignItems="center"
+                    style={{ marginTop: "3%" }}
+                >
                     <AddToCartButton
                         icon={false}
                         text={"Add To Cart"}

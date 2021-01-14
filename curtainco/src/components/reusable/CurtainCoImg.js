@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react"
+// STYLES
 import { Grid, Typography, useTheme, useMediaQuery } from "@material-ui/core"
+import useStyles from "../home/HomeStyles"
 
 function CurtainCoImg({
     imageSrc,
@@ -9,6 +11,7 @@ function CurtainCoImg({
     getBorderRadius,
     getImgHeight,
 }) {
+    const classes = useStyles()
     const [imgHeight, setImgHeight] = useState(100)
     const [borderRadius, setBorderRadius] = useState(80)
     const theme = useTheme()
@@ -62,11 +65,7 @@ function CurtainCoImg({
                     >
                         <Typography
                             variant="h2"
-                            style={{
-                                color: "white",
-                                width: "100%",
-                                textAlign: "center",
-                            }}
+                            className={classes.curtainCoImgText}
                         >
                             {text}
                         </Typography>

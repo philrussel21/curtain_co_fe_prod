@@ -11,16 +11,22 @@ const useStyles = makeStyles((theme) => ({
         marginTop: theme.spacing(4),
     },
     cardGrid: {
-        paddingBottom: "15%",
-        marginLeft: "20%",
+        paddingBottom: "5%",
+        overflowY: "auto",
+    },
+    cardGridMobile: {
+        paddingBottom: "5%",
+        marginLeft: 0,
         overflowY: "auto",
     },
     card: {
         height: "100%",
+        width: "100%",
+        margin: "0 auto",
         display: "flex",
         flexDirection: "column",
-        borderBottomRightRadius: "40px",
-        borderTopLeftRadius: "40px",
+        borderBottomRightRadius: theme.spacing(5),
+        borderTopLeftRadius: theme.spacing(5),
         border: `1px solid ${theme.palette.primary.main}`,
         paddingBottom: theme.spacing(1),
     },
@@ -30,9 +36,30 @@ const useStyles = makeStyles((theme) => ({
     cardContent: {
         flexGrow: 1,
     },
+    cardContentText: {
+        fontFamily: theme.typography.fontFamily.split(",")[1],
+    },
     footer: {
         backgroundColor: theme.palette.background.paper,
         padding: theme.spacing(6),
+    },
+    productSeeMoreButton: {
+        // fontFamily: theme.typography.fontFamily.split(",")[1],
+    },
+    productFilterText: {
+        fontFamily: theme.typography.fontFamily.split(",")[1],
+        width: "100%",
+        color: theme.palette.primary.main,
+    },
+    productFilterHeadings: {
+        color: theme.palette.primary.main,
+    },
+    filterRoot: {
+        display: "flex",
+    },
+    filterFormControl: {
+        // margin: theme.spacing(3),
+        color: theme.palette.grey[700],
     },
 }))
 

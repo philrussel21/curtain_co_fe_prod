@@ -1,14 +1,17 @@
 import React, { useState, useEffect } from "react"
+// STYLES
 import { Grid, Typography } from "@material-ui/core"
 import useStyles from "../CollectionStyles"
+// HELPERS AND SERVICES
 import { capitalize } from "../../../helpers/appHelpers"
-import { useCurtainContext } from "../../../config/CurtainCoContext"
-import { ACTIONS } from "../../../config/stateReducer"
+// STATE
+// import { useCurtainContext } from "../../../config/CurtainCoContext"
+// import { ACTIONS } from "../../../config/stateReducer"
 
 function AccordionDataItem({ data, handleCustomization }) {
     const classes = useStyles()
     const [productSelection, setProductSelection] = useState([])
-    const [category, setCategory] = useState("")
+    // const [category, setCategory] = useState("")
 
     function handleSelected(event) {
         let productId = event.currentTarget.id.split(",")[0]
@@ -29,7 +32,7 @@ function AccordionDataItem({ data, handleCustomization }) {
             category = data[i].category
         }
         setProductSelection(tempSelection)
-        setCategory(category.toLowerCase())
+        // setCategory(category.toLowerCase())
     }, [data])
 
     // useEffect(() => {
@@ -57,8 +60,12 @@ function AccordionDataItem({ data, handleCustomization }) {
                 id={`${product._id},${index},${product.category}`}
             >
                 <img
-                    src={product.imgUrl}
-                    alt={product.name}
+                    src={
+                        product.imgUrl !== undefined
+                            ? product.imgUrl
+                            : "/no-image.png"
+                    }
+                    alt={`${product.name} product`}
                     className={
                         productSelection[index]
                             ? classes.accordionDataItemSelected

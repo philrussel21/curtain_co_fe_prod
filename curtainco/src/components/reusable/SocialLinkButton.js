@@ -7,10 +7,11 @@ function SocialLinkButton({ text, link }) {
     return (
         <IconButton
             color="primary"
-            size="small"
+            size="medium"
             style={{
                 border: `1px solid ${theme.palette.primary.main}`,
-                width: "75%",
+                width: "70%",
+                height: "60%",
             }}
         >
             <a

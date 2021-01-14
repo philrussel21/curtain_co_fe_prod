@@ -1,6 +1,6 @@
-import React from "react";
+import React from "react"
 
-import { TextField } from "@material-ui/core";
+import { TextField } from "@material-ui/core"
 
 function Search({ searchInput, handleChange }) {
     return (
@@ -13,9 +13,10 @@ function Search({ searchInput, handleChange }) {
                 label="Search Name"
                 value={searchInput}
                 onChange={handleChange}
+                style={{ width: "100%" }}
             />
         </>
-    );
+    )
 }
 
-export default Search;
+export default Search

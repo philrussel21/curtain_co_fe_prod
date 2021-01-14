@@ -8,6 +8,8 @@ const useStyles = makeStyles((theme) => ({
     },
     userDashboardSubheading: {
         textAlign: "center",
+        fontFamily: theme.typography.fontFamily.split(",")[2],
+        color: theme.palette.primary.light,
     },
     purchaseHistoryRoot: {
         width: "100%",
@@ -27,6 +29,10 @@ const useStyles = makeStyles((theme) => ({
     },
     profileInfoDetails: {
         fontStyle: "italic",
+        color: theme.palette.grey[700],
+    },
+    userDashBoardCTAText: {
+        color: theme.palette.grey[700],
     },
 }))
 

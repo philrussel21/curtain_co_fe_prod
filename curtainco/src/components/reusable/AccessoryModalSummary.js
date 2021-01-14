@@ -1,10 +1,22 @@
 import React from "react"
-import { Grid } from "@material-ui/core"
+// STYLES
+import { Grid, Typography } from "@material-ui/core"
+// HELPERS AND SERVICES
+import { capitalize } from "../../helpers/appHelpers"
+import useStyles from "./ModalStyles"
 
 function AccessoryModalSummary({ product }) {
+    const classes = useStyles()
     return (
-        <Grid container direction="column">
-            <Grid item>Type: {product.type}</Grid>
+        <Grid item container>
+            <Grid item direction="column" xs={6}>
+                <Typography>Type:</Typography>
+            </Grid>
+            <Grid item direction="column" xs={6}>
+                <Typography className={classes.modalData}>
+                    {product.type !== undefined && capitalize(product.type)}
+                </Typography>
+            </Grid>
         </Grid>
     )
 }

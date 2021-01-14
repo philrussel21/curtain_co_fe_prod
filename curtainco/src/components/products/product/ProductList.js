@@ -42,7 +42,17 @@ function ProductList({
             if (emptyFields || product.price === null) continue
 
             array.push(
-                <Grid item key={`product-${i}`} xs={12} sm={6} md={4}>
+                <Grid
+                    item
+                    key={`product-${i}`}
+                    xs={12}
+                    sm={6}
+                    md={4}
+                    container
+                    justify="center"
+                    alignItems="center"
+                    style={{ width: "100%" }}
+                >
                     <ProductItem productData={product} />
                 </Grid>
             )

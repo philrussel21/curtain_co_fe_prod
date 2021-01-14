@@ -13,7 +13,7 @@ import useStyles from "../CollectionStyles"
 import { Link } from "react-router-dom"
 import { capitalize, setSuccessSnackBar } from "../../../helpers/appHelpers"
 // import { addItemToCart } from "../../../services/cartServices"
-import { useCurtainContext } from "../../../config/CurtainCoContext"
+// import { useCurtainContext } from "../../../config/CurtainCoContext"
 // import { ACTIONS } from "../../../config/stateReducer"
 // COMPONENTS
 // import AddToCartButton from "../../reusable/AddToCartButton"
@@ -39,16 +39,31 @@ function CollectionItem({ data }) {
     return (
         <Paper className={classes.paper}>
             <Grid item container spacing={2}>
-                <Grid item xs={4}>
+                <Grid item container justify="center" xs={12} sm={4}>
                     <img
                         src={data.imgUrl === "" ? "/no-image.png" : data.imgUrl}
                         alt={data.name}
-                        className={classes.collectionItemImg}
+                        className={
+                            isMobile
+                                ? classes.collectionItemImgMobile
+                                : classes.collectionItemImg
+                        }
                     />
                 </Grid>
-                <Grid item container direction="column" xs={8} spacing={2}>
-                    <Grid item>
-                        <Typography variant="h4" component="h4">
+                <Grid
+                    item
+                    container
+                    direction="column"
+                    xs={12}
+                    sm={8}
+                    spacing={2}
+                >
+                    <Grid item container justify="center">
+                        <Typography
+                            variant="h4"
+                            component="h4"
+                            className={classes.collectionItemHeader}
+                        >
                             {capitalize(data.name)}
                         </Typography>
                     </Grid>

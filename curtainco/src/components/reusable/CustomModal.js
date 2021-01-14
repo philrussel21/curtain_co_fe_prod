@@ -1,6 +1,12 @@
 import React, { useState, useEffect } from "react"
 // STYLES
-import { Modal, Backdrop, Fade } from "@material-ui/core"
+import {
+    Modal,
+    Backdrop,
+    Fade,
+    useMediaQuery,
+    useTheme,
+} from "@material-ui/core"
 import useStyles from "./ModalStyles"
 // STATE
 import { useCurtainContext } from "../../config/CurtainCoContext"
@@ -18,6 +24,8 @@ export default function CustomModal() {
     const classes = useStyles()
     const [dataIsPresent, setDataIsPresent] = useState(false)
     const { state, dispatch } = useCurtainContext()
+    const theme = useTheme()
+    const isMobile = useMediaQuery(theme.breakpoints.only("xs"))
 
     const handleClose = () => {
         dispatch({
@@ -61,7 +69,13 @@ export default function CustomModal() {
                     }}
                 >
                     <Fade in={state.modal.open}>
-                        <div className={classes.paper}>
+                        <div
+                            className={
+                                isMobile
+                                    ? classes.paperModalMobile
+                                    : classes.paperDesktopModal
+                            }
+                        >
                             {state.modal.paymentSummary ? (
                                 <PaymentSummaryModal data={state.modal.data} />
                             ) : state.modal.orderSummary ? (

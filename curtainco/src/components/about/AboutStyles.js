@@ -2,7 +2,7 @@ import { makeStyles } from "@material-ui/core/styles"
 
 const useStyles = makeStyles((theme) => ({
     aboutMeCont: {
-        paddingBottom: "10%",
+        paddingBottom: "5%",
     },
     aboutMeImg: {
         width: "100%",
@@ -10,8 +10,8 @@ const useStyles = makeStyles((theme) => ({
         maxHeight: "400px",
         maxWidth: "600px",
         objectFit: "cover",
-        borderBottomRightRadius: "100px",
-        borderTopLeftRadius: "100px",
+        borderBottomRightRadius: theme.spacing(12),
+        borderTopLeftRadius: theme.spacing(12),
     },
     aboutMeMsg: {
         paddingLeft: theme.spacing(5),
