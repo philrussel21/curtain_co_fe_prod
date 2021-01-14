@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from "react"
 // STYLES
 import {
-    CssBaseline,
     Button,
     Grid,
     Divider,
-    Typography,
     Container,
     // useMediaQuery,
 } from "@material-ui/core"
@@ -19,13 +17,12 @@ import { Mobile, Desktop } from "../reusable/Responsive"
 import Contact from "./Contact"
 import Legal from "./Legal"
 import CurtainCoDivider from "../reusable/CurtainCoDivider"
+import RequestConsultationButton from "./RequestConsultationButton"
 
 export default function StickyFooter() {
     const classes = useStyles()
     const [hideButton, setHideButton] = useState(false)
     const location = useLocation()
-    // const isPortrait = useMediaQuery("(orientation: portrait)")
-    // console.log({ isPortrait })
 
     useEffect(() => {
         // THIS HIDES THE BUTTON ON THE REQUEST CONSULTATION PAGE
@@ -41,8 +38,6 @@ export default function StickyFooter() {
         <>
             <Desktop>
                 <div className={classes.footerRoot}>
-                    {/* <CssBaseline /> */}
-
                     <footer className={classes.footer}>
                         <Grid container direction="column" spacing={2}>
                             <Grid item container style={{ width: "108%" }}>
@@ -71,24 +66,9 @@ export default function StickyFooter() {
                         DON'T THINK TO PRESS THIS BUTTON TO SUBMIT IT AND RELOAD THE PAGE
                         ACCIDENTALLY */}
                                     {!hideButton && (
-                                        <Link
-                                            to="/request"
-                                            style={{ textDecoration: "none" }}
-                                        >
-                                            <Grid
-                                                item
-                                                container
-                                                justify="center"
-                                            >
-                                                <Button
-                                                    variant="outlined"
-                                                    color="primary"
-                                                    size="large"
-                                                >
-                                                    Request Consultation
-                                                </Button>
-                                            </Grid>
-                                        </Link>
+                                        <RequestConsultationButton
+                                            size={"large"}
+                                        />
                                     )}
                                 </Grid>
                                 <Grid item container xs={4}>
@@ -99,58 +79,60 @@ export default function StickyFooter() {
                     </footer>
                 </div>
             </Desktop>
+
+            {/* MOBILE STYLES  */}
+
             <Mobile>
                 <footer className={classes.footerMobile}>
-                    <Container>
-                        <Divider />
+                    <CurtainCoDivider />
 
-                        <Grid
-                            container
-                            direction="column"
-                            spacing={2}
-                            className={classes.footerDetailsCont}
-                        >
-                            <Grid item container justify="space-around" xs={12}>
-                                <Grid item container xs={6}>
+                    <Grid
+                        container
+                        direction="column"
+                        spacing={2}
+                        className={classes.footerDetailsCont}
+                    >
+                        <Grid item container justify="space-between" xs={12}>
+                            <Grid item container xs={6}>
+                                <Link to="/">
                                     <img
                                         src="/logo192.png"
                                         alt="curtain co logo"
-                                        style={{ width: "70px" }}
+                                        style={{
+                                            width: "100px",
+                                            position: "relative",
+                                            right: "10px",
+                                        }}
                                     />
-                                </Grid>
-                                <Grid
-                                    item
-                                    container
-                                    direction="column"
-                                    alignItems="flex-end"
-                                    xs={6}
-                                >
-                                    <Grid item>social links</Grid>
-                                    <Grid item>phone</Grid>
-                                    <Grid item>email</Grid>
-                                </Grid>
+                                </Link>
                             </Grid>
                             <Grid
                                 item
                                 container
-                                justify="center"
-                                alignItems="center"
+                                direction="column"
+                                alignItems="flex-end"
+                                xs={6}
                             >
-                                <Link to="/request" className={classes.link}>
-                                    <Button variant="outlined">
-                                        Request Consultation
-                                    </Button>
-                                </Link>
-                            </Grid>
-                            <Grid item container justify="space-around">
-                                <Grid item>privacy</Grid>
-                                <Grid item>copy right and year</Grid>
-                            </Grid>
-                            <Grid item container justify="center">
-                                site by simon and phil
+                                <Contact />
                             </Grid>
                         </Grid>
-                    </Container>
+                        <Grid
+                            item
+                            container
+                            justify="center"
+                            alignItems="center"
+                        >
+                            {/* HIDING THE REQUEST CONSULTATION BUTTON TO THIS ROUTE SO THAT PEOPLE
+                        DON'T THINK TO PRESS THIS BUTTON TO SUBMIT IT AND RELOAD THE PAGE
+                        ACCIDENTALLY */}
+                            {!hideButton && (
+                                <RequestConsultationButton size={"large"} />
+                            )}
+                        </Grid>
+                        <Grid item container justify="space-around">
+                            <Legal />
+                        </Grid>
+                    </Grid>
                 </footer>
             </Mobile>
         </>

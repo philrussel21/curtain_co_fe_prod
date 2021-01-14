@@ -1,6 +1,6 @@
 import React from "react"
 // STYLES
-import { Grid, Divider, Typography } from "@material-ui/core"
+import { Grid, Divider } from "@material-ui/core"
 
 function CurtainCoDivider() {
     return (

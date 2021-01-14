@@ -1,52 +1,66 @@
 import React from "react"
 // STYLES
-import { Grid, Typography } from "@material-ui/core"
+import { Grid, Typography, useMediaQuery, useTheme } from "@material-ui/core"
 import useStyles from "./NavigationStyles"
 // ICONS
-// import InstagramIcon from "@material-ui/icons/Instagram"
-// import FacebookIcon from "@material-ui/icons/Facebook"
+import InstagramIcon from "@material-ui/icons/Instagram"
+import FacebookIcon from "@material-ui/icons/Facebook"
 import SocialLinkButton from "../reusable/SocialLinkButton"
 // COMPONENTS
 
 function Contact() {
     const classes = useStyles()
+    const theme = useTheme()
+    const isMobile = useMediaQuery(theme.breakpoints.only("xs"))
+
     return (
-        <Grid item container direction="column" spacing={1}>
-            <Grid item container justify="flex-start" spacing={1}>
+        <Grid item container direction="column">
+            <Grid
+                item
+                container
+                justify={isMobile ? "flex-end" : "flex-start"}
+                spacing={2}
+            >
                 <Grid item>
-                    <SocialLinkButton
-                        text="fb"
-                        link="https://www.facebook.com/marie.gjorg/"
-                    />
+                    <a
+                        href="https://www.facebook.com/marie.gjorg/"
+                        target="_blank"
+                        rel="noreferrer"
+                    >
+                        <FacebookIcon color="secondary" />
+                    </a>
                 </Grid>
                 <Grid item>
-                    <SocialLinkButton
-                        text="in"
-                        link="https://www.instagram.com/marie_g_builder/"
-                    />
+                    <a
+                        href="https://www.instagram.com/marie_g_builder/"
+                        target="_blank"
+                        rel="noreferrer"
+                    >
+                        <InstagramIcon color="secondary" />
+                    </a>
                 </Grid>
             </Grid>
 
-            <Grid item container justify="flex-start" spacing={2}>
-                <Grid item>
-                    <Typography
-                        variant="body2"
-                        color="textSecondary"
-                        className={classes.footerText}
-                    >
-                        0400 111 222
-                    </Typography>
-                </Grid>
+            <Grid item container justify={isMobile ? "flex-end" : "flex-start"}>
+                <Typography
+                    // variant="body2"
+                    color="textSecondary"
+                    className={classes.footerText}
+                >
+                    0400 111 222
+                </Typography>
+            </Grid>
 
-                <Grid item>
-                    <Typography
-                        variant="body2"
-                        color="textSecondary"
-                        className={classes.footerText}
-                    >
-                        <a href="mailto:marie@email.com?">marie@email.com</a>
-                    </Typography>
-                </Grid>
+            <Grid item container justify={isMobile ? "flex-end" : "flex-start"}>
+                <Typography
+                    // variant="body2"
+                    color="textSecondary"
+                    className={classes.footerEmailLink}
+                >
+                    <a href="mailto:marie@email.com?" className="link">
+                        marie@email.com
+                    </a>
+                </Typography>
             </Grid>
         </Grid>
     )

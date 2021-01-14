@@ -37,7 +37,7 @@ function WhyCurtains() {
                 </Typography>
             </Grid>
 
-            <Grid item>
+            <Grid item style={{ paddingBottom: "5%" }}>
                 <Link to={`/collections`} className="link">
                     <Button variant="contained" color="primary" size="large">
                         Collections

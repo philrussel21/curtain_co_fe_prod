@@ -19,13 +19,12 @@ function PurchaseHistory({ isLoading, isMobile }) {
     useEffect(() => {
         // IF THE USER WASN'T FETCHED CORRECTLY IN ACCOUNT.JS AND ERROR OCCURRED
         // THEN ORDERS WILL BE AN ARRAY OF STRINGS OR EMPTY
-        if (
-            state.currentUser.orders.length === 0 ||
-            typeof state.currentUser.orders[0] === "string"
-        ) {
+        if (typeof state.currentUser.orders[0] === "string") {
             setPurchaseHistoryError(
                 "There was an error fetching your purchase history"
             )
+        } else if (state.currentUser.orders.length === 0) {
+            setPurchaseHistoryError("There are no recent purchases to display")
         } else {
             setPurchaseHistory(state.currentUser.orders)
         }
@@ -39,35 +38,35 @@ function PurchaseHistory({ isLoading, isMobile }) {
     ))
 
     return (
-        <Container style={{ height: "100%" }}>
-            <Grid container spacing={2}>
-                <Grid item container justify="center">
-                    <Typography
-                        variant="h4"
-                        className={classes.userDashboardSubheading}
-                        style={{ fontSize: isMobile ? 32 : 45 }}
-                    >
-                        Purchase History
-                    </Typography>
-                </Grid>
-                <Grid
-                    item
-                    container
-                    direction="column"
-                    className={classes.purchaseHistoryRoot}
+        <Grid container spacing={2}>
+            <Grid item container justify="center">
+                <Typography
+                    variant="h4"
+                    className={classes.userDashboardSubheading}
+                    style={{ fontSize: isMobile ? 34 : 46 }}
                 >
-                    {isLoading ? (
-                        <LoadingSymbol />
-                    ) : allPurchasedItems.length === 0 ? (
-                        <Grid item container justify="center">
-                            <Typography>{purchaseHistoryError}</Typography>
-                        </Grid>
-                    ) : (
-                        allPurchasedItems
-                    )}
-                </Grid>
+                    Purchase History
+                </Typography>
             </Grid>
-        </Container>
+            <Grid
+                item
+                container
+                direction="column"
+                className={classes.purchaseHistoryRoot}
+            >
+                {isLoading ? (
+                    <LoadingSymbol />
+                ) : allPurchasedItems.length === 0 ? (
+                    <Grid item container justify="center">
+                        <Typography className={classes.purchaseHistoryErrorMsg}>
+                            {purchaseHistoryError}
+                        </Typography>
+                    </Grid>
+                ) : (
+                    allPurchasedItems
+                )}
+            </Grid>
+        </Grid>
     )
 }
 

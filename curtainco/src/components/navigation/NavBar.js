@@ -88,12 +88,6 @@ function NavBar() {
                 >
                     <Toolbar disableGutters className={classes.toolBar}>
                         <Grid container direction="column">
-                            <Grid item className={classes.dividerCont}>
-                                <Divider
-                                    variant="middle"
-                                    className={classes.topNavBarDivider}
-                                />
-                            </Grid>
                             <Grid
                                 item
                                 container
@@ -266,6 +260,12 @@ function NavBar() {
                                     className={classes.bottomNavBarDivider}
                                 />
                             </Grid>
+                            <Grid item className={classes.dividerCont}>
+                                <Divider
+                                    variant="middle"
+                                    className={classes.topNavBarDivider}
+                                />
+                            </Grid>
                         </Grid>
                     </Toolbar>
                 </AppBar>
@@ -274,27 +274,72 @@ function NavBar() {
             {/* MOBILE STYLES */}
 
             <Mobile>
-                <Grid container direction="column">
+                <Grid
+                    container
+                    direction="column"
+                    className={classes.navBarMobileHeader}
+                >
                     <Grid item className={classes.dividerCont}>
                         <Divider
                             variant="middle"
                             className={classes.topNavBarDivider}
                         />
                     </Grid>
-                    <Grid item>
+                    <Grid
+                        item
+                        style={{
+                            width: "80%",
+                            margin: "0 auto",
+                            height: "100%",
+                        }}
+                    >
                         <Link to={"/"} className={classes.navLinks}>
-                            <Typography
-                                variant="h4"
-                                className={classes.mobileHeader}
+                            <Grid
+                                item
+                                container
+                                justify="center"
+                                alignItems="center"
+                                xs={12}
                             >
-                                THE CURTAIN CO
-                            </Typography>
+                                <Grid
+                                    item
+                                    container
+                                    justify="flex-end"
+                                    alignItems="center"
+                                    xs={3}
+                                >
+                                    <Typography
+                                        variant="h4"
+                                        className={
+                                            classes.navBarMobileHeaderLeft
+                                        }
+                                    >
+                                        THE
+                                    </Typography>
+                                </Grid>
+                                <Grid
+                                    item
+                                    container
+                                    justify="flex-start"
+                                    alignItems="center"
+                                    xs={8}
+                                >
+                                    <Typography
+                                        variant="h4"
+                                        className={
+                                            classes.navBarMobileHeaderRight
+                                        }
+                                    >
+                                        CURTAIN CO
+                                    </Typography>
+                                </Grid>
+                            </Grid>
                         </Link>
                     </Grid>
                     <Grid item className={classes.dividerCont}>
                         <Divider
                             variant="middle"
-                            className={classes.bottomNavBarDividerMobile}
+                            className={classes.bottomNavBarDivider}
                         />
                     </Grid>
                 </Grid>

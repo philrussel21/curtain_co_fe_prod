@@ -3,7 +3,6 @@ import React, { useState, useEffect, useRef } from "react"
 import {
     Avatar,
     Button,
-    CssBaseline,
     TextField,
     Grid,
     Typography,
@@ -15,6 +14,8 @@ import {
     MenuItem,
     Box,
     FormHelperText,
+    useTheme,
+    useMediaQuery,
 } from "@material-ui/core"
 import useStyles from "./UserDataFormStyles"
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined"
@@ -76,6 +77,8 @@ export default function UserDataForm({
     withConsultMessage,
 }) {
     const classes = useStyles()
+    const theme = useTheme()
+    const isMobile = useMediaQuery(theme.breakpoints.only("xs"))
     const [firstName, setFirstName] = useState("")
     const [lastName, setLastName] = useState("")
     const [menuItemsStates, setMenuItemsStates] = useState([])
@@ -188,8 +191,8 @@ export default function UserDataForm({
             delete tempConsultUserData.updatedAt
 
             // SUBMIT OBJECT TO PARENT WHICH WILL SUBMIT TO DATABASE
-            console.log('this')
-            console.log({tempConsultUserData})
+            console.log("this")
+            console.log({ tempConsultUserData })
             errorOrResp = await handleSubmitFunctionFromParent(
                 tempConsultUserData
             )
@@ -216,13 +219,8 @@ export default function UserDataForm({
         if (errorOrResp) clearFields()
     }
 
-    // console.log(helperText)
-    // console.log(helperText.postcode)
-
     return (
         <Container component="main" maxWidth="md">
-            {/* <CssBaseline /> */}
-
             <div className={classes.paper}>
                 {headerInformation.icon && (
                     <Avatar className={classes.avatar}>
@@ -231,7 +229,12 @@ export default function UserDataForm({
                 )}
 
                 {headerInformation.title && (
-                    <Typography component="h2" variant="h5">
+                    <Typography
+                        component="h2"
+                        variant="h5"
+                        className={classes.userDataFormHeader}
+                        style={{ fontSize: isMobile ? 32 : 48 }}
+                    >
                         {headerInformation.title}
                     </Typography>
                 )}
@@ -516,11 +519,11 @@ export default function UserDataForm({
 
                     {withAuth.email && withAuth.password && (
                         <Grid container justify="flex-end">
-                            <Grid item>
-                                <Link className={classes.link} to="/login">
+                            <Link className={classes.loginLink} to="/login">
+                                <Typography>
                                     Already have an account? Sign In
-                                </Link>
-                            </Grid>
+                                </Typography>
+                            </Link>
                         </Grid>
                     )}
                 </form>
