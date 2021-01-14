@@ -1,12 +1,12 @@
-import React from "react"
+import React from "react";
 // STYLES
-import { Grid, Button, Typography } from "@material-ui/core"
+import { Grid, Button, Typography } from "@material-ui/core";
 // PACKAGES
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
 // STATE
-import { useCurtainContext } from "../../config/CurtainCoContext"
+import { useCurtainContext } from "../../config/CurtainCoContext";
 // COMPONENTS
-import CustomAlert from "../reusable/CustomAlert"
+import CustomAlert from "../reusable/CustomAlert";
 
 function CartTotal({
     total,
@@ -16,7 +16,7 @@ function CartTotal({
     setPaymentFailedOrCancelled,
     isMobile,
 }) {
-    const { state } = useCurtainContext()
+    const { state } = useCurtainContext();
 
     return (
         <Grid item container direction="column" spacing={2}>
@@ -24,13 +24,11 @@ function CartTotal({
             SHOW THIS DIV */}
             {isCancelOrError && (
                 <Grid item>
-                    <Typography>
-                        <CustomAlert
-                            setPaymentFailedOrCancelled={
-                                setPaymentFailedOrCancelled
-                            }
-                        />
-                    </Typography>
+                    <CustomAlert
+                        setPaymentFailedOrCancelled={
+                            setPaymentFailedOrCancelled
+                        }
+                    />
                 </Grid>
             )}
 
@@ -79,7 +77,7 @@ function CartTotal({
                 </Grid>
             </Grid>
         </Grid>
-    )
+    );
 }
 
-export default CartTotal
+export default CartTotal;
