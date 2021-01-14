@@ -20,7 +20,11 @@ function ProductSummaryModal({ data, title, handleCartClick, handleClose }) {
             <Grid item container xs={5} justify="center" alignItems="center">
                 <div role="img">
                     <img
-                        src={data.imgUrl === "" ? "/loading.gif" : data.imgUrl}
+                        src={
+                            data.imgUrl === undefined
+                                ? "/no-image.png"
+                                : data.imgUrl
+                        }
                         alt={data.name}
                         className={classes.modalImage}
                     />
@@ -61,29 +65,28 @@ function ProductSummaryModal({ data, title, handleCartClick, handleClose }) {
                 {/* <Grid item>
                     <Typography>{message}</Typography>
                 </Grid> */}
-                <Grid item container spacing={3}>
-                    <Grid item>
-                        <Typography>Price:</Typography>
-                    </Grid>
-                    <Grid item>
-                        <Typography>${data.price}</Typography>
-                    </Grid>
-                </Grid>
-                <Grid item>
-                    <Typography>
-                        Category:{" "}
-                        {data.category !== undefined &&
-                            capitalize(data.category)}
-                    </Typography>
-                </Grid>
-                <Grid item>
-                    <Typography>
-                        Description:{" "}
+
+                <Grid item style={{ paddingBottom: "2%" }}>
+                    <Typography className={classes.modalData}>
                         {data.description !== undefined &&
                             capitalize(data.description)}
                     </Typography>
                 </Grid>
-                <Grid item>
+
+                <Grid item container>
+                    <Grid item container direction="column" xs={6}>
+                        <Typography>Price:</Typography>
+                    </Grid>
+                    <Grid item container direction="column" xs={6}>
+                        <Grid item>
+                            <Typography className={classes.modalData}>
+                                ${data.price}
+                            </Typography>
+                        </Grid>
+                    </Grid>
+                </Grid>
+
+                <Grid item container>
                     {data.category === "Fabric" ? (
                         <FabricModalSummary product={data} />
                     ) : data.category === "Track" ? (
@@ -92,7 +95,13 @@ function ProductSummaryModal({ data, title, handleCartClick, handleClose }) {
                         <AccessoryModalSummary product={data} />
                     )}
                 </Grid>
-                <Grid item container justify="flex-end" alignItems="center">
+                <Grid
+                    item
+                    container
+                    justify="flex-end"
+                    alignItems="center"
+                    style={{ marginTop: "3%" }}
+                >
                     <AddToCartButton
                         icon={false}
                         text={"Add To Cart"}

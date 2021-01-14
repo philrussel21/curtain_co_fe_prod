@@ -32,14 +32,20 @@ const useStyles = makeStyles((theme) => ({
     modalTitle: {
         fontFamily: theme.typography.fontFamily.split(",")[2],
         color: theme.palette.primary.light,
+        fontSize: 40,
     },
     modalImage: {
         borderBottomRightRadius: theme.spacing(5),
         borderTopLeftRadius: theme.spacing(5),
         width: "100%",
+        height: "100%",
         maxWidth: "350px",
-        maxHeight: "350px",
+        maxHeight: "300px",
         objectFit: "cover",
+    },
+    modalData: {
+        fontStyle: "italic",
+        color: theme.palette.grey[700],
     },
 }))
 
