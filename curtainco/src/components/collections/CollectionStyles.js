@@ -59,6 +59,10 @@ const useStyles = makeStyles((theme) => ({
         borderBottomRightRadius: theme.spacing(4),
         borderTopLeftRadius: theme.spacing(4),
     },
+    collectionItemHeader: {
+        fontFamily: theme.typography.fontFamily.split(",")[2],
+        fontSize: "2.5rem",
+    },
     collectionItemImg: {
         width: "90%",
         objectFit: "cover",
@@ -69,6 +73,15 @@ const useStyles = makeStyles((theme) => ({
     },
     collectionItemDescription: {
         fontStyle: "italic",
+        fontFamily: theme.typography.fontFamily.split(",")[1],
+    },
+    collectionItemImgMobile: {
+        width: "100%",
+        objectFit: "cover",
+        maxWidth: "350px",
+        maxHeight: "170px",
+        borderBottomRightRadius: theme.spacing(6),
+        borderTopLeftRadius: theme.spacing(6),
     },
 }))
 

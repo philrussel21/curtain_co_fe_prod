@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
 // STYLES
-import { Container, Grid } from "@material-ui/core"
+import { Container, Grid, useMediaQuery } from "@material-ui/core"
 import useStyles from "./ProductStyles"
 // COMPONENTS
 import ProductList from "./product/ProductList"
@@ -23,6 +23,8 @@ function Products() {
     const [sortBy, setSortBy] = useState(sortACTIONS.NAME_ALPHABETICAL)
     const [searchInput, setSearchInput] = useState("")
     const [isLoading, setIsLoading] = useState(true)
+    const isMobile = useMediaQuery("(max-width: 600px)")
+
     const [productsErrorMessage, setProductErrorMessage] = useState(null)
     const [filter, setFilter] = useState({
         fabric: false,
@@ -71,64 +73,69 @@ function Products() {
     return (
         <>
             <Container>
-                <Grid container>
+                <Grid container spacing={4}>
                     <Grid
                         item
                         container
                         direction="column"
                         justify="flex-start"
                         alignItems="center"
-                        xs={2}
+                        xs={12}
+                        sm={3}
                         spacing={1}
-                        style={{ position: "fixed" }}
                     >
-                        <Grid item>
+                        <Grid item style={{ width: "100%" }}>
                             <Search
                                 searchInput={searchInput}
                                 handleChange={handleSearchInputChange}
                             />
                         </Grid>
-                        <Grid item>
+
+                        <Grid item style={{ width: "100%" }}>
                             <Sort
                                 sortFields={sortFields}
                                 sortBy={sortBy}
                                 handleChange={handleSortByChange}
                             />
                         </Grid>
-                        <Grid item>
+                        <Grid item style={{ width: "100%" }}>
                             <Filter
                                 state={filter}
                                 handleChange={handleFilterChange}
                             />
                         </Grid>
                     </Grid>
-
-                    <Container maxWidth="md">
-                        <Grid
-                            item
-                            container
-                            spacing={4}
-                            xs={10}
-                            justify="center"
-                            alignItems="center"
-                            className={classes.cardGrid}
-                        >
-                            {isLoading ? (
-                                <LoadingSymbol />
-                            ) : productsErrorMessage !== null ? (
-                                productsErrorMessage
-                            ) : (
-                                <ProductList
-                                    products={state.products}
-                                    filterText={searchInput}
-                                    filterTypes={filter}
-                                    filterSortBy={sortBy}
-                                    sortFields={sortFields}
-                                    inStockOnly={true}
-                                />
-                            )}
-                        </Grid>
-                    </Container>
+                    {/* <Grid item xs={12} sm={9}> */}
+                    {/* <Container maxWidth="md"> */}
+                    <Grid
+                        item
+                        container
+                        spacing={4}
+                        xs={12}
+                        sm={8}
+                        justify="center"
+                        alignItems="center"
+                        className={
+                            isMobile ? classes.cardGridMobile : classes.cardGrid
+                        }
+                    >
+                        {isLoading ? (
+                            <LoadingSymbol />
+                        ) : productsErrorMessage !== null ? (
+                            productsErrorMessage
+                        ) : (
+                            <ProductList
+                                products={state.products}
+                                filterText={searchInput}
+                                filterTypes={filter}
+                                filterSortBy={sortBy}
+                                sortFields={sortFields}
+                                inStockOnly={true}
+                            />
+                        )}
+                    </Grid>
+                    {/* </Container> */}
+                    {/* </Grid> */}
                 </Grid>
             </Container>
         </>

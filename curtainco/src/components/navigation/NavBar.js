@@ -306,7 +306,6 @@ function NavBar() {
                         open={isMobileMenuOpen}
                         onClose={handleMobileMenuClose}
                         position="fixed"
-                        className
                     >
                         <MenuItem>
                             <Link
@@ -348,7 +347,7 @@ function NavBar() {
                                     variant="button"
                                     className={classes.mobileMenuItemText}
                                 >
-                                    products
+                                    samples
                                 </Typography>
                             </Link>
                         </MenuItem>
