@@ -106,7 +106,7 @@ const useStyles = makeStyles((theme) => ({
         maxHeight: "170px",
         position: "relative",
         zIndex: 1000,
-        left: "-13%",
+        // left: 0,
     },
     navBarToolBar: {
         padding: "none",
