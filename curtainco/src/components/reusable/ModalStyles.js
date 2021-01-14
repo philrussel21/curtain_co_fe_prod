@@ -5,17 +5,20 @@ const useStyles = makeStyles((theme) => ({
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        border: "none !important",
+        border: "none",
         zIndex: theme.zIndex.modal,
     },
     paper: {
         backgroundColor: theme.palette.background.paper,
-        border: "none !important",
+        border: "none",
         boxShadow: theme.shadows[5],
         padding: theme.spacing(2, 4, 3),
         width: "50%",
         maxWidth: "700px",
         minWidth: "500px",
+        // borderBottomRightRadius: theme.spacing(5),
+        // borderTopLeftRadius: theme.spacing(5),
+        outline: "none",
     },
     closeButton: {
         position: "absolute",
@@ -25,6 +28,18 @@ const useStyles = makeStyles((theme) => ({
     },
     closeButtonCont: {
         position: "relative",
+    },
+    modalTitle: {
+        fontFamily: theme.typography.fontFamily.split(",")[2],
+        color: theme.palette.primary.light,
+    },
+    modalImage: {
+        borderBottomRightRadius: theme.spacing(5),
+        borderTopLeftRadius: theme.spacing(5),
+        width: "100%",
+        maxWidth: "350px",
+        maxHeight: "350px",
+        objectFit: "cover",
     },
 }))
 

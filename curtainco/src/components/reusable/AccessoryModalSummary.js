@@ -1,10 +1,18 @@
 import React from "react"
-import { Grid } from "@material-ui/core"
+// STYLES
+import { Grid, Typography } from "@material-ui/core"
+// HELPERS AND SERVICES
+import { capitalize } from "../../helpers/appHelpers"
 
 function AccessoryModalSummary({ product }) {
     return (
         <Grid container direction="column">
-            <Grid item>Type: {product.type}</Grid>
+            <Grid item>
+                <Typography>
+                    Type:{" "}
+                    {product.type !== undefined && capitalize(product.type)}
+                </Typography>
+            </Grid>
         </Grid>
     )
 }

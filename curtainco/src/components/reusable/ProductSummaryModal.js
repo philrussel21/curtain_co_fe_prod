@@ -1,22 +1,28 @@
 import React from "react"
-import useStyles from "./ModalStyles"
+// STYLES
 import { Grid, Typography, IconButton } from "@material-ui/core"
-import AddToCartButton from "./AddToCartButton"
+import useStyles from "./ModalStyles"
+// ICONS
 import CloseIcon from "@material-ui/icons/Close"
-import FabricModalSummary from "./FabricModalSummary"
+// COMPONENTS
+import AddToCartButton from "./AddToCartButton"
 import TrackModalSummary from "./TrackModalSummary"
+import FabricModalSummary from "./FabricModalSummary"
 import AccessoryModalSummary from "./AccessoryModalSummary"
+// HELPERS AND SERVICES
+import { capitalize } from "../../helpers/appHelpers"
 
 function ProductSummaryModal({ data, title, handleCartClick, handleClose }) {
     const classes = useStyles()
+    console.log(data)
     return (
-        <Grid container>
+        <Grid container spacing={3}>
             <Grid item container xs={5} justify="center" alignItems="center">
                 <div role="img">
                     <img
                         src={data.imgUrl === "" ? "/loading.gif" : data.imgUrl}
                         alt={data.name}
-                        style={{ width: "70%" }}
+                        className={classes.modalImage}
                     />
                 </div>
             </Grid>
@@ -27,7 +33,6 @@ function ProductSummaryModal({ data, title, handleCartClick, handleClose }) {
                 justify="flex-start"
                 alignItems="flex-start"
                 xs={7}
-                spacing={1}
             >
                 <Grid
                     item
@@ -35,9 +40,13 @@ function ProductSummaryModal({ data, title, handleCartClick, handleClose }) {
                     justify="space-between"
                     className={classes.closeButtonCont}
                 >
-                    <Grid item xs={9}>
-                        <Typography variant="h3" component="h3">
-                            {title}
+                    <Grid item container justify="center" xs={9}>
+                        <Typography
+                            variant="h3"
+                            component="h3"
+                            className={classes.modalTitle}
+                        >
+                            {capitalize(title)}
                         </Typography>
                     </Grid>
                     <Grid item xs={3}>
@@ -52,14 +61,27 @@ function ProductSummaryModal({ data, title, handleCartClick, handleClose }) {
                 {/* <Grid item>
                     <Typography>{message}</Typography>
                 </Grid> */}
-                <Grid item>
-                    <Typography>Price: ${data.price}</Typography>
+                <Grid item container spacing={3}>
+                    <Grid item>
+                        <Typography>Price:</Typography>
+                    </Grid>
+                    <Grid item>
+                        <Typography>${data.price}</Typography>
+                    </Grid>
                 </Grid>
                 <Grid item>
-                    <Typography>Category: {data.category}</Typography>
+                    <Typography>
+                        Category:{" "}
+                        {data.category !== undefined &&
+                            capitalize(data.category)}
+                    </Typography>
                 </Grid>
                 <Grid item>
-                    <Typography>{data.description}</Typography>
+                    <Typography>
+                        Description:{" "}
+                        {data.description !== undefined &&
+                            capitalize(data.description)}
+                    </Typography>
                 </Grid>
                 <Grid item>
                     {data.category === "Fabric" ? (

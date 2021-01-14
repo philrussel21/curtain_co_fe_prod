@@ -100,7 +100,7 @@ function Products() {
                         </Grid>
                         <Grid item style={{ width: "100%" }}>
                             <Filter
-                                state={filter}
+                                filterBy={filter}
                                 handleChange={handleFilterChange}
                             />
                         </Grid>
