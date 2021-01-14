@@ -34,6 +34,9 @@ const useStyles = makeStyles((theme) => ({
     userDashBoardCTAText: {
         color: theme.palette.grey[700],
     },
+    purchaseHistoryErrorMsg: {
+        color: theme.palette.grey[700],
+    },
 }))
 
 export default useStyles
