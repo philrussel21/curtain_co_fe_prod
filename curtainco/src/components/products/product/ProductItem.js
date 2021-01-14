@@ -62,8 +62,14 @@ function ProductItem({ productData }) {
                 </Typography>
                 <Grid container spacing={1}>
                     <Grid item container justify="space-between">
-                        <Typography variant="body2">{`Type: ${productData.category}`}</Typography>
-                        <Typography variant="body2">{`$${productData.price}`}</Typography>
+                        <Typography
+                            variant="body2"
+                            className={classes.cardContentText}
+                        >{`Type: ${productData.category}`}</Typography>
+                        <Typography
+                            variant="body2"
+                            className={classes.cardContentText}
+                        >{`$${productData.price}`}</Typography>
                     </Grid>
                 </Grid>
             </CardContent>
@@ -89,7 +95,11 @@ function ProductItem({ productData }) {
                             color="primary"
                             onClick={handleViewClick}
                         >
-                            See More
+                            <Typography
+                                className={classes.productSeeMoreButton}
+                            >
+                                See More
+                            </Typography>
                         </Button>
                     </Grid>
                 </Grid>

@@ -18,13 +18,17 @@ function WhyCurtains() {
             className={classes.WhyCurtainsCont}
         >
             <Grid item container justify="center">
-                <Typography variant="h3" component="h3">
+                <Typography
+                    variant="h3"
+                    component="h3"
+                    className={classes.whyCurtainsHeading}
+                >
                     Why Curtains?
                 </Typography>
             </Grid>
 
             <Grid item>
-                <Typography variant="body1" style={{ fontStyle: "italic" }}>
+                <Typography variant="body1" className={classes.whyCurtainsText}>
                     Lorem ipsum dolor sit amet consectetur adipisicing elit.
                     Consequatur maiores veritatis tempora nostrum, laudantium
                     repellat voluptatem, error hic ipsum in debitis doloribus

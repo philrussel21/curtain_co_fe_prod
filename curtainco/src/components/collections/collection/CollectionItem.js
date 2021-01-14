@@ -13,7 +13,7 @@ import useStyles from "../CollectionStyles"
 import { Link } from "react-router-dom"
 import { capitalize, setSuccessSnackBar } from "../../../helpers/appHelpers"
 // import { addItemToCart } from "../../../services/cartServices"
-import { useCurtainContext } from "../../../config/CurtainCoContext"
+// import { useCurtainContext } from "../../../config/CurtainCoContext"
 // import { ACTIONS } from "../../../config/stateReducer"
 // COMPONENTS
 // import AddToCartButton from "../../reusable/AddToCartButton"

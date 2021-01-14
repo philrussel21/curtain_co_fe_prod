@@ -103,10 +103,13 @@ function NavBar() {
                                 <Grid item container justify="center" xs={1}>
                                     <Grid item>
                                         <Link
-                                            className={classes.link}
+                                            className={classes.navLinks}
                                             to="/collections"
                                         >
-                                            <Typography variant="button">
+                                            <Typography
+                                                variant="button"
+                                                className={classes.navBarText}
+                                            >
                                                 Collections
                                             </Typography>
                                         </Link>
@@ -115,10 +118,13 @@ function NavBar() {
                                 <Grid item container justify="center" xs={1}>
                                     <Grid item>
                                         <Link
-                                            className={classes.link}
+                                            className={classes.navLinks}
                                             to="/products"
                                         >
-                                            <Typography variant="button">
+                                            <Typography
+                                                variant="button"
+                                                className={classes.navBarText}
+                                            >
                                                 Samples
                                             </Typography>
                                         </Link>
@@ -128,10 +134,13 @@ function NavBar() {
                                 <Grid item container justify="center" xs={1}>
                                     <Grid item>
                                         <Link
-                                            className={classes.link}
+                                            className={classes.navLinks}
                                             to="/about"
                                         >
-                                            <Typography variant="button">
+                                            <Typography
+                                                variant="button"
+                                                className={classes.navBarText}
+                                            >
                                                 About
                                             </Typography>
                                         </Link>
@@ -145,7 +154,7 @@ function NavBar() {
                                             to="/"
                                         >
                                             <img
-                                                src="/logo512.png"
+                                                src="/logoxxx.png"
                                                 alt="the curtain co logo"
                                                 className={
                                                     classes.navBarLogoImg
@@ -158,14 +167,17 @@ function NavBar() {
                                 <Grid item container justify="center" xs={1}>
                                     <Grid item>
                                         <Link
-                                            className={classes.link}
+                                            className={classes.navLinks}
                                             to={
                                                 state.currentUser !== null
                                                     ? "/account"
                                                     : "/login"
                                             }
                                         >
-                                            <Typography variant="button">
+                                            <Typography
+                                                variant="button"
+                                                className={classes.navBarText}
+                                            >
                                                 Account
                                             </Typography>
                                         </Link>
@@ -181,11 +193,16 @@ function NavBar() {
                                                 justify="center"
                                             >
                                                 <Link
-                                                    className={classes.link}
+                                                    className={classes.navLinks}
                                                     to="/"
                                                     onClick={handleLogout}
                                                 >
-                                                    <Typography variant="button">
+                                                    <Typography
+                                                        variant="button"
+                                                        className={
+                                                            classes.navBarText
+                                                        }
+                                                    >
                                                         Logout
                                                     </Typography>
                                                 </Link>
@@ -197,7 +214,7 @@ function NavBar() {
                                                 justify="center"
                                             >
                                                 <Link
-                                                    className={classes.link}
+                                                    className={classes.navLinks}
                                                     to={{
                                                         pathname: "/login",
                                                         state: {
@@ -207,7 +224,12 @@ function NavBar() {
                                                         },
                                                     }}
                                                 >
-                                                    <Typography variant="button">
+                                                    <Typography
+                                                        variant="button"
+                                                        className={
+                                                            classes.navBarText
+                                                        }
+                                                    >
                                                         Login
                                                     </Typography>
                                                 </Link>
@@ -252,7 +274,7 @@ function NavBar() {
             {/* MOBILE STYLES */}
 
             <Mobile>
-                <Link to={"/"} className={classes.link}>
+                <Link to={"/"} className={classes.navLinks}>
                     <Typography variant="h4" className={classes.mobileHeader}>
                         THE CURTAIN CO
                     </Typography>
@@ -289,7 +311,7 @@ function NavBar() {
                         <MenuItem>
                             <Link
                                 onClick={handleMobileMenuClose}
-                                className={classes.link}
+                                className={classes.navLinks}
                                 to={"/"}
                             >
                                 <Typography
@@ -304,7 +326,7 @@ function NavBar() {
                         <MenuItem>
                             <Link
                                 onClick={handleMobileMenuClose}
-                                className={classes.link}
+                                className={classes.navLinks}
                                 to={"/collections"}
                             >
                                 <Typography
@@ -319,7 +341,7 @@ function NavBar() {
                         <MenuItem>
                             <Link
                                 onClick={handleMobileMenuClose}
-                                className={classes.link}
+                                className={classes.navLinks}
                                 to={"/products"}
                             >
                                 <Typography
@@ -334,7 +356,7 @@ function NavBar() {
                         <MenuItem>
                             <Link
                                 onClick={handleMobileMenuClose}
-                                className={classes.link}
+                                className={classes.navLinks}
                                 to={"/about"}
                             >
                                 <Typography
@@ -349,7 +371,7 @@ function NavBar() {
                         <MenuItem>
                             <Link
                                 onClick={handleMobileMenuClose}
-                                className={classes.link}
+                                className={classes.navLinks}
                                 to={"/cart"}
                             >
                                 <Typography
@@ -366,7 +388,7 @@ function NavBar() {
                                 <MenuItem>
                                     <Link
                                         onClick={handleMobileMenuClose}
-                                        className={classes.link}
+                                        className={classes.navLinks}
                                         to={"/account"}
                                     >
                                         <Typography
@@ -382,7 +404,7 @@ function NavBar() {
                                 <MenuItem>
                                     <Link
                                         onClick={handleMobileMenuClose}
-                                        className={classes.link}
+                                        className={classes.navLinks}
                                         to="/"
                                     >
                                         <Typography
@@ -402,7 +424,7 @@ function NavBar() {
                             <MenuItem>
                                 <Link
                                     onClick={handleMobileMenuClose}
-                                    className={classes.link}
+                                    className={classes.navLinks}
                                     to={{
                                         pathname: "/login",
                                         state: {

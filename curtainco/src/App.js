@@ -8,9 +8,8 @@ import { createMuiTheme, responsiveFontSizes } from "@material-ui/core/styles"
 import "./styles/Main.css"
 // PACKAGES
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom"
-// import { useMediaQuery } from "react-responsive"
 // HELPERS ANS SERVICES
-import { setErrorSnackBar } from "./helpers/appHelpers"
+// import { setErrorSnackBar } from "./helpers/appHelpers"
 import { getLoggedInUserFromHomeRoute } from "./services/authServices"
 // COMPONENTS
 import {
@@ -37,9 +36,27 @@ function App() {
     const { state, dispatch } = useCurtainContext()
     const [isLoading, setIsLoading] = useState(false)
     const isMobile = useMediaQuery("(max-width: 600px)")
-    let theme = createMuiTheme()
+    let theme = createMuiTheme({
+        typography: {
+            fontFamily: [
+                '"Nunito"',
+                '"Raleway"',
+                '"Parisienne"',
+                "Roboto",
+                '"Helvetica Neue"',
+                "Arial",
+                "sans-serif",
+            ].join(","),
+        },
+        palette: {
+            background: {
+                default: "#f5f5f5",
+            },
+        },
+    })
     theme = responsiveFontSizes(theme)
-    console.log({ theme })
+
+    console.log(theme)
 
     useEffect(() => {
         // FIND IF A PERSON STILL HAS A SESSION,

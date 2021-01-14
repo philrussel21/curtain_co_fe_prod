@@ -20,7 +20,7 @@ function Success() {
             direction={isMobile ? "column-reverse" : "row"}
             item
             justify="center"
-            alginItems="center"
+            alignItems="flex-start"
             spacing={2}
         >
             <Grid item container justify="center" sm={6}>

@@ -4,7 +4,7 @@ const useStyles = makeStyles((theme) => ({
     title: {
         flexGrow: 1,
     },
-    link: {
+    navLinks: {
         color: "black",
         textDecoration: "none",
         width: "100%",
@@ -100,12 +100,13 @@ const useStyles = makeStyles((theme) => ({
         height: "100%",
     },
     navBarLogoCont: {
-        width: "150px",
-        height: "150px",
+        // maxWidth: "200px",
+        // maxHeight: "200px",
         position: "relative",
     },
     navBarLogoImg: {
-        width: "130%",
+        maxWidth: "170px",
+        maxHeight: "170px",
         position: "relative",
         zIndex: 1000,
         left: "-13%",
@@ -114,15 +115,26 @@ const useStyles = makeStyles((theme) => ({
         padding: "none",
     },
     topNavBarDivider: {
-        marginTop: "4%",
-        backgroundColor: "black",
+        marginTop: "5%",
+        backgroundColor: theme.palette.primary.light,
     },
     bottomNavBarDivider: {
-        marginTop: "-4%",
-        backgroundColor: "black",
+        marginTop: "-5%",
+        backgroundColor: theme.palette.primary.light,
     },
     dividerCont: {
         position: "relative",
+    },
+    navBarText: {
+        fontSize: 20,
+        color: theme.palette.primary.dark,
+        fontWeight: theme.typography.fontWeightBold,
+        letterSpacing: "2px",
+    },
+    footerText: {
+        fontFamily: theme.typography.fontFamily.split(",")[1],
+        fontSize: 16,
+        letterSpacing: "1px",
     },
 }))
 

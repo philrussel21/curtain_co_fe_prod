@@ -10,7 +10,7 @@ function SocialLinkButton({ text, link }) {
             size="medium"
             style={{
                 border: `1px solid ${theme.palette.primary.main}`,
-                width: "60%",
+                width: "70%",
                 height: "60%",
             }}
         >

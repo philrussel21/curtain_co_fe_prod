@@ -7,8 +7,8 @@ const useStyles = makeStyles((theme) => ({
         [theme.breakpoints.down("sm")]: {
             width: "100%",
         },
-        borderBottomRightRadius: "80px",
-        borderTopLeftRadius: "80px",
+        borderBottomRightRadius: theme.spacing(10),
+        borderTopLeftRadius: theme.spacing(10),
         border: `1px solid ${theme.palette.primary.main}`,
     },
     link: {
@@ -47,6 +47,8 @@ const useStyles = makeStyles((theme) => ({
         height: "100px",
         width: "100px",
         objectFit: "cover",
+        borderBottomRightRadius: theme.spacing(4),
+        borderTopLeftRadius: theme.spacing(4),
     },
     accordionDataItem: {
         padding: "6px",
@@ -54,14 +56,16 @@ const useStyles = makeStyles((theme) => ({
         height: "100px",
         width: "100px",
         objectFit: "cover",
+        borderBottomRightRadius: theme.spacing(4),
+        borderTopLeftRadius: theme.spacing(4),
     },
     collectionItemImg: {
         width: "90%",
         objectFit: "cover",
         maxWidth: "200px",
         maxHeight: "150px",
-        borderBottomRightRadius: "50px",
-        borderTopLeftRadius: "50px",
+        borderBottomRightRadius: theme.spacing(6),
+        borderTopLeftRadius: theme.spacing(6),
     },
     collectionItemDescription: {
         fontStyle: "italic",

@@ -19,8 +19,8 @@ const useStyles = makeStyles((theme) => ({
         height: "100%",
         display: "flex",
         flexDirection: "column",
-        borderBottomRightRadius: "40px",
-        borderTopLeftRadius: "40px",
+        borderBottomRightRadius: theme.spacing(5),
+        borderTopLeftRadius: theme.spacing(5),
         border: `1px solid ${theme.palette.primary.main}`,
         paddingBottom: theme.spacing(1),
     },
@@ -30,9 +30,15 @@ const useStyles = makeStyles((theme) => ({
     cardContent: {
         flexGrow: 1,
     },
+    cardContentText: {
+        fontFamily: theme.typography.fontFamily.split(",")[1],
+    },
     footer: {
         backgroundColor: theme.palette.background.paper,
         padding: theme.spacing(6),
+    },
+    productSeeMoreButton: {
+        // fontFamily: theme.typography.fontFamily.split(",")[1],
     },
 }))
 

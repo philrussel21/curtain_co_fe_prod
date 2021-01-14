@@ -9,9 +9,21 @@ const useStyles = makeStyles((theme) => ({
     },
     homeImg: {},
     homeWhyCurtains: {},
-    whyCurtainsHeading: {},
+    whyCurtainsHeading: {
+        fontFamily: theme.typography.fontFamily.split(",")[2],
+    },
+    whyCurtainsText: {
+        fontFamily: theme.typography.fontFamily.split(",")[1],
+        fontStyle: "italic",
+    },
     whyCurtainsCont: {
         paddingBottom: "1%",
+    },
+    curtainCoImgText: {
+        fontFamily: theme.typography.fontFamily.split(",")[2],
+        color: "white",
+        width: "100%",
+        textAlign: "center",
     },
 }))
 
