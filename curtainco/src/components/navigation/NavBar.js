@@ -274,7 +274,11 @@ function NavBar() {
             {/* MOBILE STYLES */}
 
             <Mobile>
-                <Grid container direction="column">
+                <Grid
+                    container
+                    direction="column"
+                    className={classes.navBarMobileHeader}
+                >
                     <Grid item className={classes.dividerCont}>
                         <Divider
                             variant="middle"

@@ -25,6 +25,10 @@ const useStyles = makeStyles((theme) => ({
     formControl: {
         minWidth: 120,
     },
+    userDataFormHeader: {
+        fontFamily: theme.typography.fontFamily.split(",")[2],
+        color: theme.palette.primary.light,
+    },
 }))
 
 export default useStyles

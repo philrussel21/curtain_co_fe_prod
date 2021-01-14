@@ -1,7 +1,11 @@
 import React from "react"
+// STYLES
 import { Grid, Button, Typography } from "@material-ui/core"
+// PACKAGES
 import { Link } from "react-router-dom"
+// STATE
 import { useCurtainContext } from "../../config/CurtainCoContext"
+// COMPONENTS
 import CustomAlert from "../reusable/CustomAlert"
 
 function CartTotal({
@@ -10,10 +14,12 @@ function CartTotal({
     loginText,
     isCancelOrError,
     setPaymentFailedOrCancelled,
+    isMobile,
 }) {
     const { state } = useCurtainContext()
+
     return (
-        <Grid container direction="column" spacing={2}>
+        <Grid item container direction="column" spacing={2}>
             {/* IF PAYMENT WAS CANCELLED OR THERE WAS AN ERROR
             SHOW THIS DIV */}
             {isCancelOrError && (
@@ -30,12 +36,12 @@ function CartTotal({
 
             <Grid item container justify="center" alignItems="center">
                 <Grid item xs container justify="center">
-                    <Typography variant="h5" component="h5">
+                    <Typography variant="h4" component="h4">
                         Subtotal
                     </Typography>
                 </Grid>
                 <Grid item xs container justify="center">
-                    <Typography variant="h4" component="h4">
+                    <Typography variant="h5" component="h5">
                         ${total.toFixed(2)}
                     </Typography>
                 </Grid>
@@ -46,16 +52,33 @@ function CartTotal({
                     <Typography>{loginText}</Typography>
                 </Grid>
             )}
-            <Grid item container justify="center" alignItems="center">
-                <Grid item xs container justify="center">
+            <Grid
+                item
+                container
+                justify="center"
+                alignItems="center"
+                spacing={4}
+            >
+                <Grid item xs={12} sm={6} container justify="center">
                     <Link to="/products" className="link">
-                        <Button variant="outlined" color="primary" size="large">
+                        <Button
+                            variant="outlined"
+                            color="primary"
+                            size={isMobile ? "medium" : "large"}
+                        >
                             Continue Shopping
                         </Button>
                     </Link>
                 </Grid>
 
-                <Grid item xs container justify="center" alignItems="center">
+                <Grid
+                    item
+                    xs={12}
+                    sm={6}
+                    container
+                    justify="center"
+                    alignItems="center"
+                >
                     {children}
                 </Grid>
             </Grid>

@@ -6,7 +6,7 @@ import CartTotal from "./CartTotal"
 // PACKAGES
 import { Link } from "react-router-dom/cjs/react-router-dom.min"
 // STYLES
-import { Grid, Box, Button } from "@material-ui/core"
+import { Grid, Button, useTheme, useMediaQuery } from "@material-ui/core"
 import useStyles from "./CartStyles"
 // HELPERS AND SERVICES
 import {
@@ -37,11 +37,14 @@ function Cart({ history }) {
     const [cart, setCart] = useState([])
     const [totalPrice, setTotalPrice] = useState(0)
     const { state, dispatch } = useCurtainContext()
+    let orderId = null
     const [paymentSuccess, setPaymentSuccess] = useState(false)
     const [paymentFailedOrCancelled, setPaymentFailedOrCancelled] = useState(
         false
     )
-    let orderId = null
+    const theme = useTheme()
+    const isMobile = useMediaQuery(theme.breakpoints.only("xs"))
+
     // GET THE ITEMS FROM LOCAL STORAGE
     function updateCartInStateFromLocalStorage() {
         const cartItems = getCartItemsFromLocalStorage()
@@ -195,64 +198,65 @@ function Cart({ history }) {
     }
 
     return (
-        <>
-            <CartList
-                cart={cart}
-                handleRemove={handleRemove}
-                handleIncreaseQty={handleIncreaseQty}
-                handleDecreaseQty={handleDecreaseQty}
-            />
-            <Box p={4}>
-                <Grid
-                    container
-                    justify="flex-end"
-                    className={classes.cartTotalCont}
-                >
-                    <Grid item xs={6}>
-                        {cart.length > 0 ? (
-                            <CartTotal
-                                total={totalPrice}
-                                loginText="To purchase with PayPal, please log in first."
-                                isCancelOrError={paymentFailedOrCancelled}
-                                setPaymentFailedOrCancelled={
-                                    setPaymentFailedOrCancelled
-                                }
-                            >
-                                {isUserLoggedIn() ? (
-                                    <PayPal
-                                        handleSuccess={handleSuccess}
-                                        handleError={handleError}
-                                        handleCancel={handleCancel}
-                                        handleCreateOrder={handleCreateOrder}
-                                        totalPrice={totalPrice}
-                                    />
-                                ) : (
-                                    <Link
-                                        to={{
-                                            pathname: "/login",
-                                            state: {
-                                                prevUrl: window.location.href,
-                                            },
-                                        }}
-                                        className="link"
-                                    >
-                                        <Button
-                                            variant="contained"
-                                            color="primary"
-                                            size="large"
-                                        >
-                                            Log In
-                                        </Button>
-                                    </Link>
-                                )}
-                            </CartTotal>
+        <Grid container justify="center" alignItems="center" spacing={2}>
+            <Grid item xs={12} sm={8} className={classes.cartListCont}>
+                <CartList
+                    cart={cart}
+                    handleRemove={handleRemove}
+                    handleIncreaseQty={handleIncreaseQty}
+                    handleDecreaseQty={handleDecreaseQty}
+                />
+            </Grid>
+            <Grid
+                item
+                container
+                justify="center"
+                alignItems="center"
+                className={classes.cartTotalCont}
+                xs={12}
+                sm={4}
+            >
+                {cart.length > 0 && (
+                    <CartTotal
+                        total={totalPrice}
+                        loginText="To purchase with PayPal, please log in first."
+                        isCancelOrError={paymentFailedOrCancelled}
+                        setPaymentFailedOrCancelled={
+                            setPaymentFailedOrCancelled
+                        }
+                        isMobile={isMobile}
+                    >
+                        {isUserLoggedIn() ? (
+                            <PayPal
+                                handleSuccess={handleSuccess}
+                                handleError={handleError}
+                                handleCancel={handleCancel}
+                                handleCreateOrder={handleCreateOrder}
+                                totalPrice={totalPrice}
+                            />
                         ) : (
-                            ""
+                            <Link
+                                to={{
+                                    pathname: "/login",
+                                    state: {
+                                        prevUrl: window.location.href,
+                                    },
+                                }}
+                                className="link"
+                            >
+                                <Button
+                                    variant="contained"
+                                    color="primary"
+                                    size={isMobile ? "medium" : "large"}
+                                >
+                                    Log In
+                                </Button>
+                            </Link>
                         )}
-                    </Grid>
-                </Grid>
-            </Box>
-        </>
+                    </CartTotal>
+                )}
+            </Grid>
+        </Grid>
     )
 }
 

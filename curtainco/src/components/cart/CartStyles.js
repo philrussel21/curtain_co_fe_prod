@@ -1,11 +1,11 @@
 import { makeStyles } from "@material-ui/core/styles"
 
 const useStyles = makeStyles((theme) => ({
-    paper: {
+    cartItemCont: {
         backgroundColor: theme.palette.background.paper,
         boxShadow: theme.shadows[5],
         padding: theme.spacing(2, 4, 3),
-        width: "70%",
+        width: "80%",
         borderBottomRightRadius: theme.spacing(5),
         borderTopLeftRadius: theme.spacing(5),
         border: `1px solid ${theme.palette.primary.main}`,
@@ -31,13 +31,32 @@ const useStyles = makeStyles((theme) => ({
         fontSize: theme.typography.pxToRem(20),
     },
     cartTotalCont: {
-        width: "90%",
+        width: "100%",
+        height: "100%",
     },
     cartItemDetailsCont: {
         paddingLeft: "3%",
     },
     cartListCont: {
-        paddingTop: "3%",
+        paddingTop: "5%",
+    },
+    cartItemHeader: {
+        color: theme.palette.primary.light,
+        fontFamily: theme.typography.fontFamily.split(",")[2],
+    },
+    cartItemDetailsData: {
+        fontFamily: theme.typography.fontFamily.split(",")[1],
+        color: theme.palette.grey[700],
+        fontStyle: "italic",
+    },
+    cartItemDetails: {
+        fontFamily: theme.typography.fontFamily.split(",")[1],
+    },
+    cartItemQtyCont: {
+        paddingTop: theme.spacing(2),
+    },
+    cartItemPriceCont: {
+        paddingTop: theme.spacing(2),
     },
 }))
 

@@ -140,6 +140,23 @@ const useStyles = makeStyles((theme) => ({
         fontSize: 16,
         letterSpacing: "1px",
     },
+    footerEmailLink: {
+        fontFamily: theme.typography.fontFamily.split(",")[1],
+        fontSize: 16,
+        letterSpacing: "1px",
+        color: theme.palette.secondary.dark,
+    },
+    navBarMobileHeader: {
+        // maxHeight: "100px",
+    },
+    privacy: {
+        fontFamily: theme.typography.fontFamily.split(",")[1],
+        letterSpacing: "1px",
+    },
+    footerSiteByLinks: {
+        textDecoration: "none",
+        color: theme.palette.secondary.dark,
+    },
 }))
 
 export default useStyles
