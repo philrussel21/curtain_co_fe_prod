@@ -69,14 +69,14 @@ function CollectionCustomise() {
             accessory: tempAccessory,
             price: customizedPrice,
         }
-        console.log(tempCollection)
+        // console.log(tempCollection)
         addItemToCart(tempCollection, dispatch)
         setSuccessSnackBar(dispatch, "Added customised collection to cart")
     }
 
     // HANDLES THE TOTAL PRICE AND DISCOUNT OF THE CUSTOMISED COLLECTION
     useEffect(() => {
-        console.log("---HERE----")
+        // console.log("---HERE----")
         let { customPrice, discount } = calculateCustomizedCollectionPrice(
             customizedCollection,
             collection,

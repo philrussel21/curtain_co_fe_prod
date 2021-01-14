@@ -56,8 +56,6 @@ function App() {
     })
     theme = responsiveFontSizes(theme)
 
-    console.log(theme)
-
     useEffect(() => {
         // FIND IF A PERSON STILL HAS A SESSION,
         // IF SO, LOG THEM IN
