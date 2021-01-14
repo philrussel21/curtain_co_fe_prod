@@ -247,7 +247,7 @@ function Cart({ history }) {
                                 <Button
                                     variant="contained"
                                     color="primary"
-                                    size={isMobile ? "medium" : "large"}
+                                    size="large"
                                 >
                                     Log In
                                 </Button>

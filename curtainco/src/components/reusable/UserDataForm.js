@@ -519,11 +519,11 @@ export default function UserDataForm({
 
                     {withAuth.email && withAuth.password && (
                         <Grid container justify="flex-end">
-                            <Grid item>
-                                <Link className={classes.link} to="/login">
+                            <Link className={classes.loginLink} to="/login">
+                                <Typography>
                                     Already have an account? Sign In
-                                </Link>
-                            </Grid>
+                                </Typography>
+                            </Link>
                         </Grid>
                     )}
                 </form>

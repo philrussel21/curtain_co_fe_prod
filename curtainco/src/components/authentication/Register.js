@@ -83,9 +83,9 @@ export default function SignUp() {
                         headerInformation={{ icon: true, title: "Sign Up" }}
                         withConsultMessage={false}
                     />
-                    <Container maxWidth="sm">
+                    {/* <Container maxWidth="sm">
                         <Copyright />
-                    </Container>
+                    </Container> */}
                 </>
             )}
         </>

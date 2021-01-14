@@ -10,9 +10,9 @@ const useStyles = makeStyles((theme) => ({
         width: "100%",
         height: "100%",
         padding: "12px 20px",
-        "&:hover": {
-            textDecoration: "underline",
-        },
+        // "&:hover": {
+        //     textDecoration: "underline",
+        // },
     },
     iconButtonLink: {
         textDecoration: "none",
@@ -36,15 +36,12 @@ const useStyles = makeStyles((theme) => ({
         marginTop: "auto",
         backgroundColor: "lightblue",
     },
-    mobileHeader: {
-        textAlign: "center",
-        padding: "3%",
-    },
+    mobileHeader: {},
     footerMobile: {
         height: "fit-content",
         backgroundColor: "lightblue",
         marginTop: "10%",
-        paddingBottom: "5%",
+        paddingBottom: "20%",
         paddingTop: "5%",
         position: "relative",
         width: "100%",
@@ -115,15 +112,11 @@ const useStyles = makeStyles((theme) => ({
         padding: "none",
     },
     topNavBarDivider: {
-        marginTop: "5%",
+        marginTop: "-113px",
         backgroundColor: theme.palette.primary.light,
     },
     bottomNavBarDivider: {
-        marginTop: "-5%",
-        backgroundColor: theme.palette.primary.light,
-    },
-    bottomNavBarDividerMobile: {
-        marginTop: "-10%",
+        marginTop: "-65px",
         backgroundColor: theme.palette.primary.light,
     },
     dividerCont: {
@@ -146,8 +139,16 @@ const useStyles = makeStyles((theme) => ({
         letterSpacing: "1px",
         color: theme.palette.secondary.dark,
     },
-    navBarMobileHeader: {
-        // maxHeight: "100px",
+    navBarMobileHeaderLeft: {
+        textAlign: "center",
+        padding: "3%",
+        fontWeight: theme.typography.fontWeightMedium,
+    },
+    navBarMobileHeaderRight: {
+        textAlign: "center",
+        padding: "3%",
+        fontWeight: theme.typography.fontWeightMedium,
+        color: theme.palette.primary.main,
     },
     privacy: {
         fontFamily: theme.typography.fontFamily.split(",")[1],

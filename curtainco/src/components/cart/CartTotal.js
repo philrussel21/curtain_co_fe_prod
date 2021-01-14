@@ -61,11 +61,7 @@ function CartTotal({
             >
                 <Grid item xs={12} sm={6} container justify="center">
                     <Link to="/products" className="link">
-                        <Button
-                            variant="outlined"
-                            color="primary"
-                            size={isMobile ? "medium" : "large"}
-                        >
+                        <Button variant="outlined" color="primary" size="large">
                             Continue Shopping
                         </Button>
                     </Link>

@@ -12,11 +12,9 @@ import { ACTIONS } from "../../config/stateReducer"
 import Copyright from "./Copyright"
 import LoadingSymbol from "../reusable/LoadingSymbol"
 // STYLES
-import useStyles from "../reusable/UserDataFormStyles"
 import {
     Avatar,
     Button,
-    CssBaseline,
     TextField,
     FormControlLabel,
     Checkbox,
@@ -24,13 +22,18 @@ import {
     Box,
     Typography,
     Container,
+    useTheme,
+    useMediaQuery,
 } from "@material-ui/core"
+import useStyles from "../reusable/UserDataFormStyles"
 // ICONS
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined"
 
 export default function SignIn() {
     const classes = useStyles()
     const history = useHistory()
+    const theme = useTheme()
+    const isMobile = useMediaQuery(theme.breakpoints.only("xs"))
 
     const { state, dispatch } = useCurtainContext()
     const [email, setEmail] = useState("")
@@ -115,14 +118,17 @@ export default function SignIn() {
                 <Redirect to={prevUrl} />
             ) : (
                 <Container maxWidth="xs">
-                    <CssBaseline />
-
                     <div className={classes.paper}>
                         <Avatar className={classes.avatar}>
                             <LockOutlinedIcon />
                         </Avatar>
 
-                        <Typography component="h1" variant="h5">
+                        <Typography
+                            component="h2"
+                            variant="h5"
+                            className={classes.userDataFormHeader}
+                            style={{ fontSize: isMobile ? 32 : 48 }}
+                        >
                             Sign in
                         </Typography>
 
@@ -185,28 +191,20 @@ export default function SignIn() {
                                         Sign In
                                     </Button>
 
-                                    <Grid container>
-                                        <Grid item xs>
-                                            <Link
-                                                className={classes.link}
-                                                to="/"
-                                            >
-                                                {/* Forgot password? */}
-                                            </Link>
-                                        </Grid>
-                                        <Grid item>
-                                            <Link
-                                                className={classes.link}
-                                                to={{
-                                                    pathname: "/register",
-                                                    state: {
-                                                        prevUrl: prevUrl,
-                                                    },
-                                                }}
-                                            >
+                                    <Grid container justify="flex-end">
+                                        <Link
+                                            className={classes.loginLink}
+                                            to={{
+                                                pathname: "/register",
+                                                state: {
+                                                    prevUrl: prevUrl,
+                                                },
+                                            }}
+                                        >
+                                            <Typography>
                                                 Don't have an account? Sign Up
-                                            </Link>
-                                        </Grid>
+                                            </Typography>
+                                        </Link>
                                     </Grid>
                                 </form>
                             </>
