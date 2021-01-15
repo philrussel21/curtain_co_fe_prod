@@ -101,6 +101,12 @@ export default function AllConsults() {
 
     function handleRemove(event) {
         const consultId = event.currentTarget.parentNode.parentNode.id
+
+        // CATCH AN ACCIDENTAL PRESS OF THE DELETE BUTTON
+        if (!window.confirm("Are you sure wish to delete this request?")) {
+            return
+        }
+
         removeConsultation(consultId)
             .then((resp) => {
                 dispatch({
@@ -168,12 +174,10 @@ export default function AllConsults() {
                 </Button>
             </TableCell>
             <TableCell>
-                <IconButton
-                    color={theme.palette.error.main}
-                    onClick={handleRemove}
-                    disabled={!cons.isProcessed}
-                >
-                    <DeleteIcon />
+                <IconButton onClick={handleRemove} disabled={!cons.isProcessed}>
+                    <DeleteIcon
+                        color={cons.isProcessed ? "error" : "disabled"}
+                    />
                 </IconButton>
             </TableCell>
         </TableRow>
