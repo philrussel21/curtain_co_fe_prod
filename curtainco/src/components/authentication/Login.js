@@ -72,15 +72,31 @@ export default function SignIn() {
             console.log(resp.data)
             let currentUser = resp.data.user
             if (currentUser && resp.status === 200) {
+                // fires a setTimeout that would refresh the page based on rememberMe
+                // ifremember me is true, sets the timeout from refresh to the max value setTimeout can reach
+                // assumes the user would not leave the browser open without refresh in a span of a month.
+                let timeOut = null
+                if(rememberMe) {
+                    const maxTimeOutVal = 2147483647
+                    timeOut = setTimeout(() => {
+                        window.location.reload();
+                    }, maxTimeOutVal)
+                } else {
+                    timeOut = setTimeout(() => {
+                        window.location.reload();
+                    }, 3_600_000)
+                }
+                console.log("timeout set, with ID", timeOut)
                 dispatch({
                     type: ACTIONS.LOGIN,
                     payload: currentUser,
+                    timeOut
                 })
                 setEmail("")
                 setPassword("")
             }
         } catch (error) {
-            loginError = `An error ocurred on login. ${error.response.data}`
+            loginError = `An error ocurred on login. ${error}`
             console.log(loginError)
             setErrorSnackBar(
                 dispatch,

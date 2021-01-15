@@ -62,7 +62,10 @@ function NavBar() {
                 console.log("Got back response on logout", resp)
                 // logout the user locally
                 if (resp.status === 204) {
-                    dispatch({ type: ACTIONS.LOGOUT })
+                    // gets and clears the timeout set when logging in or refresh with session on it
+                    const timeOut = state.timeOut
+                    clearTimeout(timeOut)
+                    dispatch({ type: ACTIONS.LOGOUT, timeOut: null })
                     console.log("logging out")
                 }
             })
