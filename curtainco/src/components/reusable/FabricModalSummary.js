@@ -9,13 +9,13 @@ function FabricModalSummary({ product }) {
     const classes = useStyles()
     return (
         <Grid item container>
-            <Grid item direction="column" xs={6}>
+            <Grid item container direction="column" xs={6}>
                 <Typography>Density:</Typography>
                 <Typography>Style:</Typography>
                 <Typography>Size:</Typography>
                 <Typography>Length:</Typography>
             </Grid>
-            <Grid item direction="column" xs={6}>
+            <Grid item container direction="column" xs={6}>
                 <Typography className={classes.modalData}>
                     {capitalize(product.density)}
                 </Typography>
