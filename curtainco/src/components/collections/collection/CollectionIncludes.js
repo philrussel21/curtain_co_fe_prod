@@ -6,8 +6,17 @@ import {
     Typography,
     Grid,
 } from "@material-ui/core"
+import useStyles from "../CollectionStyles"
 
-function CollectionIncludes({ fabrics, tracks, accessories, price, discount }) {
+function CollectionIncludes({
+    fabrics,
+    tracks,
+    accessories,
+    price,
+    discount,
+    isMobile,
+}) {
+    const classes = useStyles()
     const [lengths, setLengths] = useState({
         fabricLength: 0,
         trackLength: 0,
@@ -24,63 +33,76 @@ function CollectionIncludes({ fabrics, tracks, accessories, price, discount }) {
     return (
         <Grid container direction="column" justify="center" alignItems="center">
             <Grid item>
-                <Typography variant="h5" component="h5">
+                <Typography
+                    variant="h5"
+                    component="h5"
+                    className={classes.collectionIncludesHeader}
+                    style={{ fontSize: isMobile ? 28 : 30 }}
+                >
                     Your Collection Includes
                 </Typography>
             </Grid>
-            <Grid item>
-                <List style={{ width: "100%" }}>
-                    <ListItem key={`fabric-length-${fabrics.length}`}>
-                        <ListItemText
-                            primary={`- ${lengths.fabricLength} ${
-                                lengths.fabricLength === 1
-                                    ? "Fabric"
-                                    : "Fabrics"
-                            }`}
-                        />
-                    </ListItem>
-                    <ListItem key={`track-length-${tracks.length}`}>
-                        <ListItemText
-                            primary={`- ${lengths.trackLength} ${
-                                lengths.trackLength === 1 ? "Track" : "Tracks"
-                            }`}
-                        />
-                    </ListItem>
-                    <ListItem key={`accessories-length-${accessories.length}`}>
-                        <ListItemText
-                            primary={`- ${lengths.accessoryLength} ${
-                                lengths.accessoryLength === 1
-                                    ? "Accessory"
-                                    : "Accessories"
-                            }`}
-                        />
-                    </ListItem>
-                    <ListItem key="total-length">
-                        <ListItemText
-                            primary={`Total Products = ${
-                                lengths.accessoryLength +
-                                lengths.trackLength +
-                                lengths.fabricLength
-                            } `}
-                        />
-                    </ListItem>
-                </List>
+            <Grid
+                item
+                container
+                spacing={3}
+                className={classes.collectionIncludesCategoryCont}
+            >
+                <Grid item container direction="column" xs={6}>
+                    <Typography className={classes.collectionIncludesCategory}>
+                        Fabrics:
+                    </Typography>
+                    <Typography className={classes.collectionIncludesCategory}>
+                        Tracks:
+                    </Typography>
+                    <Typography className={classes.collectionIncludesCategory}>
+                        Accessories:
+                    </Typography>
+                    <Typography className={classes.collectionIncludesCategory}>
+                        Total Products:
+                    </Typography>
+                    <Typography className={classes.collectionIncludesCategory}>
+                        Discount Applied:
+                    </Typography>
+                </Grid>
+                <Grid item container direction="column" xs={6}>
+                    <Typography className={classes.collectionIncludesNumber}>
+                        {`x${lengths.fabricLength}`}
+                    </Typography>
+                    <Typography className={classes.collectionIncludesNumber}>
+                        {`x${lengths.trackLength}`}
+                    </Typography>
+                    <Typography className={classes.collectionIncludesNumber}>
+                        {`x${lengths.accessoryLength}`}
+                    </Typography>
+                    <Typography className={classes.collectionIncludesNumber}>
+                        {lengths.accessoryLength +
+                            lengths.trackLength +
+                            lengths.fabricLength}
+                    </Typography>
+                    <Typography className={classes.collectionIncludesNumber}>
+                        {`${discount * 100}%`}
+                    </Typography>
+                </Grid>
             </Grid>
-            <Grid item>
-                <Typography variant="h6" component="h6">
-                    {`Discount : ${discount * 100}%`}
-                </Typography>
-            </Grid>
-            <Grid item>
-                <Typography>
-                    (showing discount only for test purposes, unless we want to
-                    leave it here in some form?)
-                </Typography>
-            </Grid>
-            <Grid item>
-                <Typography variant="h6" component="h6">
-                    {`Total: $${price.toFixed(2)}`}
-                </Typography>
+            <Grid
+                item
+                container
+                spacing={3}
+                className={classes.collectionIncludesTotalHeader}
+            >
+                <Grid item container direction="column" xs={6}>
+                    <Typography className={classes.collectionIncludesTotal}>
+                        Total:
+                    </Typography>
+                </Grid>
+                <Grid item container direction="column" xs={6}>
+                    <Typography
+                        className={classes.collectionIncludesTotalNumber}
+                    >
+                        {`$${price.toFixed(2)}`}
+                    </Typography>
+                </Grid>
             </Grid>
         </Grid>
     )

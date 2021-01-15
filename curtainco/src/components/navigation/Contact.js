@@ -47,7 +47,7 @@ function Contact() {
                     color="textSecondary"
                     className={classes.footerText}
                 >
-                    0400 111 222
+                    0401 762 272
                 </Typography>
             </Grid>
 
@@ -57,8 +57,8 @@ function Contact() {
                     color="textSecondary"
                     className={classes.footerEmailLink}
                 >
-                    <a href="mailto:marie@email.com?" className="link">
-                        marie@email.com
+                    <a href="mailto:marie@marieg.com.au?" className="link">
+                        marie@marieg.com.au
                     </a>
                 </Typography>
             </Grid>

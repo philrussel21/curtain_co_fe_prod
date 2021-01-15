@@ -60,6 +60,8 @@ function Cart({ history }) {
     // WHEN CART IN LOCAL STATE IS LOADED, CALCULATE THE TOTAL PRICE
     useEffect(() => {
         let tempTotal = generateTotalPriceOfCart(cart)
+        // FORCE TOTAL TO 2 DECIMAL PLACES
+        tempTotal = Math.round((tempTotal + Number.EPSILON) * 100) / 100
         setTotalPrice(tempTotal)
     }, [cart])
 
@@ -197,6 +199,12 @@ function Cart({ history }) {
         return state.currentUser !== null
     }
 
+    function userIsNotAdmin() {
+        if (isUserLoggedIn()) {
+            return state.currentUser.role !== "admin"
+        }
+    }
+
     return (
         <Grid container justify="center" alignItems="center" spacing={2}>
             <Grid item xs={12} sm={8} className={classes.cartListCont}>
@@ -226,7 +234,9 @@ function Cart({ history }) {
                         }
                         isMobile={isMobile}
                     >
-                        {isUserLoggedIn() ? (
+                        {/* BLOCK ADMINS FROM SEEING PAYPAL BUTTON*/}
+                        {/* BLOCK ADMINS FROM SEEING THE LOG IN BUTTON AS WELL */}
+                        {isUserLoggedIn() && userIsNotAdmin() ? (
                             <PayPal
                                 handleSuccess={handleSuccess}
                                 handleError={handleError}
@@ -235,23 +245,25 @@ function Cart({ history }) {
                                 totalPrice={totalPrice}
                             />
                         ) : (
-                            <Link
-                                to={{
-                                    pathname: "/login",
-                                    state: {
-                                        prevUrl: window.location.href,
-                                    },
-                                }}
-                                className="link"
-                            >
-                                <Button
-                                    variant="contained"
-                                    color="primary"
-                                    size="large"
+                            userIsNotAdmin() && (
+                                <Link
+                                    to={{
+                                        pathname: "/login",
+                                        state: {
+                                            prevUrl: window.location.href,
+                                        },
+                                    }}
+                                    className="link"
                                 >
-                                    Log In
-                                </Button>
-                            </Link>
+                                    <Button
+                                        variant="contained"
+                                        color="primary"
+                                        size="large"
+                                    >
+                                        Log In
+                                    </Button>
+                                </Link>
+                            )
                         )}
                     </CartTotal>
                 )}

@@ -1,71 +1,68 @@
-import React, { useEffect } from "react";
+import React, { useEffect } from "react"
 
-import Checkbox from "@material-ui/core/Checkbox";
-import Table from "@material-ui/core/Table";
-import TableBody from "@material-ui/core/TableBody";
-import TableCell from "@material-ui/core/TableCell";
-import TableHead from "@material-ui/core/TableHead";
-import TableRow from "@material-ui/core/TableRow";
-import Paper from "@material-ui/core/Paper";
-import Button from "@material-ui/core/Button";
-import Title from "../../../reusable/Title";
+import Checkbox from "@material-ui/core/Checkbox"
+import Table from "@material-ui/core/Table"
+import TableBody from "@material-ui/core/TableBody"
+import TableCell from "@material-ui/core/TableCell"
+import TableHead from "@material-ui/core/TableHead"
+import TableRow from "@material-ui/core/TableRow"
+import Paper from "@material-ui/core/Paper"
+import Button from "@material-ui/core/Button"
+import Title from "../../../reusable/Title"
 
-import useStyles from "../AdminStyles";
+import useStyles from "../AdminStyles"
 import {
     getFirstNameFromFullName,
     getLastNameFromFullName,
-} from "../../../../helpers/userHelpers";
+} from "../../../../helpers/userHelpers"
 import {
     displayShortDate,
     setSuccessSnackBar,
-} from "../../../../helpers/appHelpers";
-import { useCurtainContext } from "../../../../config/CurtainCoContext";
-import { ACTIONS } from "../../../../config/stateReducer";
-import {
-    getAllOrders,
-    updateOrder,
-} from "../../../../services/orderServices";
+} from "../../../../helpers/appHelpers"
+import { useCurtainContext } from "../../../../config/CurtainCoContext"
+import { ACTIONS } from "../../../../config/stateReducer"
+import { getAllOrders, updateOrder } from "../../../../services/orderServices"
 
 function AllOrders() {
-    const classes = useStyles();
-    const { state, dispatch } = useCurtainContext();
-    let allOrders = state.orders;
+    const classes = useStyles()
+    const { state, dispatch } = useCurtainContext()
+    let allOrders = state.orders
 
     useEffect(() => {
         getAllOrders()
             .then((resp) => {
-                console.log("---ORDERS---");
-                console.log(resp.data);
+                console.log("---ORDERS---")
+                console.log(resp.data)
                 dispatch({
                     type: ACTIONS.SET_ALL_ORDERS,
                     payload: resp.data,
-                });
+                })
             })
             .catch((err) => {
-                console.log(err);
-            });
-    }, [dispatch]);
+                console.log(err)
+            })
+    }, [dispatch])
 
     function handleOrderCheckbox(event) {
-        const checked = event.target.checked;
-        const orderId = event.currentTarget.parentNode.parentNode.id;
+        const checked = event.target.checked
+        const orderId = event.currentTarget.parentNode.parentNode.id
         updateOrder(orderId, { isProcessed: checked })
             .then((resp) => {
-                console.log("---UPDATED ORDER---");
-                console.log(resp.data);
+                console.log("---UPDATED ORDER---")
+                console.log(resp.data)
                 if (resp.status === 200) {
                     dispatch({
                         type: ACTIONS.UPDATE_ORDER,
                         payload: resp.data,
-                    });
-                    setSuccessSnackBar(dispatch, "Order successfully updated");
+                    })
+                    setSuccessSnackBar(dispatch, "Order successfully updated")
                 }
             })
             .catch((error) => {
                 console.log(
                     `Something went wrong when updating the order: ${error}`
-                );
-            });
+                )
+            })
     }
 
     function handleOrderSummary(event) {
@@ -74,7 +71,7 @@ function AllOrders() {
         // const message = event.currentTarget.value.split("/")[1];
         // prettier-ignore
         const orderId = event.currentTarget.parentNode.parentNode.id;
-        const order = state.orders.find((ord) => ord._id === orderId);
+        const order = state.orders.find((ord) => ord._id === orderId)
         dispatch({
             type: ACTIONS.SET_MODAL,
             payload: {
@@ -82,7 +79,7 @@ function AllOrders() {
                 data: order,
                 paymentSummary: true,
             },
-        });
+        })
     }
 
     const orderRow = allOrders.map((ord) => (
@@ -127,14 +124,14 @@ function AllOrders() {
                 </Button>
             </TableCell>
         </TableRow>
-    ));
+    ))
     return (
         <Paper className={classes.paper}>
             <Title>All Orders</Title>
             <Table size="small">
                 <TableHead>
                     <TableRow>
-                        <TableCell>Done</TableCell>
+                        <TableCell>Shipped</TableCell>
                         <TableCell>Created On</TableCell>
                         <TableCell>Name</TableCell>
                         <TableCell>Email</TableCell>
@@ -145,7 +142,7 @@ function AllOrders() {
                 <TableBody>{orderRow}</TableBody>
             </Table>
         </Paper>
-    );
+    )
 }
 
-export default AllOrders;
+export default AllOrders

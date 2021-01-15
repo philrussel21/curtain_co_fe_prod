@@ -8,7 +8,7 @@ import { capitalize } from "../../../helpers/appHelpers"
 // import { useCurtainContext } from "../../../config/CurtainCoContext"
 // import { ACTIONS } from "../../../config/stateReducer"
 
-function AccordionDataItem({ data, handleCustomization }) {
+function AccordionDataItem({ data, handleCustomization, isMobile }) {
     const classes = useStyles()
     const [productSelection, setProductSelection] = useState([])
     // const [category, setCategory] = useState("")
@@ -42,6 +42,8 @@ function AccordionDataItem({ data, handleCustomization }) {
     // THIS LINE:
     // sm={data.length === 4 ? 3 : 4}
     // DEALS WITH THE GRID FOR 3 OR LESS PRODUCTS
+
+    // I AM SORRY FUTURE PERSON, THIS CODE BELOW IS CONFUSING
     const dataItem = data.map((product, index) => (
         <Grid
             item
@@ -74,7 +76,12 @@ function AccordionDataItem({ data, handleCustomization }) {
                 />
             </Grid>
             <Grid item container justify="center">
-                <Typography variant="subtitle1" component="p">
+                <Typography
+                    variant="subtitle1"
+                    component="p"
+                    className={classes.collectionCustomiseProductName}
+                    style={{ fontSize: isMobile ? 14 : 16 }}
+                >
                     {capitalize(product.name)}
                 </Typography>
             </Grid>

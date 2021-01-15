@@ -1,44 +1,158 @@
 import React from "react"
-import { Typography, Grid, Avatar, Divider, Box } from "@material-ui/core"
+// STYLES
+import {
+    Typography,
+    Grid,
+    Divider,
+    Box,
+    useTheme,
+    useMediaQuery,
+} from "@material-ui/core"
+import useStyles from "../../reusable/ModalStyles"
+// HELPERS AND SERVICES
 import { capitalize } from "../../../helpers/appHelpers"
-import { buildContentString } from "../../../helpers/collectionHelpers"
+// import { buildContentString } from "../../../helpers/collectionHelpers"
 
 function PurchasedCollection({ qty, collection }) {
+    const classes = useStyles()
+    const theme = useTheme()
+    const isMobile = useMediaQuery(theme.breakpoints.only("xs"))
+    const isIphone5 = useMediaQuery("(max-width:320px)")
+
     return (
         <Box m={1}>
-            <Grid item container justify="center" alignItems="center">
-                <Grid item container justify="center" xs={2}>
-                    <Grid item>
-                        <Avatar src={collection.imgUrl} alt={collection.name} />
+            <Grid
+                item
+                container
+                justify="center"
+                alignItems="center"
+                spacing={isMobile ? 1 : 2}
+            >
+                {/* ONLY SHOW THE COLLECTION NAME HERE IF IT IS MOBILE */}
+                {isMobile && (
+                    <Grid item xs={12}>
+                        <Typography
+                            className={classes.orderSummaryModalPurchaseName}
+                            style={{
+                                fontSize: isIphone5 ? 24 : 28,
+                                textAlign: "center",
+                            }}
+                        >
+                            {capitalize(collection.name)}
+                        </Typography>
                     </Grid>
-                </Grid>
-                <Grid item xs={5}>
-                    {qty}x {capitalize(collection.name)}
-                </Grid>
+                )}
 
-                <Grid item container direction="column" xs={3}>
-                    <Grid item>Contents</Grid>
+                <Grid
+                    item
+                    container
+                    justify={isMobile ? "flex-start" : "center"}
+                    xs={6}
+                    sm={2}
+                >
                     <Grid item>
-                        {buildContentString(collection.track, "Track")}
-                    </Grid>
-                    <Grid item>
-                        {buildContentString(collection.fabric, "Fabric")}
-                    </Grid>
-                    <Grid item>
-                        {buildContentString(collection.accessory, "Accessory")}
+                        <img
+                            src={
+                                collection.imgUrl !== undefined
+                                    ? collection.imgUrl
+                                    : "/no-image.png"
+                            }
+                            alt={collection.name}
+                            className={classes.orderSummaryModalImage}
+                        />
                     </Grid>
                 </Grid>
                 <Grid
                     item
                     container
-                    justify="center"
-                    alignItems="center"
-                    xs={2}
+                    direction="column"
+                    alignItems={isMobile ? "center" : "flex-start"}
+                    xs={6}
+                    sm={6}
                 >
-                    <Grid item>${qty * collection.price}</Grid>
+                    {/* ONLY THIS THE COLLECTION NAME HERE IF IT ISN'T MOBILE */}
+                    {!isMobile && (
+                        <Grid item>
+                            <Typography
+                                className={
+                                    classes.orderSummaryModalPurchaseName
+                                }
+                                style={{ fontSize: isMobile ? 22 : 28 }}
+                            >
+                                {capitalize(collection.name)}
+                            </Typography>
+                        </Grid>
+                    )}
+
+                    <Grid item>
+                        <Typography>QTY: x {qty}</Typography>
+                    </Grid>
+                    <Grid item>
+                        <Typography>
+                            ${qty * collection.price.toFixed(2)}
+                        </Typography>
+                    </Grid>
+                </Grid>
+
+                <Grid item container direction="column" xs={12} sm={4}>
+                    <Grid item>
+                        <Typography
+                            className={classes.orderSummaryModalContentTitle}
+                        >
+                            Contents
+                        </Typography>
+                    </Grid>
+                    <Grid item container>
+                        <Grid item container direction="column" xs={6}>
+                            <Typography
+                                className={
+                                    classes.orderSummaryModalContentHeadings
+                                }
+                            >
+                                Tracks:
+                            </Typography>
+                            <Typography
+                                className={
+                                    classes.orderSummaryModalContentHeadings
+                                }
+                            >
+                                Fabrics:
+                            </Typography>
+                            <Typography
+                                className={
+                                    classes.orderSummaryModalContentHeadings
+                                }
+                            >
+                                Accessories:
+                            </Typography>
+                        </Grid>
+                        <Grid
+                            item
+                            container
+                            direction="column"
+                            alignItems="center"
+                            xs={6}
+                        >
+                            <Typography
+                                className={classes.orderSummaryModalContentData}
+                            >
+                                x{collection.track.length}
+                            </Typography>
+                            <Typography
+                                className={classes.orderSummaryModalContentData}
+                            >
+                                x{collection.fabric.length}
+                            </Typography>
+                            <Typography
+                                className={classes.orderSummaryModalContentData}
+                            >
+                                x{collection.accessory.length}
+                            </Typography>
+                        </Grid>
+                    </Grid>
                 </Grid>
             </Grid>
-            <Divider />
+            <Divider className={classes.orderSummaryDivider} />
         </Box>
     )
 }

@@ -1,9 +1,9 @@
 import React from "react"
 // STYLES
-import { Container, Typography, Grid, Button } from "@material-ui/core"
+import { Typography, Grid } from "@material-ui/core"
 import useStyles from "./UserDashboardStyles"
 // PACKAGES
-import { Link } from "react-router-dom/cjs/react-router-dom.min"
+// import { Link } from "react-router-dom/cjs/react-router-dom.min"
 // STATE
 import { useCurtainContext } from "../../../config/CurtainCoContext"
 
@@ -21,21 +21,16 @@ function CTARequestConsultation({ isMobile }) {
                     Ready To Get Started?
                 </Typography>
             </Grid>
-            <Grid item>
+            <Grid item xs={12}>
                 <Typography
                     variant="body1"
                     className={classes.userDashBoardCTAText}
                 >
-                    {state.currentUser.orders > 0
-                        ? "Now that you have your box of collections, request a consultation for one of our experienced designer installers to help size up and order your curtain packages."
+                    {state.currentUser.orders.length > 0
+                        ? "Thank you for purchasing our products. Next step, request a consultation for one of our experienced designer installers to help size up and order your curtain packages. You can find the link to request a consultation at the bottom of the page."
                         : "Head over and view our customised collections of samples by an interior designer, or pick out some individual samples to be able to make your own collection."}
                 </Typography>
             </Grid>
-            {/* <Button variant="outlined" color="primary" >
-                <Link to="/request" className={classes.link}>
-                    Request Consultation
-                </Link>
-            </Button> */}
         </Grid>
     )
 }

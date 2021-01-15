@@ -1,4 +1,4 @@
-import { makeStyles } from "@material-ui/core/styles"
+import { makeStyles, ThemeProvider } from "@material-ui/core/styles"
 
 const useStyles = makeStyles((theme) => ({
     paper: {
@@ -23,8 +23,9 @@ const useStyles = makeStyles((theme) => ({
         width: "60%",
     },
     collectionHeaderCont: {
-        width: "50%",
-        margin: "0 auto",
+        // width: "100%",
+        paddingLeft: "5%",
+        // margin: "0 auto",
     },
     collectionList: {
         width: "100%",
@@ -33,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
         width: "100%",
     },
     accordionHeading: {
-        fontSize: theme.typography.pxToRem(15),
+        fontSize: theme.typography.pxToRem(20),
         fontWeight: theme.typography.fontWeightRegular,
     },
     accordionDetails: {
@@ -41,7 +42,7 @@ const useStyles = makeStyles((theme) => ({
         margin: "0 auto",
     },
     accordionDataItemSelected: {
-        border: "2px solid royalBlue",
+        border: `3px solid ${theme.palette.secondary.light}`,
         padding: "4px",
         cursor: "pointer",
         height: "100px",
@@ -49,6 +50,9 @@ const useStyles = makeStyles((theme) => ({
         objectFit: "cover",
         borderBottomRightRadius: theme.spacing(4),
         borderTopLeftRadius: theme.spacing(4),
+        "&:hover": {
+            border: `3px solid ${theme.palette.secondary.main}`,
+        },
     },
     accordionDataItem: {
         padding: "6px",
@@ -85,6 +89,52 @@ const useStyles = makeStyles((theme) => ({
         borderBottomRightRadius: theme.spacing(6),
         borderTopLeftRadius: theme.spacing(6),
     },
+    collectionCustomiseHeader: {
+        fontFamily: theme.typography.fontFamily.split(",")[2],
+        color: theme.palette.primary.main,
+        textAlign: "center",
+    },
+    designerTipHeader: {
+        fontFamily: theme.typography.fontFamily.split(",")[2],
+        color: theme.palette.secondary.light,
+    },
+    designerTipMessage: {
+        fontFamily: theme.typography.fontFamily.split(",")[1],
+        color: theme.palette.grey[900],
+        fontStyle: "italic",
+    },
+    collectionCustomiseProductName: {
+        fontFamily: theme.typography.fontFamily.split(",")[1],
+        color: theme.palette.grey[800],
+        // fontSize: 14,
+    },
+    collectionIncludesHeader: {
+        fontFamily: theme.typography.fontFamily.split(",")[2],
+        color: theme.palette.primary.light,
+        textAlign: "center",
+    },
+    collectionIncludesNumber: {
+        fontFamily: theme.typography.fontFamily.split(",")[1],
+        color: theme.palette.grey[800],
+        fontStyle: "italic",
+    },
+    collectionIncludesCategoryCont: {
+        paddingTop: "5%",
+    },
+    collectionIncludesTotalHeader: {
+        paddingTop: "5%",
+    },
+    collectionIncludesTotal: {
+        fontFamily: theme.typography.fontFamily.split(",")[1],
+        fontWeight: "bold",
+        fontSize: 20,
+    },
+    collectionIncludesTotalNumber: {
+        fontFamily: theme.typography.fontFamily.split(",")[1],
+        fontWeight: "bold",
+        fontSize: 20,
+    },
+    customizedCollectionAccordionCont: {},
 }))
 
 export default useStyles
