@@ -1,19 +1,32 @@
-import React from "react";
-import PurchasedItems from "../account/user/PurchasedItems";
-import { Grid, IconButton, Typography, Box, Container } from "@material-ui/core";
-import CloseIcon from "@material-ui/icons/Close";
-import useStyles from "./ModalStyles";
+import React from "react"
+// STYLES
+import {
+    Grid,
+    IconButton,
+    Typography,
+    Box,
+    Container,
+    useTheme,
+    useMediaQuery,
+} from "@material-ui/core"
+import useStyles from "./ModalStyles"
+// ICONS
+import CloseIcon from "@material-ui/icons/Close"
+// COMPONENTS
+import PurchasedItems from "../account/user/PurchasedItems"
 
 function OrderSummaryModal({ data, handleClose }) {
-    let order = { ...data };
-    const classes = useStyles();
+    let order = { ...data }
+    const classes = useStyles()
+    const theme = useTheme()
+    const isMobile = useMediaQuery(theme.breakpoints.only("xs"))
 
     const items = order.items.map((orderItem) => (
         <PurchasedItems
             key={`productId-${orderItem.id}`}
             orderItem={orderItem}
         />
-    ));
+    ))
 
     return (
         <Container>
@@ -23,19 +36,23 @@ function OrderSummaryModal({ data, handleClose }) {
                 direction="column"
                 className={classes.closeButtonCont}
             >
-                <Grid item container justify="center">
-                    <Grid
-                        item
-                        container
-                        justify="center"
-                        alignItems="center"
-                        xs={10}
-                    >
-                        <Typography variant="h6" component="h6">
+                <Grid
+                    item
+                    container
+                    justify="space-between"
+                    className={classes.closeButtonCont}
+                >
+                    <Grid item container justify="center" xs={10} sm={9}>
+                        <Typography
+                            variant="h3"
+                            component="h3"
+                            className={classes.orderSummaryModalTitle}
+                            style={{ fontSize: isMobile ? 30 : 24 }}
+                        >
                             Order #: {order.paymentData.id}
                         </Typography>
                     </Grid>
-                    <Grid item container justify="center" xs={2}>
+                    <Grid item xs={3}>
                         <IconButton
                             onClick={handleClose}
                             className={classes.closeButton}
@@ -44,12 +61,13 @@ function OrderSummaryModal({ data, handleClose }) {
                         </IconButton>
                     </Grid>
                 </Grid>
+
                 <Grid item container direction="column">
                     {items}
                 </Grid>
             </Grid>
         </Container>
-    );
+    )
 }
 
-export default OrderSummaryModal;
+export default OrderSummaryModal

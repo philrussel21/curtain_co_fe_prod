@@ -97,6 +97,10 @@ const useStyles = makeStyles((theme) => ({
         maxHeight: "300px",
         objectFit: "cover",
     },
+    orderSummaryModalTitle: {
+        fontWeight: "bold",
+        color: theme.palette.grey[800],
+    },
 }))
 
 export default useStyles
