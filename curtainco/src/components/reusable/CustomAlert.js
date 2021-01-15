@@ -11,11 +11,9 @@ function CustomAlert({ setPaymentFailedOrCancelled }) {
     setPaymentFailedOrCancelled(false);
   };
   return (
-    <div>
-      <Alert variant="outlined" severity={severity} onClose={handleClose}>
-        {message}
-      </Alert>
-    </div>
+    <Alert variant="outlined" severity={severity} onClose={handleClose}>
+      {message}
+    </Alert>
   );
 }
 
