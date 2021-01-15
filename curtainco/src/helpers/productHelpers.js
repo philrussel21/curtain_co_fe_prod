@@ -3,7 +3,6 @@ const sortACTIONS = {
     PRICE_HIGH_TO_LOW: "Price: High to Low",
     NAME_ALPHABETICAL: "Name: A to Z",
     NAME_ALPHABETICAL_REVERSE: "Name: Z to A",
-    FEATURED: "Featured",
     CATEGORY: "Category",
 }
 

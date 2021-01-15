@@ -277,14 +277,8 @@ function NavBar() {
                 <Grid
                     container
                     direction="column"
-                    className={classes.navBarMobileHeader}
+                    className={classes.navBarMobileHeaderMobile}
                 >
-                    <Grid item className={classes.dividerCont}>
-                        <Divider
-                            variant="middle"
-                            className={classes.topNavBarDivider}
-                        />
-                    </Grid>
                     <Grid
                         item
                         style={{
@@ -339,7 +333,13 @@ function NavBar() {
                     <Grid item className={classes.dividerCont}>
                         <Divider
                             variant="middle"
-                            className={classes.bottomNavBarDivider}
+                            className={classes.topNavBarDividerMobile}
+                        />
+                    </Grid>
+                    <Grid item className={classes.dividerCont}>
+                        <Divider
+                            variant="middle"
+                            className={classes.bottomNavBarDividerMobile}
                         />
                     </Grid>
                 </Grid>
