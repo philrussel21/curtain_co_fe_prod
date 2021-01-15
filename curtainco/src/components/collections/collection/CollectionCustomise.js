@@ -141,7 +141,6 @@ function CollectionCustomise() {
             <Grid
                 container
                 justify={isMobile ? "center" : "flex-start"}
-                xs={12}
                 className={classes.collectionHeaderCont}
             >
                 <Typography

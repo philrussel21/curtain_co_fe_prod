@@ -33,7 +33,7 @@ function PurchaseHistory({ isLoading, isMobile }) {
     const allPurchasedItems = purchaseHistory.map((order) => (
         <Grid item xs key={order._id}>
             <PurchaseOrder order={order} />
-            <Divider />
+            <Divider variant="inset" className={classes.purchaseOrderDivider} />
         </Grid>
     ))
 
