@@ -51,18 +51,21 @@ export default function stateReducer(state, action) {
             return {
                 ...state,
                 currentUser: action.payload,
+                timeOut: action.timeOut
             }
         }
         case ACTIONS.LOGOUT: {
             return {
                 ...state,
                 currentUser: null,
+                timeOut: action.timeOut
             }
         }
         case ACTIONS.SET_CURRENT_USER: {
             return {
                 ...state,
                 currentUser: action.payload,
+                timeOut: action.timeOut
             }
         }
         case ACTIONS.REGISTER: {

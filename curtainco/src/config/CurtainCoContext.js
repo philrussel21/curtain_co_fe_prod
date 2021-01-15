@@ -12,6 +12,7 @@ function CurtainContext({ children }) {
     const initialState = {
         currentUser: null,
         users: [],
+        timeOut: null,
         snackbar: {
             severity: "success",
             message: "",
