@@ -16,9 +16,16 @@ import {
     FormHelperText,
     useTheme,
     useMediaQuery,
+    InputAdornment,
+    IconButton,
+    OutlinedInput,
 } from "@material-ui/core"
 import useStyles from "./UserDataFormStyles"
+// ICONS
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined"
+import Visibility from "@material-ui/icons/Visibility"
+import VisibilityOff from "@material-ui/icons/VisibilityOff"
+
 // HELPERS AND SERVICES
 import { Link } from "react-router-dom"
 import {
@@ -81,6 +88,7 @@ export default function UserDataForm({
     const isMobile = useMediaQuery(theme.breakpoints.only("xs"))
     const [firstName, setFirstName] = useState("")
     const [lastName, setLastName] = useState("")
+    const [isPasswordVisible, setIsPasswordVisible] = useState(false)
     const [menuItemsStates, setMenuItemsStates] = useState([])
     const [menuItemsTitles, setMenuItemsTitles] = useState([])
     const emptyUserData = useRef({
@@ -141,6 +149,10 @@ export default function UserDataForm({
             ...userData,
             [event.target.name]: event.target.value,
         })
+    }
+
+    const handleClickShowPassword = () => {
+        setIsPasswordVisible(!isPasswordVisible)
     }
 
     function clearFields() {
@@ -275,13 +287,18 @@ export default function UserDataForm({
 
                                 {withAuth.password && (
                                     <Grid item xs={12} sm={6}>
+                                        {/* INCLUDES SHOW HIDE PASSWORD ICON */}
                                         <TextField
                                             variant="outlined"
                                             required
                                             fullWidth
                                             name="password"
                                             label="Password"
-                                            type="password"
+                                            type={
+                                                isPasswordVisible
+                                                    ? "text"
+                                                    : "password"
+                                            }
                                             id="password"
                                             autoComplete="current-password"
                                             value={userData.password}
@@ -291,6 +308,25 @@ export default function UserDataForm({
                                                 undefined
                                             }
                                             helperText={helperText.password}
+                                            InputProps={{
+                                                endAdornment: (
+                                                    <IconButton
+                                                        onClick={
+                                                            handleClickShowPassword
+                                                        }
+                                                    >
+                                                        {isPasswordVisible ? (
+                                                            <VisibilityOff />
+                                                        ) : (
+                                                            <Visibility />
+                                                        )}
+                                                    </IconButton>
+                                                ),
+                                                classes: {
+                                                    adornedEnd:
+                                                        classes.adornedEnd,
+                                                },
+                                            }}
                                         />
                                     </Grid>
                                 )}
