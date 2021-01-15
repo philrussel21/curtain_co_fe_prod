@@ -1,4 +1,5 @@
 import React from "react"
+// STYLES
 import {
     Grid,
     Divider,
@@ -7,13 +8,15 @@ import {
     useMediaQuery,
     useTheme,
 } from "@material-ui/core"
-import { capitalize } from "../../../helpers/appHelpers"
 import useStyles from "../../reusable/ModalStyles"
+// HELPERS AND SERVICES
+import { capitalize } from "../../../helpers/appHelpers"
 
 function PurchasedProduct({ qty, product }) {
     const classes = useStyles()
     const theme = useTheme()
     const isMobile = useMediaQuery(theme.breakpoints.only("xs"))
+    const isIphone5 = useMediaQuery("(max-width:320px)")
 
     return (
         <Box m={1}>
@@ -22,9 +25,24 @@ function PurchasedProduct({ qty, product }) {
                 container
                 justify="center"
                 alignItems="center"
-                spacing={2}
+                spacing={isMobile ? 1 : 2}
             >
-                <Grid item container justify="flex-start" xs={2}>
+                {/* ONLY SHOW THE PRODUCT NAME HERE IF IT IS MOBILE */}
+                {isMobile && (
+                    <Grid item xs={12}>
+                        <Typography
+                            className={classes.orderSummaryModalPurchaseName}
+                            style={{
+                                fontSize: 28,
+                                textAlign: "center",
+                            }}
+                        >
+                            {capitalize(product.name)}
+                        </Typography>
+                    </Grid>
+                )}
+
+                <Grid item container justify="flex-start" xs={6} sm={2}>
                     <Grid item>
                         <img
                             src={
@@ -37,15 +55,28 @@ function PurchasedProduct({ qty, product }) {
                         />
                     </Grid>
                 </Grid>
-                <Grid item container direction="column" xs={6}>
-                    <Grid item>
-                        <Typography
-                            variant="h6"
-                            className={classes.orderSummaryModalPurchaseName}
-                        >
-                            {capitalize(product.name)}
-                        </Typography>
-                    </Grid>
+                <Grid
+                    item
+                    container
+                    direction="column"
+                    alignItems={isMobile ? "center" : "flex-start"}
+                    xs={6}
+                    sm={6}
+                >
+                    {/* ONLY THIS THE PRODUCT NAME HERE IF IT ISN'T MOBILE */}
+                    {!isMobile && (
+                        <Grid item>
+                            <Typography
+                                variant="h6"
+                                className={
+                                    classes.orderSummaryModalPurchaseName
+                                }
+                            >
+                                {capitalize(product.name)}
+                            </Typography>
+                        </Grid>
+                    )}
+
                     <Grid item>
                         <Typography>QTY: x {qty}</Typography>
                     </Grid>
@@ -61,7 +92,8 @@ function PurchasedProduct({ qty, product }) {
                     direction="column"
                     justify="center"
                     alignItems="flex-start"
-                    xs={4}
+                    xs={12}
+                    sm={4}
                 >
                     <Grid item>
                         <Typography

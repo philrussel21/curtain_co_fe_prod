@@ -17,6 +17,7 @@ function PurchasedCollection({ qty, collection }) {
     const classes = useStyles()
     const theme = useTheme()
     const isMobile = useMediaQuery(theme.breakpoints.only("xs"))
+    const isIphone5 = useMediaQuery("(max-width:320px)")
 
     return (
         <Box m={1}>
@@ -29,10 +30,13 @@ function PurchasedCollection({ qty, collection }) {
             >
                 {/* ONLY SHOW THE COLLECTION NAME HERE IF IT IS MOBILE */}
                 {isMobile && (
-                    <Grid item>
+                    <Grid item xs={12}>
                         <Typography
                             className={classes.orderSummaryModalPurchaseName}
-                            style={{ fontSize: 22 }}
+                            style={{
+                                fontSize: isIphone5 ? 24 : 28,
+                                textAlign: "center",
+                            }}
                         >
                             {capitalize(collection.name)}
                         </Typography>

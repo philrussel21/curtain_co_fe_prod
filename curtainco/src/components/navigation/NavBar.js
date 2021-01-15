@@ -447,7 +447,7 @@ function NavBar() {
                         </MenuItem>
 
                         {state.currentUser !== null ? (
-                            <>
+                            <div>
                                 <MenuItem>
                                     <Link
                                         onClick={handleMobileMenuClose}
@@ -482,7 +482,7 @@ function NavBar() {
                                         </Typography>
                                     </Link>
                                 </MenuItem>
-                            </>
+                            </div>
                         ) : (
                             <MenuItem>
                                 <Link

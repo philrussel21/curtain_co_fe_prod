@@ -205,7 +205,6 @@ function Cart({ history }) {
         }
     }
 
-    console.log(state.currentUser)
     return (
         <Grid container justify="center" alignItems="center" spacing={2}>
             <Grid item xs={12} sm={8} className={classes.cartListCont}>

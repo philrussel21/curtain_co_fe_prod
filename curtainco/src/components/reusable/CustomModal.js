@@ -26,6 +26,7 @@ export default function CustomModal() {
     const { state, dispatch } = useCurtainContext()
     const theme = useTheme()
     const isMobile = useMediaQuery(theme.breakpoints.only("xs"))
+    const isIphone5 = useMediaQuery("(max-width:320px)")
 
     const handleClose = () => {
         dispatch({
@@ -72,7 +73,9 @@ export default function CustomModal() {
                         <div
                             className={
                                 isMobile
-                                    ? classes.paperModalMobile
+                                    ? isIphone5
+                                        ? classes.paperModalMobileIphone5
+                                        : classes.paperModalMobile
                                     : classes.paperDesktopModal
                             }
                         >
