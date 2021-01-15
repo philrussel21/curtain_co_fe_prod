@@ -13,39 +13,45 @@ function UserDashboard({ isLoading }) {
     const isMobile = useMediaQuery(theme.breakpoints.only("xs"))
 
     return (
-        <Container>
+        <Grid
+            container
+            direction="column"
+            justify="space-between"
+            alignItems="center"
+            className={classes.userDashboardCont}
+            spacing={isMobile ? 4 : 6}
+        >
             <Grid
+                item
                 container
-                direction="column"
-                justify="space-between"
-                alignItems
-                className={classes.userDashboardCont}
-                spacing={isMobile ? 4 : 6}
+                direction="row"
+                justify="space-around"
+                spacing={isMobile ? 4 : 0}
             >
-                <Grid item container direction="row" spacing={isMobile ? 4 : 0}>
-                    <Grid item xs={12} sm={5}>
+                <Grid item container direction="column" xs={12} sm={6}>
+                    <Grid item>
                         <ProfileInformation isMobile={isMobile} />
                     </Grid>
-                    <Grid
-                        item
-                        container
-                        alignItems="flex-start"
-                        xs={12}
-                        sm={7}
-                        style={{ height: "100%" }}
-                    >
-                        <PurchaseHistory
-                            isLoading={isLoading}
-                            isMobile={isMobile}
-                        />
+                    <Grid item className={classes.ctaRequestConsultCont}>
+                        <CTARequestConsultation isMobile={isMobile} />
                     </Grid>
                 </Grid>
-
-                <Grid item>
-                    <CTARequestConsultation isMobile={isMobile} />
+                <Grid
+                    item
+                    container
+                    justify="flex-start"
+                    alignItems="center"
+                    xs={12}
+                    sm={6}
+                    style={{ height: "100%" }}
+                >
+                    <PurchaseHistory
+                        isLoading={isLoading}
+                        isMobile={isMobile}
+                    />
                 </Grid>
             </Grid>
-        </Container>
+        </Grid>
     )
 }
 

@@ -119,6 +119,14 @@ const useStyles = makeStyles((theme) => ({
         marginTop: "-65px",
         backgroundColor: theme.palette.primary.light,
     },
+    topNavBarDividerMobile: {
+        marginTop: "-63px",
+        backgroundColor: theme.palette.primary.light,
+    },
+    bottomNavBarDividerMobile: {
+        marginTop: "-20px",
+        backgroundColor: theme.palette.primary.light,
+    },
     dividerCont: {
         position: "relative",
     },

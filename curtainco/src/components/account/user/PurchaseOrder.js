@@ -1,28 +1,30 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react"
 // STYLES
-import { Typography, Grid, Button } from "@material-ui/core";
-import useStyles from "./UserDashboardStyles";
+import {
+    Typography,
+    Grid,
+    Button,
+    useTheme,
+    useMediaQuery,
+} from "@material-ui/core"
+import useStyles from "./UserDashboardStyles"
 // HELPERS AND SERVICES
-import { displayShortDate } from "../../../helpers/appHelpers";
-import { useCurtainContext } from "../../../config/CurtainCoContext";
-import { buildContentString } from "../../../helpers/collectionHelpers";
+import { displayShortDate } from "../../../helpers/appHelpers"
+import { useCurtainContext } from "../../../config/CurtainCoContext"
+// import { buildContentString } from "../../../helpers/collectionHelpers"
 // STATE
-import { ACTIONS } from "../../../config/stateReducer";
+import { ACTIONS } from "../../../config/stateReducer"
 
 function PurchaseOrder({ order }) {
-    const classes = useStyles();
-    const { dispatch } = useCurtainContext();
+    const classes = useStyles()
+    const { dispatch } = useCurtainContext()
     // USING THIS FOR THE IMAGE IN THE ORDER LIST
-    const firstItemInOrder = useRef({ current: { imgUrl: "", name: "" } });
-    const [contentStrings, setContentStrings] = useState({
-        collection: "",
-        fabric: "",
-        track: "",
-        accessory: "",
-    });
+    const firstItemInOrder = useRef({ current: { imgUrl: "", name: "" } })
+    const theme = useTheme()
+    const isMobile = useMediaQuery(theme.breakpoints.only("xs"))
 
     function handleItemClick(event) {
-        event.preventDefault();
+        event.preventDefault()
         dispatch({
             type: ACTIONS.SET_MODAL,
             payload: {
@@ -30,67 +32,33 @@ function PurchaseOrder({ order }) {
                 data: order,
                 orderSummary: true,
             },
-        });
+        })
     }
 
     useEffect(() => {
-        let collectionsArray = [];
-        let fabricsArray = [];
-        let tracksArray = [];
-        let accessoriesArray = [];
+        firstItemInOrder.current = order.items[0].item
+    }, [order])
 
-        if (order.items !== undefined) {
-            firstItemInOrder.current = order.items[0].item;
-            for (let i = 0; i < order.items.length; i++) {
-                const element = order.items[i];
-                switch (element.item.category) {
-                    case "Fabric":
-                        fabricsArray.push(element);
-                        break;
-                    case "Tracks":
-                        tracksArray.push(element);
-                        break;
-                    case "Accessory":
-                        accessoriesArray.push(element);
-                        break;
-                    default:
-                        collectionsArray.push(element);
-                        break;
-                }
-            }
-        }
-
-        let collectionStr = buildContentString(collectionsArray, "Collection");
-        let fabricStr = buildContentString(fabricsArray, "Fabric");
-        let trackStr = buildContentString(tracksArray, "Track");
-        let accessoryStr = buildContentString(accessoriesArray, "Accessory");
-
-        let obj = {
-            collection: collectionStr,
-            fabric: fabricStr,
-            track: trackStr,
-            accessory: accessoryStr,
-        };
-        setContentStrings(obj);
-    }, [order]);
-
+    //  THIS IS THE CONTAINER FOR EACH INDIVIDUAL ORDER MADE BY A USER
     return (
-        <>
-            {/* THIS IS THE CONTAINER FOR EACH INDIVIDUAL ORDER MADE BY A USER*/}
+        <Grid container direction="column">
+            <Grid item className={classes.userAccountPurchaseOrderNumberCont}>
+                <Typography className={classes.userAccountPurchaseOrderNumber}>
+                    Order #: {order.paymentData.id}
+                </Typography>
+            </Grid>
 
-            <Grid container direction="column">
-                <Grid item>
-                    <Typography>Order #: {order.paymentData.id}</Typography>
-                </Grid>
-                <Grid item container>
-                    <Grid
-                        item
-                        container
-                        direction="column"
-                        justify="center"
-                        alignItems="center"
-                        xs={3}
-                    >
+            <Grid item container justify="center">
+                <Grid
+                    item
+                    container
+                    direction={isMobile ? "row" : "column"}
+                    justify="center"
+                    alignItems="center"
+                    xs={12}
+                    sm={4}
+                >
+                    <Grid item container justify="center" xs={6} sm={12}>
                         <img
                             src={
                                 firstItemInOrder.current.imgUrl === undefined
@@ -105,71 +73,130 @@ function PurchaseOrder({ order }) {
                             className={classes.orderImg}
                         />
                     </Grid>
+
+                    {isMobile && (
+                        <Grid
+                            item
+                            container
+                            xs={6}
+                            justify="center"
+                            alignItems="center"
+                        >
+                            <Button
+                                variant="outlined"
+                                color="secondary"
+                                onClick={handleItemClick}
+                            >
+                                See More
+                            </Button>
+                        </Grid>
+                    )}
+                </Grid>
+
+                <Grid
+                    item
+                    container
+                    direction="column"
+                    justify={isMobile ? "center" : "flex-start"}
+                    alignItems="center"
+                    xs={12}
+                    sm={4}
+                >
                     <Grid
                         item
                         container
-                        direction="column"
-                        justify="flex-start"
-                        alignItems="center"
-                        xs={4}
+                        justify={isMobile ? "center" : "flex-start"}
                     >
-                        <Grid item>
-                            <Typography variant="h6" component="h6">
-                                Details
+                        <Typography
+                            variant="h6"
+                            component="h6"
+                            className={
+                                classes.userAccountPurchaseOrderDetailsHeader
+                            }
+                        >
+                            Details
+                        </Typography>
+                    </Grid>
+
+                    <Grid item container>
+                        <Grid
+                            item
+                            container
+                            direction="column"
+                            alignItems={isMobile ? "center" : "flex-start"}
+                            xs={6}
+                        >
+                            <Typography
+                                className={
+                                    classes.purchaseOrderDetailsListHeading
+                                }
+                            >
+                                Date:
+                            </Typography>
+                            <Typography
+                                className={
+                                    classes.purchaseOrderDetailsListHeading
+                                }
+                            >
+                                Cost:
+                            </Typography>
+                            <Typography
+                                className={
+                                    classes.purchaseOrderDetailsListHeading
+                                }
+                            >
+                                Status?
                             </Typography>
                         </Grid>
-                        <Grid item>
-                            <Typography>
-                                Date: {displayShortDate(order.createdAt)}
+
+                        <Grid
+                            item
+                            container
+                            direction="column"
+                            alignItems={isMobile ? "center" : "flex-start"}
+                            xs={6}
+                        >
+                            <Typography
+                                className={classes.purchaseOrderDetailsData}
+                            >
+                                {displayShortDate(order.createdAt)}
                             </Typography>
-                        </Grid>
-                        <Grid item>
-                            <Typography>Cost: ${order.totalPrice}</Typography>
-                        </Grid>
-                        <Grid item>
-                            <Typography>
-                                Status?{" "}
+                            <Typography
+                                className={classes.purchaseOrderDetailsData}
+                            >
+                                ${order.totalPrice}
+                            </Typography>
+                            <Typography
+                                className={classes.purchaseOrderDetailsData}
+                            >
                                 {order.isProcessed ? "Sent" : "Not yet sent"}
                             </Typography>
                         </Grid>
                     </Grid>
+                </Grid>
+
+                {/* ONLY SHOW THIS BUTTON HERE ON DESKTOP */}
+
+                {!isMobile && (
                     <Grid
                         item
                         container
-                        direction="column"
-                        justify="flex-start"
-                        alignItems="center"
                         xs={2}
-                    >
-                        <Grid item>
-                            <Typography variant="h6" component="h6">
-                                Contents
-                            </Typography>
-                        </Grid>
-                        <Grid item>{contentStrings.collection}</Grid>
-                        <Grid item>{contentStrings.track}</Grid>
-                        <Grid item>{contentStrings.fabric}</Grid>
-                        <Grid item>{contentStrings.accessory}</Grid>
-                    </Grid>
-                    <Grid
-                        item
-                        container
-                        xs={3}
                         justify="flex-end"
                         alignItems="center"
                     >
                         <Button
                             variant="outlined"
-                            color="primary"
+                            color="secondary"
                             onClick={handleItemClick}
                         >
                             See More
                         </Button>
                     </Grid>
-                </Grid>
+                )}
             </Grid>
-        </>
-    );
+        </Grid>
+    )
 }
 
-export default PurchaseOrder;
+export default PurchaseOrder

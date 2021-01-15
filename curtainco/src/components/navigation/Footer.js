@@ -13,7 +13,12 @@ import { useCurtainContext } from "../../config/CurtainCoContext"
 // HELPERS AND SERVICES
 import { Link, useLocation } from "react-router-dom"
 // COMPONENTS
-import { Mobile, Desktop } from "../reusable/Responsive"
+import {
+    Mobile,
+    Desktop,
+    MobileAndTablet,
+    Default,
+} from "../reusable/Responsive"
 import Contact from "./Contact"
 import Legal from "./Legal"
 import CurtainCoDivider from "../reusable/CurtainCoDivider"
@@ -36,7 +41,7 @@ export default function StickyFooter() {
 
     return (
         <>
-            <Desktop>
+            <Default>
                 <div className={classes.footerRoot}>
                     <footer className={classes.footer}>
                         <Grid container direction="column" spacing={2}>
@@ -78,7 +83,7 @@ export default function StickyFooter() {
                         </Grid>
                     </footer>
                 </div>
-            </Desktop>
+            </Default>
 
             {/* MOBILE STYLES  */}
 

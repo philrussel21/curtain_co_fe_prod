@@ -4,6 +4,7 @@ import { Grid, Typography } from "@material-ui/core"
 import useStyles from "./CartStyles"
 // COMPONENTS
 import CartItem from "./CartItem"
+import { Link } from "react-router-dom/cjs/react-router-dom.min"
 
 function CartList({
     cart,
@@ -32,9 +33,16 @@ function CartList({
                     alignItems="center"
                     spacing={6}
                 >
-                    <Grid item>
-                        <Typography variant="h6" component="h6">
-                            No items in cart
+                    <Grid item container justify="center" alignItems="center">
+                        <Typography
+                            variant="h6"
+                            component="h6"
+                            className={classes.noItemsInCart}
+                        >
+                            You have no items in your cart, head to{" "}
+                            <Link to="/products">Products</Link> or{" "}
+                            <Link to="/collections">Collections</Link> to check
+                            some out.
                         </Typography>
                     </Grid>
                 </Grid>

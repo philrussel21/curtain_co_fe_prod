@@ -58,6 +58,10 @@ const useStyles = makeStyles((theme) => ({
     cartItemPriceCont: {
         paddingTop: theme.spacing(2),
     },
+    noItemsInCart: {
+        fontFamily: theme.typography.fontFamily.split(",")[1],
+        fontSize: theme.typography.pxToRem(30),
+    },
 }))
 
 export default useStyles
