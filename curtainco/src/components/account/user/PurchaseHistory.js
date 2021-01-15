@@ -33,7 +33,13 @@ function PurchaseHistory({ isLoading, isMobile }) {
     const allPurchasedItems = purchaseHistory.map((order) => (
         <Grid item xs key={order._id}>
             <PurchaseOrder order={order} />
-            <Divider variant="inset" className={classes.purchaseOrderDivider} />
+            <Divider
+                variant={isMobile ? "middle" : "inset"}
+                style={{
+                    marginTop: isMobile ? "4%" : "1.5%",
+                    marginBottom: isMobile ? "7%" : 0,
+                }}
+            />
         </Grid>
     ))
 

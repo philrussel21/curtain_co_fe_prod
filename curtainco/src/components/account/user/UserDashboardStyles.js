@@ -57,9 +57,9 @@ const useStyles = makeStyles((theme) => ({
     userAccountPurchaseOrderDetailsHeader: {
         color: theme.palette.primary.main,
     },
-    purchaseOrderDivider: {
-        marginTop: "1.5%",
-    },
+    // purchaseOrderDivider: {
+    //     marginTop: "1.5%",
+    // },
     purchaseOrderDetailsData: {
         fontFamily: theme.typography.fontFamily.split("1"),
         color: theme.palette.grey[700],
