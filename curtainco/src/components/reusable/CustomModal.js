@@ -91,14 +91,14 @@ export default function CustomModal() {
                                     data={state.modal.data}
                                     handleClose={handleClose}
                                 />
-                            ) : (
+                            ) : state.modal.productSummary ? (
                                 <ProductSummaryModal
                                     data={state.modal.data}
                                     title={state.modal.title}
                                     handleClose={handleClose}
                                     handleCartClick={handleCartClick}
                                 />
-                            )}
+                            ) : "" }
                         </div>
                     </Fade>
                 </Modal>
