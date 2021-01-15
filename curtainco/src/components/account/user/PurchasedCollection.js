@@ -1,44 +1,113 @@
 import React from "react"
-import { Typography, Grid, Avatar, Divider, Box } from "@material-ui/core"
+// STYLES
+import { Typography, Grid, Divider, Box } from "@material-ui/core"
+import useStyles from "../../reusable/ModalStyles"
+// HELPERS AND SERVICES
 import { capitalize } from "../../../helpers/appHelpers"
-import { buildContentString } from "../../../helpers/collectionHelpers"
+// import { buildContentString } from "../../../helpers/collectionHelpers"
 
 function PurchasedCollection({ qty, collection }) {
+    const classes = useStyles()
     return (
         <Box m={1}>
-            <Grid item container justify="center" alignItems="center">
+            <Grid
+                item
+                container
+                justify="center"
+                alignItems="center"
+                spacing={2}
+            >
                 <Grid item container justify="center" xs={2}>
                     <Grid item>
-                        <Avatar src={collection.imgUrl} alt={collection.name} />
+                        <img
+                            src={
+                                collection.imgUrl !== undefined
+                                    ? collection.imgUrl
+                                    : "/no-image.png"
+                            }
+                            alt={collection.name}
+                            className={classes.orderSummaryModalImage}
+                        />
                     </Grid>
                 </Grid>
-                <Grid item xs={5}>
-                    {qty}x {capitalize(collection.name)}
+                <Grid item container direction="column" xs={6}>
+                    <Grid item>
+                        <Typography
+                            variant="h6"
+                            className={classes.orderSummaryModalPurchaseName}
+                        >
+                            {capitalize(collection.name)}
+                        </Typography>
+                    </Grid>
+                    <Grid item>
+                        <Typography>QTY: x {qty}</Typography>
+                    </Grid>
+                    <Grid item>
+                        <Typography>
+                            ${qty * collection.price.toFixed(2)}
+                        </Typography>
+                    </Grid>
                 </Grid>
 
-                <Grid item container direction="column" xs={3}>
-                    <Grid item>Contents</Grid>
+                <Grid item container direction="column" xs={4}>
                     <Grid item>
-                        {buildContentString(collection.track, "Track")}
+                        <Typography
+                            className={classes.orderSummaryModalContentTitle}
+                        >
+                            Contents
+                        </Typography>
                     </Grid>
-                    <Grid item>
-                        {buildContentString(collection.fabric, "Fabric")}
+                    <Grid item container>
+                        <Grid item container direction="column" xs={6}>
+                            <Typography
+                                className={
+                                    classes.orderSummaryModalContentHeadings
+                                }
+                            >
+                                Tracks:
+                            </Typography>
+                            <Typography
+                                className={
+                                    classes.orderSummaryModalContentHeadings
+                                }
+                            >
+                                Fabrics:
+                            </Typography>
+                            <Typography
+                                className={
+                                    classes.orderSummaryModalContentHeadings
+                                }
+                            >
+                                Accessories:
+                            </Typography>
+                        </Grid>
+                        <Grid
+                            item
+                            container
+                            direction="column"
+                            alignItems="center"
+                            xs={6}
+                        >
+                            <Typography
+                                className={classes.orderSummaryModalContentData}
+                            >
+                                x{collection.track.length}
+                            </Typography>
+                            <Typography
+                                className={classes.orderSummaryModalContentData}
+                            >
+                                x{collection.fabric.length}
+                            </Typography>
+                            <Typography
+                                className={classes.orderSummaryModalContentData}
+                            >
+                                x{collection.accessory.length}
+                            </Typography>
+                        </Grid>
                     </Grid>
-                    <Grid item>
-                        {buildContentString(collection.accessory, "Accessory")}
-                    </Grid>
-                </Grid>
-                <Grid
-                    item
-                    container
-                    justify="center"
-                    alignItems="center"
-                    xs={2}
-                >
-                    <Grid item>${qty * collection.price}</Grid>
                 </Grid>
             </Grid>
-            <Divider />
+            <Divider className={classes.orderSummaryDivider} />
         </Box>
     )
 }

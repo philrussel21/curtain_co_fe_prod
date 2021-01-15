@@ -68,6 +68,35 @@ const useStyles = makeStyles((theme) => ({
         fontStyle: "italic",
         color: theme.palette.grey[700],
     },
+    orderSummaryModalContentHeadings: {
+        fontFamily: theme.typography.fontFamily.split(",")[1],
+    },
+    orderSummaryModalContentData: {
+        fontFamily: theme.typography.fontFamily.split(",")[1],
+        color: theme.palette.grey[700],
+        fontStyle: "italic",
+    },
+    orderSummaryModalContentTitle: {
+        color: theme.palette.primary.main,
+        fontSize: 20,
+    },
+    orderSummaryModalPurchaseName: {
+        fontFamily: theme.typography.fontFamily.split(",")[2],
+        color: theme.palette.primary.light,
+        fontSize: 32,
+    },
+    orderSummaryDivider: {
+        marginTop: "2%",
+    },
+    orderSummaryModalImage: {
+        borderBottomRightRadius: theme.spacing(4),
+        borderTopLeftRadius: theme.spacing(4),
+        width: "100%",
+        height: "100%",
+        maxWidth: "350px",
+        maxHeight: "300px",
+        objectFit: "cover",
+    },
 }))
 
 export default useStyles
