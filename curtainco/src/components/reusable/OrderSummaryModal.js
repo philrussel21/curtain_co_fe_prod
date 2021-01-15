@@ -29,44 +29,43 @@ function OrderSummaryModal({ data, handleClose }) {
     ))
 
     return (
-        <Container>
+        <Grid
+            item
+            container
+            direction="column"
+            className={classes.closeButtonCont}
+        >
             <Grid
                 item
                 container
-                direction="column"
+                justify="space-between"
                 className={classes.closeButtonCont}
             >
-                <Grid
-                    item
-                    container
-                    justify="space-between"
-                    className={classes.closeButtonCont}
-                >
-                    <Grid item container justify="center" xs={10} sm={9}>
-                        <Typography
-                            variant="h3"
-                            component="h3"
-                            className={classes.orderSummaryModalTitle}
-                            style={{ fontSize: isMobile ? 30 : 24 }}
-                        >
-                            Order #: {order.paymentData.id}
-                        </Typography>
-                    </Grid>
-                    <Grid item xs={3}>
-                        <IconButton
-                            onClick={handleClose}
-                            className={classes.closeButton}
-                        >
-                            <CloseIcon color="error" />
-                        </IconButton>
-                    </Grid>
+                <Grid item container justify="center" xs={10} sm={9}>
+                    <Typography
+                        variant="h3"
+                        component="h3"
+                        className={classes.orderSummaryModalTitle}
+                        style={{ fontSize: isMobile ? 16 : 24 }}
+                    >
+                        Order #: {order.paymentData.id}
+                    </Typography>
                 </Grid>
-
-                <Grid item container direction="column">
-                    {items}
+                <Grid item xs={3}>
+                    <IconButton
+                        onClick={handleClose}
+                        className={classes.closeButton}
+                        style={{ right: "-3%" }}
+                    >
+                        <CloseIcon color="error" />
+                    </IconButton>
                 </Grid>
             </Grid>
-        </Container>
+
+            <Grid item container direction="column">
+                {items}
+            </Grid>
+        </Grid>
     )
 }
 

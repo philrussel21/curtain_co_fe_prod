@@ -1,10 +1,20 @@
 import React from "react"
-import { Grid, Divider, Box, Typography } from "@material-ui/core"
+import {
+    Grid,
+    Divider,
+    Box,
+    Typography,
+    useMediaQuery,
+    useTheme,
+} from "@material-ui/core"
 import { capitalize } from "../../../helpers/appHelpers"
 import useStyles from "../../reusable/ModalStyles"
 
 function PurchasedProduct({ qty, product }) {
     const classes = useStyles()
+    const theme = useTheme()
+    const isMobile = useMediaQuery(theme.breakpoints.only("xs"))
+
     return (
         <Box m={1}>
             <Grid

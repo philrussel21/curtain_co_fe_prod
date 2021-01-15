@@ -38,6 +38,7 @@ const useStyles = makeStyles((theme) => ({
         right: "-7%",
         // border: "1px solid red",
     },
+
     closeButtonCont: {
         position: "relative",
     },
