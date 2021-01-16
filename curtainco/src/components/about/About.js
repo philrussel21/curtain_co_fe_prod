@@ -5,7 +5,11 @@ import useStyles from "./AboutStyles"
 // COMPONENTS
 import Story from "./Story"
 import Success from "./Success"
-import { Desktop, Mobile } from "../reusable/Responsive"
+import {
+    Desktop,
+    Mobile,
+    MobileAndTabletPortrait,
+} from "../reusable/Responsive"
 // import Testimonial from "./Testimonial"
 
 function About() {
@@ -29,7 +33,7 @@ function About() {
                 </Container>
             </Desktop>
 
-            <Mobile>
+            <MobileAndTabletPortrait>
                 <Grid
                     container
                     direction="column"
@@ -42,7 +46,7 @@ function About() {
                     <Success />
                     {/* <Testimonial /> */}
                 </Grid>
-            </Mobile>
+            </MobileAndTabletPortrait>
         </>
     )
 }
