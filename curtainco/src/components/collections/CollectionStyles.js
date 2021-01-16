@@ -134,7 +134,7 @@ const useStyles = makeStyles((theme) => ({
         fontWeight: "bold",
         fontSize: 20,
     },
-    customizedCollectionAccordionCont: {},
+    customizedCollectionAccordionCont: { width: "100%", margin: "auto" },
 }))
 
 export default useStyles

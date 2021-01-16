@@ -31,7 +31,14 @@ function CollectionIncludes({
     }, [fabrics, tracks, accessories])
 
     return (
-        <Grid container direction="column" justify="center" alignItems="center">
+        <Grid
+            item
+            container
+            direction="column"
+            justify="center"
+            alignItems="center"
+            xs={12}
+        >
             <Grid item>
                 <Typography
                     variant="h5"
@@ -65,7 +72,13 @@ function CollectionIncludes({
                         Discount Applied:
                     </Typography>
                 </Grid>
-                <Grid item container direction="column" xs={6}>
+                <Grid
+                    item
+                    container
+                    direction="column"
+                    alignItems="center"
+                    xs={6}
+                >
                     <Typography className={classes.collectionIncludesNumber}>
                         {`x${lengths.fabricLength}`}
                     </Typography>

@@ -87,7 +87,7 @@ function Products() {
                 justify="center"
                 alignItems="center"
                 xs={12}
-                sm={8}
+                sm={10}
                 md={3}
                 spacing={1}
             >

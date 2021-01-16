@@ -51,7 +51,7 @@ function AccordionDataItem({ data, handleCustomization, isMobile }) {
             direction="column"
             justify="space-around"
             xs={6}
-            sm={data.length === 4 ? 3 : 4}
+            md={data.length === 4 ? 3 : 4}
             key={`${product._id},${index}`}
         >
             <Grid

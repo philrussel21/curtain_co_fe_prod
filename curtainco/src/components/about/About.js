@@ -39,7 +39,7 @@ function About() {
                     direction="column"
                     justify="center"
                     alignItems="center"
-                    spacing={5}
+                    spacing={3}
                     className={classes.aboutMeCont}
                 >
                     <Story />
