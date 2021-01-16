@@ -11,6 +11,7 @@ function UserDashboard({ isLoading }) {
     const classes = useStyles()
     const theme = useTheme()
     const isMobile = useMediaQuery(theme.breakpoints.only("xs"))
+    const isMobileOrTabletPortrait = useMediaQuery(theme.breakpoints.down("sm"))
 
     return (
         <Grid
@@ -26,15 +27,22 @@ function UserDashboard({ isLoading }) {
                 container
                 direction="row"
                 justify="space-around"
-                spacing={isMobile ? 4 : 0}
+                spacing={isMobileOrTabletPortrait ? 4 : 0}
             >
-                <Grid item container direction="column" xs={12} sm={6}>
-                    <Grid item>
-                        <ProfileInformation isMobile={isMobile} />
-                    </Grid>
-                    <Grid item className={classes.ctaRequestConsultCont}>
-                        <CTARequestConsultation isMobile={isMobile} />
-                    </Grid>
+                <Grid
+                    item
+                    container
+                    direction="column"
+                    xs={12}
+                    sm={10}
+                    md={6}
+                    spacing={3}
+                >
+                    <ProfileInformation isMobile={isMobile} />
+                    <CTARequestConsultation
+                        isMobile={isMobile}
+                        className={classes.ctaRequestConsultCont}
+                    />
                 </Grid>
                 <Grid
                     item
@@ -42,7 +50,7 @@ function UserDashboard({ isLoading }) {
                     justify="flex-start"
                     alignItems="center"
                     xs={12}
-                    sm={6}
+                    md={6}
                     style={{ height: "100%" }}
                 >
                     <PurchaseHistory
