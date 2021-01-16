@@ -23,7 +23,8 @@ function CollectionList({ collections }) {
             justify="center"
             alignItems="center"
             key={`collection-${index}`}
-            xs
+            xs={12}
+            sm={8}
             className={classes.collectionList}
         >
             <CollectionItem data={item} />
