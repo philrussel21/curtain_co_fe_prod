@@ -1,0 +1,201 @@
+[
+    {
+        "_id": "5ff68e058b458ac89102e2ca",
+        "track": [
+            {
+                "_id": "5ff68bcc8b458ac89102e2c4",
+                "category": "Track",
+                "name": "Creepy Track",
+                "colour": "Pink",
+                "imgUrl": "https://the-curtain-co.s3.ap-southeast-2.amazonaws.com/1609993163109",
+                "price": 50,
+                "type": "idk",
+                "single": true,
+                "finialStyle": "idk",
+                "finialColour": "idk",
+                "location": "idk",
+                "description": "Track with Creepy Photo",
+                "createdAt": "2021-01-07T04:19:24.166Z",
+                "updatedAt": "2021-01-07T04:19:54.635Z",
+                "__v": 0
+            }
+        ],
+        "fabric": [
+            {
+                "_id": "5ff68cf28b458ac89102e2c5",
+                "category": "Fabric",
+                "name": "Creepy Fabric",
+                "colour": "Orange",
+                "imgUrl": "https://the-curtain-co.s3.ap-southeast-2.amazonaws.com/1609993457618",
+                "price": 99,
+                "density": "idk",
+                "style": "idk",
+                "size": "idk",
+                "length": "idk",
+                "description": "Fabric with Creepy Photo",
+                "createdAt": "2021-01-07T04:24:18.720Z",
+                "updatedAt": "2021-01-07T04:24:18.720Z",
+                "__v": 0
+            }
+        ],
+        "accessory": [
+            {
+                "_id": "5ff68d0f8b458ac89102e2c6",
+                "category": "Accessory",
+                "name": "Creepier Flick Stick",
+                "colour": "Purple",
+                "imgUrl": "https://the-curtain-co.s3.ap-southeast-2.amazonaws.com/1609993486688",
+                "price": 50,
+                "description": "Flick Stick with Creepy Photo",
+                "type": "Flick Stick",
+                "createdAt": "2021-01-07T04:24:47.723Z",
+                "updatedAt": "2021-01-13T02:41:50.561Z",
+                "__v": 0
+            },
+            {
+                "_id": "5ff68d448b458ac89102e2c8",
+                "category": "Accessory",
+                "name": "Creepy Tie Back",
+                "colour": "Red",
+                "imgUrl": "https://the-curtain-co.s3.ap-southeast-2.amazonaws.com/1609993539384",
+                "price": 99,
+                "description": "Tie Back with Creepy Photo",
+                "type": "Tie Back",
+                "createdAt": "2021-01-07T04:25:40.474Z",
+                "updatedAt": "2021-01-07T04:25:40.474Z",
+                "__v": 0
+            },
+            {
+                "_id": "5ff68d2b8b458ac89102e2c7",
+                "category": "Accessory",
+                "name": "Creepier Automated Accessory",
+                "colour": "Green",
+                "imgUrl": "https://the-curtain-co.s3.ap-southeast-2.amazonaws.com/1609993514023",
+                "price": 99,
+                "description": "Automated Accessory with Creepy Photo",
+                "type": "Automated",
+                "createdAt": "2021-01-07T04:25:15.117Z",
+                "updatedAt": "2021-01-13T02:21:16.841Z",
+                "__v": 0
+            }
+        ],
+        "name": "Creepier Collection",
+        "description": "Collection of Creepy Items in it",
+        "imgUrl": "https://the-curtain-co.s3.ap-southeast-2.amazonaws.com/1609993732819",
+        "price": 1001,
+        "trackTip": "idk",
+        "accessoryTip": "idk",
+        "fabricTip": "I DON'T KNOW",
+        "createdAt": "2021-01-07T04:28:53.946Z",
+        "updatedAt": "2021-01-13T04:49:58.871Z",
+        "__v": 0
+    },
+    {
+        "_id": "5ffe5b3a3efc8f5d6b86c01b",
+        "track": [
+            {
+                "_id": "5ff68bcc8b458ac89102e2c4",
+                "category": "Track",
+                "name": "Creepy Track",
+                "colour": "Pink",
+                "imgUrl": "https://the-curtain-co.s3.ap-southeast-2.amazonaws.com/1609993163109",
+                "price": 50,
+                "type": "idk",
+                "single": true,
+                "finialStyle": "idk",
+                "finialColour": "idk",
+                "location": "idk",
+                "description": "Track with Creepy Photo",
+                "createdAt": "2021-01-07T04:19:24.166Z",
+                "updatedAt": "2021-01-07T04:19:54.635Z",
+                "__v": 0
+            },
+            {
+                "_id": "5ffe5ac23efc8f5d6b86c01a",
+                "category": "Track",
+                "name": "Another Test Track",
+                "colour": "idk",
+                "imgUrl": "",
+                "price": 15,
+                "type": "idk",
+                "single": true,
+                "finialStyle": "idk",
+                "finialColour": "idk",
+                "location": "idk",
+                "description": "Test Track",
+                "createdAt": "2021-01-13T02:28:18.226Z",
+                "updatedAt": "2021-01-13T02:28:37.473Z",
+                "__v": 0
+            }
+        ],
+        "fabric": [
+            {
+                "_id": "5ff68cf28b458ac89102e2c5",
+                "category": "Fabric",
+                "name": "Creepy Fabric",
+                "colour": "Orange",
+                "imgUrl": "https://the-curtain-co.s3.ap-southeast-2.amazonaws.com/1609993457618",
+                "price": 99,
+                "density": "idk",
+                "style": "idk",
+                "size": "idk",
+                "length": "idk",
+                "description": "Fabric with Creepy Photo",
+                "createdAt": "2021-01-07T04:24:18.720Z",
+                "updatedAt": "2021-01-07T04:24:18.720Z",
+                "__v": 0
+            }
+        ],
+        "accessory": [
+            {
+                "_id": "5ff68d668b458ac89102e2c9",
+                "category": "Accessory",
+                "name": "Creepy Other",
+                "colour": "Blue",
+                "imgUrl": "https://the-curtain-co.s3.ap-southeast-2.amazonaws.com/1609993573323",
+                "price": 60,
+                "description": "Other Accessory with Creepy Photo",
+                "type": "Other",
+                "createdAt": "2021-01-07T04:26:14.414Z",
+                "updatedAt": "2021-01-07T04:26:14.414Z",
+                "__v": 0
+            },
+            {
+                "_id": "5ff68d0f8b458ac89102e2c6",
+                "category": "Accessory",
+                "name": "Creepier Flick Stick",
+                "colour": "Purple",
+                "imgUrl": "https://the-curtain-co.s3.ap-southeast-2.amazonaws.com/1609993486688",
+                "price": 50,
+                "description": "Flick Stick with Creepy Photo",
+                "type": "Flick Stick",
+                "createdAt": "2021-01-07T04:24:47.723Z",
+                "updatedAt": "2021-01-13T02:41:50.561Z",
+                "__v": 0
+            },
+            {
+                "_id": "5ff68d2b8b458ac89102e2c7",
+                "category": "Accessory",
+                "name": "Creepier Automated Accessory",
+                "colour": "Green",
+                "imgUrl": "https://the-curtain-co.s3.ap-southeast-2.amazonaws.com/1609993514023",
+                "price": 99,
+                "description": "Automated Accessory with Creepy Photo",
+                "type": "Automated",
+                "createdAt": "2021-01-07T04:25:15.117Z",
+                "updatedAt": "2021-01-13T02:21:16.841Z",
+                "__v": 0
+            }
+        ],
+        "name": "Test Collection",
+        "description": "Test Collection",
+        "imgUrl": "",
+        "price": 53,
+        "trackTip": "Test Collection",
+        "accessoryTip": "Test Collection",
+        "fabricTip": "Test Collection",
+        "createdAt": "2021-01-13T02:30:18.306Z",
+        "updatedAt": "2021-01-13T04:56:59.063Z",
+        "__v": 0
+    }
+]
