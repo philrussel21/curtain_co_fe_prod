@@ -56,8 +56,6 @@ function App() {
     })
     theme = responsiveFontSizes(theme)
 
-    console.log(theme)
-
     useEffect(() => {
         // FIND IF A PERSON STILL HAS A SESSION,
         // IF SO, LOG THEM IN
@@ -67,9 +65,19 @@ function App() {
                 .then((resp) => {
                     let currentUser = resp.data.user
                     if (currentUser && resp.status === 200) {
+                        // server responds with the remaining time of their session-cookie
+                        // if remaining time > maxAllowed time for setTimeout, it would set the maxAllowed time for refresh
+                        // otherwise get the remaining time for setTimeout
+                        // sends the setTimeout id to global state for clearing in logout
+                        const maxTime = (resp.data.user.cookie > 2147483647) ? 2147483647 : resp.data.user.cookie
+                        console.log("timeout set", maxTime)
+                        const timeOut = setTimeout(() => {
+                            window.location.reload();
+                        }, maxTime);
                         dispatch({
                             type: ACTIONS.SET_CURRENT_USER,
                             payload: currentUser,
+                            timeOut
                         })
                     }
                 })

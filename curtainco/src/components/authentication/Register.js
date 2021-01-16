@@ -36,9 +36,14 @@ export default function SignUp() {
                         let currentUser = logResp.data.user
 
                         if (currentUser && logResp.status === 200) {
+                            const timeOut = setTimeout(() => {
+                                window.location.reload();
+                            }, 3_600_000)
+                            console.log("timeout set, with ID", timeOut)
                             dispatch({
                                 type: ACTIONS.LOGIN,
                                 payload: currentUser,
+                                timeOut
                             })
                         }
                     })

@@ -111,9 +111,9 @@ function calculateCustomizedCollectionPrice(
     middleProductCount = Math.ceil(middleProductCount)
     mostProductCount = Math.ceil(mostProductCount)
 
-    console.log({ lessProductCount })
-    console.log({ middleProductCount })
-    console.log({ mostProductCount })
+    // console.log({ lessProductCount })
+    // console.log({ middleProductCount })
+    // console.log({ mostProductCount })
 
     // THIS SIMPLY DETERMINES WHICH DISCOUNT TO APPLY
     // AND RETURNS THE PRICE AND DISCOUNT WE SET AT THE START

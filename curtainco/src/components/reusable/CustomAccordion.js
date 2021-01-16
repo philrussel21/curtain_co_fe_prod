@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import Accordion from "@material-ui/core/Accordion"
 import AccordionSummary from "@material-ui/core/AccordionSummary"
 import AccordionDetails from "@material-ui/core/AccordionDetails"
@@ -15,14 +15,32 @@ export default function CustomAccordion({
     tip,
     handleCustomization,
     open,
+    isMobile,
 }) {
     const classes = useStyles()
+    const [expanded, setExpanded] = useState(false)
+
+    // SHOW THE TIPS IF THE ACCORDION IS EXPANDED
+    function handleChange() {
+        setExpanded(!expanded)
+    }
+    // THIS CATCHES THE DEFAULT EXPANDED ACCORDION AND SHOWS THE TIP
+    useEffect(() => {
+        if (open) setExpanded(true)
+    }, [open])
 
     return (
-        <Grid item container justify="space-around" alignItems="center">
-            <Grid item xs={8}>
+        <Grid
+            item
+            container
+            justify="center"
+            alignItems="center"
+            spacing={isMobile ? 1 : 5}
+            direction={isMobile ? "column" : "row"}
+        >
+            <Grid item xs={12} sm={8}>
                 <div className={classes.accordionRoot}>
-                    <Accordion defaultExpanded={open}>
+                    <Accordion defaultExpanded={open} onChange={handleChange}>
                         <AccordionSummary
                             expandIcon={<ExpandMoreIcon />}
                             aria-controls="panel1a-content"
@@ -37,21 +55,35 @@ export default function CustomAccordion({
                                 container
                                 justify="space-around"
                                 alignItems="center"
+                                // spacing={3}
                             >
                                 <AccordionDataItem
                                     data={data}
                                     handleCustomization={handleCustomization}
+                                    isMobile={isMobile}
                                 />
                             </Grid>
                         </AccordionDetails>
                     </Accordion>
                 </div>
             </Grid>
-            <Grid item>
-                <Typography variant="h5" component="h5">
-                    Designer Tip
-                </Typography>
-                <Typography>{capitalize(tip)}</Typography>
+
+            <Grid item container alignItems="flex-start" xs={12} sm={4}>
+                <Grid item xs={12}>
+                    <Typography
+                        variant="h5"
+                        component="h5"
+                        className={classes.designerTipHeader}
+                        style={{ fontSize: isMobile ? 28 : 30 }}
+                    >
+                        Designer Tip
+                    </Typography>
+                </Grid>
+                <Grid item xs={12}>
+                    <Typography className={classes.designerTipMessage}>
+                        {expanded ? capitalize(tip) : ""}
+                    </Typography>
+                </Grid>
             </Grid>
         </Grid>
     )

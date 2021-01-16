@@ -6,12 +6,23 @@ import {
     getOneCollectionFromState,
 } from "../../../helpers/collectionHelpers"
 import { getOneCollection } from "../../../services/collectionServices"
-import { capitalize, setSuccessSnackBar } from "../../../helpers/appHelpers"
+import {
+    capitalize,
+    setSuccessSnackBar,
+    setWarningSnackBar,
+} from "../../../helpers/appHelpers"
 import { addItemToCart } from "../../../services/cartServices"
 import { ACTIONS } from "../../../config/stateReducer"
 // STYLES
 import useStyles from "../CollectionStyles"
-import { Box, Container, Grid, Typography } from "@material-ui/core"
+import {
+    Container,
+    Divider,
+    Grid,
+    Typography,
+    useMediaQuery,
+    useTheme,
+} from "@material-ui/core"
 // COMPONENTS
 import CustomAccordion from "../../reusable/CustomAccordion"
 import CollectionIncludes from "./CollectionIncludes"
@@ -21,6 +32,8 @@ function CollectionCustomise() {
     let collectionId = window.location.pathname.split("/customise/")[1]
     const classes = useStyles()
     const { state, dispatch } = useCurtainContext()
+    const theme = useTheme()
+    const isMobile = useMediaQuery(theme.breakpoints.only("xs"))
     const [customizedPrice, setCustomizedPrice] = useState(0)
     const [discount, setDiscount] = useState(
         state.discounts.mostProductsMultiplier
@@ -62,6 +75,14 @@ function CollectionCustomise() {
         let tempAccessory = customizedCollection.accessory.filter(
             (element) => element !== false
         )
+
+        if (
+            tempTrack.length === 0 &&
+            tempFabric.length === 0 &&
+            tempAccessory.length === 0
+        ) {
+            setWarningSnackBar(dispatch)
+        }
         let tempCollection = {
             ...collection,
             track: tempTrack,
@@ -69,14 +90,14 @@ function CollectionCustomise() {
             accessory: tempAccessory,
             price: customizedPrice,
         }
-        console.log(tempCollection)
+        // console.log(tempCollection)
         addItemToCart(tempCollection, dispatch)
         setSuccessSnackBar(dispatch, "Added customised collection to cart")
     }
 
     // HANDLES THE TOTAL PRICE AND DISCOUNT OF THE CUSTOMISED COLLECTION
     useEffect(() => {
-        console.log("---HERE----")
+        // console.log("---HERE----")
         let { customPrice, discount } = calculateCustomizedCollectionPrice(
             customizedCollection,
             collection,
@@ -116,29 +137,42 @@ function CollectionCustomise() {
     }, [collection])
 
     return (
-        <Container>
+        <>
             <Grid
-                item
                 container
-                justify="center"
-                xs={12}
+                justify={isMobile ? "center" : "flex-start"}
                 className={classes.collectionHeaderCont}
             >
-                <Typography variant="h4" component="h4">
+                <Typography
+                    variant="h4"
+                    component="h4"
+                    className={classes.collectionCustomiseHeader}
+                    style={{
+                        fontSize: isMobile ? 32 : 50,
+                        paddingTop: isMobile ? "2%" : 0,
+                    }}
+                >
                     {collection.name
-                        ? capitalize(collection.name)
+                        ? `Your Customised ${capitalize(collection.name)}`
                         : "Not Found"}
                 </Typography>
             </Grid>
-            <Grid container justify="space-around">
+            <Grid
+                container
+                justify="space-around"
+                className={classes.customizedCollectionAccordionCont}
+                style={{ paddingTop: isMobile ? "8%" : "2%" }}
+                spacing={isMobile ? 5 : 0}
+            >
                 <Grid
                     item
                     container
                     direction="column"
                     justify="center"
                     alignItems="center"
-                    spacing={2}
-                    xs={9}
+                    spacing={isMobile ? 5 : 2}
+                    xs={12}
+                    sm={9}
                 >
                     <CustomAccordion
                         summary="Step 1: Fabrics"
@@ -146,6 +180,7 @@ function CollectionCustomise() {
                         tip={collection.fabricTip}
                         handleCustomization={handleUserCustomizingCollection}
                         open={true}
+                        isMobile={isMobile}
                     />
                     <CustomAccordion
                         summary="Step 2: Tracks"
@@ -153,6 +188,7 @@ function CollectionCustomise() {
                         tip={collection.trackTip}
                         handleCustomization={handleUserCustomizingCollection}
                         open={false}
+                        isMobile={isMobile}
                     />
                     <CustomAccordion
                         summary="Step 3: Accessories"
@@ -160,29 +196,41 @@ function CollectionCustomise() {
                         tip={collection.accessoryTip}
                         handleCustomization={handleUserCustomizingCollection}
                         open={false}
+                        isMobile={isMobile}
                     />
                 </Grid>
-                <Grid item xs={3}>
-                    <CollectionIncludes
-                        fabrics={customizedCollection.fabric}
-                        tracks={customizedCollection.track}
-                        accessories={customizedCollection.accessory}
-                        discount={discount}
-                        price={customizedPrice}
-                    />
+                <Grid
+                    item
+                    container
+                    justify="center"
+                    alignItems="flex-start"
+                    xs={12}
+                    sm={3}
+                    spacing={2}
+                    // style={{ paddingTop: isMobile ? "4%" : 0 }}
+                >
+                    <Grid item>
+                        <CollectionIncludes
+                            fabrics={customizedCollection.fabric}
+                            tracks={customizedCollection.track}
+                            accessories={customizedCollection.accessory}
+                            discount={discount}
+                            price={customizedPrice}
+                            isMobile={isMobile}
+                        />
+                    </Grid>
+
+                    <Grid item>
+                        <AddToCartButton
+                            icon={false}
+                            text={"Add To Cart"}
+                            size="large"
+                            handleClick={handleCartClick}
+                        />
+                    </Grid>
                 </Grid>
             </Grid>
-            <Box p={3} mt={5} mr={10}>
-                <Grid container justify="flex-end">
-                    <AddToCartButton
-                        icon={false}
-                        text={"Add To Cart"}
-                        size="large"
-                        handleClick={handleCartClick}
-                    />
-                </Grid>
-            </Box>
-        </Container>
+        </>
     )
 }
 

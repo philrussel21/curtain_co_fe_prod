@@ -24,7 +24,13 @@ import useStyles from "./NavigationStyles"
 import MenuIcon from "@material-ui/icons/Menu"
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart"
 // COMPONENTS
-import { Mobile, Desktop, Tablet } from "../reusable/Responsive"
+import {
+    Mobile,
+    Desktop,
+    Tablet,
+    Default,
+    MobileAndTablet,
+} from "../reusable/Responsive"
 // import MobileMenu from "./MobileMenu"
 // PACKAGES
 import { Link, withRouter } from "react-router-dom"
@@ -62,7 +68,10 @@ function NavBar() {
                 console.log("Got back response on logout", resp)
                 // logout the user locally
                 if (resp.status === 204) {
-                    dispatch({ type: ACTIONS.LOGOUT })
+                    // gets and clears the timeout set when logging in or refresh with session on it
+                    const timeOut = state.timeOut
+                    clearTimeout(timeOut)
+                    dispatch({ type: ACTIONS.LOGOUT, timeOut: null })
                     console.log("logging out")
                 }
             })
@@ -277,14 +286,8 @@ function NavBar() {
                 <Grid
                     container
                     direction="column"
-                    className={classes.navBarMobileHeader}
+                    className={classes.navBarMobileHeaderMobile}
                 >
-                    <Grid item className={classes.dividerCont}>
-                        <Divider
-                            variant="middle"
-                            className={classes.topNavBarDivider}
-                        />
-                    </Grid>
                     <Grid
                         item
                         style={{
@@ -339,7 +342,13 @@ function NavBar() {
                     <Grid item className={classes.dividerCont}>
                         <Divider
                             variant="middle"
-                            className={classes.bottomNavBarDivider}
+                            className={classes.topNavBarDividerMobile}
+                        />
+                    </Grid>
+                    <Grid item className={classes.dividerCont}>
+                        <Divider
+                            variant="middle"
+                            className={classes.bottomNavBarDividerMobile}
                         />
                     </Grid>
                 </Grid>
@@ -447,7 +456,7 @@ function NavBar() {
                         </MenuItem>
 
                         {state.currentUser !== null ? (
-                            <>
+                            <div>
                                 <MenuItem>
                                     <Link
                                         onClick={handleMobileMenuClose}
@@ -482,7 +491,7 @@ function NavBar() {
                                         </Typography>
                                     </Link>
                                 </MenuItem>
-                            </>
+                            </div>
                         ) : (
                             <MenuItem>
                                 <Link
@@ -510,12 +519,6 @@ function NavBar() {
             </Mobile>
 
             {/* TABLET STYLES */}
-
-            <Tablet>
-                <Typography variant="h4" className={classes.mobileHeader}>
-                    Tablet
-                </Typography>
-            </Tablet>
         </>
     )
 }

@@ -31,4 +31,12 @@ const Default = ({ children }) => {
     return isNotMobile ? children : null
 }
 
-export { Desktop, Tablet, Mobile, Default }
+const MobileAndTablet = ({ children }) => {
+    const theme = useTheme()
+    const tabletMaxWidth = useMediaQuery(theme.breakpoints.down("md"))
+    // console.log({ tabletMinWidth })
+    // console.log({ tabletMaxWidth })
+    return tabletMaxWidth ? children : null
+}
+
+export { Desktop, Tablet, Mobile, Default, MobileAndTablet }
