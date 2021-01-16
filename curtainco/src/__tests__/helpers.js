@@ -1,6 +1,8 @@
 import { getRoute } from '../helpers/adminHelpers';
 import * as appHelpers from '../helpers/appHelpers';
 import * as authHelpers from '../helpers/authHelpers';
+import * as collectionHelpers from '../helpers/collectionHelpers';
+import collectionData from './data/collections.json';
 
 // describe('AdminHelpers', () => {
 //   it('should return formatted url as an admin', () => {
@@ -71,53 +73,85 @@ import * as authHelpers from '../helpers/authHelpers';
 
 // });
 
-describe('AuthHelpers', () => {
-  describe('Login fields check', () => {
-    it('should return error message if empty field was passed', () => {
-      expect(authHelpers.loginFieldAreBad("", "email")).toBe('Field must not be empty');
-    });
+// describe('AuthHelpers', () => {
+//   describe('Login fields check', () => {
+//     it('should return error message if empty field was passed', () => {
+//       expect(authHelpers.loginFieldAreBad("", "email")).toBe('Field must not be empty');
+//     });
 
-    it('should return error message if email field was invalid', () => {
-      expect(authHelpers.loginFieldAreBad("someuser", "email")).toBe("Email is badly formatted");
-    });
+//     it('should return error message if email field was invalid', () => {
+//       expect(authHelpers.loginFieldAreBad("someuser", "email")).toBe("Email is badly formatted");
+//     });
 
-    it('should return error message if password is badly formatted', () => {
-      expect(authHelpers.loginFieldAreBad("test", "password")).toBe("Password must be between 6 and 32 characters");
-    });
+//     it('should return error message if password is badly formatted', () => {
+//       expect(authHelpers.loginFieldAreBad("test", "password")).toBe("Password must be between 6 and 32 characters");
+//     });
+//   });
+
+//   describe('areAnyFieldsInUserDataFormAreEmpty', () => {
+//     const sampleData = {
+//       email: "vinsmoke.sanji@email.com",
+//       password: "testpassword",
+//       fullName: "Vinsmoke,Sanji",
+//       phone: "0488888888",
+//       address1: "42 North Blue",
+//       suburb: "Grand Line",
+//       state: "QLD",
+//       postcode: "4009"
+//     };
+
+//     const wrongData = {
+//       email: "brave.usopp@email.com",
+//       password: "test",
+//       fullName: "Brave,Usopp",
+//       phone: "0488888888",
+//       address1: "43 North Blue",
+//       suburb: "Grand Line",
+//       state: "QLD",
+//       postcode: "4009"
+//     };
+
+//     it('should return an object with error messages if invalid field found.', () => {
+//       expect(authHelpers.areAnyFieldsInUserDataFormAreEmpty(wrongData)).toBeTruthy();
+//     });
+//     it('shoud return false if all fields are valid', () => {
+//       expect(authHelpers.areAnyFieldsInUserDataFormAreEmpty(sampleData)).toBeFalsy();
+//     });
+//   });
+
+
+// });
+
+
+
+describe('CollectionHelpers', () => {
+  const firstCol = collectionData[0];
+  it('should get one collection with the given ID', () => {
+    const collectionId = "5ff68e058b458ac89102e2ca";
+    expect(collectionHelpers.getOneCollectionFromState(collectionData, collectionId)).toBe(collectionData[0]);
   });
 
-  describe('areAnyFieldsInUserDataFormAreEmpty', () => {
-    const sampleData = {
-      email: "vinsmoke.sanji@email.com",
-      password: "testpassword",
-      fullName: "Vinsmoke,Sanji",
-      phone: "0488888888",
-      address1: "42 North Blue",
-      suburb: "Grand Line",
-      state: "QLD",
-      postcode: "4009"
-    };
-
-    const wrongData = {
-      email: "brave.usopp@email.com",
-      password: "test",
-      fullName: "Brave,Usopp",
-      phone: "0488888888",
-      address1: "43 North Blue",
-      suburb: "Grand Line",
-      state: "QLD",
-      postcode: "4009"
-    };
-
-    it('should return an object with error messages if invalid field found.', () => {
-      expect(authHelpers.areAnyFieldsInUserDataFormAreEmpty(wrongData)).toBeTruthy();
-    });
-    it('shoud return false if all fields are valid', () => {
-      expect(authHelpers.areAnyFieldsInUserDataFormAreEmpty(sampleData)).toBeFalsy();
-    });
+  it('should NOT return errors when there are no duplicates in Collection', () => {
+    expect(collectionHelpers.filterProductsInCollection(firstCol).error).toBe(false);
   });
 
+  it('should return FALSE when user is not removing a product on edit', () => {
+    expect(collectionHelpers.checkIfUserIsRemovingAProduct(firstCol)).toBe(false);
+  });
 
+  it('should return warning if NO product of certain category found', () => {
+    const emptyProductArr = [];
+    expect(collectionHelpers.checkIfProductsExistInCollection(emptyProductArr, "Track")).toBe("You have no Track products, are you sure you want to continue?");
+  });
+
+  it('should return content string depending on number of items in array', () => {
+    const accessories = firstCol.accessory;
+    expect(collectionHelpers.buildContentString(accessories, 'Accessory')).toBe("3 Accessories");
+  });
+
+  it('should not include empty collection', () => {
+    const emptyCol = { name: "Empty Collection", track: [], accessory: [], fabric: [] };
+    const testCol = [...collectionData, emptyCol];
+    expect(collectionHelpers.filterOutEmptyCollections(testCol)).toEqual(expect.not.objectContaining(emptyCol));
+  });
 });
-
-
