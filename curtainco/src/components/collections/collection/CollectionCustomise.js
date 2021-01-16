@@ -138,7 +138,7 @@ function CollectionCustomise() {
     }, [collection])
 
     return (
-        <Grid container>
+        <Grid container style={{ paddingTop: "3%" }}>
             <Grid
                 item
                 xs={12}
