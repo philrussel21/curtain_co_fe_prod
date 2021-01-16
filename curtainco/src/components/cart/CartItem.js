@@ -86,7 +86,7 @@ function CartItem({
                         justify="flex-start"
                         alignItems="flex-start"
                         xs={12}
-                        sm={4}
+                        sm={10}
                         className={classes.cartItemDetailsCont}
                     >
                         <Grid
@@ -94,6 +94,7 @@ function CartItem({
                             container
                             justify="flex-start"
                             alignItems="flex-start"
+                            xs={12}
                         >
                             <Typography
                                 variant="h5"
@@ -104,42 +105,9 @@ function CartItem({
                                 {capitalize(productItem.name)}
                             </Typography>
                         </Grid>
-                        {productItem.colour ? (
-                            <Grid item container>
-                                <Grid item container direction="column" xs={6}>
-                                    <Typography
-                                        className={classes.cartItemDetails}
-                                    >
-                                        Colour:
-                                    </Typography>
-                                    <Typography
-                                        className={classes.cartItemDetails}
-                                    >
-                                        Category:
-                                    </Typography>
-                                </Grid>
-                                <Grid item container direction="column" xs={6}>
-                                    <Typography
-                                        className={classes.cartItemDetailsData}
-                                    >
-                                        {capitalize(productItem.colour)}
-                                    </Typography>
-                                    <Typography
-                                        className={classes.cartItemDetailsData}
-                                    >
-                                        {productItem.category}
-                                    </Typography>
-                                </Grid>
-                            </Grid>
-                        ) : (
-                            <Grid item container>
-                                <Grid item>
-                                    <Typography>
-                                        Collection Contains:
-                                    </Typography>
-                                </Grid>
-
-                                <Grid item container>
+                        <Grid item container sm={12}>
+                            {productItem.colour ? (
+                                <Grid item container sm={4}>
                                     <Grid
                                         item
                                         container
@@ -149,100 +117,193 @@ function CartItem({
                                         <Typography
                                             className={classes.cartItemDetails}
                                         >
-                                            Tracks:
+                                            Colour:
                                         </Typography>
                                         <Typography
                                             className={classes.cartItemDetails}
                                         >
-                                            Fabric:
-                                        </Typography>
-                                        <Typography
-                                            className={classes.cartItemDetails}
-                                        >
-                                            Accessories
+                                            Category:
                                         </Typography>
                                     </Grid>
                                     <Grid
                                         item
                                         container
                                         direction="column"
+                                        alignItems="center"
                                         xs={6}
                                     >
                                         <Typography
-                                            className={classes.cartItemDetails}
-                                        >{`x${productItem.track.length}`}</Typography>
+                                            className={
+                                                classes.cartItemDetailsData
+                                            }
+                                        >
+                                            {capitalize(productItem.colour)}
+                                        </Typography>
                                         <Typography
-                                            className={classes.cartItemDetails}
-                                        >{`x${productItem.fabric.length}`}</Typography>
-                                        <Typography
-                                            className={classes.cartItemDetails}
-                                        >{`x${productItem.accessory.length}`}</Typography>
+                                            className={
+                                                classes.cartItemDetailsData
+                                            }
+                                        >
+                                            {productItem.category}
+                                        </Typography>
                                     </Grid>
                                 </Grid>
+                            ) : (
+                                <Grid item container sm={4}>
+                                    <Grid item>
+                                        <Typography>
+                                            Collection Contains:
+                                        </Typography>
+                                    </Grid>
+
+                                    <Grid item container>
+                                        <Grid
+                                            item
+                                            container
+                                            direction="column"
+                                            xs={6}
+                                        >
+                                            <Typography
+                                                className={
+                                                    classes.cartItemDetails
+                                                }
+                                            >
+                                                Tracks:
+                                            </Typography>
+                                            <Typography
+                                                className={
+                                                    classes.cartItemDetails
+                                                }
+                                            >
+                                                Fabric:
+                                            </Typography>
+                                            <Typography
+                                                className={
+                                                    classes.cartItemDetails
+                                                }
+                                            >
+                                                Accessories
+                                            </Typography>
+                                        </Grid>
+                                        <Grid
+                                            item
+                                            container
+                                            direction="column"
+                                            alignItems="center"
+                                            xs={6}
+                                        >
+                                            <Typography
+                                                className={
+                                                    classes.cartItemDetails
+                                                }
+                                            >{`x${productItem.track.length}`}</Typography>
+                                            <Typography
+                                                className={
+                                                    classes.cartItemDetails
+                                                }
+                                            >{`x${productItem.fabric.length}`}</Typography>
+                                            <Typography
+                                                className={
+                                                    classes.cartItemDetails
+                                                }
+                                            >{`x${productItem.accessory.length}`}</Typography>
+                                        </Grid>
+                                    </Grid>
+                                </Grid>
+                            )}
+
+                            <Grid
+                                item
+                                xs={6}
+                                sm={4}
+                                container
+                                justify="center"
+                                alignItems="center"
+                                className={
+                                    isMobile ? classes.cartItemQtyCont : ""
+                                }
+                            >
+                                <Grid
+                                    item
+                                    xs={4}
+                                    sm={3}
+                                    container
+                                    justify="center"
+                                >
+                                    <IconButton
+                                        size="small"
+                                        className={classes.secondaryIconButton}
+                                        onClick={handleDecreaseQty}
+                                        value={itemInCart.id}
+                                    >
+                                        <RemoveIcon color="secondary" />
+                                    </IconButton>
+                                </Grid>
+                                <Grid
+                                    item
+                                    xs={4}
+                                    sm={3}
+                                    container
+                                    justify="center"
+                                >
+                                    <Typography>x{itemInCart.qty}</Typography>
+                                </Grid>
+                                <Grid
+                                    item
+                                    xs={4}
+                                    sm={3}
+                                    container
+                                    justify="center"
+                                >
+                                    <IconButton
+                                        size="small"
+                                        className={classes.primaryIconButton}
+                                        onClick={handleIncreaseQty}
+                                        value={itemInCart.id}
+                                    >
+                                        <AddIcon color="primary" />
+                                    </IconButton>
+                                </Grid>
                             </Grid>
-                        )}
-                    </Grid>
 
-                    <Grid
-                        item
-                        xs={6}
-                        sm={3}
-                        container
-                        justify="center"
-                        alignItems="center"
-                        className={isMobile ? classes.cartItemQtyCont : ""}
-                    >
-                        <Grid item xs={4} sm={3} container justify="center">
-                            <IconButton
-                                size="small"
-                                className={classes.secondaryIconButton}
-                                onClick={handleDecreaseQty}
-                                value={itemInCart.id}
+                            <Grid
+                                item
+                                xs={6}
+                                sm={3}
+                                container
+                                justify="center"
+                                alignItems="center"
+                                className={
+                                    isMobile ? classes.cartItemQtyCont : ""
+                                }
                             >
-                                <RemoveIcon color="secondary" />
-                            </IconButton>
-                        </Grid>
-                        <Grid item xs={4} sm={3} container justify="center">
-                            <Typography>x{itemInCart.qty}</Typography>
-                        </Grid>
-                        <Grid item xs={4} sm={3} container justify="center">
-                            <IconButton
-                                size="small"
-                                className={classes.primaryIconButton}
-                                onClick={handleIncreaseQty}
-                                value={itemInCart.id}
-                            >
-                                <AddIcon color="primary" />
-                            </IconButton>
+                                <Typography className={classes.cartItemPrice}>
+                                    ${price}
+                                </Typography>
+                            </Grid>
+
+                            {!isMobile && (
+                                <Grid
+                                    item
+                                    xs={1}
+                                    sm={1}
+                                    container
+                                    alignItems="center"
+                                    justify="center"
+                                >
+                                    <IconButton
+                                        variant="outlined"
+                                        color="secondary"
+                                        value={itemInCart.id}
+                                        onClick={handleRemove}
+                                        className={classes.secondaryIconButton}
+                                    >
+                                        <DeleteIcon color="error" />
+                                    </IconButton>
+                                </Grid>
+                            )}
                         </Grid>
                     </Grid>
-
-                    <Grid
-                        item
-                        xs={6}
-                        sm={2}
-                        container
-                        justify="center"
-                        className={isMobile ? classes.cartItemQtyCont : ""}
-                    >
-                        <Typography className={classes.cartItemPrice}>
-                            ${price}
-                        </Typography>
-                    </Grid>
-
-                    {!isMobile && (
-                        <Grid item xs={1} container justify="center">
-                            <IconButton
-                                variant="outlined"
-                                color="secondary"
-                                value={itemInCart.id}
-                                onClick={handleRemove}
-                                className={classes.secondaryIconButton}
-                            >
-                                <DeleteIcon color="error" />
-                            </IconButton>
-                        </Grid>
-                    )}
                 </Grid>
             </Paper>
         </Grid>

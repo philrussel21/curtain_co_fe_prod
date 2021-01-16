@@ -9,7 +9,7 @@ function Privacy() {
     return (
         <Typography
             variant="body2"
-            color="textSecondary"
+            color="textPrimary"
             align="center"
             className={classes.privacy}
         >

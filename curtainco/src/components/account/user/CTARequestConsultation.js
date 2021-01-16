@@ -11,7 +11,7 @@ function CTARequestConsultation({ isMobile }) {
     const classes = useStyles()
     const { state } = useCurtainContext()
     return (
-        <Grid container spacing={2}>
+        <Grid item container spacing={2}>
             <Grid item container justify="center">
                 <Typography
                     variant="h4"

@@ -56,7 +56,7 @@ function ProfileInformation({ isMobile }) {
         return updateError
     }
     return (
-        <Grid container direction="column" spacing={2}>
+        <Grid item container direction="column" spacing={2}>
             <Grid item>
                 <Typography
                     variant="h4"

@@ -36,12 +36,11 @@ const useStyles = makeStyles((theme) => ({
         marginTop: "auto",
         backgroundColor: "lightblue",
     },
-    mobileHeader: {},
     footerMobile: {
         height: "fit-content",
         backgroundColor: "lightblue",
         marginTop: "10%",
-        paddingBottom: "20%",
+        // paddingBottom: "20%",
         paddingTop: "5%",
         position: "relative",
         width: "100%",
@@ -120,11 +119,15 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor: theme.palette.primary.light,
     },
     topNavBarDividerMobile: {
-        marginTop: "-63px",
+        // marginTop: "-63px",
+        position: "relative",
+        // top: "-55px",
         backgroundColor: theme.palette.primary.light,
     },
     bottomNavBarDividerMobile: {
-        marginTop: "-20px",
+        // marginTop: "-20px",
+        position: "relative",
+        top: "-15px",
         backgroundColor: theme.palette.primary.light,
     },
     dividerCont: {
@@ -148,13 +151,15 @@ const useStyles = makeStyles((theme) => ({
         color: theme.palette.secondary.dark,
     },
     navBarMobileHeaderLeft: {
-        textAlign: "center",
-        padding: "3%",
+        // textAlign: "center",
+        // paddingBottom: "1%",
+        paddingRight: "4px",
         fontWeight: theme.typography.fontWeightMedium,
     },
     navBarMobileHeaderRight: {
-        textAlign: "center",
-        padding: "3%",
+        // textAlign: "center",
+        // paddingBottom: "1%",
+        paddingLeft: "4px",
         fontWeight: theme.typography.fontWeightMedium,
         color: theme.palette.primary.main,
     },
@@ -165,6 +170,9 @@ const useStyles = makeStyles((theme) => ({
     footerSiteByLinks: {
         textDecoration: "none",
         color: theme.palette.secondary.dark,
+    },
+    navBarMobileHeaderMobile: {
+        // flexDirection: "inherit !important",
     },
 }))
 

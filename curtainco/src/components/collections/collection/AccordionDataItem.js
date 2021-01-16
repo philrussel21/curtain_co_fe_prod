@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react"
 // STYLES
-import { Grid, Typography } from "@material-ui/core"
+import { Grid, Typography, useMediaQuery } from "@material-ui/core"
 import useStyles from "../CollectionStyles"
 // HELPERS AND SERVICES
 import { capitalize } from "../../../helpers/appHelpers"
@@ -11,6 +11,8 @@ import { capitalize } from "../../../helpers/appHelpers"
 function AccordionDataItem({ data, handleCustomization, isMobile }) {
     const classes = useStyles()
     const [productSelection, setProductSelection] = useState([])
+    const isIphone5 = useMediaQuery("(max-width:320px)")
+
     // const [category, setCategory] = useState("")
 
     function handleSelected(event) {
@@ -51,7 +53,7 @@ function AccordionDataItem({ data, handleCustomization, isMobile }) {
             direction="column"
             justify="space-around"
             xs={6}
-            sm={data.length === 4 ? 3 : 4}
+            md={data.length === 4 ? 3 : 4}
             key={`${product._id},${index}`}
         >
             <Grid
@@ -73,6 +75,10 @@ function AccordionDataItem({ data, handleCustomization, isMobile }) {
                             ? classes.accordionDataItemSelected
                             : classes.accordionDataItem
                     }
+                    style={{
+                        width: isIphone5 && "70px",
+                        height: isIphone5 && "70px",
+                    }}
                 />
             </Grid>
             <Grid item container justify="center">

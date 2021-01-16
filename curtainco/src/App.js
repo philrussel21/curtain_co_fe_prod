@@ -35,7 +35,9 @@ import { getCartItemsFromLocalStorage } from "./services/cartServices"
 function App() {
     const { state, dispatch } = useCurtainContext()
     const [isLoading, setIsLoading] = useState(false)
-    const isMobile = useMediaQuery("(max-width: 600px)")
+    // const isMobile = useMediaQuery("(max-width: 600px)")
+    const isMobileOrTabletPortrait = useMediaQuery("(max-width: 960px)")
+
     let theme = createMuiTheme({
         typography: {
             fontFamily: [
@@ -69,15 +71,18 @@ function App() {
                         // if remaining time > maxAllowed time for setTimeout, it would set the maxAllowed time for refresh
                         // otherwise get the remaining time for setTimeout
                         // sends the setTimeout id to global state for clearing in logout
-                        const maxTime = (resp.data.user.cookie > 2147483647) ? 2147483647 : resp.data.user.cookie
+                        const maxTime =
+                            resp.data.user.cookie > 2147483647
+                                ? 2147483647
+                                : resp.data.user.cookie
                         console.log("timeout set", maxTime)
                         const timeOut = setTimeout(() => {
-                            window.location.reload();
-                        }, maxTime);
+                            window.location.reload()
+                        }, maxTime)
                         dispatch({
                             type: ACTIONS.SET_CURRENT_USER,
                             payload: currentUser,
-                            timeOut
+                            timeOut,
                         })
                     }
                 })
@@ -115,7 +120,9 @@ function App() {
                 ) : (
                     <Container
                         className={
-                            isMobile ? "app-container-mobile" : "app-container"
+                            isMobileOrTabletPortrait
+                                ? "app-container-mobile"
+                                : "app-container"
                         }
                         component="main"
                     >

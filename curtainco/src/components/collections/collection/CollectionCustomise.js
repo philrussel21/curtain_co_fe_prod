@@ -34,6 +34,7 @@ function CollectionCustomise() {
     const { state, dispatch } = useCurtainContext()
     const theme = useTheme()
     const isMobile = useMediaQuery(theme.breakpoints.only("xs"))
+    const isMobileOrTabletPortrait = useMediaQuery(theme.breakpoints.down("sm"))
     const [customizedPrice, setCustomizedPrice] = useState(0)
     const [discount, setDiscount] = useState(
         state.discounts.mostProductsMultiplier
@@ -137,10 +138,12 @@ function CollectionCustomise() {
     }, [collection])
 
     return (
-        <>
+        <Grid container style={{ paddingTop: "3%" }}>
             <Grid
+                item
+                xs={12}
                 container
-                justify={isMobile ? "center" : "flex-start"}
+                justify={isMobileOrTabletPortrait ? "center" : "flex-start"}
                 className={classes.collectionHeaderCont}
             >
                 <Typography
@@ -158,11 +161,13 @@ function CollectionCustomise() {
                 </Typography>
             </Grid>
             <Grid
+                item
                 container
                 justify="space-around"
                 className={classes.customizedCollectionAccordionCont}
                 style={{ paddingTop: isMobile ? "8%" : "2%" }}
-                spacing={isMobile ? 5 : 0}
+                spacing={isMobileOrTabletPortrait ? 5 : 0}
+                xs={12}
             >
                 <Grid
                     item
@@ -172,7 +177,7 @@ function CollectionCustomise() {
                     alignItems="center"
                     spacing={isMobile ? 5 : 2}
                     xs={12}
-                    sm={9}
+                    md={9}
                 >
                     <CustomAccordion
                         summary="Step 1: Fabrics"
@@ -205,32 +210,33 @@ function CollectionCustomise() {
                     justify="center"
                     alignItems="flex-start"
                     xs={12}
-                    sm={3}
+                    sm={12}
+                    md={3}
                     spacing={2}
                     // style={{ paddingTop: isMobile ? "4%" : 0 }}
                 >
-                    <Grid item>
-                        <CollectionIncludes
-                            fabrics={customizedCollection.fabric}
-                            tracks={customizedCollection.track}
-                            accessories={customizedCollection.accessory}
-                            discount={discount}
-                            price={customizedPrice}
-                            isMobile={isMobile}
-                        />
-                    </Grid>
+                    {/* <Grid item xs={12}> */}
+                    <CollectionIncludes
+                        fabrics={customizedCollection.fabric}
+                        tracks={customizedCollection.track}
+                        accessories={customizedCollection.accessory}
+                        discount={discount}
+                        price={customizedPrice}
+                        isMobile={isMobile}
+                    />
+                    {/* </Grid> */}
 
-                    <Grid item>
-                        <AddToCartButton
-                            icon={false}
-                            text={"Add To Cart"}
-                            size="large"
-                            handleClick={handleCartClick}
-                        />
-                    </Grid>
+                    {/* <Grid item container justify="center" xs={12}> */}
+                    <AddToCartButton
+                        icon={false}
+                        text={"Add To Cart"}
+                        size="large"
+                        handleClick={handleCartClick}
+                    />
+                    {/* </Grid> */}
                 </Grid>
             </Grid>
-        </>
+        </Grid>
     )
 }
 

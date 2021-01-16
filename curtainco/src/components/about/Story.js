@@ -15,7 +15,7 @@ function Story() {
     const isMobile = useMediaQuery(theme.breakpoints.only("xs"))
 
     return (
-        <Grid item container justify="center" spacing={2}>
+        <Grid item container justify="center" spacing={2} xs={12} sm={11}>
             <Grid item sm={6}>
                 <Grid container justify={isMobile ? "flex-start" : "center"}>
                     <Typography

@@ -11,14 +11,15 @@ import SocialLinkButton from "../reusable/SocialLinkButton"
 function Contact() {
     const classes = useStyles()
     const theme = useTheme()
-    const isMobile = useMediaQuery(theme.breakpoints.only("xs"))
+    // const isMobile = useMediaQuery(theme.breakpoints.only("xs"))
+    const isMobileOrTabletPortrait = useMediaQuery(theme.breakpoints.down("sm"))
 
     return (
         <Grid item container direction="column">
             <Grid
                 item
                 container
-                justify={isMobile ? "flex-end" : "flex-start"}
+                justify={isMobileOrTabletPortrait ? "center" : "flex-start"}
                 spacing={2}
             >
                 <Grid item>
@@ -27,7 +28,7 @@ function Contact() {
                         target="_blank"
                         rel="noreferrer"
                     >
-                        <FacebookIcon color="secondary" />
+                        <FacebookIcon color="secondary" fontSize="large" />
                     </a>
                 </Grid>
                 <Grid item>
@@ -36,25 +37,33 @@ function Contact() {
                         target="_blank"
                         rel="noreferrer"
                     >
-                        <InstagramIcon color="secondary" />
+                        <InstagramIcon color="secondary" fontSize="large" />
                     </a>
                 </Grid>
             </Grid>
 
-            <Grid item container justify={isMobile ? "flex-end" : "flex-start"}>
+            <Grid
+                item
+                container
+                justify={isMobileOrTabletPortrait ? "center" : "flex-start"}
+            >
                 <Typography
                     // variant="body2"
-                    color="textSecondary"
+                    color="textPrimary"
                     className={classes.footerText}
                 >
                     0401 762 272
                 </Typography>
             </Grid>
 
-            <Grid item container justify={isMobile ? "flex-end" : "flex-start"}>
+            <Grid
+                item
+                container
+                justify={isMobileOrTabletPortrait ? "center" : "flex-start"}
+            >
                 <Typography
                     // variant="body2"
-                    color="textSecondary"
+                    color="textPrimary"
                     className={classes.footerEmailLink}
                 >
                     <a href="mailto:marie@marieg.com.au?" className="link">

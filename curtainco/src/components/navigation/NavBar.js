@@ -18,6 +18,9 @@ import {
     withStyles,
     Badge,
     Divider,
+    Container,
+    useTheme,
+    useMediaQuery,
 } from "@material-ui/core"
 import useStyles from "./NavigationStyles"
 // ICONS
@@ -29,7 +32,7 @@ import {
     Desktop,
     Tablet,
     Default,
-    MobileAndTablet,
+    MobileAndTabletPortrait,
 } from "../reusable/Responsive"
 // import MobileMenu from "./MobileMenu"
 // PACKAGES
@@ -51,6 +54,9 @@ function NavBar() {
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null)
     const isMobileMenuOpen = Boolean(mobileMoreAnchorEl)
     const mobileMenuId = "app-bar-mobile"
+    const isTabletPortrait = useMediaQuery(
+        "(min-width: 600px) and (max-width: 960px) and (orientation: portrait)"
+    )
 
     const handleMobileMenuOpen = (event) => {
         setMobileMoreAnchorEl(event.currentTarget)
@@ -282,7 +288,7 @@ function NavBar() {
 
             {/* MOBILE STYLES */}
 
-            <Mobile>
+            <MobileAndTabletPortrait>
                 <Grid
                     container
                     direction="column"
@@ -304,54 +310,50 @@ function NavBar() {
                                 alignItems="center"
                                 xs={12}
                             >
-                                <Grid
-                                    item
-                                    container
-                                    justify="flex-end"
-                                    alignItems="center"
-                                    xs={3}
+                                <Typography
+                                    variant="h4"
+                                    className={classes.navBarMobileHeaderLeft}
+                                    style={{
+                                        fontSize: isTabletPortrait ? 40 : 24,
+                                    }}
                                 >
-                                    <Typography
-                                        variant="h4"
-                                        className={
-                                            classes.navBarMobileHeaderLeft
-                                        }
-                                    >
-                                        THE
-                                    </Typography>
-                                </Grid>
-                                <Grid
-                                    item
-                                    container
-                                    justify="flex-start"
-                                    alignItems="center"
-                                    xs={8}
+                                    THE
+                                </Typography>
+
+                                <Typography
+                                    variant="h4"
+                                    className={classes.navBarMobileHeaderRight}
+                                    style={{
+                                        fontSize: isTabletPortrait ? 40 : 24,
+                                    }}
                                 >
-                                    <Typography
-                                        variant="h4"
-                                        className={
-                                            classes.navBarMobileHeaderRight
-                                        }
-                                    >
-                                        CURTAIN CO
-                                    </Typography>
-                                </Grid>
+                                    CURTAIN CO
+                                </Typography>
                             </Grid>
                         </Link>
                     </Grid>
-                    <Grid item className={classes.dividerCont}>
+                    {/* <Grid item className={classes.dividerCont}> */}
+                    <Grid item>
                         <Divider
                             variant="middle"
                             className={classes.topNavBarDividerMobile}
+                            style={{
+                                top: isTabletPortrait ? "-70px" : "-55px",
+                            }}
                         />
                     </Grid>
-                    <Grid item className={classes.dividerCont}>
+                    {/* <Grid item className={classes.dividerCont}> */}
+                    <Grid item>
                         <Divider
                             variant="middle"
                             className={classes.bottomNavBarDividerMobile}
+                            style={{
+                                top: isTabletPortrait ? "-20px" : "-15px",
+                            }}
                         />
                     </Grid>
                 </Grid>
+
                 <AppBar position="fixed" className={classes.appBarMobile}>
                     <div className={classes.sectionMobile}>
                         <Fab
@@ -516,7 +518,7 @@ function NavBar() {
                         )}
                     </Menu>
                 </AppBar>
-            </Mobile>
+            </MobileAndTabletPortrait>
 
             {/* TABLET STYLES */}
         </>

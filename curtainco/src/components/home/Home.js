@@ -5,7 +5,11 @@ import useStyles from "./HomeStyles"
 // COMPONENTS
 import HeroBanner from "./HeroBanner"
 import WhyCurtains from "./WhyCurtains"
-import { Desktop, Mobile } from "../reusable/Responsive"
+import {
+    Desktop,
+    Mobile,
+    MobileAndTabletPortrait,
+} from "../reusable/Responsive"
 
 function Home() {
     const classes = useStyles()
@@ -87,12 +91,18 @@ function Home() {
 
             {/* MOBILE */}
 
-            <Mobile>
-                <Grid container direction="column">
+            <MobileAndTabletPortrait>
+                <Grid
+                    container
+                    direction="column"
+                    justify="center"
+                    alignItems="center"
+                >
                     <Grid
                         item
                         xs={12}
-                        sm={6}
+                        sm={8}
+                        md={6}
                         style={{
                             backgroundColor: `${theme.palette.background.default}`,
                             borderBottomRightRadius: `${imgBorderRadius}px`,
@@ -116,7 +126,8 @@ function Home() {
                         justify="center"
                         alignItems="center"
                         xs={12}
-                        sm={6}
+                        sm={8}
+                        md={6}
                         style={{
                             backgroundColor: "lightblue",
                             position: "relative",
@@ -136,7 +147,7 @@ function Home() {
                         <WhyCurtains />
                     </Grid>
                 </Grid>
-            </Mobile>
+            </MobileAndTabletPortrait>
         </>
     )
 }

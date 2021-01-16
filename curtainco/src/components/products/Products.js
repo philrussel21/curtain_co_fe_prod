@@ -24,6 +24,7 @@ function Products() {
     const [searchInput, setSearchInput] = useState("")
     const [isLoading, setIsLoading] = useState(true)
     const isMobile = useMediaQuery("(max-width: 600px)")
+    const isTablet = useMediaQuery("(max-width: 960px)")
 
     const [productsErrorMessage, setProductErrorMessage] = useState(null)
     const [filter, setFilter] = useState({
@@ -71,74 +72,77 @@ function Products() {
     }, [dispatch])
 
     return (
-        <>
-            <Container>
-                <Grid container spacing={4}>
-                    <Grid
-                        item
-                        container
-                        direction="column"
-                        justify="flex-start"
-                        alignItems="center"
-                        xs={12}
-                        sm={3}
-                        spacing={1}
-                    >
-                        <Grid item style={{ width: "100%" }}>
-                            <Search
-                                searchInput={searchInput}
-                                handleChange={handleSearchInputChange}
-                            />
-                        </Grid>
-
-                        <Grid item style={{ width: "100%" }}>
-                            <Sort
-                                sortFields={sortFields}
-                                sortBy={sortBy}
-                                handleChange={handleSortByChange}
-                            />
-                        </Grid>
-                        <Grid item style={{ width: "100%" }}>
-                            <Filter
-                                filterBy={filter}
-                                handleChange={handleFilterChange}
-                            />
-                        </Grid>
-                    </Grid>
-                    {/* <Grid item xs={12} sm={9}> */}
-                    {/* <Container maxWidth="md"> */}
-                    <Grid
-                        item
-                        container
-                        spacing={4}
-                        xs={12}
-                        sm={8}
-                        justify="center"
-                        alignItems="center"
-                        className={
-                            isMobile ? classes.cardGridMobile : classes.cardGrid
-                        }
-                    >
-                        {isLoading ? (
-                            <LoadingSymbol />
-                        ) : productsErrorMessage !== null ? (
-                            productsErrorMessage
-                        ) : (
-                            <ProductList
-                                products={state.products}
-                                filterText={searchInput}
-                                filterTypes={filter}
-                                filterSortBy={sortBy}
-                                sortFields={sortFields}
-                                inStockOnly={true}
-                            />
-                        )}
-                    </Grid>
-                    {/* </Container> */}
-                    {/* </Grid> */}
+        <Grid
+            container
+            justify="center"
+            alignItems="center"
+            xs={12}
+            spacing={4}
+            style={{ marginTop: "1%" }}
+        >
+            <Grid
+                item
+                container
+                direction="column"
+                justify="center"
+                alignItems="center"
+                xs={12}
+                sm={10}
+                md={3}
+                spacing={1}
+            >
+                <Grid item style={{ width: "100%" }}>
+                    <Search
+                        searchInput={searchInput}
+                        handleChange={handleSearchInputChange}
+                    />
                 </Grid>
-            </Container>
-        </>
+
+                <Grid item style={{ width: "100%" }}>
+                    <Sort
+                        sortFields={sortFields}
+                        sortBy={sortBy}
+                        handleChange={handleSortByChange}
+                    />
+                </Grid>
+                <Grid item style={{ width: "100%" }}>
+                    <Filter
+                        filterBy={filter}
+                        handleChange={handleFilterChange}
+                    />
+                </Grid>
+            </Grid>
+            {/* <Grid item xs={12} sm={9}> */}
+            {/* <Container maxWidth="md"> */}
+            <Grid
+                item
+                container
+                spacing={4}
+                xs={12}
+                sm={10}
+                md={8}
+                justify="center"
+                alignItems="center"
+                className={isMobile ? classes.cardGridMobile : classes.cardGrid}
+            >
+                {isLoading ? (
+                    <LoadingSymbol />
+                ) : productsErrorMessage !== null ? (
+                    productsErrorMessage
+                ) : (
+                    <ProductList
+                        products={state.products}
+                        filterText={searchInput}
+                        filterTypes={filter}
+                        filterSortBy={sortBy}
+                        sortFields={sortFields}
+                        inStockOnly={true}
+                    />
+                )}
+            </Grid>
+            {/* </Container> */}
+            {/* </Grid> */}
+        </Grid>
     )
 }
 

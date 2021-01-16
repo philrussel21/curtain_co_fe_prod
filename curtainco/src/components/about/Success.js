@@ -22,6 +22,8 @@ function Success() {
             justify="center"
             alignItems="flex-start"
             spacing={2}
+            xs={12}
+            sm={11}
         >
             <Grid item container justify="center" sm={6}>
                 <img
