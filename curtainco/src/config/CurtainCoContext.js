@@ -26,6 +26,7 @@ function CurtainContext({ children }) {
             paymentSummary: false,
             orderSummary: false,
             consultSummary: false,
+            productSummary: false
         },
         alert: {
             severity: "success",

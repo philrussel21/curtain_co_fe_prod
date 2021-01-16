@@ -31,10 +31,7 @@ function passwordHasBadFormatting(field) {
 }
 
 function areAnyFieldsInUserDataFormAreEmpty(userDetails) {
-    delete userDetails.title
-    delete userDetails.companyName
 
-    console.log("here in check")
     console.log({ userDetails })
 
     let errorObject = {}

@@ -30,6 +30,7 @@ function ProductItem({ productData }) {
                 open: true,
                 title: `${capitalize(productData.name)}`,
                 message: `${capitalize(productData.description)}`,
+                productSummary: true,
                 data: productData,
             },
         })

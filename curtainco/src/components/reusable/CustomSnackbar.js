@@ -30,6 +30,7 @@ export default function CustomSnackbar() {
 
     return (
         <>
+            {state.snackbar.open &&
             <Snackbar
                 open={state.snackbar.open}
                 autoHideDuration={6000}
@@ -39,6 +40,7 @@ export default function CustomSnackbar() {
                     {state.snackbar.message}
                 </Alert>
             </Snackbar>
+            }
         </>
     )
 }

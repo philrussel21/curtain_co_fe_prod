@@ -56,7 +56,7 @@ export default function CustomModal() {
 
     return (
         <>
-            {dataIsPresent ? (
+            {state.modal.open && 
                 <Modal
                     aria-labelledby="transition-modal-title"
                     aria-describedby="transition-modal-description"
@@ -91,20 +91,18 @@ export default function CustomModal() {
                                     data={state.modal.data}
                                     handleClose={handleClose}
                                 />
-                            ) : (
+                            ) : state.modal.productSummary ? (
                                 <ProductSummaryModal
                                     data={state.modal.data}
                                     title={state.modal.title}
                                     handleClose={handleClose}
                                     handleCartClick={handleCartClick}
                                 />
-                            )}
+                            ) : "" }
                         </div>
                     </Fade>
                 </Modal>
-            ) : (
-                ""
-            )}
+            }
         </>
     )
 }
