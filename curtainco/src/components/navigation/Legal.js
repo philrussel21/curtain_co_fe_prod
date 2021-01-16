@@ -9,14 +9,15 @@ import Privacy from "../reusable/Privacy"
 function Legal() {
     const classes = useStyles()
     const theme = useTheme()
-    const isMobile = useMediaQuery(theme.breakpoints.only("xs"))
+    // const isMobile = useMediaQuery(theme.breakpoints.only("xs"))
+    const isMobileOrTabletPortrait = useMediaQuery(theme.breakpoints.down("sm"))
 
     return (
         <Grid
             item
             container
             direction="column"
-            alignItems={isMobile ? "center" : "flex-end"}
+            alignItems={isMobileOrTabletPortrait ? "center" : "flex-end"}
             justify="center"
             spacing={1}
         >
@@ -27,11 +28,7 @@ function Legal() {
                 <Copyright />
             </Grid>
             <Grid item>
-                <Typography
-                    variant="body2"
-                    color="textSecondary"
-                    align="center"
-                >
+                <Typography variant="body2" color="textPrimary" align="center">
                     Site by{" "}
                     <a
                         href="https://www.simonmcurran.com"

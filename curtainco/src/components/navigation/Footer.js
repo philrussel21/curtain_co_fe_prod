@@ -5,11 +5,12 @@ import {
     Grid,
     Divider,
     Container,
-    // useMediaQuery,
+    useTheme,
+    useMediaQuery,
 } from "@material-ui/core"
 import useStyles from "./NavigationStyles"
 // STATE
-import { useCurtainContext } from "../../config/CurtainCoContext"
+// import { useCurtainContext } from "../../config/CurtainCoContext"
 // HELPERS AND SERVICES
 import { Link, useLocation } from "react-router-dom"
 // COMPONENTS
@@ -18,6 +19,7 @@ import {
     Desktop,
     MobileAndTablet,
     Default,
+    MobileAndTabletPortrait,
 } from "../reusable/Responsive"
 import Contact from "./Contact"
 import Legal from "./Legal"
@@ -28,6 +30,11 @@ export default function StickyFooter() {
     const classes = useStyles()
     const [hideButton, setHideButton] = useState(false)
     const location = useLocation()
+    const theme = useTheme()
+    const isMobilePortrait = useMediaQuery(
+        "(max-width: 600px) and (orientation: portrait)"
+    )
+    const isTablet = useMediaQuery(theme.breakpoints.down("sm"))
 
     useEffect(() => {
         // THIS HIDES THE BUTTON ON THE REQUEST CONSULTATION PAGE
@@ -41,7 +48,7 @@ export default function StickyFooter() {
 
     return (
         <>
-            <Default>
+            <Desktop>
                 <div className={classes.footerRoot}>
                     <footer className={classes.footer}>
                         <Grid container direction="column" spacing={2}>
@@ -83,12 +90,15 @@ export default function StickyFooter() {
                         </Grid>
                     </footer>
                 </div>
-            </Default>
+            </Desktop>
 
             {/* MOBILE STYLES  */}
 
-            <Mobile>
-                <footer className={classes.footerMobile}>
+            <MobileAndTabletPortrait>
+                <footer
+                    className={classes.footerMobile}
+                    style={{ paddingBottom: isMobilePortrait ? "20%" : "5%" }}
+                >
                     <CurtainCoDivider />
 
                     <Grid
@@ -104,9 +114,11 @@ export default function StickyFooter() {
                                         src="/logo192.png"
                                         alt="curtain co logo"
                                         style={{
-                                            width: "100px",
-                                            position: "relative",
-                                            right: "10px",
+                                            width: isMobilePortrait
+                                                ? "60px"
+                                                : "150px",
+                                            position: "absolute",
+                                            left: "10px",
                                         }}
                                     />
                                 </Link>
@@ -115,8 +127,9 @@ export default function StickyFooter() {
                                 item
                                 container
                                 direction="column"
-                                alignItems="flex-end"
-                                xs={6}
+                                alignItems="center"
+                                justify="center"
+                                xs={12}
                             >
                                 <Contact />
                             </Grid>
@@ -139,7 +152,7 @@ export default function StickyFooter() {
                         </Grid>
                     </Grid>
                 </footer>
-            </Mobile>
+            </MobileAndTabletPortrait>
         </>
     )
 }

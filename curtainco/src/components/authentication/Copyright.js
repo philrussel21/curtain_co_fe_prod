@@ -6,7 +6,7 @@ import useStyles from "../reusable/UserDataFormStyles"
 function Copyright() {
     const classes = useStyles()
     return (
-        <Typography variant="body2" color="textSecondary" align="center">
+        <Typography variant="body2" color="textPrimary" align="center">
             {"Copyright © "}
             {"The Curtain Co"} {new Date().getFullYear()}
         </Typography>
