@@ -4,6 +4,7 @@ import * as authHelpers from '../helpers/authHelpers';
 import * as collectionHelpers from '../helpers/collectionHelpers';
 import collectionData from './data/collections.json';
 import { sortConsultations } from '../helpers/consultationHelpers';
+import * as productHelpers from '../helpers/productHelpers';
 
 const yesterDay = new Date().setDate(new Date().getDate() - 1);
 const theOtherDay = new Date().setDate(new Date().getDate() - 2);
@@ -159,43 +160,98 @@ const today = + new Date();
 //   });
 // });
 
-describe('ConsultationHelper', () => {
-  const testData = [
+// describe('ConsultationHelper', () => {
+//   const testData = [
+//     {
+//       name: "yesterday",
+//       createdAt: yesterDay,
+//       isProcessed: true
+//     },
+//     {
+//       name: "today",
+//       createdAt: today,
+//       isProcessed: false
+//     },
+//     {
+//       name: "theOtherDay",
+//       createdAt: theOtherDay,
+//       isProcessed: false
+//     }
+//   ];
+//   const sortedData = [
+//     {
+//       name: "theOtherDay",
+//       createdAt: theOtherDay,
+//       isProcessed: false
+//     },
+//     {
+//       name: "today",
+//       createdAt: today,
+//       isProcessed: false
+//     },
+//     {
+//       name: "yesterday",
+//       createdAt: yesterDay,
+//       isProcessed: true
+//     }
+//   ];
+//   it('should sort data by date and then by if processed', () => {
+//     expect(sortConsultations(testData)).toMatchObject(sortedData);
+//   });
+
+// });
+
+describe('ProductHelpers', () => {
+  const testProducts = [
     {
-      name: "yesterday",
-      createdAt: yesterDay,
-      isProcessed: true
+      name: "First Product",
+      price: 200,
+      _id: "0001"
     },
     {
-      name: "today",
-      createdAt: today,
-      isProcessed: false
+      name: "Second Product",
+      price: 300,
+      _id: "0002"
     },
     {
-      name: "theOtherDay",
-      createdAt: theOtherDay,
-      isProcessed: false
+      name: "Third Product",
+      price: 400,
+      _id: "0003"
     }
   ];
-  const sortedData = [
-    {
-      name: "theOtherDay",
-      createdAt: theOtherDay,
-      isProcessed: false
-    },
-    {
-      name: "today",
-      createdAt: today,
-      isProcessed: false
-    },
-    {
-      name: "yesterday",
-      createdAt: yesterDay,
-      isProcessed: true
-    }
-  ];
-  it('should sort data by date and then by if processed', () => {
-    expect(sortConsultations(testData)).toMatchObject(sortedData);
+
+  const firstProd = testProducts[0];
+
+  describe('Sort Products', () => {
+    const lowestP = testProducts[0];
+    const highestP = testProducts[2];
+    const firstLetP = testProducts[0];
+    const lastLetP = testProducts[2];
+
+    it('should sort by price - low to high', () => {
+      expect(productHelpers.sortProducts(testProducts, "Price: Low to High")[0]).toBe(lowestP);
+    });
+    it('should sort by price - high to low', () => {
+      expect(productHelpers.sortProducts(testProducts, "Price: High to Low")[0]).toBe(highestP);
+    });
+    it('should sort by name - A to Z', () => {
+      expect(productHelpers.sortProducts(testProducts, "Name: A to Z")[0]).toBe(firstLetP);
+    });
+    it('should sort by name - Z to A', () => {
+      expect(productHelpers.sortProducts(testProducts, "Name: Z to A")[0]).toBe(lastLetP);
+    });
   });
 
+  it('should return search keyword of a Product', () => {
+    expect(productHelpers.searchProducts(testProducts, "First")[0]).toBe(firstProd);
+  });
+
+  it('should return one product with matching _id', () => {
+    expect(productHelpers.getOneProductFromState(testProducts, "0001")).toBe(firstProd);
+  });
+
+  it('should return TRUE if product does have an empty field', () => {
+    firstProd.price = "";
+    expect(productHelpers.checkIfAnyFieldsEmptyOnProductObject(firstProd)).toBe(true);
+  });
 });
