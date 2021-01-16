@@ -1,4 +1,12 @@
+import { getRoute } from '../helpers/adminHelpers';
 import * as appHelpers from '../helpers/appHelpers';
+
+describe('AdminHelpers', () => {
+  it('should return formatted url as an admin', () => {
+    expect(getRoute('products/add')).toBe('/account/products/add');
+  });
+});
+
 
 describe('AppHelpers', () => {
   it('should capitalize string', () => {
@@ -61,3 +69,4 @@ describe('AppHelpers', () => {
   });
 
 });
+
