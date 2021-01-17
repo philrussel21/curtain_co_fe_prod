@@ -20,6 +20,7 @@ import {
     MobileAndTablet,
     Default,
     MobileAndTabletPortrait,
+    DesktopAndTabletLandscape,
 } from "../reusable/Responsive"
 import Contact from "./Contact"
 import Legal from "./Legal"
@@ -48,7 +49,7 @@ export default function StickyFooter() {
 
     return (
         <>
-            <Desktop>
+            <DesktopAndTabletLandscape>
                 <div className={classes.footerRoot}>
                     <footer className={classes.footer}>
                         <Grid container direction="column" spacing={2}>
@@ -90,7 +91,7 @@ export default function StickyFooter() {
                         </Grid>
                     </footer>
                 </div>
-            </Desktop>
+            </DesktopAndTabletLandscape>
 
             {/* MOBILE STYLES  */}
 

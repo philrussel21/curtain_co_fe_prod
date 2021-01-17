@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
         textAlign: "center",
     },
     footerRoot: {
-        position: "absolute",
+        position: "relative",
         bottom: 0,
         height: "fit-content",
         width: "100%",
