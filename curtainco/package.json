@@ -1,5 +1,10 @@
 {
     "name": "curtainco",
+    "jest": {
+        "moduleNameMapper": {
+            "^.+\\.(css|less|scss)$": "babel-jest"
+        }
+    },
     "version": "0.1.0",
     "private": true,
     "dependencies": {
@@ -45,6 +50,7 @@
         ]
     },
     "devDependencies": {
-        "@babel/preset-env": "^7.12.11"
+        "@babel/preset-env": "^7.12.11",
+        "babel-jest": "^26.6.3"
     }
 }
