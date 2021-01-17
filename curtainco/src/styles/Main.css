@@ -19,6 +19,7 @@ html {
 .app-container {
   height: calc(100vh - 320px);
   z-index: 1;
+  overflow-y: auto;
   overflow-x: hidden;
   padding-top: 20px;
 }

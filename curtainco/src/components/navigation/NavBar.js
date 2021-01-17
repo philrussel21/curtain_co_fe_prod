@@ -33,6 +33,7 @@ import {
     Tablet,
     Default,
     MobileAndTabletPortrait,
+    DesktopAndTabletLandscape,
 } from "../reusable/Responsive"
 // import MobileMenu from "./MobileMenu"
 // PACKAGES
@@ -95,7 +96,7 @@ function NavBar() {
 
     return (
         <>
-            <Desktop>
+            <DesktopAndTabletLandscape>
                 <AppBar
                     position="static"
                     color="transparent"
@@ -284,7 +285,7 @@ function NavBar() {
                         </Grid>
                     </Toolbar>
                 </AppBar>
-            </Desktop>
+            </DesktopAndTabletLandscape>
 
             {/* MOBILE STYLES */}
 
