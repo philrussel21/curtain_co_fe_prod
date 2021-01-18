@@ -228,6 +228,8 @@ The target audience of this website are users that are willing to spend a little
 -   Unit testing functions, methods, modules and objects
 -   Component testing
 -   Snapshot testing
+-   **Manual Testing**
+    -   testing of all features after implementation
 
 > ### Back-End
 >
