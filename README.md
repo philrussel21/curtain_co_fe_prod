@@ -251,7 +251,8 @@ The target audience of this website are users that are willing to spend a little
     -   User completed tasks with no outside help and found it easy to use
     -   User wants visual feedback from adding a product to the cart from a modal
     -   User wants visual feedback that PayPal is loading in the background and a "don't refresh page" message
-    -   User found the PayPal sandbox bug where the buttons take a while to load. User didn't want to click again because they thought they would pay twice. Had to inform them it will be fine.
+    -   User found the PayPal sandbox bug where the buttons take a while to load. User didn't want to click again because they
+        thought they would pay twice. Had to inform them it will be fine.
 -   **Updates after Feedback from User Testing**
     -   Added success alert to product summary modal to show item being added to cart
     -   Added a loading symbol and message to users when paypal and the server are making the payment and order in the background
