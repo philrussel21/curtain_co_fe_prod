@@ -62,6 +62,15 @@ const useStyles = makeStyles((theme) => ({
         fontFamily: theme.typography.fontFamily.split(",")[1],
         fontSize: theme.typography.pxToRem(30),
     },
+    payPalLoadingUserMessage: {
+        textAlign: "center",
+        fontFamily: theme.typography.fontFamily.split(",")[2],
+        color: theme.palette.primary.light,
+        fontSize: 40,
+        [theme.breakpoints.only("xs")]: {
+            fontSize: 30,
+        },
+    },
 }))
 
 export default useStyles

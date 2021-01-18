@@ -3,10 +3,17 @@ import React, { useState, useEffect } from "react"
 import PayPal from "./Paypal"
 import CartList from "./CartList"
 import CartTotal from "./CartTotal"
+import LoadingSymbol from "../reusable/LoadingSymbol"
 // PACKAGES
 import { Link } from "react-router-dom/cjs/react-router-dom.min"
 // STYLES
-import { Grid, Button, useTheme, useMediaQuery } from "@material-ui/core"
+import {
+    Grid,
+    Button,
+    useTheme,
+    useMediaQuery,
+    Typography,
+} from "@material-ui/core"
 import useStyles from "./CartStyles"
 // HELPERS AND SERVICES
 import {
@@ -36,8 +43,8 @@ function Cart({ history }) {
     const classes = useStyles()
     const [cart, setCart] = useState([])
     const [totalPrice, setTotalPrice] = useState(0)
+    const [payPalLoading, setPayPalLoading] = useState(false)
     // const [userNotUsingBrave, setUserNotUsingBrave] = useState(false)
-
     const { state, dispatch } = useCurtainContext()
     let orderId = null
     const [paymentSuccess, setPaymentSuccess] = useState(false)
@@ -108,10 +115,11 @@ function Cart({ history }) {
         // data contains the response from paypal which is to be stored in server
         console.log("----SUCCESSFUL PAYPAL PURCHASE----")
         // console.log(data)
-
+        setPayPalLoading(true)
         const payload = {
             paymentData: data,
         }
+
         // updates the db document with Paypal data
         try {
             let response = await updateOrder(orderId, payload)
@@ -131,6 +139,7 @@ function Cart({ history }) {
                 "Error: OrderId and payment data was not updated but payment was taken."
             )
         }
+        setPayPalLoading(false)
     }
 
     async function handleCreateOrder() {
@@ -228,76 +237,95 @@ function Cart({ history }) {
     // }, [])
 
     return (
-        <Grid
-            container
-            justify="center"
-            alignItems="center"
-            spacing={2}
-            style={{ paddingTop: "3%" }}
-        >
-            <Grid item xs={12} md={10} lg={8} className={classes.cartListCont}>
-                <CartList
-                    cart={cart}
-                    handleRemove={handleRemove}
-                    handleIncreaseQty={handleIncreaseQty}
-                    handleDecreaseQty={handleDecreaseQty}
-                />
-            </Grid>
-            <Grid
-                item
-                container
-                justify="center"
-                alignItems="center"
-                className={classes.cartTotalCont}
-                xs={12}
-                md={10}
-                lg={4}
-            >
-                {cart.length > 0 && (
-                    <CartTotal
-                        total={totalPrice}
-                        loginText="To purchase with PayPal, please log in first."
-                        isCancelOrError={paymentFailedOrCancelled}
-                        setPaymentFailedOrCancelled={
-                            setPaymentFailedOrCancelled
-                        }
-                        isMobile={isMobile}
+        <>
+            {payPalLoading ? (
+                <>
+                    <LoadingSymbol />
+                    <Typography className={classes.payPalLoadingUserMessage}>
+                        Your order is being processed. Please do not refresh the
+                        page
+                    </Typography>
+                </>
+            ) : (
+                <Grid
+                    container
+                    justify="center"
+                    alignItems="center"
+                    spacing={2}
+                    style={{ paddingTop: "3%" }}
+                >
+                    <Grid
+                        item
+                        xs={12}
+                        md={10}
+                        lg={8}
+                        className={classes.cartListCont}
                     >
-                        {/* BLOCK ADMINS FROM SEEING PAYPAL BUTTON*/}
-                        {/* BLOCK ADMINS FROM SEEING THE LOG IN BUTTON AS WELL */}
-                        {isUserLoggedIn() && userIsNotAdmin() ? (
-                            <PayPal
-                                handleSuccess={handleSuccess}
-                                handleError={handleError}
-                                handleCancel={handleCancel}
-                                handleCreateOrder={handleCreateOrder}
-                                totalPrice={totalPrice}
-                            />
-                        ) : (
-                            !isUserLoggedIn() && (
-                                <Link
-                                    to={{
-                                        pathname: "/login",
-                                        state: {
-                                            prevUrl: window.location.href,
-                                        },
-                                    }}
-                                    className="link"
-                                >
-                                    <Button
-                                        variant="contained"
-                                        color="primary"
-                                        size="large"
-                                    >
-                                        Log In
-                                    </Button>
-                                </Link>
-                            )
+                        <CartList
+                            cart={cart}
+                            handleRemove={handleRemove}
+                            handleIncreaseQty={handleIncreaseQty}
+                            handleDecreaseQty={handleDecreaseQty}
+                        />
+                    </Grid>
+                    <Grid
+                        item
+                        container
+                        justify="center"
+                        alignItems="center"
+                        className={classes.cartTotalCont}
+                        xs={12}
+                        md={10}
+                        lg={4}
+                    >
+                        {cart.length > 0 && (
+                            <CartTotal
+                                total={totalPrice}
+                                loginText="To purchase with PayPal, please log in first."
+                                isCancelOrError={paymentFailedOrCancelled}
+                                setPaymentFailedOrCancelled={
+                                    setPaymentFailedOrCancelled
+                                }
+                                isMobile={isMobile}
+                            >
+                                {/* BLOCK ADMINS FROM SEEING PAYPAL BUTTON*/}
+                                {/* BLOCK ADMINS FROM SEEING THE LOG IN BUTTON AS WELL */}
+                                {isUserLoggedIn() && userIsNotAdmin() ? (
+                                    <PayPal
+                                        handleSuccess={handleSuccess}
+                                        handleError={handleError}
+                                        handleCancel={handleCancel}
+                                        handleCreateOrder={handleCreateOrder}
+                                        totalPrice={totalPrice}
+                                    />
+                                ) : (
+                                    !isUserLoggedIn() && (
+                                        <Link
+                                            to={{
+                                                pathname: "/login",
+                                                state: {
+                                                    prevUrl:
+                                                        window.location.href,
+                                                },
+                                            }}
+                                            className="link"
+                                        >
+                                            <Button
+                                                variant="contained"
+                                                color="primary"
+                                                size="large"
+                                            >
+                                                Log In
+                                            </Button>
+                                        </Link>
+                                    )
+                                )}
+                            </CartTotal>
                         )}
-                    </CartTotal>
-                )}
-            </Grid>
-        </Grid>
+                    </Grid>
+                </Grid>
+            )}
+        </>
     )
 }
 
