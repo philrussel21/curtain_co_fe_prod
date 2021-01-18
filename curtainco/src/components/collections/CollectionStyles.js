@@ -92,11 +92,23 @@ const useStyles = makeStyles((theme) => ({
     collectionCustomiseHeader: {
         fontFamily: theme.typography.fontFamily.split(",")[2],
         color: theme.palette.primary.main,
+        fontSize: 50,
         textAlign: "center",
+        paddingTop: 0,
+        [theme.breakpoints.down("md")]: {
+            fontSize: 32,
+        },
+        [theme.breakpoints.only("xs")]: {
+            paddingTop: "2%",
+        },
     },
     designerTipHeader: {
         fontFamily: theme.typography.fontFamily.split(",")[2],
         color: theme.palette.secondary.light,
+        fontSize: 30,
+        [theme.breakpoints.only("xs")]: {
+            fontSize: 28,
+        },
     },
     designerTipMessage: {
         fontFamily: theme.typography.fontFamily.split(",")[1],
@@ -106,12 +118,19 @@ const useStyles = makeStyles((theme) => ({
     collectionCustomiseProductName: {
         fontFamily: theme.typography.fontFamily.split(",")[1],
         color: theme.palette.grey[800],
-        // fontSize: 14,
+        fontSize: 16,
+        [theme.breakpoints.only("xs")]: {
+            fontSize: 14,
+        },
     },
     collectionIncludesHeader: {
         fontFamily: theme.typography.fontFamily.split(",")[2],
         color: theme.palette.primary.light,
+        fontSize: 30,
         textAlign: "center",
+        [theme.breakpoints.only("xs")]: {
+            fontSize: 28,
+        },
     },
     collectionIncludesNumber: {
         fontFamily: theme.typography.fontFamily.split(",")[1],
@@ -119,10 +138,16 @@ const useStyles = makeStyles((theme) => ({
         fontStyle: "italic",
     },
     collectionIncludesCategoryCont: {
-        paddingTop: "5%",
+        paddingTop: "2%",
+        [theme.breakpoints.down("sm")]: {
+            paddingTop: "5%",
+        },
     },
     collectionIncludesTotalHeader: {
-        paddingTop: "5%",
+        paddingTop: "2%",
+        [theme.breakpoints.down("sm")]: {
+            paddingTop: "5%",
+        },
     },
     collectionIncludesTotal: {
         fontFamily: theme.typography.fontFamily.split(",")[1],
@@ -137,6 +162,7 @@ const useStyles = makeStyles((theme) => ({
     customizedCollectionAccordionCont: {
         width: "100%",
         margin: "auto",
+        paddingTop: "2%",
     },
     collectionsHeader: {
         fontFamily: theme.typography.fontFamily.split(",")[2],
@@ -146,6 +172,18 @@ const useStyles = makeStyles((theme) => ({
         marginBottom: "2%",
         [theme.breakpoints.down("sm")]: {
             fontSize: 40,
+        },
+    },
+    // collectionCustomiseCont: {
+    //     paddingTop: "1%",
+    // },
+    collectionIncludesCont: {
+        paddingTop: "1%",
+    },
+    collectionIncludesAddToCartButtonCont: {
+        paddingBottom: theme.spacing(2),
+        [theme.breakpoints.up("sm")]: {
+            paddingTop: theme.spacing(2),
         },
     },
 }))

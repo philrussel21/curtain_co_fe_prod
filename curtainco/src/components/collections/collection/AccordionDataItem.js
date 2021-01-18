@@ -53,7 +53,7 @@ function AccordionDataItem({ data, handleCustomization, isMobile }) {
             direction="column"
             justify="space-around"
             xs={6}
-            md={data.length === 4 ? 3 : 4}
+            lg={data.length === 4 ? 3 : 4} // this is to even out spacing for 1 or 3 items
             key={`${product._id},${index}`}
         >
             <Grid
@@ -86,7 +86,6 @@ function AccordionDataItem({ data, handleCustomization, isMobile }) {
                     variant="subtitle1"
                     component="p"
                     className={classes.collectionCustomiseProductName}
-                    style={{ fontSize: isMobile ? 14 : 16 }}
                 >
                     {capitalize(product.name)}
                 </Typography>
