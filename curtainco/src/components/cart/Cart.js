@@ -37,6 +37,7 @@ function Cart({ history }) {
     const [cart, setCart] = useState([])
     const [totalPrice, setTotalPrice] = useState(0)
     // const [userNotUsingBrave, setUserNotUsingBrave] = useState(false)
+
     const { state, dispatch } = useCurtainContext()
     let orderId = null
     const [paymentSuccess, setPaymentSuccess] = useState(false)
@@ -115,10 +116,10 @@ function Cart({ history }) {
         try {
             let response = await updateOrder(orderId, payload)
             // console.log(response)
-            setPaymentSuccess(true)
             window.localStorage.clear()
-            updateCartInStateFromLocalStorage()
             history.push("/account")
+            setPaymentSuccess(true)
+            updateCartInStateFromLocalStorage()
             setSuccessSnackBar(dispatch, "Payment was successful")
         } catch (error) {
             console.log(

@@ -51,21 +51,21 @@ export default function stateReducer(state, action) {
             return {
                 ...state,
                 currentUser: action.payload,
-                timeOut: action.timeOut
+                timeOut: action.timeOut,
             }
         }
         case ACTIONS.LOGOUT: {
             return {
                 ...state,
                 currentUser: null,
-                timeOut: action.timeOut
+                timeOut: action.timeOut,
             }
         }
         case ACTIONS.SET_CURRENT_USER: {
             return {
                 ...state,
                 currentUser: action.payload,
-                timeOut: action.timeOut
+                timeOut: action.timeOut,
             }
         }
         case ACTIONS.REGISTER: {
@@ -295,14 +295,16 @@ export default function stateReducer(state, action) {
         }
 
         case ACTIONS.ADD_TO_CART: {
+            console.log(state.cartLength)
             return {
                 ...state,
-                cartLength: state.cartLength + 1,
+                cartLength: (state.cartLength += 1),
             }
         }
 
         case ACTIONS.UPDATE_CART: {
             let direction = action.payload
+            console.log(direction)
             return {
                 ...state,
                 cartLength:

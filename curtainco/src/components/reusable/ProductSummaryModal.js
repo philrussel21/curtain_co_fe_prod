@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 // STYLES
 import {
     Grid,
@@ -7,6 +7,7 @@ import {
     useTheme,
     useMediaQuery,
 } from "@material-ui/core"
+import Alert from "@material-ui/lab/Alert"
 import useStyles from "./ModalStyles"
 // ICONS
 import CloseIcon from "@material-ui/icons/Close"
@@ -22,6 +23,18 @@ function ProductSummaryModal({ data, title, handleCartClick, handleClose }) {
     const classes = useStyles()
     const theme = useTheme()
     const isMobile = useMediaQuery(theme.breakpoints.only("xs"))
+    const [success, setSuccess] = useState(false)
+
+    function autoCloseAlert() {
+        setSuccess(false)
+    }
+
+    function handleAddToCart(event) {
+        setSuccess(true)
+        handleCartClick(event)
+        setTimeout(autoCloseAlert, 3000)
+        clearTimeout()
+    }
 
     return (
         <Grid container spacing={isMobile ? 1 : 3}>
@@ -119,14 +132,25 @@ function ProductSummaryModal({ data, title, handleCartClick, handleClose }) {
                 <Grid
                     item
                     container
-                    justify="flex-end"
+                    justify="space-around"
                     alignItems="center"
                     style={{ marginTop: "3%" }}
                 >
+                    <div>
+                        {success && (
+                            <Alert
+                                onClose={() => {
+                                    setSuccess(false)
+                                }}
+                            >
+                                Item added to cart
+                            </Alert>
+                        )}
+                    </div>
                     <AddToCartButton
                         icon={false}
                         text={"Add To Cart"}
-                        handleClick={handleCartClick}
+                        handleClick={handleAddToCart}
                     />
                 </Grid>
             </Grid>

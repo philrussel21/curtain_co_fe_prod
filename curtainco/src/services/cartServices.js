@@ -3,7 +3,6 @@ const { ACTIONS } = require("../config/stateReducer")
 function addItemToCart(item, dispatch) {
     // ADD TO LOCAL STORAGE
     addItemToLocalStorage(item, dispatch)
-    dispatch({ type: ACTIONS.ADD_TO_CART })
 }
 
 function updateLocalStorageWithNewArray(cartArray) {
@@ -56,6 +55,7 @@ function addItemToLocalStorage(item, dispatch) {
     } else {
         // OTHERWISE JUST ADD THE NEW PRODUCT TO THE CART ARRAY
         cartArray.push({ id: item._id, qty: 1, item: item })
+        dispatch({ type: ACTIONS.ADD_TO_CART })
     }
     // SET THE NEW CART ARRAY
     updateLocalStorageWithNewArray(cartArray)
