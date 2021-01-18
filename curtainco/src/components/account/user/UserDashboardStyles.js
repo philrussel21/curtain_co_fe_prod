@@ -15,7 +15,6 @@ const useStyles = makeStyles((theme) => ({
     },
     purchaseHistoryRoot: {
         width: "100%",
-        // maxWidth: "36px",
     },
     textCenter: {
         textAlign: "center",
@@ -28,8 +27,6 @@ const useStyles = makeStyles((theme) => ({
         height: "100px",
         width: "100px",
         objectFit: "contain",
-        // borderBottomRightRadius: theme.spacing(2),
-        // borderTopLeftRadius: theme.spacing(2),
     },
     profileInfoDetails: {
         fontStyle: "italic",
@@ -67,6 +64,13 @@ const useStyles = makeStyles((theme) => ({
     },
     purchaseOrderDetailsListHeading: {
         fontFamily: theme.typography.fontFamily.split("1"),
+    },
+    userDashboardPurchaseHistoryCont: {
+        height: "100%",
+        [theme.breakpoints.only("md")]: {
+            height: "fit-content",
+            paddingTop: theme.spacing(3),
+        },
     },
 }))
 

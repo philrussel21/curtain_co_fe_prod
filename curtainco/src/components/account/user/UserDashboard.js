@@ -35,7 +35,7 @@ function UserDashboard({ isLoading }) {
                     direction="column"
                     xs={12}
                     sm={10}
-                    md={6}
+                    lg={6}
                     spacing={3}
                 >
                     <ProfileInformation isMobile={isMobile} />
@@ -50,8 +50,9 @@ function UserDashboard({ isLoading }) {
                     justify="flex-start"
                     alignItems="center"
                     xs={12}
-                    md={6}
-                    style={{ height: "100%" }}
+                    md={10}
+                    lg={6}
+                    className={classes.userDashboardPurchaseHistoryCont}
                 >
                     <PurchaseHistory
                         isLoading={isLoading}
