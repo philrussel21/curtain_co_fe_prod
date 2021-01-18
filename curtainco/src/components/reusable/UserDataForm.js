@@ -187,6 +187,7 @@ export default function UserDataForm({
             let emptyFields = areAnyFieldsInUserDataFormAreEmpty(
                 tempConsultUserData
             )
+
             if (emptyFields) {
                 setHelperText(emptyFields)
                 return
@@ -211,10 +212,12 @@ export default function UserDataForm({
         } else {
             // ERROR HANDLING FOR REGISTERING
             let emptyFields = areAnyFieldsInUserDataFormAreEmpty(tempUserData)
+
             if (emptyFields) {
                 setHelperText(emptyFields)
                 return
             }
+
             // AFTER CHECKING IF THE FIRST NAME OR LAST NAME FIELDS ARE EMPTY
             // REMOVE THEM FROM THE OBJECT AND JUST LEAVE
             // THIS IS DONE TO DYNAMICALLY SHOW HELPER TEXT FOR THE FIELDS
@@ -227,7 +230,6 @@ export default function UserDataForm({
             errorOrResp = await handleSubmitFunctionFromParent(tempUserData)
         }
         // IF THERE IS NO ERROR, CLEAR FIELDS
-        console.log(errorOrResp)
         if (errorOrResp) clearFields()
     }
 

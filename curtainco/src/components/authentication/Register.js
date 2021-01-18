@@ -12,6 +12,11 @@ import { UserDataForm } from "../export"
 import LoadingSymbol from "../reusable/LoadingSymbol"
 // PACKAGES
 import { Redirect, useHistory } from "react-router-dom"
+import {
+    setErrorAlert,
+    setErrorSnackBar,
+    setWarningSnackBar,
+} from "../../helpers/appHelpers"
 
 export default function SignUp() {
     const history = useHistory()
@@ -25,6 +30,7 @@ export default function SignUp() {
         setIsLoading(true)
         registerUser(userDetails)
             .then((regResp) => {
+                console.log(regResp)
                 if (regResp.status === 201)
                     console.log("User successfully signed up")
             })
@@ -37,25 +43,32 @@ export default function SignUp() {
 
                         if (currentUser && logResp.status === 200) {
                             const timeOut = setTimeout(() => {
-                                window.location.reload();
+                                window.location.reload()
                             }, 3_600_000)
                             console.log("timeout set, with ID", timeOut)
                             dispatch({
                                 type: ACTIONS.LOGIN,
                                 payload: currentUser,
-                                timeOut
+                                timeOut,
                             })
                         }
                     })
                     .catch((error) => {
-                        registerError = `An error ocurred on logging in after registering: ${error}.`
+                        registerError = `An error ocurred on logging in after registering: ${error.response.data.message}.`
                         console.log(registerError)
+                        console.log(error.response)
+                        setWarningSnackBar(
+                            dispatch,
+                            "Warning: You were signed up, but an error occurred when logging in. Please just log in"
+                        )
                     })
             })
 
             .catch((error) => {
-                registerError = `An error ocurred on register. ${error}`
+                registerError = `An error ocurred on register. ${error.response.data.message}`
                 console.log(registerError)
+                console.log(error.response)
+                setErrorSnackBar(dispatch, "Error: This email already exists")
             })
 
         setIsLoading(false)

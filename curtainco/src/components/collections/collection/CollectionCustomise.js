@@ -8,6 +8,7 @@ import {
 import { getOneCollection } from "../../../services/collectionServices"
 import {
     capitalize,
+    setErrorSnackBar,
     setSuccessSnackBar,
     setWarningSnackBar,
 } from "../../../helpers/appHelpers"
@@ -44,7 +45,7 @@ function CollectionCustomise() {
         name: "",
         description: "",
         imgUrl: "",
-        price: "",
+        price: 0,
         track: [],
         fabric: [],
         accessory: [],
@@ -77,13 +78,19 @@ function CollectionCustomise() {
             (element) => element !== false
         )
 
+        // STOP THE USER FROM BUYING A COLLECTION IF THEY DO NOT HAVE AT LEAST 1 PRODUCT FROM EACH CATEGORY
         if (
-            tempTrack.length === 0 &&
-            tempFabric.length === 0 &&
+            tempTrack.length === 0 ||
+            tempFabric.length === 0 ||
             tempAccessory.length === 0
         ) {
-            setWarningSnackBar(dispatch)
+            setWarningSnackBar(
+                dispatch,
+                "Purchasing a collection requires at least 1 of every category. Nothing added to cart"
+            )
+            return
         }
+
         let tempCollection = {
             ...collection,
             track: tempTrack,
@@ -104,7 +111,12 @@ function CollectionCustomise() {
             collection,
             state.discounts
         )
-        setCustomizedPrice(customPrice)
+
+        if (customPrice < 1) {
+            setCustomizedPrice(collection.price)
+        } else {
+            setCustomizedPrice(customPrice)
+        }
         setDiscount(discount)
     }, [customizedCollection, collection, state.discounts])
 

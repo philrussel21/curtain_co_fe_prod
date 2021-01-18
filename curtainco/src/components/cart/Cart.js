@@ -36,6 +36,7 @@ function Cart({ history }) {
     const classes = useStyles()
     const [cart, setCart] = useState([])
     const [totalPrice, setTotalPrice] = useState(0)
+    const [userNotUsingBrave, setUserNotUsingBrave] = useState(false)
     const { state, dispatch } = useCurtainContext()
     let orderId = null
     const [paymentSuccess, setPaymentSuccess] = useState(false)
@@ -204,6 +205,30 @@ function Cart({ history }) {
             return state.currentUser.role !== "admin"
         }
     }
+
+    useEffect(() => {
+        async function userIsUsingBraveBrowser() {
+            try {
+                let resp = await navigator.brave.isBrave()
+                console.log(resp)
+                if (navigator.brave && resp) {
+                    console.log("here")
+                    return true
+                }
+                return false
+            } catch (error) {
+                console.log(error)
+            }
+        }
+        if (userIsUsingBraveBrowser()) {
+            console.log(
+                "PAYPAL ERRORS ARE FROM BRAVE SHIELDS (ADS), CURRENTLY EVERYTHING STILL WORKS THOUGH, BUT THIS CAN BREAK SOMETIMES AND NOT SURE WHY YET OR HOW TO HANDLE THIS ISSUE. PLEASE CONTACT MARIE TO GET INTO CONTACT WITH DEVELOPERS IF AN ERROR PERSISTS WHEN BUYING SOMETHING WITH BRAVE BROWSER"
+            )
+            // setUserNotUsingBrave(false)
+        }
+    }, [])
+
+    console.log(userNotUsingBrave)
 
     return (
         <Grid

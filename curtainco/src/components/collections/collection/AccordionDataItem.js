@@ -8,7 +8,7 @@ import { capitalize } from "../../../helpers/appHelpers"
 // import { useCurtainContext } from "../../../config/CurtainCoContext"
 // import { ACTIONS } from "../../../config/stateReducer"
 
-function AccordionDataItem({ data, handleCustomization, isMobile }) {
+function AccordionDataItem({ data, handleCustomization }) {
     const classes = useStyles()
     const [productSelection, setProductSelection] = useState([])
     const isIphone5 = useMediaQuery("(max-width:320px)")
