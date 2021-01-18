@@ -1,7 +1,12 @@
+import { Typography } from "@material-ui/core";
 import React from "react";
 
 function BusinessDetails() {
-    return <div>BusinessDetails</div>;
+    return (
+        <Typography>
+            Feature not yet implemented.
+        </Typography>
+    );
 }
 
 export default BusinessDetails;
