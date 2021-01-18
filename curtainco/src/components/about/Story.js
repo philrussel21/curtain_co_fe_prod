@@ -27,10 +27,20 @@ function Story() {
                     </Typography>
 
                     <Typography variant="body1" className={classes.aboutMeMsg}>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Laboriosam hic non temporibus ipsa ex consectetur libero
-                        doloremque maiores quidem consequuntur nemo delectus eum
-                        quo sed error, quod distinctio nihil inventore.
+                        We are a family run company, creating, designing and
+                        sewing locally here in Brisbane for over 30 years. Our
+                        passion for curtains has seen many different trends and
+                        styles over the years, with our experience, knowledge,
+                        skill and attitude we enjoy creating beautiful bespoke
+                        custom creations. We work with clients on both
+                        Commercial and Domestic premises, we also create both
+                        indoor and outdoor curtains. We work as a close team to
+                        ensure we have developed the best design for your space
+                        and your needs. We continue to work with you on the
+                        progress of your curtain manufacture from design to
+                        install. Our focus is on quality product and quality
+                        service. We love what we do, we deliver on quality and
+                        style.
                     </Typography>
                 </Grid>
             </Grid>
