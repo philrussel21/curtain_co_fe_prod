@@ -5,7 +5,7 @@ import useStyles from "../home/HomeStyles"
 
 function CurtainCoImg({
     imageSrc,
-    imgAlt,
+    // imgAlt,
     border = false,
     text,
     getBorderRadius,
@@ -17,9 +17,10 @@ function CurtainCoImg({
     const theme = useTheme()
     // const isDesktop = useMediaQuery(theme.breakpoints.up("lg"))
     const isMobile = useMediaQuery(theme.breakpoints.only("xs"))
+
     useEffect(() => {
         let { innerHeight } = window
-        let divideBy = 3
+        let divideBy = 2.2
         if (isMobile) divideBy = innerHeight > 750 ? 3.5 : 3
         setImgHeight(innerHeight / divideBy)
         setBorderRadius(innerHeight / 10)
@@ -38,82 +39,80 @@ function CurtainCoImg({
     }, [getImgHeight, imgHeight])
 
     return (
-        <>
-            <div style={{ position: "relative" }}>
-                <div
+        <div style={{ position: "relative" }}>
+            <div
+                style={{
+                    width: "100%",
+                    position: "absolute",
+                    height: `${imgHeight}px`,
+                    zIndex: 25,
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                }}
+            >
+                <Grid
+                    item
+                    container
+                    justify="center"
+                    alignItems="center"
                     style={{
-                        width: "100%",
-                        position: "absolute",
-                        height: `${imgHeight}px`,
-                        zIndex: 25,
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
+                        width: "87%",
+                        height: "85%",
+                        border: border ? "2px solid white" : "none",
+                        borderRadius: `${borderRadius}px 0 ${borderRadius}px 0`,
                     }}
                 >
-                    <Grid
-                        item
-                        container
-                        justify="center"
-                        alignItems="center"
-                        style={{
-                            width: "87%",
-                            height: "85%",
-                            border: border ? "2px solid white" : "none",
-                            borderRadius: `${borderRadius}px 0 ${borderRadius}px 0`,
-                        }}
+                    <Typography
+                        variant="h2"
+                        className={classes.curtainCoImgText}
                     >
-                        <Typography
-                            variant="h2"
-                            className={classes.curtainCoImgText}
-                        >
-                            {text}
-                        </Typography>
-                    </Grid>
-                </div>
+                        {text}
+                    </Typography>
+                </Grid>
+            </div>
 
+            <Grid
+                style={{
+                    width: "100%",
+                    height: `${imgHeight}px`,
+                    zIndex: 15,
+                    borderRadius: `${borderRadius}px 0 ${borderRadius}px 0`,
+                }}
+                container
+                justify="center"
+                alignItems="center"
+            >
                 <Grid
                     style={{
                         width: "100%",
-                        height: `${imgHeight}px`,
-                        zIndex: 15,
+                        height: "100%",
+                        backgroundImage: `url(${imageSrc})`,
+                        backgroundSize: "cover",
                         borderRadius: `${borderRadius}px 0 ${borderRadius}px 0`,
                     }}
+                    item
                     container
                     justify="center"
                     alignItems="center"
                 >
                     <Grid
-                        style={{
-                            width: "100%",
-                            height: "100%",
-                            backgroundImage: `url(${imageSrc})`,
-                            backgroundSize: "cover",
-                            borderRadius: `${borderRadius}px 0 ${borderRadius}px 0`,
-                        }}
                         item
                         container
                         justify="center"
                         alignItems="center"
-                    >
-                        <Grid
-                            item
-                            container
-                            justify="center"
-                            alignItems="center"
-                            style={{
-                                position: "absolute",
-                                background: "black",
-                                opacity: 0.5,
-                                width: "100%",
-                                height: `${imgHeight}px`,
-                                borderRadius: `${borderRadius}px 0 ${borderRadius}px 0`,
-                            }}
-                        />
-                    </Grid>
+                        style={{
+                            position: "absolute",
+                            background: "black",
+                            opacity: 0.5,
+                            width: "100%",
+                            height: `${imgHeight}px`,
+                            borderRadius: `${borderRadius}px 0 ${borderRadius}px 0`,
+                        }}
+                    />
                 </Grid>
-            </div>
-        </>
+            </Grid>
+        </div>
     )
 }
 

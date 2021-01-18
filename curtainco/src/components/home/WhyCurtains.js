@@ -29,11 +29,13 @@ function WhyCurtains() {
 
             <Grid item>
                 <Typography variant="body1" className={classes.whyCurtainsText}>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Consequatur maiores veritatis tempora nostrum, laudantium
-                    repellat voluptatem, error hic ipsum in debitis doloribus
-                    nulla autem odit voluptas soluta asperiores deleniti
-                    perspiciatis!
+                    The easiest and most impactful way to soften, add style,
+                    warmth and comfort to a room is with the simple solution of
+                    well designed curtains. However, prior to adding curtains to
+                    a room, there are many decisions to be made. To make this
+                    easier, we have curated some collections for you, which are
+                    available as sample boxes to allow you to see the products
+                    in your home.
                 </Typography>
             </Grid>
 

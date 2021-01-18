@@ -6,8 +6,9 @@ import useStyles from "./HomeStyles"
 import HeroBanner from "./HeroBanner"
 import WhyCurtains from "./WhyCurtains"
 import {
-    Desktop,
-    Mobile,
+    // Desktop,
+    DesktopAndTabletLandscape,
+    // Mobile,
     MobileAndTabletPortrait,
 } from "../reusable/Responsive"
 
@@ -32,7 +33,7 @@ function Home() {
         <>
             {/* DESKTOP */}
 
-            <Desktop>
+            <DesktopAndTabletLandscape>
                 <Container>
                     <Grid
                         container
@@ -87,7 +88,7 @@ function Home() {
                         </Grid>
                     </Grid>
                 </Container>
-            </Desktop>
+            </DesktopAndTabletLandscape>
 
             {/* MOBILE */}
 
