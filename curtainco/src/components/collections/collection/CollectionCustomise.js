@@ -143,7 +143,7 @@ function CollectionCustomise() {
             )
             setCollection(resp)
         }
-    }, [state.collections, collectionId])
+    }, [state.collections, collectionId, dispatch])
 
     useEffect(() => {
         setCustomizedCollection({
