@@ -145,6 +145,9 @@ const useStyles = makeStyles((theme) => ({
         [theme.breakpoints.up("sm")]: {
             fontSize: 16,
         },
+        [theme.breakpoints.up("lg")]: {
+            fontSize: 22,
+        },
     },
     footerText: {
         fontFamily: theme.typography.fontFamily.split(",")[1],
