@@ -251,7 +251,7 @@ function Cart({ history }) {
                                 totalPrice={totalPrice}
                             />
                         ) : (
-                            userIsNotAdmin() && (
+                            !isUserLoggedIn() && (
                                 <Link
                                     to={{
                                         pathname: "/login",
