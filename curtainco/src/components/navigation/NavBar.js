@@ -18,8 +18,6 @@ import {
     withStyles,
     Badge,
     Divider,
-    Container,
-    useTheme,
     useMediaQuery,
 } from "@material-ui/core"
 import useStyles from "./NavigationStyles"
@@ -28,14 +26,9 @@ import MenuIcon from "@material-ui/icons/Menu"
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart"
 // COMPONENTS
 import {
-    Mobile,
-    Desktop,
-    Tablet,
-    Default,
     MobileAndTabletPortrait,
     DesktopAndTabletLandscape,
 } from "../reusable/Responsive"
-// import MobileMenu from "./MobileMenu"
 // PACKAGES
 import { Link, withRouter } from "react-router-dom"
 
@@ -164,7 +157,7 @@ function NavBar() {
                                             to="/"
                                         >
                                             <img
-                                                src="/logoxxx.png"
+                                                src="/logo512.png"
                                                 alt="the curtain co logo"
                                                 className={
                                                     classes.navBarLogoImg

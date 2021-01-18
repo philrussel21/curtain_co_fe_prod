@@ -1,27 +1,32 @@
 import React, { useEffect } from "react"
-
-import Checkbox from "@material-ui/core/Checkbox"
-import Table from "@material-ui/core/Table"
-import TableBody from "@material-ui/core/TableBody"
-import TableCell from "@material-ui/core/TableCell"
-import TableHead from "@material-ui/core/TableHead"
-import TableRow from "@material-ui/core/TableRow"
-import Paper from "@material-ui/core/Paper"
-import Button from "@material-ui/core/Button"
-import Title from "../../../reusable/Title"
-
+// STYLES
+import {
+    Checkbox,
+    Table,
+    TableBody,
+    TableCell,
+    TableHead,
+    TableRow,
+    Paper,
+    Button,
+} from "@material-ui/core"
 import useStyles from "../AdminStyles"
+// COMPONENTS
+import Title from "../../../reusable/Title"
+// HELPERS AND SERVICES
 import {
     getFirstNameFromFullName,
     getLastNameFromFullName,
 } from "../../../../helpers/userHelpers"
 import {
     displayShortDate,
+    setErrorSnackBar,
     setSuccessSnackBar,
 } from "../../../../helpers/appHelpers"
+import { getAllOrders, updateOrder } from "../../../../services/orderServices"
+// STATE
 import { useCurtainContext } from "../../../../config/CurtainCoContext"
 import { ACTIONS } from "../../../../config/stateReducer"
-import { getAllOrders, updateOrder } from "../../../../services/orderServices"
 
 function AllOrders() {
     const classes = useStyles()
@@ -31,15 +36,19 @@ function AllOrders() {
     useEffect(() => {
         getAllOrders()
             .then((resp) => {
-                console.log("---ORDERS---")
-                console.log(resp.data)
+                // console.log("---ORDERS---")
+                // console.log(resp.data)
                 dispatch({
                     type: ACTIONS.SET_ALL_ORDERS,
                     payload: resp.data,
                 })
             })
             .catch((err) => {
-                console.log(err)
+                console.log(err.response)
+                setErrorSnackBar(
+                    dispatch,
+                    "Error: Something went wrong when fetching all the orders"
+                )
             })
     }, [dispatch])
 
@@ -48,8 +57,8 @@ function AllOrders() {
         const orderId = event.currentTarget.parentNode.parentNode.id
         updateOrder(orderId, { isProcessed: checked })
             .then((resp) => {
-                console.log("---UPDATED ORDER---")
-                console.log(resp.data)
+                // console.log("---UPDATED ORDER---")
+                // console.log(resp.data)
                 if (resp.status === 200) {
                     dispatch({
                         type: ACTIONS.UPDATE_ORDER,
@@ -60,7 +69,11 @@ function AllOrders() {
             })
             .catch((error) => {
                 console.log(
-                    `Something went wrong when updating the order: ${error}`
+                    `Something went wrong when updating the order: ${error.response}`
+                )
+                setErrorSnackBar(
+                    dispatch,
+                    "Error: Something went wrong when updating the order"
                 )
             })
     }

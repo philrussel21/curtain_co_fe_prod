@@ -15,7 +15,7 @@ import { useCurtainContext } from "../../../../config/CurtainCoContext"
 import { ACTIONS } from "../../../../config/stateReducer"
 // COMPONENTS
 import AccessoryForm from "../../../reusable/AccessoryForm"
-import { setErrorSnackBar } from "../../../../helpers/appHelpers"
+// import { setErrorSnackBar } from "../../../../helpers/appHelpers"
 
 function AddAccessory() {
     const { dispatch } = useCurtainContext()
@@ -40,7 +40,7 @@ function AddAccessory() {
     }
 
     function handleFileChange(file) {
-        console.log(file)
+        // console.log(file)
         setPhoto(file)
     }
 
@@ -67,7 +67,7 @@ function AddAccessory() {
             resetProductForm
         )
         setIsLoading(false)
-        console.log(respOrError)
+        // console.log(respOrError)
     }
 
     return (

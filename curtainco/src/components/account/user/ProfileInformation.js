@@ -17,7 +17,10 @@ import {
     getLastNameFromFullName,
 } from "../../../helpers/userHelpers"
 import { updateUserInformation } from "../../../services/userServices"
-import { setSuccessSnackBar } from "../../../helpers/appHelpers"
+import {
+    setErrorSnackBar,
+    setSuccessSnackBar,
+} from "../../../helpers/appHelpers"
 // COMPONENTS
 import ShowUserInformation from "./ShowUserInformation"
 import EditUserInformation from "./EditUserInformation"
@@ -44,15 +47,19 @@ function ProfileInformation({ isMobile }) {
                     })
 
                     setSuccessSnackBar(dispatch, "Account successfully updated")
+                    console.log("User successfully updated")
                 }
             })
             .catch((error) => {
-                updateError = `An error ocurred on register: Error Code: ${error.status}. Message: ${error.message}.`
+                updateError = `An error ocurred on updating information: ${error.response}.`
                 console.log(updateError)
+                setErrorSnackBar(
+                    dispatch,
+                    "Error: Something went wrong, profile information not updated "
+                )
             })
 
         toggleEditUserForm()
-        console.log("User successfully updated")
         return updateError
     }
     return (

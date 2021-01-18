@@ -39,7 +39,7 @@ function AddCollection() {
     const [collection, setCollection] = useState(emptyCollection.current)
 
     function handleFileChange(file) {
-        console.log(file)
+        // console.log(file)
         setPhoto(file)
     }
 
@@ -72,9 +72,9 @@ function AddCollection() {
             default:
                 break
         }
-        console.log({ tracksArray })
-        console.log({ fabricsArray })
-        console.log({ accessoryArray })
+        // console.log({ tracksArray })
+        // console.log({ fabricsArray })
+        // console.log({ accessoryArray })
     }
 
     function handleTextChange(event) {
@@ -128,7 +128,7 @@ function AddCollection() {
             resetCollectionForm
         )
         setIsLoading(false)
-        console.log(respOrError)
+        // console.log(respOrError)
     }
 
     return (

@@ -30,7 +30,7 @@ export default function SignUp() {
         setIsLoading(true)
         registerUser(userDetails)
             .then((regResp) => {
-                console.log(regResp)
+                // console.log(regResp)
                 if (regResp.status === 201)
                     console.log("User successfully signed up")
             })
@@ -80,7 +80,7 @@ export default function SignUp() {
         // THIS prevUrl HAS ALREADY BEEN SPLIT ON THE LOGIN PAGE
         // SO WE JUST NEED TO KNOW WHAT THE VALUE IS
         if (history.location.state !== undefined) {
-            console.log(history.location.state)
+            // console.log(history.location.state)
             setPrevUrl(history.location.state.prevUrl)
         }
     }, [history])

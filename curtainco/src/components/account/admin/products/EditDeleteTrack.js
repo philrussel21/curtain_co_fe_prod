@@ -39,7 +39,7 @@ function EditDeleteTrack({ editProductId, setEditProductId }) {
     const [track, setTrack] = useState(emptyTrack.current)
 
     function handleFileChange(file) {
-        console.log(file)
+        // console.log(file)
         setPhoto(file)
     }
 
@@ -93,7 +93,7 @@ function EditDeleteTrack({ editProductId, setEditProductId }) {
             false
         )
         setIsLoading(false)
-        console.log(respOrError)
+        // console.log(respOrError)
     }
 
     function handleRemoveProduct() {
@@ -104,7 +104,7 @@ function EditDeleteTrack({ editProductId, setEditProductId }) {
 
         deleteProduct(track)
             .then((resp) => {
-                console.log(resp)
+                // console.log(resp)
                 if (resp.status === 202) {
                     dispatch({
                         type: ACTIONS.DELETE_PRODUCT,
@@ -115,7 +115,7 @@ function EditDeleteTrack({ editProductId, setEditProductId }) {
                 }
             })
             .catch((error) => {
-                console.log(error)
+                console.log(error.response)
                 setErrorSnackBar(
                     dispatch,
                     `Error: track was not deleted. ${error}`

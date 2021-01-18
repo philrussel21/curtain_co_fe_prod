@@ -8,12 +8,12 @@ import {
     CardMedia,
     Typography,
     Button,
-    Box,
+    // Box,
 } from "@material-ui/core"
 import useStyles from "../ProductStyles"
 // ICONS
-import AddIcon from "@material-ui/icons/Add"
-import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart"
+// import AddIcon from "@material-ui/icons/Add"
+// import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart"
 // STATE
 import { useCurtainContext } from "../../../config/CurtainCoContext"
 import { ACTIONS } from "../../../config/stateReducer"
@@ -46,7 +46,7 @@ function ProductItem({ productData }) {
         event.preventDefault()
         addItemToCart(productData, dispatch)
         // SHOW SNACKBAR
-        setSuccessSnackBar(dispatch, "Item was added to the cart")
+        setSuccessSnackBar(dispatch, "Success: Item was added to the cart")
     }
 
     return (

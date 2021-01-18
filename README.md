@@ -230,8 +230,31 @@ The target audience of this website are users that are willing to spend a little
 -   Unit testing functions, methods, modules and objects
 -   Component testing
 -   Snapshot testing
+    **_UPDATE AFTER BUILDING APPLICATION_**
 -   **Manual Testing**
-    -   testing of all features using browser
+    -   Testing of all features using browser
+-   **User Testing**
+    -   Tested all features on a user who has not used the app. Had the user take actions from a customer and an admin role
+    -   Tests included from a Customer perspective:
+        -   Viewing, customising and adding a collection to cart
+        -   Viewing, filters and adding a sample to cart from the modal
+        -   Paying for their cart after being required to sign up
+        -   Updating their profile information
+        -   Requesting a consultation
+    -   Tests included from an Admin perspective:
+        -   Adding and updating a product
+        -   Adding and updating a collection
+        -   Viewing the consultation request they created as a guest and marking it "done"
+        -   Viewing the order they created as a guest and updating it to "shipped"
+-   **Feedback from User Testing**
+    -   User completed tasks with no outside help and found it easy to use
+    -   User wants visual feedback from adding a product to the cart from a modal
+    -   User wants visual feedback that PayPal is loading in the background and a "don't refresh page" message
+    -   User found the PayPal sandbox bug where the buttons take a while to load. User didn't want to click again because they thought they would pay twice. Had to inform them it will be fine.
+-   **Updates after Feedback from User Testing**
+    -   Added success alert to product summary modal to show item being added to cart
+    -   Added a loading symbol and message to users when paypal and the server are making the payment and order in the background
+    -   (adding a loading symbol for paypal buttons until they load...somehow)
 
 > ### Back-End
 >
@@ -247,7 +270,7 @@ The target audience of this website are users that are willing to spend a little
 -   _Orders_ CRUD actions
 -   User CRUD actions
 -   **Manual Testing**
-    -   testing of all routes using Postman
+    -   Testing of all routes using Postman
 
 ---
 

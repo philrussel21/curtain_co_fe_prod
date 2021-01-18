@@ -123,13 +123,17 @@ function CollectionCustomise() {
     // GETS THE COLLECTION FROM THE SERVER BASED ON THE ID IN THE URL
     useEffect(() => {
         if (state.collections.length < 1) {
-            console.log("getting the collection from db")
+            // console.log("getting the collection from db")
             getOneCollection(collectionId)
                 .then((resp) => {
                     setCollection(resp.data)
                 })
                 .catch((error) => {
-                    console.log(error)
+                    console.log(error.response)
+                    setErrorSnackBar(
+                        dispatch,
+                        "Error: Something went wrong when fetching collection information"
+                    )
                 })
         } else {
             console.log("getting the collection from state")

@@ -21,8 +21,8 @@ function Collections() {
         getAllCollections()
             .then((resp) => {
                 if (resp.status === 200) {
-                    console.log("---COLLECTIONS---")
-                    console.log(resp.data)
+                    // console.log("---COLLECTIONS---")
+                    // console.log(resp.data)
                     dispatch({
                         type: ACTIONS.SET_ALL_COLLECTIONS,
                         payload: resp.data,

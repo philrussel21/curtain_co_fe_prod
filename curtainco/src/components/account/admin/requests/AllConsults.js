@@ -40,14 +40,14 @@ export default function AllConsults() {
     const classes = useStyles()
     const { state, dispatch } = useCurtainContext()
     const [isConsultUpdated, setIsConsultUpdated] = useState(false)
-    const theme = useTheme()
+    // const theme = useTheme()
 
     useEffect(() => {
         getAllConsultations()
             .then((resp) => {
                 if (resp.status === 200) {
-                    console.log("---CONSULTATIONS---")
-                    console.log(resp.data)
+                    // console.log("---CONSULTATIONS---")
+                    // console.log(resp.data)
                     dispatch({
                         type: ACTIONS.SET_ALL_CONSULTATIONS,
                         payload: resp.data,
@@ -60,7 +60,11 @@ export default function AllConsults() {
                 }
             })
             .catch((error) => {
-                console.log(error)
+                console.log(error.response)
+                setErrorSnackBar(
+                    dispatch,
+                    "Error: Something went wrong when fetching all consultations"
+                )
             })
     }, [dispatch, isConsultUpdated])
 
@@ -69,8 +73,8 @@ export default function AllConsults() {
         const consultId = event.currentTarget.parentNode.parentNode.id
         markConsultationCompleted(consultId, { isProcessed: checked })
             .then((resp) => {
-                console.log("---UPDATED CONSULTATION---")
-                console.log(resp.data)
+                // console.log("---UPDATED CONSULTATION---")
+                // console.log(resp.data)
                 if (resp.status === 200) {
                     dispatch({
                         type: ACTIONS.UPDATE_CONSULTATION,
@@ -81,7 +85,11 @@ export default function AllConsults() {
             })
             .catch((error) => {
                 console.log(
-                    `Something went wrong when updating the consultation: ${error}`
+                    `Something went wrong when updating the consultation: ${error.response}`
+                )
+                setErrorSnackBar(
+                    dispatch,
+                    "Error: Something went wrong and consultation was not updated"
                 )
             })
     }
@@ -121,7 +129,10 @@ export default function AllConsults() {
                     dispatch,
                     "There was a problem deleting the consultation."
                 )
-                console.log("Problem Removing the consultation.", error)
+                console.log(
+                    "Problem Removing the consultation.",
+                    error.response
+                )
             })
     }
 

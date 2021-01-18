@@ -14,7 +14,10 @@ import {
 import { updateUserInformation } from "../../../../services/userServices"
 import ShowUserInformation from "../../user/ShowUserInformation"
 import EditUserInformation from "../../user/EditUserInformation"
-import { setSuccessSnackBar } from "../../../../helpers/appHelpers"
+import {
+    setErrorSnackBar,
+    setSuccessSnackBar,
+} from "../../../../helpers/appHelpers"
 
 function AdminProfile() {
     const classes = useStyles()
@@ -36,17 +39,20 @@ function AdminProfile() {
                         type: ACTIONS.SET_CURRENT_USER,
                         payload: resp.data,
                     })
-
                     setSuccessSnackBar(dispatch, "User successfully updated")
+                    console.log("User successfully updated")
                 }
             })
             .catch((error) => {
-                updateError = `An error ocurred on register: Error Code: ${error.status}. Message: ${error.message}.`
+                updateError = `An error ocurred on updating user information: ${error.response}`
                 console.log(updateError)
+                setErrorSnackBar(
+                    dispatch,
+                    "Error: Something went wrong, profile not updated"
+                )
             })
 
         toggleEditUserForm()
-        console.log("User successfully updated")
         return updateError
     }
 
