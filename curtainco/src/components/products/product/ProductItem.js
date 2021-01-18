@@ -49,15 +49,15 @@ function ProductItem({ productData }) {
         setSuccessSnackBar(dispatch, "Success: Item was added to the cart")
     }
 
+    console.log(productData)
     return (
         <div className={classes.productItemCont}>
             <Card className={classes.card}>
                 <CardMedia
                     className={classes.cardMedia}
                     image={
-                        productData.imgUrl
-                            ? productData.imgUrl === undefined ||
-                              productData.imgUrl === ""
+                        productData.imgUrl && productData.imgUrl !== ""
+                            ? productData.imgUrl
                             : "./no-image.png"
                     }
                     title={`${capitalize(productData.name)} Image`}
