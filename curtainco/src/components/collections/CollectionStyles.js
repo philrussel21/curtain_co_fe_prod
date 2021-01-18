@@ -134,7 +134,20 @@ const useStyles = makeStyles((theme) => ({
         fontWeight: "bold",
         fontSize: 20,
     },
-    customizedCollectionAccordionCont: { width: "100%", margin: "auto" },
+    customizedCollectionAccordionCont: {
+        width: "100%",
+        margin: "auto",
+    },
+    collectionsHeader: {
+        fontFamily: theme.typography.fontFamily.split(",")[2],
+        fontSize: 60,
+        color: theme.palette.primary.light,
+        textAlign: "center",
+        marginBottom: "2%",
+        [theme.breakpoints.down("sm")]: {
+            fontSize: 40,
+        },
+    },
 }))
 
 export default useStyles
