@@ -131,13 +131,15 @@ The target audience of this website are users that are willing to spend a little
 
 -   [**Material UI**](https://material-ui.com/) - for the client side styling
 -   [**Material UI Icons**](https://material-ui.com/components/material-icons/) - for the icons used throughout the app
--   [**React-Spring**](https://www.react-spring.io/) - for animations throughout the app. **UPDATE**: animations to be implemented in future feature
--   [**React-Reveal**](https://www.react-reveal.com/) - for animations throughout the app. **UPDATE**: animations to be implemented in future feature
--   [**React-Scroll**](https://www.npmjs.com/package/react-scroll) - for animating vertical scrolling (unsure initially if we will use this package). **UPDATE**: animations to be implemented in future feature
 <!-- -   [**React-Responsive**](https://www.npmjs.com/package/react-responsive) - a media query library to detect device sizes and orientation -->
 -   [**React-Router-Dom**](https://reactrouter.com/web/guides/quick-start) - handles routing through a single-page-app
 -   [**Axios**](https://github.com/axios/axios) - to make calls to the [Curtain Co REST API](https://github.com/philrussel21/curtain_co_BE)
--   [**Jest**](https://jestjs.io/) - to run unit tests on client side
+-   [**Jest**](https://jestjs.io/) - to run unit tests for client requests
+-   [**React-Spring**](https://www.react-spring.io/) - for animations throughout the app.
+    -   **UPDATE**: animations to be implemented in future feature
+-   [**React-Reveal**](https://www.react-reveal.com/) - for animations throughout the app.
+    -   **UPDATE**: animations to be implemented in future feature
+-   [**React-Scroll**](https://www.npmjs.com/package/react-scroll) - for animating vertical scrolling (unsure initially if we will use this package). - **UPDATE**: animations to be implemented in future feature
 
 > ### General
 
@@ -229,7 +231,7 @@ The target audience of this website are users that are willing to spend a little
 -   Component testing
 -   Snapshot testing
 -   **Manual Testing**
-    -   testing of all features after implementation
+    -   testing of all features using browser
 
 > ### Back-End
 >
@@ -244,6 +246,8 @@ The target audience of this website are users that are willing to spend a little
 -   _Consultations_ CRUD actions
 -   _Orders_ CRUD actions
 -   User CRUD actions
+-   **Manual Testing**
+    -   testing of all routes using Postman
 
 ---
 
