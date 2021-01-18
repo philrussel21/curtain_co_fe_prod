@@ -233,6 +233,7 @@ The target audience of this website are users that are willing to spend a little
     **_UPDATE AFTER BUILDING APPLICATION_**
 -   **Manual Testing**
     -   Testing of all features using browser
+    -   Testing application on all browsers - latest versions
 -   **User Testing**
     -   Tested all features on a user who has not used the app. Had the user take actions from a customer and an admin role
     -   Tests included from a Customer perspective:
@@ -250,11 +251,16 @@ The target audience of this website are users that are willing to spend a little
     -   User completed tasks with no outside help and found it easy to use
     -   User wants visual feedback from adding a product to the cart from a modal
     -   User wants visual feedback that PayPal is loading in the background and a "don't refresh page" message
-    -   User found the PayPal sandbox bug where the buttons take a while to load. User didn't want to click again because they thought they would pay twice. Had to inform them it will be fine.
+    -   User found the PayPal sandbox bug where the buttons take a while to load. User didn't want to click again because they
+        thought they would pay twice. Had to inform them it will be fine.
 -   **Updates after Feedback from User Testing**
     -   Added success alert to product summary modal to show item being added to cart
     -   Added a loading symbol and message to users when paypal and the server are making the payment and order in the background
     -   (adding a loading symbol for paypal buttons until they load...somehow)
+-   **Issues Still Persisting At Time of Submission: 18th January 2021**
+    -   Brave browser built-in ad blocker causes PayPal to throw errors but seems can still make a payment
+    -   PayPal's sandbox mode takes time to load the PayPal buttons, causing bad User Experience if a user clicks the button and nothing happens. This error is supposedly supposed to work in production PayPal, which we have not tested yet due to the time for client not having a business account to set up a business PayPal account.
+    -   Safari produces the same 401 unauthorized error that Chrome was throwing before updating Cookie to SameSite='none' and enabling the Proxy. According to [this article](https://stackoverflow.com/questions/58525719/safari-not-sending-cookie-even-after-setting-samesite-none-secure) it is an issue with Safari itself treating the SameSite=None Cookie as SameSite=Strict.
 
 > ### Back-End
 >
