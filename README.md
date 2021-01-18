@@ -233,6 +233,7 @@ The target audience of this website are users that are willing to spend a little
     **_UPDATE AFTER BUILDING APPLICATION_**
 -   **Manual Testing**
     -   Testing of all features using browser
+    -   Testing application on all browsers - latest versions
 -   **User Testing**
     -   Tested all features on a user who has not used the app. Had the user take actions from a customer and an admin role
     -   Tests included from a Customer perspective:
@@ -255,6 +256,9 @@ The target audience of this website are users that are willing to spend a little
     -   Added success alert to product summary modal to show item being added to cart
     -   Added a loading symbol and message to users when paypal and the server are making the payment and order in the background
     -   (adding a loading symbol for paypal buttons until they load...somehow)
+-   **Issues Still Persisting At Time of Submission: 18th January 2021**
+    -   Brave browser built-in ad blocker causes PayPal to throw errors but seems can still make a payment
+    -   PayPal's sandbox mode takes time to load the PayPal buttons, causing bad User Experience if a user clicks the button and nothing happens. This error is supposedly supposed to work in production PayPal, which we have not tested yet due to the time for client not having a business account to set up a business PayPal account.
 
 > ### Back-End
 >
