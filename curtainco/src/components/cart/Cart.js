@@ -213,7 +213,7 @@ function Cart({ history }) {
             spacing={2}
             style={{ paddingTop: "3%" }}
         >
-            <Grid item xs={12} md={8} className={classes.cartListCont}>
+            <Grid item xs={12} md={10} lg={8} className={classes.cartListCont}>
                 <CartList
                     cart={cart}
                     handleRemove={handleRemove}
@@ -228,7 +228,8 @@ function Cart({ history }) {
                 alignItems="center"
                 className={classes.cartTotalCont}
                 xs={12}
-                md={4}
+                md={10}
+                lg={4}
             >
                 {cart.length > 0 && (
                     <CartTotal

@@ -61,6 +61,10 @@ const useStyles = makeStyles((theme) => ({
         // margin: theme.spacing(3),
         color: theme.palette.grey[700],
     },
+    productItemCont: {
+        margin: "4%",
+        width: "100%",
+    },
 }))
 
 export default useStyles

@@ -6,8 +6,9 @@ import useStyles from "./AboutStyles"
 import Story from "./Story"
 import Success from "./Success"
 import {
-    Desktop,
-    Mobile,
+    // Desktop,
+    DesktopAndTabletLandscape,
+    // Mobile,
     MobileAndTabletPortrait,
 } from "../reusable/Responsive"
 // import Testimonial from "./Testimonial"
@@ -16,7 +17,7 @@ function About() {
     const classes = useStyles()
     return (
         <>
-            <Desktop>
+            <DesktopAndTabletLandscape>
                 <Container>
                     <Grid
                         container
@@ -31,7 +32,7 @@ function About() {
                         {/* <Testimonial /> */}
                     </Grid>
                 </Container>
-            </Desktop>
+            </DesktopAndTabletLandscape>
 
             <MobileAndTabletPortrait>
                 <Grid

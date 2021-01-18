@@ -10,9 +10,6 @@ const useStyles = makeStyles((theme) => ({
         width: "100%",
         height: "100%",
         padding: "12px 20px",
-        // "&:hover": {
-        //     textDecoration: "underline",
-        // },
     },
     iconButtonLink: {
         textDecoration: "none",
@@ -66,7 +63,7 @@ const useStyles = makeStyles((theme) => ({
         display: "flex",
         justifyContent: "center",
         alignItems: "stretch",
-        marginTop: "10px",
+        paddingTop: "10px",
     },
     appBarMobile: {
         top: "auto",
@@ -86,6 +83,9 @@ const useStyles = makeStyles((theme) => ({
         maxHeight: "170px",
         minHeight: "170px",
         margin: "0 auto",
+        [theme.breakpoints.up("sm")]: {
+            width: "95%",
+        },
     },
     myAccountButton: {
         display: "flex",
@@ -105,6 +105,10 @@ const useStyles = makeStyles((theme) => ({
         maxHeight: "170px",
         position: "relative",
         zIndex: 1000,
+        [theme.breakpoints.up("sm")]: {
+            maxWidth: "170px",
+            maxHeight: "170px",
+        },
         // left: 0,
     },
     navBarToolBar: {
@@ -138,6 +142,12 @@ const useStyles = makeStyles((theme) => ({
         color: theme.palette.primary.dark,
         fontWeight: theme.typography.fontWeightBold,
         letterSpacing: "2px",
+        [theme.breakpoints.up("sm")]: {
+            fontSize: 16,
+        },
+        [theme.breakpoints.up("lg")]: {
+            fontSize: 22,
+        },
     },
     footerText: {
         fontFamily: theme.typography.fontFamily.split(",")[1],

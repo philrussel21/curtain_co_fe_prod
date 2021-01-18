@@ -38,13 +38,13 @@ function CollectionIncludes({
             justify="center"
             alignItems="center"
             xs={12}
+            className={classes.collectionIncludesCont}
         >
             <Grid item>
                 <Typography
                     variant="h5"
                     component="h5"
                     className={classes.collectionIncludesHeader}
-                    style={{ fontSize: isMobile ? 28 : 30 }}
                 >
                     Your Collection Includes
                 </Typography>
@@ -54,8 +54,18 @@ function CollectionIncludes({
                 container
                 spacing={3}
                 className={classes.collectionIncludesCategoryCont}
+                xs={12}
+                sm={10}
             >
-                <Grid item container direction="column" xs={6}>
+                <Grid
+                    item
+                    container
+                    direction="column"
+                    justify="center"
+                    alignItems="flex-start"
+                    xs={6}
+                    md={8}
+                >
                     <Typography className={classes.collectionIncludesCategory}>
                         Fabrics:
                     </Typography>
@@ -76,8 +86,10 @@ function CollectionIncludes({
                     item
                     container
                     direction="column"
+                    justify="center"
                     alignItems="center"
                     xs={6}
+                    md={4}
                 >
                     <Typography className={classes.collectionIncludesNumber}>
                         {`x${lengths.fabricLength}`}
@@ -103,13 +115,30 @@ function CollectionIncludes({
                 container
                 spacing={3}
                 className={classes.collectionIncludesTotalHeader}
+                xs={12}
+                sm={10}
             >
-                <Grid item container direction="column" xs={6}>
+                <Grid
+                    item
+                    container
+                    direction="column"
+                    justify="center"
+                    alignItems="flex-start"
+                    xs={6}
+                    md={8}
+                >
                     <Typography className={classes.collectionIncludesTotal}>
                         Total:
                     </Typography>
                 </Grid>
-                <Grid item container direction="column" xs={6}>
+                <Grid
+                    item
+                    container
+                    direction="column"
+                    alignItems="center"
+                    xs={6}
+                    md={4}
+                >
                     <Typography
                         className={classes.collectionIncludesTotalNumber}
                     >

@@ -74,7 +74,6 @@ export default function CustomAccordion({
                         variant="h5"
                         component="h5"
                         className={classes.designerTipHeader}
-                        style={{ fontSize: isMobile ? 28 : 30 }}
                     >
                         Designer Tip
                     </Typography>

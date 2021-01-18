@@ -33,7 +33,7 @@ const Desktop = ({ children }) => {
 
 const MobileAndTabletPortrait = ({ children }) => {
     const theme = useTheme()
-    const tabletMaxWidth = useMediaQuery(theme.breakpoints.down("md"))
+    const tabletMaxWidth = useMediaQuery(theme.breakpoints.down("sm"))
     // console.log({ tabletMinWidth })
     // console.log({ tabletMaxWidth })
     return tabletMaxWidth ? children : null

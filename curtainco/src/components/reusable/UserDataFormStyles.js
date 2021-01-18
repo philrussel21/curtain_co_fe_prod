@@ -2,10 +2,12 @@ import { makeStyles } from "@material-ui/core/styles"
 
 const useStyles = makeStyles((theme) => ({
     paper: {
-        // marginTop: theme.spacing(8),
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
+        [theme.breakpoints.up("md")]: {
+            paddingBottom: theme.spacing(3),
+        },
     },
     avatar: {
         margin: theme.spacing(1),
@@ -20,8 +22,8 @@ const useStyles = makeStyles((theme) => ({
     },
     loginLink: {
         cursor: "pointer",
-        textDecoration: "none",
-        color: theme.palette.grey[800],
+        // textDecoration: "none",
+        color: theme.palette.grey[700],
     },
     formControl: {
         minWidth: 120,

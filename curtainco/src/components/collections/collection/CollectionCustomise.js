@@ -138,7 +138,7 @@ function CollectionCustomise() {
     }, [collection])
 
     return (
-        <Grid container style={{ paddingTop: "3%" }}>
+        <Grid container className={classes.collectionCustomiseCont}>
             <Grid
                 item
                 xs={12}
@@ -150,10 +150,6 @@ function CollectionCustomise() {
                     variant="h4"
                     component="h4"
                     className={classes.collectionCustomiseHeader}
-                    style={{
-                        fontSize: isMobile ? 32 : 50,
-                        paddingTop: isMobile ? "2%" : 0,
-                    }}
                 >
                     {collection.name
                         ? `Your Customised ${capitalize(collection.name)}`
@@ -165,7 +161,6 @@ function CollectionCustomise() {
                 container
                 justify="space-around"
                 className={classes.customizedCollectionAccordionCont}
-                style={{ paddingTop: isMobile ? "8%" : "2%" }}
                 spacing={isMobileOrTabletPortrait ? 5 : 0}
                 xs={12}
             >
@@ -211,11 +206,10 @@ function CollectionCustomise() {
                     alignItems="flex-start"
                     xs={12}
                     sm={12}
-                    md={3}
+                    lg={3}
                     spacing={2}
-                    // style={{ paddingTop: isMobile ? "4%" : 0 }}
+                    className={classes.collectionIncludesAddToCartButtonCont}
                 >
-                    {/* <Grid item xs={12}> */}
                     <CollectionIncludes
                         fabrics={customizedCollection.fabric}
                         tracks={customizedCollection.track}
@@ -224,16 +218,13 @@ function CollectionCustomise() {
                         price={customizedPrice}
                         isMobile={isMobile}
                     />
-                    {/* </Grid> */}
 
-                    {/* <Grid item container justify="center" xs={12}> */}
                     <AddToCartButton
                         icon={false}
                         text={"Add To Cart"}
                         size="large"
                         handleClick={handleCartClick}
                     />
-                    {/* </Grid> */}
                 </Grid>
             </Grid>
         </Grid>

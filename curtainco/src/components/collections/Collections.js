@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react"
 // STYLES
-import { Container, Grid } from "@material-ui/core"
+import { Container, Grid, Typography } from "@material-ui/core"
 import useStyles from "./CollectionStyles"
 // STATES
 import { useCurtainContext } from "../../config/CurtainCoContext"
@@ -39,6 +39,13 @@ function Collections() {
 
     return (
         <Container>
+            <Typography
+                variant="h3"
+                component="h3"
+                className={classes.collectionsHeader}
+            >
+                Our Collections
+            </Typography>
             <Grid
                 container
                 direction="column"

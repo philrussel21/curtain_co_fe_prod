@@ -16,6 +16,13 @@ html {
   margin: 0;
 }
 
+@media (min-width: 960px) {
+  body,
+  html {
+    overflow-y: hidden;
+  }
+}
+
 .app-container {
   height: calc(100vh - 320px);
   z-index: 1;
