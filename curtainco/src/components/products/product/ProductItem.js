@@ -56,10 +56,9 @@ function ProductItem({ productData }) {
                     className={classes.cardMedia}
                     image={
                         productData.imgUrl
-                            ? productData.imgUrl
-                            : productData.imgUrl === undefined
-                            ? "./no-image.png"
-                            : "./loading.gif"
+                            ? productData.imgUrl === undefined ||
+                              productData.imgUrl === ""
+                            : "./no-image.png"
                     }
                     title={`${capitalize(productData.name)} Image`}
                 />
