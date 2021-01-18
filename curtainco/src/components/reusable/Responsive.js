@@ -41,10 +41,10 @@ const MobileAndTabletPortrait = ({ children }) => {
 
 const DesktopAndTabletLandscape = ({ children }) => {
     const theme = useTheme()
-    const tabletLandscape = useMediaQuery(theme.breakpoints.up("md"))
+    // const tabletLandscape = useMediaQuery(theme.breakpoints.up("md"))
     const isDesktop = useMediaQuery(theme.breakpoints.up("md"))
-    console.log({ isDesktop })
-    console.log({ tabletLandscape })
+    // console.log({ isDesktop })
+    // console.log({ tabletLandscape })
     // return tabletLandscape && isDesktop ? children : null
     return isDesktop ? children : null
 }

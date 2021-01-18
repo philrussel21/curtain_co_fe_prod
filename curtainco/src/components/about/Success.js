@@ -44,13 +44,23 @@ function Success() {
                         component="h3"
                         className={classes.aboutMeMsgHeader}
                     >
-                        Our Success
+                        Our Vision
                     </Typography>
                     <Typography variant="body1" className={classes.aboutMeMsg}>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Laboriosam hic non temporibus ipsa ex consectetur libero
-                        doloremque maiores quidem consequuntur nemo delectus eum
-                        quo sed error, quod distinctio nihil inventore.
+                        Here at The Curtain Co. we believe custom curtains are
+                        the only option by making them fit into, and complement,
+                        your space. There are many customisations to be made,
+                        height, fabric, exposure, rod, length and header. This
+                        is where we come in, at The Curtain Co, we live and
+                        breathe curtains, we know what options work in what
+                        spaces and will happily guide you through the entire
+                        journey. We have taken the hard work out the decision
+                        making process and created a range of collections for
+                        you containing samples so that you can see what they
+                        look like before proceeding to commit to an entire
+                        package. Once you have received your collection box,
+                        book a consultation with one of our interior designers
+                        to measure up and quote your curtains.
                     </Typography>
                 </Grid>
             </Grid>

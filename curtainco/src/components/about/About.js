@@ -1,10 +1,11 @@
 import React from "react"
 // STYLES
-import { Container, Grid } from "@material-ui/core"
+import { Container, Grid, Typography } from "@material-ui/core"
 import useStyles from "./AboutStyles"
 // COMPONENTS
 import Story from "./Story"
 import Success from "./Success"
+import CheckOutRange from "./CheckOutRange"
 import {
     // Desktop,
     DesktopAndTabletLandscape,
@@ -27,8 +28,9 @@ function About() {
                         spacing={5}
                         className={classes.aboutMeCont}
                     >
-                        <Story />
                         <Success />
+                        <Story />
+                        <CheckOutRange />
                         {/* <Testimonial /> */}
                     </Grid>
                 </Container>
@@ -43,9 +45,10 @@ function About() {
                     spacing={3}
                     className={classes.aboutMeCont}
                 >
-                    <Story />
                     <Success />
+                    <Story />
                     {/* <Testimonial /> */}
+                    <CheckOutRange />
                 </Grid>
             </MobileAndTabletPortrait>
         </>
