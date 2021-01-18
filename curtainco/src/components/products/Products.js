@@ -79,7 +79,6 @@ function Products() {
             justify="space-around"
             alignItems="flex-start" // this is for putting the filters at the top of the page in landscape
             xs={12}
-            // spacing={isTablet ? 2 : 4}
             className={classes.productPageCont}
         >
             <Grid
@@ -90,7 +89,6 @@ function Products() {
                 alignItems="center"
                 xs={12}
                 sm={10}
-                // md={3}
                 lg={3}
                 spacing={1}
             >
@@ -115,12 +113,9 @@ function Products() {
                     />
                 </Grid>
             </Grid>
-            {/* <Grid item xs={12} sm={9}> */}
-            {/* <Container maxWidth="md"> */}
             <Grid
                 item
                 container
-                // spacing={4}
                 xs={12}
                 sm={10}
                 md={8}
@@ -143,8 +138,6 @@ function Products() {
                     />
                 )}
             </Grid>
-            {/* </Container> */}
-            {/* </Grid> */}
         </Grid>
     )
 }
