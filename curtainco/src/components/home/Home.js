@@ -24,8 +24,6 @@ function Home() {
         setImgBorderRadius(radius)
     }
     function getImgHeight(height) {
-        console.log(window.innerHeight)
-        console.log(window.innerWidth)
         let calc = height / 3
         let width = isLargeDesktop ? calc * 7 : calc * 5.5
         setImgHeight(height)

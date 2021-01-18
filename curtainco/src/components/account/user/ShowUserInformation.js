@@ -68,7 +68,7 @@ function ShowUserInformation({ user, isMobile }) {
             {user.companyName && (
                 <Grid item container justify="center" alignItems="center">
                     <Grid item xs={2} sm={1}>
-                        <BusinessIcon />
+                        <BusinessIcon color="primary" />
                     </Grid>
                     <Grid item xs={10} sm={11}>
                         <Typography
