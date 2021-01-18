@@ -31,7 +31,6 @@ function passwordHasBadFormatting(field) {
 }
 
 function areAnyFieldsInUserDataFormAreEmpty(userDetails) {
-
     console.log({ userDetails })
 
     let errorObject = {}
@@ -57,6 +56,12 @@ function areAnyFieldsInUserDataFormAreEmpty(userDetails) {
                     default:
                         break
                 }
+
+                // SKIP TITLE AND COMPANY NAME AS THEY ARE NOT REQUIRED BY MODEL
+                if (key === "title" || key === "companyName") {
+                    continue
+                }
+
                 // FILL THE OBJECT WITH THE NAME OF THE FIELD AND THE ERROR TO DISPLAY FOR IT
                 errorObject[key] = `${wordForErrorMessage} must not be empty`
             }
@@ -97,6 +102,7 @@ function areAnyFieldsInUserDataFormAreEmpty(userDetails) {
     if (isEmpty(errorObject)) {
         return false
     }
+
     // OTHERWISE RETURN THE OBJECT
     return errorObject
 }

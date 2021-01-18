@@ -4,6 +4,8 @@ async function registerUser(userInfo) {
     // call to server to login user
     // return user info if successful and error if not
     const response = await api.post("/account/register", userInfo)
+    console.log(response)
+
     console.log("user created")
     return response
 }
