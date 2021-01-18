@@ -63,7 +63,7 @@ const useStyles = makeStyles((theme) => ({
         display: "flex",
         justifyContent: "center",
         alignItems: "stretch",
-        marginTop: "10px",
+        paddingTop: "10px",
     },
     appBarMobile: {
         top: "auto",
