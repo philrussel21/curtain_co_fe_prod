@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
 // STYLES
-import { Container, Grid, useMediaQuery } from "@material-ui/core"
+import { Container, Grid, useMediaQuery, useTheme } from "@material-ui/core"
 import useStyles from "./ProductStyles"
 // COMPONENTS
 import ProductList from "./product/ProductList"
@@ -23,8 +23,9 @@ function Products() {
     const [sortBy, setSortBy] = useState(sortACTIONS.NAME_ALPHABETICAL)
     const [searchInput, setSearchInput] = useState("")
     const [isLoading, setIsLoading] = useState(true)
-    const isMobile = useMediaQuery("(max-width: 600px)")
-    const isTablet = useMediaQuery("(max-width: 960px)")
+    const theme = useTheme()
+    const isMobile = useMediaQuery(theme.breakpoints.only("xs"))
+    const isTablet = useMediaQuery(theme.breakpoints.up("sm"))
 
     const [productsErrorMessage, setProductErrorMessage] = useState(null)
     const [filter, setFilter] = useState({
@@ -75,37 +76,38 @@ function Products() {
         <Grid
             container
             justify="center"
-            alignItems="center"
+            alignItems="flex-start" // this is for putting the filter at the top of the page in landscape
             xs={12}
-            spacing={4}
+            // spacing={isTablet ? 2 : 4}
             style={{ marginTop: "1%" }}
         >
             <Grid
                 item
                 container
-                direction="column"
+                direction="row"
                 justify="center"
                 alignItems="center"
                 xs={12}
                 sm={10}
-                md={3}
+                // md={3}
+                lg={3}
                 spacing={1}
             >
-                <Grid item style={{ width: "100%" }}>
+                <Grid item xs={12} sm={6} style={{ width: "100%" }}>
                     <Search
                         searchInput={searchInput}
                         handleChange={handleSearchInputChange}
                     />
                 </Grid>
 
-                <Grid item style={{ width: "100%" }}>
+                <Grid item xs={12} sm={6} style={{ width: "100%" }}>
                     <Sort
                         sortFields={sortFields}
                         sortBy={sortBy}
                         handleChange={handleSortByChange}
                     />
                 </Grid>
-                <Grid item style={{ width: "100%" }}>
+                <Grid item xs={12} style={{ width: "100%" }}>
                     <Filter
                         filterBy={filter}
                         handleChange={handleFilterChange}
@@ -117,7 +119,7 @@ function Products() {
             <Grid
                 item
                 container
-                spacing={4}
+                // spacing={4}
                 xs={12}
                 sm={10}
                 md={8}
