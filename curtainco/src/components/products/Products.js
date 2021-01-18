@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
 // STYLES
-import { Container, Grid, useMediaQuery, useTheme } from "@material-ui/core"
+import { Grid, useMediaQuery, useTheme } from "@material-ui/core"
 import useStyles from "./ProductStyles"
 // COMPONENTS
 import ProductList from "./product/ProductList"
@@ -52,8 +52,8 @@ function Products() {
         getAllProducts()
             .then((resp) => {
                 if (resp.status === 200) {
-                    console.log("---PRODUCTS---")
-                    console.log(resp.data)
+                    // console.log("---PRODUCTS---")
+                    // console.log(resp.data)
                     let sortedProducts = sortProducts(
                         resp.data,
                         sortACTIONS.NAME_ALPHABETICAL

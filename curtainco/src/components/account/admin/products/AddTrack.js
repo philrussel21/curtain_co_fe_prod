@@ -32,7 +32,7 @@ function AddTrack() {
     }
 
     function handleFileChange(file) {
-        console.log(file)
+        // console.log(file)
         setPhoto(file)
     }
 
@@ -61,7 +61,7 @@ function AddTrack() {
             resetProductForm
         )
         setIsLoading(false)
-        console.log(respOrError)
+        // console.log(respOrError)
     }
 
     // PASS IN TITLE AND TEXT FOR THE BUTTON TO THE TRACK FORM

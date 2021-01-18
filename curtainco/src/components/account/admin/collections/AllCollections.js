@@ -1,20 +1,25 @@
 import React, { useEffect } from "react"
-
-import Table from "@material-ui/core/Table"
-import TableContainer from "@material-ui/core/TableContainer"
-import TableBody from "@material-ui/core/TableBody"
-import TableCell from "@material-ui/core/TableCell"
-import TableHead from "@material-ui/core/TableHead"
-import TableRow from "@material-ui/core/TableRow"
-import Paper from "@material-ui/core/Paper"
-
+// STYLES
+import {
+    Table,
+    TableContainer,
+    TableBody,
+    TableCell,
+    TableHead,
+    TableRow,
+    Paper,
+} from "@material-ui/core"
+// HELPERS AND SERVICES
 import { getAllCollections } from "../../../../services/collectionServices"
-import { useCurtainContext } from "../../../../config/CurtainCoContext"
-import Title from "../../../reusable/Title"
-import { ACTIONS } from "../../../../config/stateReducer"
 import { sortACTIONS, sortProducts } from "../../../../helpers/productHelpers"
+// COMPONENTS
+import Title from "../../../reusable/Title"
+// STATE
+import { ACTIONS } from "../../../../config/stateReducer"
+import { useCurtainContext } from "../../../../config/CurtainCoContext"
 
 import useStyles from "../AdminStyles"
+import { setErrorSnackBar } from "../../../../helpers/appHelpers"
 
 export default function AllCollections({
     fillEditCollectionPage,
@@ -27,8 +32,8 @@ export default function AllCollections({
         getAllCollections()
             .then((resp) => {
                 if (resp.status === 200) {
-                    console.log("---COLLECTIONS---")
-                    console.log(resp.data)
+                    // console.log("---COLLECTIONS---")
+                    // console.log(resp.data)
                     // sortProducts can be used here as it is just looking
                     // at the object.name attribute
                     let sortedCollections = sortProducts(
@@ -39,12 +44,14 @@ export default function AllCollections({
                         type: ACTIONS.SET_ALL_COLLECTIONS,
                         payload: sortedCollections,
                     })
-                } else {
-                    console.log("status code wasn't correct")
                 }
             })
             .catch((error) => {
-                console.log(error)
+                console.log(error.response)
+                setErrorSnackBar(
+                    dispatch,
+                    "Error: Something went wrong when fetching all collections"
+                )
             })
     }, [dispatch])
 

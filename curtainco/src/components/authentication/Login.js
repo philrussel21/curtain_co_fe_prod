@@ -68,35 +68,35 @@ export default function SignIn() {
 
         try {
             let resp = await loginUser(user)
-            console.log("---CURRENT USER---")
-            console.log(resp.data)
+            // console.log("---CURRENT USER---")
+            // console.log(resp.data)
             let currentUser = resp.data.user
             if (currentUser && resp.status === 200) {
                 // fires a setTimeout that would refresh the page based on rememberMe
-                // ifremember me is true, sets the timeout from refresh to the max value setTimeout can reach
+                // if remember me is true, sets the timeout from refresh to the max value setTimeout can reach
                 // assumes the user would not leave the browser open without refresh in a span of a month.
                 let timeOut = null
-                if(rememberMe) {
+                if (rememberMe) {
                     const maxTimeOutVal = 2147483647
                     timeOut = setTimeout(() => {
-                        window.location.reload();
+                        window.location.reload()
                     }, maxTimeOutVal)
                 } else {
                     timeOut = setTimeout(() => {
-                        window.location.reload();
+                        window.location.reload()
                     }, 3_600_000)
                 }
-                console.log("timeout set, with ID", timeOut)
+                // console.log("timeout set, with ID", timeOut)
                 dispatch({
                     type: ACTIONS.LOGIN,
                     payload: currentUser,
-                    timeOut
+                    timeOut,
                 })
                 setEmail("")
                 setPassword("")
             }
         } catch (error) {
-            loginError = `An error ocurred on login. ${error}`
+            loginError = `An error ocurred on login. ${error.response}`
             console.log(loginError)
             setErrorSnackBar(
                 dispatch,
@@ -123,7 +123,7 @@ export default function SignIn() {
     // AFTER USER LOGS IN, REDIRECT THEM TO THE PREVIOUS PAGE THEY CAME FROM
     useEffect(() => {
         if (history.location.state !== undefined) {
-            console.log(history.location.state)
+            // console.log(history.location.state)
             setPrevUrl(history.location.state.prevUrl.split("3000")[1])
         }
     }, [history])

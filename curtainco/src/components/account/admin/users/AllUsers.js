@@ -18,6 +18,7 @@ import {
 import { getAllUsers } from "../../../../services/adminServices"
 import { useCurtainContext } from "../../../../config/CurtainCoContext"
 import { ACTIONS } from "../../../../config/stateReducer"
+import { setErrorSnackBar } from "../../../../helpers/appHelpers"
 
 function preventDefault(event) {
     event.preventDefault()
@@ -33,18 +34,20 @@ export default function AllUsers() {
         getAllUsers()
             .then((resp) => {
                 if (resp.status === 200) {
-                    console.log("---USERS---")
-                    console.log(resp.data)
+                    // console.log("---USERS---")
+                    // console.log(resp.data)
                     dispatch({
                         type: ACTIONS.SET_ALL_USERS,
                         payload: resp.data,
                     })
-                } else {
-                    console.log("status code wasn't correct")
                 }
             })
             .catch((error) => {
-                console.log(error)
+                console.log(error.response)
+                setErrorSnackBar(
+                    dispatch,
+                    "Error: Something went wrong when fetching all users"
+                )
             })
     }, [dispatch])
 

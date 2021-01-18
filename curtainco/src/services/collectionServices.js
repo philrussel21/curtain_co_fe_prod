@@ -54,13 +54,13 @@ async function submitCollectionToDbAndUpdateState(
     let tempCollection = { ...collection }
     let userIsUpdatingPhoto = isPhotoPresent(photo)
 
-    console.log({ userIsUpdatingPhoto })
+    // console.log({ userIsUpdatingPhoto })
 
     // UPLOAD THE PHOTO TO S3
     if (userIsUpdatingPhoto) {
         try {
             let s3Resp = await uploadPhotoToS3(photo)
-            console.log(s3Resp)
+            // console.log(s3Resp)
             if (s3Resp.status === 201) {
                 tempCollection.imgUrl = s3Resp.data.image.location
                 setResetFile(true)
@@ -86,8 +86,8 @@ async function submitCollectionToDbAndUpdateState(
         } else {
             resp = await updateCollection(tempCollection)
         }
-        console.log("----response from updating/creating a collection----")
-        console.log(resp)
+        // console.log("----response from updating/creating a collection----")
+        // console.log(resp)
         if (
             (updateOrAdd === "add" && resp.status === 201) ||
             (updateOrAdd === "update" && resp.status === 200)

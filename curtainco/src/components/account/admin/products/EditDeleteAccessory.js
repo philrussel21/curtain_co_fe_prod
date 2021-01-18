@@ -3,7 +3,7 @@ import React, { useState, useEffect, useRef, useCallback } from "react"
 import AccessoryForm from "../../../reusable/AccessoryForm"
 // HELPERS AND SERVICES
 import {
-    updateProduct,
+    // updateProduct,
     deleteProduct,
     submitProductToDbAndUpdateState,
 } from "../../../../services/productServices"
@@ -40,7 +40,7 @@ function EditDeleteAccessory({ editProductId, setEditProductId }) {
     }, [emptyAccessory])
 
     function handleFileChange(file) {
-        console.log(file)
+        // console.log(file)
         setPhoto(file)
     }
 
@@ -83,7 +83,7 @@ function EditDeleteAccessory({ editProductId, setEditProductId }) {
             false
         )
         setIsLoading(false)
-        console.log(respOrError)
+        // console.log(respOrError)
     }
 
     function handleRemoveProduct() {
@@ -93,7 +93,7 @@ function EditDeleteAccessory({ editProductId, setEditProductId }) {
         setIsLoading(true)
         deleteProduct(accessory)
             .then((resp) => {
-                console.log(resp)
+                // console.log(resp)
                 if (resp.status === 202) {
                     dispatch({
                         type: ACTIONS.DELETE_PRODUCT,
@@ -106,7 +106,7 @@ function EditDeleteAccessory({ editProductId, setEditProductId }) {
                 }
             })
             .catch((error) => {
-                console.log(error)
+                console.log(error.response)
                 setErrorSnackBar(
                     dispatch,
                     `Error: Accessory was not deleted. ${error}`

@@ -21,7 +21,7 @@ export default function RequestConsultation({ history }) {
     async function getUserDetailsFromFormAndSubmit(request) {
         try {
             let resp = await submitConsultationRequest(request)
-            console.log(resp)
+            // console.log(resp)
             dispatch({
                 type: ACTIONS.ADD_CONSULTATION,
                 payload: request,

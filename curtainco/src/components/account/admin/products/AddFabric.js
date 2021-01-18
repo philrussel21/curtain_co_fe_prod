@@ -6,7 +6,7 @@ import { submitProductToDbAndUpdateState } from "../../../../services/productSer
 // STATE
 import { useCurtainContext } from "../../../../config/CurtainCoContext"
 import { ACTIONS } from "../../../../config/stateReducer"
-import { setErrorSnackBar } from "../../../../helpers/appHelpers"
+// import { setErrorSnackBar } from "../../../../helpers/appHelpers"
 
 function AddFabric() {
     const { dispatch } = useCurtainContext()
@@ -32,7 +32,7 @@ function AddFabric() {
     }
 
     function handleFileChange(file) {
-        console.log(file)
+        // console.log(file)
         setPhoto(file)
     }
 
@@ -53,7 +53,7 @@ function AddFabric() {
             resetProductForm
         )
         setIsLoading(false)
-        console.log(respOrError)
+        // console.log(respOrError)
     }
 
     return (

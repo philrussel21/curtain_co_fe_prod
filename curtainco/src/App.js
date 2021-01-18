@@ -11,6 +11,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom"
 // HELPERS ANS SERVICES
 // import { setErrorSnackBar } from "./helpers/appHelpers"
 import { getLoggedInUserFromHomeRoute } from "./services/authServices"
+import { getCartItemsFromLocalStorage } from "./services/cartServices"
 // COMPONENTS
 import {
     NavBar,
@@ -30,7 +31,6 @@ import {
     PageNotFound,
 } from "./components/export.js"
 import LoadingSymbol from "./components/reusable/LoadingSymbol"
-import { getCartItemsFromLocalStorage } from "./services/cartServices"
 
 function App() {
     const { state, dispatch } = useCurtainContext()
@@ -75,7 +75,7 @@ function App() {
                             resp.data.user.cookie > 2147483647
                                 ? 2147483647
                                 : resp.data.user.cookie
-                        console.log("timeout set", maxTime)
+                        // console.log("timeout set", maxTime)
                         const timeOut = setTimeout(() => {
                             window.location.reload()
                         }, maxTime)
