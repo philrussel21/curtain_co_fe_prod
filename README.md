@@ -7,7 +7,7 @@
 <br>
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/f03a4191-5b3c-4ca3-98dc-37bc6c6758a2/deploy-status)](https://app.netlify.com/sites/thecurtainco/deploys)  
-Link to App: [thecurtainco.com.au](https://thecurtainco.com.au)  
+Link to App: [https://thecurtainco.netlify.app/](https://thecurtainco.netlify.app/)  
 Front-End source code: [FE Repo](https://github.com/curtainCo/curtain_co_fe_prod)  
 Back-End source code: [BE Repo](https://github.com/curtainCo/curtain_co_be_prod)
 
@@ -57,6 +57,8 @@ The target audience of this website are users that are willing to spend a little
 -   Admin Authorisation
 -   CRUD Actions to _Collections_
 -   CRUD Actions to _Products_
+-   CRUD Actions to _User Consultations_
+-   View and Update _Customer Orders_
 -   All Users dashboard
 -   Company Profile Updates
 
@@ -65,12 +67,14 @@ The target audience of this website are users that are willing to spend a little
 -   User Authentication
 -   User Authorisation
 -   Browsing anonymity for Casual Users
+-   Anonymous casual user's ability to add to Cart before authentication
 -   Filtering Categories
 -   Searching Functionality
--   Secured Payment with Stripe/Paypal
+-   Secured Payment with Paypal
 -   User Profile Customization
 -   Pagination Viewing Experience
 -   _Collection_ Customization
+-   _Consultation_ Requests
 
 ### Future Features:
 
@@ -82,7 +86,6 @@ The target audience of this website are users that are willing to spend a little
 
 -   Booking System for appointments
 -   User Dashboard containing Booking/Appointment details
--   Anonymous casual user's ability to add to Cart before authentication
 -   User's ability to leave reviews on a _Collection_ or _Product_
 -   Third Party OAuth (Google, Yahoo, Facebook, Apple, Microsoft)
 -   Wishlist feature for users
@@ -135,7 +138,6 @@ The target audience of this website are users that are willing to spend a little
 -   [**React-Router-Dom**](https://reactrouter.com/web/guides/quick-start) - handles routing through a single-page-app
 -   [**Axios**](https://github.com/axios/axios) - to make calls to the [Curtain Co REST API](https://github.com/philrussel21/curtain_co_BE)
 -   [**Jest**](https://jestjs.io/) - to run unit tests on client side
--   [**Cypress**](https://www.cypress.io/) - if time permits, end-to-end testing across the app
 
 > ### General
 
@@ -221,7 +223,7 @@ The target audience of this website are users that are willing to spend a little
 
 > ### Front-End
 >
-> **Jest** is the chosen framework for testing client side code, and if time permits, look into implementing end-to-end testing with Cypress.
+> **Jest** is the chosen framework for testing client side code.
 
 -   Unit testing functions, methods, modules and objects
 -   Component testing
@@ -233,10 +235,12 @@ The target audience of this website are users that are willing to spend a little
 
 -   Authorization and Authentication
 -   Protected Routes
--   User Roles
+-   Admin & User Roles
 -   Transactions
 -   _Products_ CRUD actions
 -   _Collections_ CRUD actions
+-   _Consultations_ CRUD actions
+-   _Orders_ CRUD actions
 -   User CRUD actions
 
 ---
