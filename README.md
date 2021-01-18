@@ -260,6 +260,7 @@ The target audience of this website are users that are willing to spend a little
 -   **Issues Still Persisting At Time of Submission: 18th January 2021**
     -   Brave browser built-in ad blocker causes PayPal to throw errors but seems can still make a payment
     -   PayPal's sandbox mode takes time to load the PayPal buttons, causing bad User Experience if a user clicks the button and nothing happens. This error is supposedly supposed to work in production PayPal, which we have not tested yet due to the time for client not having a business account to set up a business PayPal account.
+    -   Safari produces the same 401 unauthorized error that Chrome was throwing before updating Cookie to SameSite='none' and enabling the Proxy. According to [this article](https://stackoverflow.com/questions/58525719/safari-not-sending-cookie-even-after-setting-samesite-none-secure) it is an issue with Safari itself treating the SameSite=None Cookie as SameSite=Strict.
 
 > ### Back-End
 >
