@@ -42,6 +42,12 @@ function ConsultModal({ data, handleClose }) {
       <Typography>
         {`Requested on: ${displayShortDate(data.createdAt)}`}
       </Typography>
+      <Typography>
+        Message:
+      </Typography>
+      <Typography variant="body1">
+        {data.message}
+      </Typography>
     </Grid >
   );
 }
