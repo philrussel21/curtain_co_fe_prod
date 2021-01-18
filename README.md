@@ -70,7 +70,7 @@ The target audience of this website are users that are willing to spend a little
 -   Anonymous casual user's ability to add to Cart before authentication
 -   Filtering Categories
 -   Searching Functionality
--   Secured Payment with Paypal
+-   Secured Payment with PayPal
 -   User Profile Customization
 -   Pagination Viewing Experience
 -   _Collection_ Customization
@@ -82,7 +82,7 @@ The target audience of this website are users that are willing to spend a little
 
 -   Testimonial Adding Feature
 
-    > #### Users
+> #### Users
 
 -   Booking System for appointments
 -   User Dashboard containing Booking/Appointment details
@@ -131,10 +131,10 @@ The target audience of this website are users that are willing to spend a little
 
 -   [**Material UI**](https://material-ui.com/) - for the client side styling
 -   [**Material UI Icons**](https://material-ui.com/components/material-icons/) - for the icons used throughout the app
--   [**React-Spring**](https://www.react-spring.io/) - for animations throughout the app
--   [**React-Reveal**](https://www.react-reveal.com/) - for animations throughout the app
--   [**React-Scroll**](https://www.npmjs.com/package/react-scroll) - for animating vertical scrolling (unsure initially if we will use this package)
--   [**React-Responsive**](https://www.npmjs.com/package/react-responsive) - a media query library to detect device sizes and orientation
+-   [**React-Spring**](https://www.react-spring.io/) - for animations throughout the app. **UPDATE**: animations to be implemented in future feature
+-   [**React-Reveal**](https://www.react-reveal.com/) - for animations throughout the app. **UPDATE**: animations to be implemented in future feature
+-   [**React-Scroll**](https://www.npmjs.com/package/react-scroll) - for animating vertical scrolling (unsure initially if we will use this package). **UPDATE**: animations to be implemented in future feature
+<!-- -   [**React-Responsive**](https://www.npmjs.com/package/react-responsive) - a media query library to detect device sizes and orientation -->
 -   [**React-Router-Dom**](https://reactrouter.com/web/guides/quick-start) - handles routing through a single-page-app
 -   [**Axios**](https://github.com/axios/axios) - to make calls to the [Curtain Co REST API](https://github.com/philrussel21/curtain_co_BE)
 -   [**Jest**](https://jestjs.io/) - to run unit tests on client side

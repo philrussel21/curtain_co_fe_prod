@@ -8,7 +8,7 @@ const useStyles = makeStyles((theme) => ({
     aboutMeImg: {
         width: "100%",
         height: "90%",
-        maxHeight: "350px",
+        maxHeight: "500px",
         maxWidth: "600px",
         objectFit: "cover",
         borderBottomRightRadius: theme.spacing(12),
@@ -19,6 +19,8 @@ const useStyles = makeStyles((theme) => ({
         [theme.breakpoints.down("sm")]: {
             paddingLeft: theme.spacing(0),
         },
+        fontStyle: "italic",
+        color: theme.palette.grey[800],
     },
     aboutMeMsgHeader: {
         paddingLeft: theme.spacing(5),
@@ -26,6 +28,12 @@ const useStyles = makeStyles((theme) => ({
         [theme.breakpoints.down("sm")]: {
             paddingLeft: theme.spacing(3),
         },
+        fontFamily: theme.typography.fontFamily.split(",")[2],
+        color: theme.palette.primary.light,
+    },
+    aboutMeRangeLinks: {
+        fontFamily: theme.typography.fontFamily.split(",")[1],
+        color: theme.palette.secondary.light,
     },
 }))
 

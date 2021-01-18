@@ -65,6 +65,9 @@ const useStyles = makeStyles((theme) => ({
         margin: "4%",
         width: "100%",
     },
+    productPageCont: {
+        marginTop: theme.spacing(1),
+    },
 }))
 
 export default useStyles

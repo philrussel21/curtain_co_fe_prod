@@ -75,32 +75,31 @@ function Products() {
     return (
         <Grid
             container
-            justify="center"
-            alignItems="flex-start" // this is for putting the filter at the top of the page in landscape
+            item
+            justify="space-around"
+            alignItems="flex-start" // this is for putting the filters at the top of the page in landscape
             xs={12}
-            // spacing={isTablet ? 2 : 4}
-            style={{ marginTop: "1%" }}
+            className={classes.productPageCont}
         >
             <Grid
                 item
                 container
                 direction="row"
-                justify="center"
+                justify="space-around"
                 alignItems="center"
                 xs={12}
                 sm={10}
-                // md={3}
                 lg={3}
                 spacing={1}
             >
-                <Grid item xs={12} sm={6} style={{ width: "100%" }}>
+                <Grid item xs={12} sm={6} lg={12} style={{ width: "100%" }}>
                     <Search
                         searchInput={searchInput}
                         handleChange={handleSearchInputChange}
                     />
                 </Grid>
 
-                <Grid item xs={12} sm={6} style={{ width: "100%" }}>
+                <Grid item xs={12} sm={6} lg={12} style={{ width: "100%" }}>
                     <Sort
                         sortFields={sortFields}
                         sortBy={sortBy}
@@ -114,12 +113,9 @@ function Products() {
                     />
                 </Grid>
             </Grid>
-            {/* <Grid item xs={12} sm={9}> */}
-            {/* <Container maxWidth="md"> */}
             <Grid
                 item
                 container
-                // spacing={4}
                 xs={12}
                 sm={10}
                 md={8}
@@ -142,8 +138,6 @@ function Products() {
                     />
                 )}
             </Grid>
-            {/* </Container> */}
-            {/* </Grid> */}
         </Grid>
     )
 }

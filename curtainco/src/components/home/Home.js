@@ -18,17 +18,20 @@ function Home() {
     const [imgHeight, setImgHeight] = useState(0)
     const [imgWidth, setImgWidth] = useState(0)
     const theme = useTheme()
-    // const isDesktop = useMediaQuery(theme.breakpoints.up("lg"))
+    const isLargeDesktop = useMediaQuery(theme.breakpoints.up("xl"))
 
     function getBorderRadius(radius) {
         setImgBorderRadius(radius)
     }
     function getImgHeight(height) {
+        console.log(window.innerHeight)
+        console.log(window.innerWidth)
         let calc = height / 3
-        let width = calc * 5.5
+        let width = isLargeDesktop ? calc * 7 : calc * 5.5
         setImgHeight(height)
         setImgWidth(width)
     }
+
     return (
         <>
             {/* DESKTOP */}
