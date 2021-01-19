@@ -235,14 +235,11 @@ The target audience of this website are users that are willing to spend a little
     -   Testing of all features using browser
     -   Testing application on all browsers - latest versions
     -   Testing of Paypal Integration with sandbox account.
-    > **Paypal Sandbox Account**
-    > *Email:* monkeyDluffy@email.com
-    > *Password:* TestPassword
-    > **or**
-    > *Card Type:* Visa
-    > *Card Number:* 4032036677735050
-    > *Expiration Date:* 02/2022
-    > *CVV:* 339
+        > **Paypal Sandbox Account** > _Email:_ monkeyDluffy@email.com > _Password:_ TestPassword
+        > **or** > _Card Type:_ Visa
+        > _Card Number:_ 4032036677735050
+        > _Expiration Date:_ 02/2022
+        > _CVV:_ 339
 -   **User Testing**
     -   Tested all features on a user who has not used the app. Had the user take actions from a customer and an admin role
     -   Tests included from a Customer perspective:
@@ -270,6 +267,7 @@ The target audience of this website are users that are willing to spend a little
     -   Brave browser built-in ad blocker causes PayPal to throw errors but seems can still make a payment
     -   PayPal's sandbox mode takes time to load the PayPal buttons, causing bad User Experience if a user clicks the button and nothing happens. This error is supposedly supposed to work in production PayPal, which we have not tested yet due to the time for client not having a business account to set up a business PayPal account.
     -   Safari produces the same 401 unauthorized error that Chrome was throwing before updating Cookie to SameSite='none' and enabling the Proxy. According to [this article](https://stackoverflow.com/questions/58525719/safari-not-sending-cookie-even-after-setting-samesite-none-secure) it is an issue with Safari itself treating the SameSite=None Cookie as SameSite=Strict.
+    -   There is still a styling bug with Safari that we need to figure out.
 
 > ### Back-End
 >
