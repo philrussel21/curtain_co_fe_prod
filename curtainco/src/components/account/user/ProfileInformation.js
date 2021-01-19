@@ -96,7 +96,7 @@ function ProfileInformation({ isMobile }) {
 
             <Grid item container justify="center">
                 <Button
-                    variant="outlined"
+                    variant="contained"
                     color={editUser ? "default" : "secondary"}
                     onClick={toggleEditUserForm}
                 >

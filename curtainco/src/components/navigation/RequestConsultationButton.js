@@ -8,8 +8,8 @@ function RequestConsultationButton({ size }) {
     return (
         <Link to="/request" style={{ textDecoration: "none" }}>
             <Grid item container justify="center">
-                <Button variant="outlined" color="primary" size={size}>
-                    Request Consultation
+                <Button variant="contained" color="primary" size={size}>
+                    Request A Consultation
                 </Button>
             </Grid>
         </Link>

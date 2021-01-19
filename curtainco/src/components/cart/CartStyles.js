@@ -14,7 +14,7 @@ const useStyles = makeStyles((theme) => ({
         border: "1px solid red",
     },
     primaryIconButton: {
-        border: "1px solid royalBlue",
+        border: `1px solid ${theme.palette.secondary.dark}`,
     },
     cartItemImg: {
         height: "90%",
@@ -43,6 +43,10 @@ const useStyles = makeStyles((theme) => ({
     cartItemHeader: {
         color: theme.palette.primary.light,
         fontFamily: theme.typography.fontFamily.split(",")[2],
+        fontSize: 40,
+        [theme.breakpoints.only("xs")]: {
+            fontSize: 30,
+        },
     },
     cartItemDetailsData: {
         fontFamily: theme.typography.fontFamily.split(",")[1],
@@ -60,7 +64,14 @@ const useStyles = makeStyles((theme) => ({
     },
     noItemsInCart: {
         fontFamily: theme.typography.fontFamily.split(",")[1],
-        fontSize: theme.typography.pxToRem(30),
+        fontSize: theme.typography.pxToRem(26),
+    },
+    noItemsInCartLinks: {
+        color: theme.palette.tertiary.dark,
+        textDecoration: "none",
+        "&:hover": {
+            color: theme.palette.tertiary.main,
+        },
     },
     payPalLoadingUserMessage: {
         textAlign: "center",
@@ -70,6 +81,11 @@ const useStyles = makeStyles((theme) => ({
         [theme.breakpoints.only("xs")]: {
             fontSize: 30,
         },
+    },
+    cartCollectionContainsHeader: {
+        fontFamily: theme.typography.fontFamily.split(",")[1],
+        color: theme.palette.grey[800],
+        fontWeight: theme.typography.fontWeightBold,
     },
 }))
 

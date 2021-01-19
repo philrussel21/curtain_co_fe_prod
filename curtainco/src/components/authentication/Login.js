@@ -189,7 +189,7 @@ export default function SignIn() {
                                     <FormControlLabel
                                         control={
                                             <Checkbox
-                                                color="primary"
+                                                color="secondary"
                                                 onChange={handleRememberMe}
                                                 checked={rememberMe}
                                             />
@@ -197,15 +197,17 @@ export default function SignIn() {
                                         label="Remember me"
                                     />
 
-                                    <Button
-                                        type="submit"
-                                        fullWidth
-                                        variant="contained"
-                                        color="primary"
-                                        className={classes.submit}
-                                    >
-                                        Sign In
-                                    </Button>
+                                    <Container maxWidth="sm">
+                                        <Button
+                                            type="submit"
+                                            fullWidth
+                                            variant="contained"
+                                            color="secondary"
+                                            className={classes.submit}
+                                        >
+                                            Sign In
+                                        </Button>
+                                    </Container>
 
                                     <Grid container justify="flex-end">
                                         <Link

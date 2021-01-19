@@ -33,18 +33,27 @@ function CartList({
                     alignItems="center"
                     spacing={6}
                 >
-                    <Grid item container justify="center" alignItems="center">
-                        <Typography
-                            variant="h6"
-                            component="h6"
-                            className={classes.noItemsInCart}
+                    <Typography
+                        variant="h6"
+                        component="h6"
+                        className={classes.noItemsInCart}
+                    >
+                        You have no items in your cart, head to{" "}
+                        <Link
+                            to="/products"
+                            className={classes.noItemsInCartLinks}
                         >
-                            You have no items in your cart, head to{" "}
-                            <Link to="/products">Products</Link> or{" "}
-                            <Link to="/collections">Collections</Link> to check
-                            some out.
-                        </Typography>
-                    </Grid>
+                            Products
+                        </Link>{" "}
+                        or{" "}
+                        <Link
+                            to="/collections"
+                            className={classes.noItemsInCartLinks}
+                        >
+                            Collections
+                        </Link>{" "}
+                        to check some out.
+                    </Typography>
                 </Grid>
             )}
         </Grid>

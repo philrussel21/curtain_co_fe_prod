@@ -548,7 +548,7 @@ export default function UserDataForm({
                             type="submit"
                             fullWidth
                             variant="contained"
-                            color="primary"
+                            color="secondary"
                             className={classes.submit}
                         >
                             {buttonText}

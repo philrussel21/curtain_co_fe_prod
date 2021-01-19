@@ -73,7 +73,7 @@ function Home() {
                                 justify="center"
                                 alignItems="center"
                                 style={{
-                                    backgroundColor: "lightblue",
+                                    backgroundColor: `${theme.palette.primary.veryLight}`,
                                     position: "relative",
                                     height: `${imgHeight}px`,
                                     maxWidth: `${imgWidth * 1.3}px`,

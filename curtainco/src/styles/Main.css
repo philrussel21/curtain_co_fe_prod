@@ -29,6 +29,23 @@ html {
   overflow-y: auto;
   overflow-x: hidden;
   padding-top: 20px;
+  scrollbar-width: thin;
+  /* "auto" or "thin" */
+  scrollbar-color: rgba(31, 144, 77, 0.3) transparent;
+}
+
+.app-container::-webkit-scrollbar {
+  width: 7px;
+}
+
+.app-container::-webkit-scrollbar-track {
+  -webkit-box-shadow: "none";
+          box-shadow: "none";
+}
+
+.app-container::-webkit-scrollbar-thumb {
+  background-color: rgba(31, 144, 77, 0.3);
+  border-radius: 7px;
 }
 
 .app-container-mobile {
