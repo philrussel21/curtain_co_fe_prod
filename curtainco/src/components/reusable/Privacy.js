@@ -7,12 +7,7 @@ function Privacy() {
     const classes = useStyles()
 
     return (
-        <Typography
-            variant="body2"
-            color="textPrimary"
-            align="center"
-            className={classes.privacy}
-        >
+        <Typography variant="body2" align="center" className={classes.privacy}>
             Privacy-Terms
         </Typography>
     )

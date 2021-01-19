@@ -163,18 +163,13 @@ const useStyles = makeStyles((theme) => ({
         },
     },
     footerText: {
-        fontFamily: theme.typography.fontFamily.split(",")[1],
-        fontSize: 16,
-        letterSpacing: "1px",
         color: theme.palette.primary.dark,
     },
     footerEmailLink: {
-        fontFamily: theme.typography.fontFamily.split(",")[1],
         fontSize: 16,
-        letterSpacing: "1px",
-        color: theme.palette.primary.dark,
+        color: theme.palette.secondary.dark,
         "&:hover": {
-            color: theme.palette.primary.light,
+            color: theme.palette.secondary.main,
         },
     },
     navBarMobileHeaderLeft: {
@@ -187,9 +182,7 @@ const useStyles = makeStyles((theme) => ({
         color: theme.palette.primary.main,
     },
     privacy: {
-        fontFamily: theme.typography.fontFamily.split(",")[1],
         color: theme.palette.primary.main,
-        letterSpacing: "1px",
     },
     copyrightText: {
         color: theme.palette.primary.main,
