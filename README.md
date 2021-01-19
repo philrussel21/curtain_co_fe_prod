@@ -158,13 +158,13 @@ The target audience of this website are users that are willing to spend a little
 
 ## Dataflow Diagram
 
-![Curtain Co Dataflow Diagram](/docs/Curtain_Co_DFD.png)
+![Curtain Co Dataflow Diagram](/docs/images/Curtain_Co_DFD.png)
 
 ---
 
 ## Application Architecture Diagram
 
-![Curtain Co Application Arhictecture Diagram](/docs/Curtain_Co_AAD.png)
+![Curtain Co Application Arhictecture Diagram](/docs/images/Curtain_Co_AAD.png)
 
 ---
 
@@ -223,6 +223,32 @@ The target audience of this website are users that are willing to spend a little
 
 ## Testing
 
+> ### Payments
+>
+> **Paypal Sandbox Account**
+
+<details>
+<p>
+<strong>Email:</strong> <em>monkeyDluffy@email.com</em>
+<br>
+<strong>Password:</strong> <em>TestPassword</em>
+<br>
+<br>
+<strong>OR</strong>
+<br>
+<br>
+<strong>Card Type:</strong> <em>Visa</em>
+<br>
+<strong>CVV:</strong> <em>339</em>
+<br>
+<strong>Card Number:</strong> <em>4032036677735050</em>
+<br>
+<strong>Expiration Date:</strong> <em>02/2022</em>
+<br>
+<strong>CVV:</strong> <em>339</em>
+</p>
+</details>
+
 > ### Front-End
 >
 > **Jest** is the chosen framework for testing client side code.
@@ -231,15 +257,8 @@ The target audience of this website are users that are willing to spend a little
 -   Component testing
 -   Snapshot testing
     **_UPDATE AFTER BUILDING APPLICATION_**
--   **Manual Testing**
-    -   Testing of all features using browser
-    -   Testing application on all browsers - latest versions
-    -   Testing of Paypal Integration with sandbox account.
-        > **Paypal Sandbox Account** > _Email:_ monkeyDluffy@email.com > _Password:_ TestPassword
-        > **or** > _Card Type:_ Visa
-        > _Card Number:_ 4032036677735050
-        > _Expiration Date:_ 02/2022
-        > _CVV:_ 339
+-   **Manual Testing** - Testing of all features using browser - Testing application on all browsers - latest versions - Testing of Paypal Integration with sandbox account.
+
 -   **User Testing**
     -   Tested all features on a user who has not used the app. Had the user take actions from a customer and an admin role
     -   Tests included from a Customer perspective:
@@ -289,7 +308,7 @@ The target audience of this website are users that are willing to spend a little
 
 ## Sitemap
 
-![Curtain Co Sitemap](/docs/Curtain_Co_Sitemap.png)
+![Curtain Co Sitemap](/docs/images/Curtain_Co_Sitemap.png)
 
 ---
 
@@ -512,6 +531,14 @@ For tablet, we only decided to do the landing page as to see which nav bar and f
 #### Part B: 03.
 
 ![Part B Trello Progress 03](docs/trello/part_b_progress_03.png)
+
+#### Part B: 04.
+
+![Part B Trello Progress 04](docs/trello/part_b_progress_04.png)
+
+#### Part B: 05 (Submission).
+
+![Part B Trello Progress 05](docs/trello/part_b_progress_05_submission.png)
 
 </details>
 
