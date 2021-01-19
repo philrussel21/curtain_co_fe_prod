@@ -79,9 +79,7 @@ export default function StickyFooter() {
                         DON'T THINK TO PRESS THIS BUTTON TO SUBMIT IT AND RELOAD THE PAGE
                         ACCIDENTALLY */}
                                     {!hideButton && (
-                                        <RequestConsultationButton
-                                            size={"large"}
-                                        />
+                                        <RequestConsultationButton size="large" />
                                     )}
                                 </Grid>
                                 <Grid item container xs={4}>

@@ -39,13 +39,13 @@ function Collections() {
 
     return (
         <Container>
-            <Typography
+            {/* <Typography
                 variant="h3"
                 component="h3"
                 className={classes.collectionsHeader}
             >
                 Our Collections
-            </Typography>
+            </Typography> */}
             <Grid
                 container
                 direction="column"

@@ -28,7 +28,7 @@ function Contact() {
                         target="_blank"
                         rel="noreferrer"
                     >
-                        <FacebookIcon color="secondary" fontSize="large" />
+                        <FacebookIcon color="primary" fontSize="large" />
                     </a>
                 </Grid>
                 <Grid item>
@@ -37,7 +37,7 @@ function Contact() {
                         target="_blank"
                         rel="noreferrer"
                     >
-                        <InstagramIcon color="secondary" fontSize="large" />
+                        <InstagramIcon color="primary" fontSize="large" />
                     </a>
                 </Grid>
             </Grid>

@@ -36,13 +36,14 @@ const useStyles = makeStyles((theme) => ({
     accordionHeading: {
         fontSize: theme.typography.pxToRem(20),
         fontWeight: theme.typography.fontWeightRegular,
+        color: theme.palette.tertiary.dark,
     },
     accordionDetails: {
         width: "90%",
         margin: "0 auto",
     },
     accordionDataItemSelected: {
-        border: `3px solid ${theme.palette.secondary.light}`,
+        border: `3px solid ${theme.palette.tertiary.main}`,
         padding: "4px",
         cursor: "pointer",
         height: "100px",
@@ -51,7 +52,7 @@ const useStyles = makeStyles((theme) => ({
         borderBottomRightRadius: theme.spacing(4),
         borderTopLeftRadius: theme.spacing(4),
         "&:hover": {
-            border: `3px solid ${theme.palette.secondary.main}`,
+            border: `3px solid ${theme.palette.tertiary.dark}`,
         },
     },
     accordionDataItem: {
@@ -66,7 +67,7 @@ const useStyles = makeStyles((theme) => ({
     collectionItemHeader: {
         fontFamily: theme.typography.fontFamily.split(",")[2],
         fontSize: "2.5rem",
-        color: theme.palette.primary.main,
+        color: theme.palette.primary.light,
     },
     collectionItemImg: {
         width: "90%",
@@ -91,8 +92,8 @@ const useStyles = makeStyles((theme) => ({
     },
     collectionCustomiseHeader: {
         fontFamily: theme.typography.fontFamily.split(",")[2],
-        color: theme.palette.primary.main,
-        fontSize: 50,
+        color: theme.palette.primary.light,
+        fontSize: 40,
         textAlign: "center",
         paddingTop: 0,
         [theme.breakpoints.down("md")]: {
@@ -104,7 +105,7 @@ const useStyles = makeStyles((theme) => ({
     },
     designerTipHeader: {
         fontFamily: theme.typography.fontFamily.split(",")[2],
-        color: theme.palette.secondary.light,
+        color: theme.palette.tertiary.dark,
         fontSize: 30,
         [theme.breakpoints.only("xs")]: {
             fontSize: 28,
@@ -112,7 +113,7 @@ const useStyles = makeStyles((theme) => ({
     },
     designerTipMessage: {
         fontFamily: theme.typography.fontFamily.split(",")[1],
-        color: theme.palette.grey[900],
+        color: theme.palette.grey[800],
         fontStyle: "italic",
     },
     collectionCustomiseProductName: {
@@ -148,6 +149,7 @@ const useStyles = makeStyles((theme) => ({
         [theme.breakpoints.down("sm")]: {
             paddingTop: "5%",
         },
+        color: theme.palette.grey[800],
     },
     collectionIncludesTotal: {
         fontFamily: theme.typography.fontFamily.split(",")[1],
@@ -167,7 +169,7 @@ const useStyles = makeStyles((theme) => ({
     collectionsHeader: {
         fontFamily: theme.typography.fontFamily.split(",")[2],
         fontSize: 60,
-        color: theme.palette.primary.dark,
+        color: theme.palette.primary.light,
         textAlign: "center",
         marginBottom: "2%",
         [theme.breakpoints.down("sm")]: {

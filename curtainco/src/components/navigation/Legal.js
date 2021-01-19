@@ -28,7 +28,11 @@ function Legal() {
                 <Copyright />
             </Grid>
             <Grid item>
-                <Typography variant="body2" color="textPrimary" align="center">
+                <Typography
+                    variant="body2"
+                    className={classes.siteByText}
+                    align="center"
+                >
                     Site by{" "}
                     <a
                         href="https://www.simonmcurran.com"

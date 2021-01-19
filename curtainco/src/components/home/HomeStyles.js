@@ -11,6 +11,7 @@ const useStyles = makeStyles((theme) => ({
     homeWhyCurtains: {},
     whyCurtainsHeading: {
         fontFamily: theme.typography.fontFamily.split(",")[2],
+        color: theme.palette.primary.dark,
     },
     whyCurtainsText: {
         fontFamily: theme.typography.fontFamily.split(",")[1],
@@ -24,6 +25,13 @@ const useStyles = makeStyles((theme) => ({
         color: "white",
         width: "100%",
         textAlign: "center",
+    },
+    curtainCoImgCont: {
+        "&:hover": {
+            "& h2": {
+                color: theme.palette.grey[400],
+            },
+        },
     },
 }))
 

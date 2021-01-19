@@ -38,8 +38,12 @@ function CurtainCoImg({
         }
     }, [getImgHeight, imgHeight])
 
+    // AGAIN I AM SORRY FOR THE PERSON WHO HAS TO DECIPHER THE INLINE STYLES
     return (
-        <div style={{ position: "relative" }}>
+        <div
+            style={{ position: "relative" }}
+            className={classes.curtainCoImgCont}
+        >
             <div
                 style={{
                     width: "100%",

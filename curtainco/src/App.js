@@ -44,6 +44,7 @@ function App() {
                 '"Nunito"',
                 '"Raleway"',
                 '"Parisienne"',
+                '"Nunito Sans"',
                 "Roboto",
                 '"Helvetica Neue"',
                 "Arial",
@@ -55,9 +56,9 @@ function App() {
                 default: "#f5f5f5",
             },
             primary: {
-                veryLight: "#D1EEEA",
-                light: "#97E3D6",
-                main: "#33767C",
+                veryLight: "#d0e9f5",
+                light: "#5C9CB9",
+                main: "#3D537D",
                 dark: "#025B6D",
             },
             secondary: {
@@ -66,8 +67,9 @@ function App() {
                 dark: "rgba(31, 144, 77, 0.7)",
             },
             tertiary: {
-                light: "#FDBAAA",
-                main: "#D66D50",
+                light: "#ffefeb",
+                main: "#FDBAAA",
+                dark: "#D66D50",
             },
         },
         overrides: {

@@ -89,7 +89,9 @@ const useStyles = makeStyles((theme) => ({
         fontStyle: "italic",
     },
     orderSummaryModalContentTitle: {
-        color: theme.palette.primary.main,
+        fontFamily: theme.typography.fontFamily.split(",")[1],
+        color: theme.palette.grey[800],
+        fontWeight: theme.typography.fontWeightBold,
         fontSize: 20,
     },
     orderSummaryModalPurchaseName: {
@@ -120,7 +122,12 @@ const useStyles = makeStyles((theme) => ({
     },
     orderSummaryModalTitle: {
         fontWeight: "bold",
-        color: theme.palette.grey[800],
+        // color: theme.palette.grey[800],
+        color: theme.palette.tertiary.dark,
+        fontSize: 24,
+        [theme.breakpoints.only("xs")]: {
+            fontSize: 18,
+        },
     },
 }))
 
