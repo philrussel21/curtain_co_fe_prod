@@ -20,7 +20,7 @@ html {
     overflow-x: hidden;
     padding-top: 20px;
     scrollbar-width: thin; /* "auto" or "thin" */
-    scrollbar-color: rgba(31, 144, 77, 0.3) transparent;
+    scrollbar-color: rgb(253, 186, 170) transparent;
 }
 
 .app-container::-webkit-scrollbar {
@@ -32,7 +32,7 @@ html {
 }
 
 .app-container::-webkit-scrollbar-thumb {
-    background-color: rgba(31, 144, 77, 0.3);
+    background-color: rgb(253, 186, 170);
     border-radius: 7px;
 }
 
