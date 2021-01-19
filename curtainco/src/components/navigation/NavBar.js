@@ -257,7 +257,7 @@ function NavBar() {
                                                 badgeContent={state.cartLength}
                                                 color="secondary"
                                             >
-                                                <ShoppingCartIcon />
+                                                <ShoppingCartIcon color="primary" />
                                             </StyledBadge>
                                         </IconButton>
                                     </Link>

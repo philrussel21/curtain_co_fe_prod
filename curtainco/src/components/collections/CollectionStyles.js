@@ -11,7 +11,7 @@ const useStyles = makeStyles((theme) => ({
         borderTopLeftRadius: theme.spacing(10),
         border: `1px solid ${theme.palette.primary.main}`,
     },
-    link: {
+    collectionLink: {
         textDecoration: "none",
         color: "inherit",
     },
@@ -66,7 +66,7 @@ const useStyles = makeStyles((theme) => ({
     collectionItemHeader: {
         fontFamily: theme.typography.fontFamily.split(",")[2],
         fontSize: "2.5rem",
-        color: theme.palette.primary.light,
+        color: theme.palette.primary.main,
     },
     collectionItemImg: {
         width: "90%",
@@ -167,7 +167,7 @@ const useStyles = makeStyles((theme) => ({
     collectionsHeader: {
         fontFamily: theme.typography.fontFamily.split(",")[2],
         fontSize: 60,
-        color: theme.palette.primary.light,
+        color: theme.palette.primary.dark,
         textAlign: "center",
         marginBottom: "2%",
         [theme.breakpoints.down("sm")]: {

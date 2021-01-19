@@ -11,31 +11,15 @@ import {
 import useStyles from "../CollectionStyles"
 // HELPERS AND SERVICES
 import { Link } from "react-router-dom"
-import { capitalize, setSuccessSnackBar } from "../../../helpers/appHelpers"
-// import { addItemToCart } from "../../../services/cartServices"
-// import { useCurtainContext } from "../../../config/CurtainCoContext"
-// import { ACTIONS } from "../../../config/stateReducer"
+import { capitalize } from "../../../helpers/appHelpers"
+
 // COMPONENTS
-// import AddToCartButton from "../../reusable/AddToCartButton"
 
 function CollectionItem({ data }) {
     const classes = useStyles()
-    // const { dispatch } = useCurtainContext()
     const theme = useTheme()
     const isMobile = useMediaQuery(theme.breakpoints.only("xs"))
 
-    // function handleCartClick(event) {
-    //     event.preventDefault()
-    //     if (
-    //         !window.confirm(
-    //             "Do you want to add the full collection to your cart without customising first?"
-    //         )
-    //     ) {
-    //         return
-    //     }
-    //     addItemToCart(data, dispatch)
-    //     setSuccessSnackBar(dispatch, "Added full collection to cart")
-    // }
     return (
         <Paper className={classes.paper}>
             <Grid item container spacing={2}>
@@ -67,6 +51,7 @@ function CollectionItem({ data }) {
                             {capitalize(data.name)}
                         </Typography>
                     </Grid>
+
                     <Grid item>
                         <Typography
                             className={classes.collectionItemDescription}
@@ -74,26 +59,21 @@ function CollectionItem({ data }) {
                             {capitalize(data.description)}
                         </Typography>
                     </Grid>
-                    {/* <Grid item>
-                        <AddToCartButton
-                            icon={true}
-                            text={"Cart"}
-                            handleClick={handleCartClick}
-                        />
-                    </Grid> */}
+
                     <Grid item container justify="flex-end" alignItems="center">
-                        <Button
-                            size={isMobile ? "small" : "medium"}
-                            variant="contained"
-                            color="primary"
+                        <Link
+                            className={classes.collectionLink}
+                            to={`/collections/customise/${data._id}`}
                         >
-                            <Link
-                                className={classes.link}
-                                to={`/collections/customise/${data._id}`}
+                            <Button
+                                size={isMobile ? "small" : "medium"}
+                                variant="contained"
+                                color="secondary"
+                                className={classes.customiseCollectionButton}
                             >
                                 Customise
-                            </Link>
-                        </Button>
+                            </Button>
+                        </Link>
                     </Grid>
                 </Grid>
             </Grid>

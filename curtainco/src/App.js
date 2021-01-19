@@ -54,6 +54,31 @@ function App() {
             background: {
                 default: "#f5f5f5",
             },
+            primary: {
+                veryLight: "#D1EEEA",
+                light: "#97E3D6",
+                main: "#33767C",
+                dark: "#025B6D",
+            },
+            secondary: {
+                light: "rgba(31, 144, 77, 0.1)",
+                main: "rgba(31, 144, 77, 0.6)",
+                dark: "rgba(31, 144, 77, 0.7)",
+            },
+            tertiary: {
+                light: "#FDBAAA",
+                main: "#D66D50",
+            },
+        },
+        overrides: {
+            MuiButton: {
+                root: {
+                    borderRadius: 20,
+                },
+                contained: {
+                    boxShadow: "none",
+                },
+            },
         },
     })
     theme = responsiveFontSizes(theme)

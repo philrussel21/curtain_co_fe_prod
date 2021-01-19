@@ -64,7 +64,7 @@ function ProductItem({ productData }) {
                 />
 
                 <CardContent className={classes.cardContent}>
-                    <Typography gutterBottom variant="h6" component="h2">
+                    <Typography gutterBottom variant="h6" component="h2" noWrap>
                         {capitalize(productData.name)}
                     </Typography>
                     <Grid container spacing={1}>

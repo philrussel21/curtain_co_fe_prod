@@ -31,11 +31,11 @@ const useStyles = makeStyles((theme) => ({
     footer: {
         padding: theme.spacing(3, 2),
         marginTop: "auto",
-        backgroundColor: "lightblue",
+        backgroundColor: theme.palette.primary.veryLight,
     },
     footerMobile: {
         height: "fit-content",
-        backgroundColor: "lightblue",
+        backgroundColor: theme.palette.primary.light,
         marginTop: "10%",
         // paddingBottom: "20%",
         paddingTop: "5%",
@@ -183,6 +183,9 @@ const useStyles = makeStyles((theme) => ({
     },
     navBarMobileHeaderMobile: {
         // flexDirection: "inherit !important",
+    },
+    cartLengthBadge: {
+        color: theme.palette.tertiary.main,
     },
 }))
 
