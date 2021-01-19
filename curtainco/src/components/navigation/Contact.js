@@ -47,11 +47,7 @@ function Contact() {
                 container
                 justify={isMobileOrTabletPortrait ? "center" : "flex-start"}
             >
-                <Typography
-                    // variant="body2"
-                    color="textPrimary"
-                    className={classes.footerText}
-                >
+                <Typography variant="body2" className={classes.footerText}>
                     0401 762 272
                 </Typography>
             </Grid>
@@ -61,11 +57,7 @@ function Contact() {
                 container
                 justify={isMobileOrTabletPortrait ? "center" : "flex-start"}
             >
-                <Typography
-                    // variant="body2"
-                    color="textPrimary"
-                    className={classes.footerEmailLink}
-                >
+                <Typography variant="body2" className={classes.footerEmailLink}>
                     <a href="mailto:marie@marieg.com.au?" className="link">
                         marie@marieg.com.au
                     </a>
