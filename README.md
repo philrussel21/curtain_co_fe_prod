@@ -2,7 +2,7 @@
 
 <br>
 
-<div style="width:40%; margin: 0 auto;"><img src="docs/curtain_co_logo.png"/></div>
+<div style="width:40%; margin: 0 auto;"><img src="docs/images/curtain_co_logo.png"/></div>
 
 <br>
 
@@ -587,4 +587,4 @@ GitHub: [philrussel21](https://github.com/philrussel21)
 
 <!-- ![Phil's LinkedIn](https://img.shields.io/badge/linkedin-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white) -->
 
-<div style="width:30%; margin: 0 auto"><img src="docs/{SiPhi}_logo_transparent.png" /></div>
+<div style="width:30%; margin: 0 auto"><img src="docs/images/{SiPhi}_logo_transparent.png" /></div>
