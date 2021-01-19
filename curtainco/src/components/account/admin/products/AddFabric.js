@@ -67,6 +67,7 @@ function AddFabric() {
             handleFileChange={handleFileChange}
             setResetFile={setResetFile}
             resetFile={resetFile}
+            isLoading={isLoading}
         />
     )
 }

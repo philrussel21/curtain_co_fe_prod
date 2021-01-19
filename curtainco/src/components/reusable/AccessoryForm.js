@@ -141,23 +141,26 @@ function AccessoryForm({
                             )}
                         </Grid>
 
-                        {isLoading && (
+                        {isLoading 
+                            ? (
                             <Grid item>
                                 <LoadingSymbol />
                             </Grid>
-                        )}
+                        )
+                            : (<Grid item>
+                                <Button
+                                    variant="contained"
+                                    color="primary"
+                                    onClick={handleSubmit}
+                                >
+                                    {title.includes("Add")
+                                        ? `Submit ${product.type}`
+                                        : `Update ${product.type}`}
+                                </Button>
+                            </Grid>)
+                        }
 
-                        <Grid item>
-                            <Button
-                                variant="contained"
-                                color="primary"
-                                onClick={handleSubmit}
-                            >
-                                {title.includes("Add")
-                                    ? `Submit ${product.type}`
-                                    : `Update ${product.type}`}
-                            </Button>
-                        </Grid>
+                        
                     </Grid>
                 </Grid>
             </div>

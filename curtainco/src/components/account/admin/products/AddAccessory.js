@@ -115,6 +115,7 @@ function AddAccessory() {
                 handleFileChange={handleFileChange}
                 setResetFile={setResetFile}
                 resetFile={resetFile}
+                isLoading={isLoading}
             />
         </>
     )
