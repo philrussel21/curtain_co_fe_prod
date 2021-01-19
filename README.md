@@ -234,6 +234,15 @@ The target audience of this website are users that are willing to spend a little
 -   **Manual Testing**
     -   Testing of all features using browser
     -   Testing application on all browsers - latest versions
+    -   Testing of Paypal Integration with sandbox account.
+    > **Paypal Sandbox Account**
+    > *Email:* monkeyDluffy@email.com
+    > *Password:* TestPassword
+    > **or**
+    > *Card Type:* Visa
+    > *Card Number:* 4032036677735050
+    > *Expiration Date:* 02/2022
+    > *CVV:* 339
 -   **User Testing**
     -   Tested all features on a user who has not used the app. Had the user take actions from a customer and an admin role
     -   Tests included from a Customer perspective:
