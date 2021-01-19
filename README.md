@@ -7,7 +7,7 @@
 <br>
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/f03a4191-5b3c-4ca3-98dc-37bc6c6758a2/deploy-status)](https://app.netlify.com/sites/thecurtainco/deploys)  
-Link to App: [https://thecurtainco.netlify.app/](https://thecurtainco.netlify.app/)  
+Link to App: [thecurtainco.netlify.app](https://thecurtainco.netlify.app/)  
 Front-End source code: [FE Repo](https://github.com/curtainCo/curtain_co_fe_prod)  
 Back-End source code: [BE Repo](https://github.com/curtainCo/curtain_co_be_prod)
 
