@@ -2,7 +2,7 @@
 
 <br>
 
-<div style="width:40%; margin: 0 auto;"><img src="docs/curtain_co_logo.png"/></div>
+<div style="width:40%; margin: 0 auto;"><img src="docs/images/curtain_co_logo.png"/></div>
 
 <br>
 
@@ -158,13 +158,13 @@ The target audience of this website are users that are willing to spend a little
 
 ## Dataflow Diagram
 
-![Curtain Co Dataflow Diagram](/docs/Curtain_Co_DFD.png)
+![Curtain Co Dataflow Diagram](/docs/images/Curtain_Co_DFD.png)
 
 ---
 
 ## Application Architecture Diagram
 
-![Curtain Co Application Arhictecture Diagram](/docs/Curtain_Co_AAD.png)
+![Curtain Co Application Arhictecture Diagram](/docs/images/Curtain_Co_AAD.png)
 
 ---
 
@@ -223,6 +223,32 @@ The target audience of this website are users that are willing to spend a little
 
 ## Testing
 
+> ### Payments
+>
+> **Paypal Sandbox Account**
+
+<details>
+<p>
+<strong>Email:</strong> <em>monkeyDluffy@email.com</em>
+<br>
+<strong>Password:</strong> <em>TestPassword</em>
+<br>
+<br>
+<strong>OR</strong>
+<br>
+<br>
+<strong>Card Type:</strong> <em>Visa</em>
+<br>
+<strong>CVV:</strong> <em>339</em>
+<br>
+<strong>Card Number:</strong> <em>4032036677735050</em>
+<br>
+<strong>Expiration Date:</strong> <em>02/2022</em>
+<br>
+<strong>CVV:</strong> <em>339</em>
+</p>
+</details>
+
 > ### Front-End
 >
 > **Jest** is the chosen framework for testing client side code.
@@ -231,18 +257,8 @@ The target audience of this website are users that are willing to spend a little
 -   Component testing
 -   Snapshot testing
     **_UPDATE AFTER BUILDING APPLICATION_**
--   **Manual Testing**
-    -   Testing of all features using browser
-    -   Testing application on all browsers - latest versions
-    -   Testing of Paypal Integration with sandbox account.
-    > **Paypal Sandbox Account**
-    > *Email:* monkeyDluffy@email.com
-    > *Password:* TestPassword
-    > **or**
-    > *Card Type:* Visa
-    > *Card Number:* 4032036677735050
-    > *Expiration Date:* 02/2022
-    > *CVV:* 339
+-   **Manual Testing** - Testing of all features using browser - Testing application on all browsers - latest versions - Testing of Paypal Integration with sandbox account.
+
 -   **User Testing**
     -   Tested all features on a user who has not used the app. Had the user take actions from a customer and an admin role
     -   Tests included from a Customer perspective:
@@ -270,6 +286,7 @@ The target audience of this website are users that are willing to spend a little
     -   Brave browser built-in ad blocker causes PayPal to throw errors but seems can still make a payment
     -   PayPal's sandbox mode takes time to load the PayPal buttons, causing bad User Experience if a user clicks the button and nothing happens. This error is supposedly supposed to work in production PayPal, which we have not tested yet due to the time for client not having a business account to set up a business PayPal account.
     -   Safari produces the same 401 unauthorized error that Chrome was throwing before updating Cookie to SameSite='none' and enabling the Proxy. According to [this article](https://stackoverflow.com/questions/58525719/safari-not-sending-cookie-even-after-setting-samesite-none-secure) it is an issue with Safari itself treating the SameSite=None Cookie as SameSite=Strict.
+    -   There is still a styling bug with Safari that we need to figure out.
 
 > ### Back-End
 >
@@ -291,7 +308,7 @@ The target audience of this website are users that are willing to spend a little
 
 ## Sitemap
 
-![Curtain Co Sitemap](/docs/Curtain_Co_Sitemap.png)
+![Curtain Co Sitemap](/docs/images/Curtain_Co_Sitemap.png)
 
 ---
 
@@ -515,6 +532,14 @@ For tablet, we only decided to do the landing page as to see which nav bar and f
 
 ![Part B Trello Progress 03](docs/trello/part_b_progress_03.png)
 
+#### Part B: 04.
+
+![Part B Trello Progress 04](docs/trello/part_b_progress_04.png)
+
+#### Part B: 05 (Submission).
+
+![Part B Trello Progress 05](docs/trello/part_b_progress_05_submission.png)
+
 </details>
 
 ---
@@ -562,4 +587,4 @@ GitHub: [philrussel21](https://github.com/philrussel21)
 
 <!-- ![Phil's LinkedIn](https://img.shields.io/badge/linkedin-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white) -->
 
-<div style="width:30%; margin: 0 auto"><img src="docs/{SiPhi}_logo_transparent.png" /></div>
+<div style="width:30%; margin: 0 auto"><img src="docs/images/{SiPhi}_logo_transparent.png" /></div>
