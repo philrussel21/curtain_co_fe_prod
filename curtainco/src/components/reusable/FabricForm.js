@@ -191,21 +191,24 @@ function FabricForm({
                             )}
                         </Grid>
 
-                        {isLoading && (
+                        {isLoading 
+                        ? (
                             <Grid item>
                                 <LoadingSymbol />
                             </Grid>
-                        )}
+                        )
+                        : (<Grid item>
+                                <Button
+                                    variant="contained"
+                                    color="primary"
+                                    onClick={handleSubmit}
+                                >
+                                    {buttonText}
+                                </Button>
+                            </Grid>)
+                            }
 
-                        <Grid item>
-                            <Button
-                                variant="contained"
-                                color="primary"
-                                onClick={handleSubmit}
-                            >
-                                {buttonText}
-                            </Button>
-                        </Grid>
+                        
                     </Grid>
                 )}
             </Grid>
