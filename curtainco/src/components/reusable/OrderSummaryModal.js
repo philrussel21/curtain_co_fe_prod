@@ -46,7 +46,6 @@ function OrderSummaryModal({ data, handleClose }) {
                         variant="h3"
                         component="h3"
                         className={classes.orderSummaryModalTitle}
-                        style={{ fontSize: isMobile ? 18 : 24 }}
                     >
                         Order #: {order.paymentData.id}
                     </Typography>

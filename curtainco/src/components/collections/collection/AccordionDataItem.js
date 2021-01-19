@@ -4,9 +4,6 @@ import { Grid, Typography, useMediaQuery } from "@material-ui/core"
 import useStyles from "../CollectionStyles"
 // HELPERS AND SERVICES
 import { capitalize } from "../../../helpers/appHelpers"
-// STATE
-// import { useCurtainContext } from "../../../config/CurtainCoContext"
-// import { ACTIONS } from "../../../config/stateReducer"
 
 function AccordionDataItem({ data, handleCustomization }) {
     const classes = useStyles()
@@ -34,12 +31,7 @@ function AccordionDataItem({ data, handleCustomization }) {
             category = data[i].category
         }
         setProductSelection(tempSelection)
-        // setCategory(category.toLowerCase())
     }, [data])
-
-    // useEffect(() => {
-    //     handleCustomization(productSelection, category)
-    // }, [productSelection, category, handleCustomization])
 
     // THIS LINE:
     // sm={data.length === 4 ? 3 : 4}

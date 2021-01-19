@@ -31,11 +31,11 @@ const useStyles = makeStyles((theme) => ({
     footer: {
         padding: theme.spacing(3, 2),
         marginTop: "auto",
-        backgroundColor: "lightblue",
+        backgroundColor: theme.palette.primary.veryLight,
     },
     footerMobile: {
         height: "fit-content",
-        backgroundColor: "lightblue",
+        backgroundColor: theme.palette.primary.veryLight,
         marginTop: "10%",
         // paddingBottom: "20%",
         paddingTop: "5%",
@@ -48,8 +48,9 @@ const useStyles = makeStyles((theme) => ({
         margin: "0 auto",
     },
     mobileMenuItemText: {
-        color: "#F2511B",
-        // fontFamily: "Roboto Slab",
+        color: theme.palette.primary.dark,
+        fontSize: 16,
+        letterSpacing: "1px",
     },
     sectionMobile: {
         display: "flex",
@@ -116,73 +117,110 @@ const useStyles = makeStyles((theme) => ({
     },
     topNavBarDivider: {
         marginTop: "-113px",
-        backgroundColor: theme.palette.primary.light,
+        // backgroundColor: theme.palette.primary.main,
+        backgroundColor: "#5C9CB9",
     },
     bottomNavBarDivider: {
         marginTop: "-65px",
-        backgroundColor: theme.palette.primary.light,
+        // backgroundColor: theme.palette.primary.main,
+        backgroundColor: "#5C9CB9",
     },
     topNavBarDividerMobile: {
         // marginTop: "-63px",
         position: "relative",
         // top: "-55px",
-        backgroundColor: theme.palette.primary.light,
+        // backgroundColor: theme.palette.primary.dark,
+        backgroundColor: "#5C9CB9",
     },
     bottomNavBarDividerMobile: {
         // marginTop: "-20px",
         position: "relative",
         top: "-15px",
-        backgroundColor: theme.palette.primary.light,
+        // backgroundColor: theme.palette.primary.dark,
+        backgroundColor: "#5C9CB9",
     },
     dividerCont: {
         position: "relative",
     },
     navBarText: {
         fontSize: 20,
+        fontFamily: theme.typography.fontFamily.split(",")[3],
         color: theme.palette.primary.dark,
-        fontWeight: theme.typography.fontWeightBold,
+        // fontWeight: theme.typography.fontWeightMedium,
+        fontWeight: 600,
         letterSpacing: "2px",
         [theme.breakpoints.up("sm")]: {
             fontSize: 16,
         },
         [theme.breakpoints.up("lg")]: {
-            fontSize: 22,
+            fontSize: 26,
+        },
+        "&:hover": {
+            color: theme.palette.primary.light,
+        },
+        "&:selected": {
+            color: theme.palette.primary.main,
         },
     },
     footerText: {
         fontFamily: theme.typography.fontFamily.split(",")[1],
         fontSize: 16,
         letterSpacing: "1px",
+        color: theme.palette.primary.dark,
     },
     footerEmailLink: {
         fontFamily: theme.typography.fontFamily.split(",")[1],
         fontSize: 16,
         letterSpacing: "1px",
-        color: theme.palette.secondary.dark,
+        color: theme.palette.primary.dark,
+        "&:hover": {
+            color: theme.palette.primary.light,
+        },
     },
     navBarMobileHeaderLeft: {
-        // textAlign: "center",
-        // paddingBottom: "1%",
         paddingRight: "4px",
         fontWeight: theme.typography.fontWeightMedium,
     },
     navBarMobileHeaderRight: {
-        // textAlign: "center",
-        // paddingBottom: "1%",
         paddingLeft: "4px",
         fontWeight: theme.typography.fontWeightMedium,
         color: theme.palette.primary.main,
     },
     privacy: {
         fontFamily: theme.typography.fontFamily.split(",")[1],
+        color: theme.palette.primary.main,
         letterSpacing: "1px",
+    },
+    copyrightText: {
+        color: theme.palette.primary.main,
+    },
+    siteByText: {
+        color: theme.palette.primary.main,
     },
     footerSiteByLinks: {
         textDecoration: "none",
         color: theme.palette.secondary.dark,
+        "&:hover": {
+            color: theme.palette.secondary.main,
+        },
     },
+
     navBarMobileHeaderMobile: {
         // flexDirection: "inherit !important",
+    },
+    cartLengthBadge: {
+        color: theme.palette.tertiary.main,
+    },
+    curtainCoDividerColor: {
+        background: theme.palette.primary.dark,
+    },
+    curtainCoDividerDot: {
+        width: "4px",
+        height: "4px",
+        borderRadius: "2px",
+        background: theme.palette.primary.dark,
+        position: "relative",
+        top: -2,
     },
 }))
 

@@ -33,7 +33,11 @@ const useStyles = makeStyles((theme) => ({
     },
     aboutMeRangeLinks: {
         fontFamily: theme.typography.fontFamily.split(",")[1],
-        color: theme.palette.secondary.light,
+        color: theme.palette.tertiary.dark,
+        textDecoration: "none",
+        "&:hover": {
+            color: theme.palette.tertiary.main,
+        },
     },
 }))
 

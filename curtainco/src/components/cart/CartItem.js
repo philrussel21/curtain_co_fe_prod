@@ -100,7 +100,6 @@ function CartItem({
                                 variant="h5"
                                 component="h5"
                                 className={classes.cartItemHeader}
-                                style={{ fontSize: isMobile ? 30 : 40 }}
                             >
                                 {capitalize(productItem.name)}
                             </Typography>
@@ -151,7 +150,11 @@ function CartItem({
                             ) : (
                                 <Grid item container sm={4}>
                                     <Grid item>
-                                        <Typography>
+                                        <Typography
+                                            className={
+                                                classes.cartCollectionContainsHeader
+                                            }
+                                        >
                                             Collection Contains:
                                         </Typography>
                                     </Grid>
@@ -236,7 +239,7 @@ function CartItem({
                                         onClick={handleDecreaseQty}
                                         value={itemInCart.id}
                                     >
-                                        <RemoveIcon color="secondary" />
+                                        <RemoveIcon color="error" />
                                     </IconButton>
                                 </Grid>
                                 <Grid
@@ -261,7 +264,7 @@ function CartItem({
                                         onClick={handleIncreaseQty}
                                         value={itemInCart.id}
                                     >
-                                        <AddIcon color="primary" />
+                                        <AddIcon color="secondary" />
                                     </IconButton>
                                 </Grid>
                             </Grid>

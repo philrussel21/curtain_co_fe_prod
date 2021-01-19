@@ -82,11 +82,7 @@ function PurchaseOrder({ order }) {
                             justify="center"
                             alignItems="center"
                         >
-                            <Button
-                                variant="outlined"
-                                color="secondary"
-                                onClick={handleItemClick}
-                            >
+                            <Button color="primary" onClick={handleItemClick}>
                                 See More
                             </Button>
                         </Grid>
@@ -185,11 +181,7 @@ function PurchaseOrder({ order }) {
                         justify="flex-end"
                         alignItems="center"
                     >
-                        <Button
-                            variant="outlined"
-                            color="secondary"
-                            onClick={handleItemClick}
-                        >
+                        <Button color="primary" onClick={handleItemClick}>
                             See More
                         </Button>
                     </Grid>

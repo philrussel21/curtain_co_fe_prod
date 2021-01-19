@@ -4,9 +4,7 @@ import { makeStyles } from "@material-ui/core/styles"
 const useStyles = makeStyles((theme) => ({
     userDashboardCont: {
         height: "100%",
-        overflowY: "auto",
         paddingBottom: "5%",
-        overflowX: "hidden",
     },
     userDashboardSubheading: {
         textAlign: "center",
@@ -47,23 +45,25 @@ const useStyles = makeStyles((theme) => ({
     },
     userAccountPurchaseOrderNumber: {
         fontWeight: "bold",
-        color: theme.palette.grey[700],
+        color: theme.palette.tertiary.dark,
 
         // marginLeft: "4%",
     },
     userAccountPurchaseOrderDetailsHeader: {
-        color: theme.palette.primary.main,
+        // color: theme.palette.tertiary.dark,
+        fontFamily: theme.typography.fontFamily.split(",")[1],
+        color: theme.palette.grey[800],
     },
     // purchaseOrderDivider: {
     //     marginTop: "1.5%",
     // },
     purchaseOrderDetailsData: {
-        fontFamily: theme.typography.fontFamily.split("1"),
+        fontFamily: theme.typography.fontFamily.split(",")[1],
         color: theme.palette.grey[700],
         fontStyle: "italic",
     },
     purchaseOrderDetailsListHeading: {
-        fontFamily: theme.typography.fontFamily.split("1"),
+        fontFamily: theme.typography.fontFamily.split(",")[1],
     },
     userDashboardPurchaseHistoryCont: {
         height: "100%",
