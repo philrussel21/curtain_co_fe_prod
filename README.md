@@ -256,7 +256,9 @@ The target audience of this website are users that are willing to spend a little
 -   Unit testing functions, methods, modules and objects
 -   Component testing
 -   Snapshot testing
-    **_UPDATE AFTER BUILDING APPLICATION_**
+
+**_UPDATE AFTER BUILDING APPLICATION_**
+
 -   **Manual Testing** - Testing of all features using browser - Testing application on all browsers - latest versions - Testing of Paypal Integration with sandbox account.
 
 -   **User Testing**
